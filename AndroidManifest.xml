@@ -56,6 +56,15 @@
                 <action android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
+	<activity
+            android:name=".fragments.PowerMenu"
+            android:label="@string/title_power_menu" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+            </intent-filter>
+        </activity>
 		<activity
             android:name=".fragments.Weather"
             android:label="Weather Settings" >

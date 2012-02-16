@@ -265,7 +265,7 @@ public class Navbar extends AOKPPreferenceFragment implements
             int width = mapChosenDpToPixels(dp);
             Settings.System.putInt(getContentResolver(), Settings.System.NAVIGATION_BAR_WIDTH,
                     width);
-            showDialog(DIALOG_NAVBAR_HEIGHT_REBOOT);
+            //showDialog(DIALOG_NAVBAR_HEIGHT_REBOOT);
             return true;
         } else if (preference == mNavigationBarHeight) {
             String newVal = (String) newValue;
@@ -273,7 +273,7 @@ public class Navbar extends AOKPPreferenceFragment implements
             int height = mapChosenDpToPixels(dp);
             Settings.System.putInt(getContentResolver(), Settings.System.NAVIGATION_BAR_HEIGHT,
                     height);
-            showDialog(DIALOG_NAVBAR_HEIGHT_REBOOT);
+            //showDialog(DIALOG_NAVBAR_HEIGHT_REBOOT);
             return true;
         } else if (preference == mNavigationBarHeightLandscape) {
             String newVal = (String) newValue;
@@ -282,7 +282,7 @@ public class Navbar extends AOKPPreferenceFragment implements
             Settings.System.putInt(getContentResolver(),
                     Settings.System.NAVIGATION_BAR_HEIGHT_LANDSCAPE,
                     height);
-            showDialog(DIALOG_NAVBAR_HEIGHT_REBOOT);
+            //showDialog(DIALOG_NAVBAR_HEIGHT_REBOOT);
             return true;
 
         } else if ((preference.getKey().startsWith("navbar_action"))

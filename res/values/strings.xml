@@ -14,6 +14,7 @@
     <string name="clock">Clock</string>
     <string name="battery">Battery</string>
     <string name="nav_bar">Navigation bar</string>
+    <string name="power_menu">Power Menu</string>
     <string name="lockscreen_options">Lockscreen options</string>
     <string name="weather">Weather</string>
     <string name="tools">Tools</string>
@@ -22,7 +23,7 @@
     <string name="signal">Signal</string>
 
 	<!-- Header Summaries -->
-    <string name="header_summary_clock">Clock location, AM/PM style, color</string>
+    <string name="header_summary_clock">Clock location, AM/PM style, Color</string>
     <string name="header_summary_toggles">Customize toggles</string>
     <string name="header_summary_general_ui">Boot animation, etc</string>
     <string name="header_summary_battery">Battery bar, 1% battery mod, etc</string>
@@ -30,6 +31,7 @@
     <string name="header_summary_lockscreens">Lockscreen settings</string>
     <string name="header_summary_weather">Enable/disable, set custom location or network, and interval</string>
     <string name="header_summary_signal">@null</string>
+    <string name="header_summary_power_menu">@null</string>
  
 	<!-- Menu Strings -->
     <string name="header_summary_performance">Set CPU, free memory &amp; other settings</string>
@@ -42,6 +44,24 @@
     <string name="advanced_settings">Advanced settings</string>
     <string name="misc_short">Misc</string>
     <string name="custom_app_icon_successfully">"'s icon set successfully!"</string>
+    <string name="title_power_menu">Power Menu</string>
+
+    <!-- Power Menu -->
+    <string name="title_show_power_saver">Show power saver</string>
+    <string name="title_show_screenshot">Show screenshot</string>
+    <string name="title_show_torch_toggle">Show torch toggle</string>
+    <string name="title_show_airplane_toggle">Show airplane toggle</string>
+    <string name="title_show_navbar_hide">Show navigation bar toggle</string>
+
+    <!-- Power Saving -->
+    <string name="title_pref_powersaving_pref_mode">Enable power saver</string>
+    <string name="summary_pref_powersaving_pref_mode">@null</string>
+
+    <string name="title_pref_powersaving_data_screen_off">Screen off data action</string>
+    <string name="summary_pref_powersaving_data_screen_off">What to do with the data when the screen turns off</string>
+
+    <string name="title_pref_powersaving_data_screen_off_delay">Data action delay</string>
+    <string name="summary_pref_powersaving_data_screen_off_delay">How long to wait before applying data action?</string>
 
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>

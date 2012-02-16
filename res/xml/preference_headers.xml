@@ -28,6 +28,13 @@
 	android:summary="@string/header_summary_led" />
 
     <header
+        android:id="@+id/power_menu"
+        android:fragment="com.aokp.romcontrol.fragments.PowerMenu"
+        android:title="@string/power_menu"
+        android:icon="@drawable/ic_rom_control_power_menu"
+        android:summary="@string/header_summary_power_menu" />
+
+    <header
         android:id="@+id/statusbar"
         android:title="@string/header_statusbar" />
     <header
