@@ -36,6 +36,7 @@
     <string name="group_applications">Applications</string>
 
     <!-- About -->
+	<string name="dpi">DPI</string>
     <string name="devs">Developers</string>
     <string name="aokp">Android Open Kang Project</string>
     <string name="aokp_website_title">AOKP Website</string>

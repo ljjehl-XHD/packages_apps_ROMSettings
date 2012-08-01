@@ -52,7 +52,7 @@ public class AOKPPreferenceFragment extends PreferenceFragment implements Dialog
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        //mTablet = Settings.System.getBoolean(getContentResolver(), Settings.System.TABLET_UI, false);
+        mTablet = Settings.System.getBoolean(getContentResolver(), Settings.System.TABLET_UI, false);
         hasTorch = getResources().getBoolean(R.bool.has_torch);
         hasHardwareButtons = getResources().getBoolean(R.bool.has_hardware_buttons);
         hasFastCharge = getResources().getBoolean(R.bool.has_fast_charge);
