@@ -56,6 +56,15 @@
                 <action android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
+		<activity
+            android:name=".fragments.Weather"
+            android:label="Weather Settings" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+            </intent-filter>
+        </activity>
          <activity
             android:name=".fragments.StatusBarToggles"
             android:label="Statusbar Toggles" >
@@ -82,5 +91,14 @@
                 <category android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
+		<receiver
+            android:name=".service.WeatherReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="com.aokp.romcontrol.INTENT_WEATHER_REQUEST" />
+            </intent-filter>
+        </receiver>
+		<service android:name=".weather.WeatherRefreshService" />
+        <service android:name=".weather.WeatherService" />
     </application>
 </manifest>
