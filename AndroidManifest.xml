@@ -47,6 +47,15 @@
                 <category android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
+		<activity
+            android:name=".fragments.Lockscreens"
+            android:label="Lockscreen Options" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <action android:name="com.aokp.romcontrol.SHORTCUT" />
+            </intent-filter>
+        </activity>
          <activity
             android:name=".fragments.StatusBarToggles"
             android:label="Statusbar Toggles" >
