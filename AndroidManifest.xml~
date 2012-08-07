@@ -91,12 +91,6 @@
                 <category android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
-	<receiver
-            android:name=".service.BootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
 		<receiver
             android:name=".service.WeatherReceiver"
             android:enabled="true" >
@@ -104,8 +98,7 @@
                 <action android:name="com.aokp.romcontrol.INTENT_WEATHER_REQUEST" />
             </intent-filter>
         </receiver>
-	<service android:name=".service.BootService" />
-	<service android:name=".weather.WeatherRefreshService" />
+		<service android:name=".weather.WeatherRefreshService" />
         <service android:name=".weather.WeatherService" />
     </application>
 </manifest>
