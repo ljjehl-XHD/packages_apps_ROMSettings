@@ -183,6 +183,10 @@
     <string name="glow_times_quick">Quick</string>
     <string name="glow_times_normal">Normal</string>
 
+    <!-- Sound -->
+    <string name="less_notification_sounds_title">Less Frequent Notification Sounds</string>
+    <string name="less_notification_sounds_summary">Limit each app\'s notification sounds to play once per the set value</string>
+
     <!-- Lockscreen -->
     <string name="lockscreen_quick_unlock_control_title">Quick pin unlock</string>
     <string name="lockscreen_quick_unlock_control_summary">Unlock password/pin lockscreen without pressing enter button</string>
