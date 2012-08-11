@@ -175,6 +175,7 @@
 		<item>Open IME Switcher</item>
 		<item>Kill app</item>
 		<item>Power</item>
+		<item>Notifications</item>
 		<item>Custom app</item>
 		<item>Blank</item>
 	</string-array>
@@ -190,6 +191,7 @@
 		<item>**ime**</item>
 		<item>**kill**</item>
 		<item>**power**</item>
+		<item>**notifications**</item>
 		<item>**app**</item>
 		<item>**null**</item>
 	</string-array>
