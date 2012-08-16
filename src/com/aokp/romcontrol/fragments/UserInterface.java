@@ -31,9 +31,11 @@ public class UserInterface extends AOKPPreferenceFragment {
     public static final String TAG = "UserInterface";
 
     private static final String PREF_ENABLE_VOLUME_OPTIONS = "enable_volume_options";
+    private static final String PREF_IME_SWITCHER = "ime_switcher";
 
     CheckBoxPreference mEnableVolumeOptions;
     CheckBoxPreference mDisableBootAnimation;
+    CheckBoxPreference mShowImeSwitcher;
 
 	Random randomGenerator = new Random();
 
@@ -46,6 +48,10 @@ public class UserInterface extends AOKPPreferenceFragment {
         mEnableVolumeOptions = (CheckBoxPreference) findPreference(PREF_ENABLE_VOLUME_OPTIONS);
         mEnableVolumeOptions.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.ENABLE_VOLUME_OPTIONS, 0) == 1);
+
+	mShowImeSwitcher = (CheckBoxPreference) findPreference(PREF_IME_SWITCHER);
+        mShowImeSwitcher.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.SHOW_STATUSBAR_IME_SWITCHER, 1) == 1);
 
 	mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
         mDisableBootAnimation.setChecked(!new File("/system/media/bootanimation.zip").exists());
@@ -65,6 +71,11 @@ public class UserInterface extends AOKPPreferenceFragment {
             boolean checked = ((CheckBoxPreference) preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.ENABLE_VOLUME_OPTIONS, checked ? 1 : 0);
+            return true;
+	    } else if (preference == mShowImeSwitcher) {
+	    boolean checked = ((CheckBoxPreference) preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SHOW_STATUSBAR_IME_SWITCHER, checked ? 1 : 0);
             return true;
 	 } else if (preference == mDisableBootAnimation) {
             boolean checked = ((CheckBoxPreference) preference).isChecked();

@@ -31,8 +31,8 @@ public class Sound extends AOKPPreferenceFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.prefs_sound);
-        PreferenceManager.setDefaultValues(mContext, R.xml.prefs_sound, true);
+        addPreferencesFromResource(R.xml.prefs_ui);
+        PreferenceManager.setDefaultValues(mContext, R.xml.prefs_ui, true);
         prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 
         mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);

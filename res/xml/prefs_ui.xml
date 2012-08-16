@@ -14,6 +14,18 @@
             android:key="disable_bootanimation"
             android:title="@string/disable_bootanimation_title" />
     
+	<ListPreference
+        android:key="less_notification_sounds"
+        android:title="@string/less_notification_sounds_title"
+        android:summary="@string/less_notification_sounds_summary"
+        android:entries="@array/less_notification_sounds_entries"
+        android:entryValues="@array/less_notification_sounds_values" />
+
+	<CheckBoxPreference
+			android:key="ime_switcher"
+			android:title="@string/ime_switcher_title"
+			android:summary="@string/ime_switcher_summary" />
+
 	</PreferenceCategory>
 
 </PreferenceScreen>
