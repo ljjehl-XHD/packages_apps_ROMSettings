@@ -10,10 +10,10 @@
 			android:key="enable_volume_options"
 			android:title="@string/enable_volume_options" />
 
-	</PreferenceCategory>
          <CheckBoxPreference
             android:key="disable_bootanimation"
             android:title="@string/disable_bootanimation_title" />
-    </PreferenceCategory>
+    
+	</PreferenceCategory>
 
 </PreferenceScreen>

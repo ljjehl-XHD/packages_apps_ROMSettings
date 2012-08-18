@@ -1,14 +1,12 @@
-
 package com.aokp.romcontrol.fragments;
 
 import java.io.File;
+import java.util.Random;
 import java.util.ArrayList;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import java.util.Random;
-
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.SystemProperties;
@@ -37,18 +35,19 @@ public class UserInterface extends AOKPPreferenceFragment {
     CheckBoxPreference mEnableVolumeOptions;
     CheckBoxPreference mDisableBootAnimation;
 
-    Random randomGenerator = new Random();
+	Random randomGenerator = new Random();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.prefs_ui);
+
         mEnableVolumeOptions = (CheckBoxPreference) findPreference(PREF_ENABLE_VOLUME_OPTIONS);
         mEnableVolumeOptions.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.ENABLE_VOLUME_OPTIONS, 0) == 1);
 
-        mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
+	mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
         mDisableBootAnimation.setChecked(!new File("/system/media/bootanimation.zip").exists());
         if (mDisableBootAnimation.isChecked()) {
             Resources res = mContext.getResources();
@@ -67,8 +66,7 @@ public class UserInterface extends AOKPPreferenceFragment {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.ENABLE_VOLUME_OPTIONS, checked ? 1 : 0);
             return true;
-            }
-        } else if (preference == mDisableBootAnimation) {
+	 } else if (preference == mDisableBootAnimation) {
             boolean checked = ((CheckBoxPreference) preference).isChecked();
             if (checked) {
                 Helpers.getMount("rw");
@@ -87,7 +85,7 @@ public class UserInterface extends AOKPPreferenceFragment {
                 preference.setSummary("");
             }
             return true;
-        }
+            }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 }
