@@ -30,9 +30,11 @@ public class UserInterface extends AOKPPreferenceFragment {
 
     public static final String TAG = "UserInterface";
 
+    private static final String PREF_180 = "rotate_180";
     private static final String PREF_ENABLE_VOLUME_OPTIONS = "enable_volume_options";
     private static final String PREF_IME_SWITCHER = "ime_switcher";
 
+    CheckBoxPreference mAllow180Rotation;
     CheckBoxPreference mEnableVolumeOptions;
     CheckBoxPreference mDisableBootAnimation;
     CheckBoxPreference mShowImeSwitcher;
@@ -44,6 +46,10 @@ public class UserInterface extends AOKPPreferenceFragment {
         super.onCreate(savedInstanceState);
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.prefs_ui);
+
+	mAllow180Rotation = (CheckBoxPreference) findPreference(PREF_180);
+        mAllow180Rotation.setChecked(Settings.System.getInt(mContext
+                .getContentResolver(), Settings.System.ACCELEROMETER_ROTATION_ANGLES, (1 | 2 | 8)) == (1 | 2 | 4 | 8));
 
         mEnableVolumeOptions = (CheckBoxPreference) findPreference(PREF_ENABLE_VOLUME_OPTIONS);
         mEnableVolumeOptions.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
@@ -76,6 +82,11 @@ public class UserInterface extends AOKPPreferenceFragment {
 	    boolean checked = ((CheckBoxPreference) preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.SHOW_STATUSBAR_IME_SWITCHER, checked ? 1 : 0);
+            return true;
+	 } else if (preference == mAllow180Rotation) {
+	    boolean checked = ((CheckBoxPreference) preference).isChecked();
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.ACCELEROMETER_ROTATION_ANGLES, checked ? (1 | 2 | 4 | 8) : (1 | 2 | 8 ));
             return true;
 	 } else if (preference == mDisableBootAnimation) {
             boolean checked = ((CheckBoxPreference) preference).isChecked();

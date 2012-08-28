@@ -14,6 +14,11 @@
             android:key="disable_bootanimation"
             android:title="@string/disable_bootanimation_title" />
     
+	<CheckBoxPreference
+	android:key="rotate_180"
+	android:title="@string/rotate_180_title"
+	android:summary="@string/rotate_180_summary" />
+
 	<ListPreference
         android:key="less_notification_sounds"
         android:title="@string/less_notification_sounds_title"
