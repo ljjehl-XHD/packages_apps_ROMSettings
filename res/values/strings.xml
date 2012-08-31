@@ -214,6 +214,7 @@
     <string name="led_edit_button">-</string>
     <string name="led_test_notification">Test LED</string>
     <string name="led_test_ok">OK</string>
+    <string name="title_charging_led_on">Enable LED while charging</string>
 
     <!-- Sound -->
     <string name="less_notification_sounds_title">Less Frequent Notification Sounds</string>
