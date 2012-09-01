@@ -19,6 +19,11 @@
 	android:title="@string/rotate_180_title"
 	android:summary="@string/rotate_180_summary" />
 
+	<CheckBoxPreference
+            android:key="recent_kill_all"
+            android:title="@string/recent_kill_all"
+            android:summary="@string/recent_kill_all_summary" />
+
 	<ListPreference
         android:key="less_notification_sounds"
         android:title="@string/less_notification_sounds_title"
