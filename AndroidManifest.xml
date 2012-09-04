@@ -118,6 +118,13 @@
                 <data android:mimeType="text/*" />
             </intent-filter>
         </activity>
+	<activity
+            android:name=".fragments.StatusBarSignal"
+            android:label="Statusbar Signal" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
 	<receiver
             android:name=".service.BootReceiver">
             <intent-filter>
