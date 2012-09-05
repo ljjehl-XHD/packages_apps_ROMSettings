@@ -214,7 +214,7 @@
     <string name="led_edit_button">-</string>
     <string name="led_test_notification">Test LED</string>
     <string name="led_test_ok">OK</string>
-    <string name="title_charging_led_on">Enable LED while charging</string>
+    <string name="title_charging_led_on">Enable LED while charging (needs reboot)</string>
     <string name="led_change_brightness">Change brightness</string>
     <string name="led_brightness_default">Default brightness: 31</string>
 
