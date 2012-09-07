@@ -171,6 +171,7 @@
 		<item>Search</item>
 		<item>Menu</item>
 		<item>Toggle Widgets</item>
+		<item>Open IME Switcher</item>
 		<item>Kill app</item>
 		<item>Power</item>
 		<item>Custom app</item>
@@ -184,6 +185,7 @@
 		<item>**search**</item>
 		<item>**menu**</item>
 		<item>**widgets**</item>
+		<item>**ime**</item>
 		<item>**kill**</item>
 		<item>**power**</item>
 		<item>**app**</item>
