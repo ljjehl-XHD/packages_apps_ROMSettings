@@ -34,14 +34,21 @@ public class UserInterface extends AOKPPreferenceFragment {
     private static final String PREF_RECENT_KILL_ALL = "recent_kill_all";
     private static final String PREF_ENABLE_VOLUME_OPTIONS = "enable_volume_options";
     private static final String PREF_IME_SWITCHER = "ime_switcher";
+	private static final String PREF_MODE_TABLET_UI = "mode_tabletui";
 
     CheckBoxPreference mAllow180Rotation;
     CheckBoxPreference mRecentKillAll;
     CheckBoxPreference mEnableVolumeOptions;
     CheckBoxPreference mDisableBootAnimation;
     CheckBoxPreference mShowImeSwitcher;
+	CheckBoxPreference mTabletui;
+    Preference mLcdDensity;
 
 	Random randomGenerator = new Random();
+
+	int newDensityValue;
+
+    DensityChanger densityFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +80,21 @@ public class UserInterface extends AOKPPreferenceFragment {
             int randomInt = randomGenerator.nextInt(insults.length);
             mDisableBootAnimation.setSummary(insults[randomInt]);
         }
+
+	mLcdDensity = findPreference("lcd_density_setup");
+        String currentProperty = SystemProperties.get("ro.sf.lcd_density");
+        try {
+            newDensityValue = Integer.parseInt(currentProperty);
+        } catch (Exception e) {
+            getPreferenceScreen().removePreference(mLcdDensity);
+        }
+
+        mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
+
+	 mTabletui = (CheckBoxPreference) findPreference(PREF_MODE_TABLET_UI);
+        mTabletui.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                        Settings.System.MODE_TABLET_UI, false));
+
     }
 
     @Override
@@ -100,6 +122,11 @@ public class UserInterface extends AOKPPreferenceFragment {
                     Settings.System.RECENT_KILL_ALL_BUTTON, checked ? 1 : 0);
             Helpers.restartSystemUI();
             return true;
+	} else if (preference == mTabletui) {
+            Settings.System.putBoolean(mContext.getContentResolver(),
+                    Settings.System.MODE_TABLET_UI,
+                    ((CheckBoxPreference) preference).isChecked());
+            return true;
 	 } else if (preference == mDisableBootAnimation) {
             boolean checked = ((CheckBoxPreference) preference).isChecked();
             if (checked) {
@@ -118,6 +145,10 @@ public class UserInterface extends AOKPPreferenceFragment {
                 Helpers.getMount("ro");
                 preference.setSummary("");
             }
+            return true;
+			} else if (preference == mLcdDensity) {
+            ((PreferenceActivity) getActivity())
+                    .startPreferenceFragment(new DensityChanger(), true);
             return true;
             }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
