@@ -44,6 +44,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements
     private static final String TAG = "Lockscreens";
 
     private static final String PREF_LOCKSCREEN_BATTERY = "lockscreen_battery";
+	private static final String PREF_LOCKSCREEN_AUTO_ROTATE = "lockscreen_auto_rotate";
 
     public static final int REQUEST_PICK_WALLPAPER = 199;
     public static final int REQUEST_PICK_CUSTOM_ICON = 200;
@@ -55,6 +56,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements
     Preference mLockscreenWallpaper;
 
     CheckBoxPreference mLockscreenBattery;
+	CheckBoxPreference mLockscreenAutoRotate;
 
     ArrayList<String> keys = new ArrayList<String>();
 
@@ -70,6 +72,10 @@ public class Lockscreens extends AOKPPreferenceFragment implements
         mLockscreenBattery = (CheckBoxPreference)findPreference(PREF_LOCKSCREEN_BATTERY);
         mLockscreenBattery.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.LOCKSCREEN_BATTERY, 0) == 1);
+
+		mLockscreenAutoRotate = (CheckBoxPreference)findPreference(PREF_LOCKSCREEN_AUTO_ROTATE);
+        mLockscreenAutoRotate.setChecked(Settings.System.getBoolean(mContext
+                .getContentResolver(), Settings.System.LOCKSCREEN_AUTO_ROTATE, false));
 
         mLockscreenWallpaper = findPreference("wallpaper");
 
@@ -95,6 +101,11 @@ public class Lockscreens extends AOKPPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.LOCKSCREEN_BATTERY,
                     ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
+            return true;
+		} else if (preference == mLockscreenAutoRotate) {
+            Settings.System.putBoolean(mContext.getContentResolver(),
+                    Settings.System.LOCKSCREEN_AUTO_ROTATE,
+                    ((CheckBoxPreference) preference).isChecked());
             return true;
         } else if (preference == mLockscreenWallpaper) {
             Display display = getActivity().getWindowManager().getDefaultDisplay();
