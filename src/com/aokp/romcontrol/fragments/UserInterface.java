@@ -35,6 +35,7 @@ public class UserInterface extends AOKPPreferenceFragment {
     private static final String PREF_ENABLE_VOLUME_OPTIONS = "enable_volume_options";
     private static final String PREF_IME_SWITCHER = "ime_switcher";
 	private static final String PREF_MODE_TABLET_UI = "mode_tabletui";
+	private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
 
     CheckBoxPreference mAllow180Rotation;
     CheckBoxPreference mRecentKillAll;
@@ -42,6 +43,7 @@ public class UserInterface extends AOKPPreferenceFragment {
     CheckBoxPreference mDisableBootAnimation;
     CheckBoxPreference mShowImeSwitcher;
 	CheckBoxPreference mTabletui;
+	CheckBoxPreference mDualpane;
     Preference mLcdDensity;
 
 	Random randomGenerator = new Random();
@@ -95,6 +97,11 @@ public class UserInterface extends AOKPPreferenceFragment {
         mTabletui.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                         Settings.System.MODE_TABLET_UI, false));
 
+	mDualpane = (CheckBoxPreference) findPreference(PREF_FORCE_DUAL_PANEL);
+        mDualpane.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                        Settings.System.FORCE_DUAL_PANEL, getResources().getBoolean(
+                        com.android.internal.R.bool.preferences_prefer_dual_pane)));
+
     }
 
     @Override
@@ -125,6 +132,11 @@ public class UserInterface extends AOKPPreferenceFragment {
 	} else if (preference == mTabletui) {
             Settings.System.putBoolean(mContext.getContentResolver(),
                     Settings.System.MODE_TABLET_UI,
+                    ((CheckBoxPreference) preference).isChecked());
+            return true;
+	} else if (preference == mDualpane) {
+            Settings.System.putBoolean(mContext.getContentResolver(),
+                    Settings.System.FORCE_DUAL_PANEL,
                     ((CheckBoxPreference) preference).isChecked());
             return true;
 	 } else if (preference == mDisableBootAnimation) {
