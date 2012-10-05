@@ -36,12 +36,14 @@ public class UserInterface extends AOKPPreferenceFragment {
     private static final String PREF_IME_SWITCHER = "ime_switcher";
 	private static final String PREF_MODE_TABLET_UI = "mode_tabletui";
 	private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
+	private static final String PREF_USE_ALT_RESOLVER = "use_alt_resolver";
 
     CheckBoxPreference mAllow180Rotation;
     CheckBoxPreference mRecentKillAll;
     CheckBoxPreference mEnableVolumeOptions;
     CheckBoxPreference mDisableBootAnimation;
     CheckBoxPreference mShowImeSwitcher;
+	CheckBoxPreference mUseAltResolver;
 	CheckBoxPreference mTabletui;
 	CheckBoxPreference mDualpane;
     Preference mLcdDensity;
@@ -73,6 +75,10 @@ public class UserInterface extends AOKPPreferenceFragment {
 	mShowImeSwitcher = (CheckBoxPreference) findPreference(PREF_IME_SWITCHER);
         mShowImeSwitcher.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.SHOW_STATUSBAR_IME_SWITCHER, 1) == 1);
+
+	mUseAltResolver = (CheckBoxPreference) findPreference(PREF_USE_ALT_RESOLVER);
+        mUseAltResolver.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                        Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
 
 	mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
         mDisableBootAnimation.setChecked(!new File("/system/media/bootanimation.zip").exists());
@@ -113,12 +119,17 @@ public class UserInterface extends AOKPPreferenceFragment {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.ENABLE_VOLUME_OPTIONS, checked ? 1 : 0);
             return true;
-	    } else if (preference == mShowImeSwitcher) {
+	} else if (preference == mShowImeSwitcher) {
 	    boolean checked = ((CheckBoxPreference) preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.SHOW_STATUSBAR_IME_SWITCHER, checked ? 1 : 0);
             return true;
-	 } else if (preference == mAllow180Rotation) {
+	} else if (preference == mUseAltResolver) {
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.ACTIVITY_RESOLVER_USE_ALT,
+                    isCheckBoxPrefernceChecked(preference));
+            return true;
+	} else if (preference == mAllow180Rotation) {
 	    boolean checked = ((CheckBoxPreference) preference).isChecked();
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.ACCELEROMETER_ROTATION_ANGLES, checked ? (1 | 2 | 4 | 8) : (1 | 2 | 8 ));
@@ -139,7 +150,7 @@ public class UserInterface extends AOKPPreferenceFragment {
                     Settings.System.FORCE_DUAL_PANEL,
                     ((CheckBoxPreference) preference).isChecked());
             return true;
-	 } else if (preference == mDisableBootAnimation) {
+	} else if (preference == mDisableBootAnimation) {
             boolean checked = ((CheckBoxPreference) preference).isChecked();
             if (checked) {
                 Helpers.getMount("rw");
