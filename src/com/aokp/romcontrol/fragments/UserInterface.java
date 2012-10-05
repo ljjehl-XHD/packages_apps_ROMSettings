@@ -125,9 +125,9 @@ public class UserInterface extends AOKPPreferenceFragment {
                     Settings.System.SHOW_STATUSBAR_IME_SWITCHER, checked ? 1 : 0);
             return true;
 	} else if (preference == mUseAltResolver) {
-            Settings.System.putBoolean(getActivity().getContentResolver(),
-                    Settings.System.ACTIVITY_RESOLVER_USE_ALT,
-                    isCheckBoxPrefernceChecked(preference));
+		boolean checked = ((CheckBoxPreference) preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.ACTIVITY_RESOLVER_USE_ALT, checked ? 1 : 0);
             return true;
 	} else if (preference == mAllow180Rotation) {
 	    boolean checked = ((CheckBoxPreference) preference).isChecked();
