@@ -24,6 +24,11 @@
             android:title="@string/recent_kill_all"
             android:summary="@string/recent_kill_all_summary" />
 
+	<CheckBoxPreference
+            android:key="vibrate_notif_expand"
+            android:title="@string/vibrate_notif_expand_title"
+            android:summary="@string/vibrate_notif_expand_summary" />
+
 	<ListPreference
         android:key="less_notification_sounds"
         android:title="@string/less_notification_sounds_title"

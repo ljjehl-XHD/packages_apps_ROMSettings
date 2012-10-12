@@ -38,6 +38,7 @@ public class UserInterface extends AOKPPreferenceFragment {
 	private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
 	private static final String PREF_USE_ALT_RESOLVER = "use_alt_resolver";
 	private static final String PREF_SHOW_OVERFLOW = "show_overflow";
+	private static final String PREF_VIBRATE_NOTIF_EXPAND = "vibrate_notif_expand";
 
     CheckBoxPreference mAllow180Rotation;
     CheckBoxPreference mRecentKillAll;
@@ -48,6 +49,7 @@ public class UserInterface extends AOKPPreferenceFragment {
 	CheckBoxPreference mShowActionOverflow;
 	CheckBoxPreference mTabletui;
 	CheckBoxPreference mDualpane;
+	CheckBoxPreference mVibrateOnExpand;
     Preference mLcdDensity;
 
 	Random randomGenerator = new Random();
@@ -115,6 +117,10 @@ public class UserInterface extends AOKPPreferenceFragment {
                         Settings.System.FORCE_DUAL_PANEL, getResources().getBoolean(
                         com.android.internal.R.bool.preferences_prefer_dual_pane)));
 
+	mVibrateOnExpand = (CheckBoxPreference) findPreference(PREF_VIBRATE_NOTIF_EXPAND);
+        mVibrateOnExpand.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.VIBRATE_NOTIF_EXPAND, true));
+
     }
 
     @Override
@@ -163,6 +169,12 @@ public class UserInterface extends AOKPPreferenceFragment {
             Settings.System.putBoolean(mContext.getContentResolver(),
                     Settings.System.FORCE_DUAL_PANEL,
                     ((CheckBoxPreference) preference).isChecked());
+            return true;
+	} else if (preference == mVibrateOnExpand) {
+            Settings.System.putBoolean(mContext.getContentResolver(),
+                    Settings.System.VIBRATE_NOTIF_EXPAND,
+                    ((CheckBoxPreference) preference).isChecked());
+            Helpers.restartSystemUI();
             return true;
 	} else if (preference == mDisableBootAnimation) {
             boolean checked = ((CheckBoxPreference) preference).isChecked();
