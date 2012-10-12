@@ -37,6 +37,7 @@ public class UserInterface extends AOKPPreferenceFragment {
 	private static final String PREF_MODE_TABLET_UI = "mode_tabletui";
 	private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
 	private static final String PREF_USE_ALT_RESOLVER = "use_alt_resolver";
+	private static final String PREF_SHOW_OVERFLOW = "show_overflow";
 
     CheckBoxPreference mAllow180Rotation;
     CheckBoxPreference mRecentKillAll;
@@ -44,6 +45,7 @@ public class UserInterface extends AOKPPreferenceFragment {
     CheckBoxPreference mDisableBootAnimation;
     CheckBoxPreference mShowImeSwitcher;
 	CheckBoxPreference mUseAltResolver;
+	CheckBoxPreference mShowActionOverflow;
 	CheckBoxPreference mTabletui;
 	CheckBoxPreference mDualpane;
     Preference mLcdDensity;
@@ -79,6 +81,11 @@ public class UserInterface extends AOKPPreferenceFragment {
 	mUseAltResolver = (CheckBoxPreference) findPreference(PREF_USE_ALT_RESOLVER);
         mUseAltResolver.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                         Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
+
+	mShowActionOverflow = (CheckBoxPreference) findPreference(PREF_SHOW_OVERFLOW);
+        mShowActionOverflow.setChecked((Settings.System.getInt(getActivity().
+                        getApplicationContext().getContentResolver(),
+                        Settings.System.UI_FORCE_OVERFLOW_BUTTON, 0) == 1));
 
 	mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
         mDisableBootAnimation.setChecked(!new File("/system/media/bootanimation.zip").exists());
@@ -128,6 +135,11 @@ public class UserInterface extends AOKPPreferenceFragment {
 		boolean checked = ((CheckBoxPreference) preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.ACTIVITY_RESOLVER_USE_ALT, checked ? 1 : 0);
+            return true;
+	} else if (preference == mShowActionOverflow) {
+            boolean enabled = mShowActionOverflow.isChecked();
+            Settings.System.putInt(getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON,
+                    enabled ? 1 : 0);
             return true;
 	} else if (preference == mAllow180Rotation) {
 	    boolean checked = ((CheckBoxPreference) preference).isChecked();
