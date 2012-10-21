@@ -200,6 +200,13 @@
     <string name="battery_bar_animate_title">Charging animation</string>
     <string name="battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
 
+	<!-- Battery styles -->
+    <string name="icon_with_text">Icon with text</string>
+    <string name="icon_with_centered_text">Icon with centered text</string>
+    <string name="circlemod">CircleMOD (themeable)</string>
+    <string name="circle">Circle</string>
+    <string name="circle_percent">Circle with percent</string>
+
     <!-- Statusbar | Signal -->
     <string name="signal_style">Signal Text Style</string>
     <string name="signal_color_title">Signal color</string>
