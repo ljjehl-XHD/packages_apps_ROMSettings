@@ -32,6 +32,7 @@ public class UserInterface extends AOKPPreferenceFragment {
 
     private static final String PREF_180 = "rotate_180";
     private static final String PREF_RECENT_KILL_ALL = "recent_kill_all";
+	private static final String PREF_RAM_USAGE_BAR = "ram_usage_bar";
     private static final String PREF_ENABLE_VOLUME_OPTIONS = "enable_volume_options";
     private static final String PREF_IME_SWITCHER = "ime_switcher";
 	private static final String PREF_MODE_TABLET_UI = "mode_tabletui";
@@ -42,6 +43,7 @@ public class UserInterface extends AOKPPreferenceFragment {
 
     CheckBoxPreference mAllow180Rotation;
     CheckBoxPreference mRecentKillAll;
+	CheckBoxPreference mRamBar;
     CheckBoxPreference mEnableVolumeOptions;
     CheckBoxPreference mDisableBootAnimation;
     CheckBoxPreference mShowImeSwitcher;
@@ -69,8 +71,12 @@ public class UserInterface extends AOKPPreferenceFragment {
                 .getContentResolver(), Settings.System.ACCELEROMETER_ROTATION_ANGLES, (1 | 2 | 8)) == (1 | 2 | 4 | 8));
 
 	mRecentKillAll = (CheckBoxPreference) findPreference(PREF_RECENT_KILL_ALL);
-        mRecentKillAll.setChecked(Settings.System.getInt(getActivity  ().getContentResolver(),
-                Settings.System.RECENT_KILL_ALL_BUTTON, 0) == 1);
+        mRecentKillAll.setChecked(Settings.System.getBoolean(getActivity  ().getContentResolver(),
+                Settings.System.RECENT_KILL_ALL_BUTTON, false));
+
+        mRamBar = (CheckBoxPreference) findPreference(PREF_RAM_USAGE_BAR);
+        mRamBar.setChecked(Settings.System.getBoolean(getActivity  ().getContentResolver(),
+                Settings.System.RAM_USAGE_BAR, false));
 
         mEnableVolumeOptions = (CheckBoxPreference) findPreference(PREF_ENABLE_VOLUME_OPTIONS);
         mEnableVolumeOptions.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
@@ -154,9 +160,13 @@ public class UserInterface extends AOKPPreferenceFragment {
             return true;
 	} else if (preference == mRecentKillAll) {
             boolean checked = ((CheckBoxPreference)preference).isChecked();
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.RECENT_KILL_ALL_BUTTON, checked ? 1 : 0);
-            Helpers.restartSystemUI();
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.RECENT_KILL_ALL_BUTTON, checked ? true : false);
+            return true;
+        } else if (preference == mRamBar) {
+            boolean checked = ((CheckBoxPreference)preference).isChecked();
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.RAM_USAGE_BAR, checked ? true : false);
             return true;
 	} else if (preference == mTabletui) {
             Settings.System.putBoolean(mContext.getContentResolver(),

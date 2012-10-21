@@ -25,6 +25,11 @@
             android:summary="@string/recent_kill_all_summary" />
 
 	<CheckBoxPreference
+            android:key="ram_usage_bar"
+            android:title="@string/ram_bar"
+            android:summary="@string/ram_bar_summary" />
+
+	<CheckBoxPreference
             android:key="vibrate_notif_expand"
             android:title="@string/vibrate_notif_expand_title"
             android:summary="@string/vibrate_notif_expand_summary" />
