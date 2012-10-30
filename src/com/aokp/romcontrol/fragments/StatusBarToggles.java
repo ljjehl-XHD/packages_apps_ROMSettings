@@ -38,13 +38,14 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements OnPrefer
 
     private static final String TAG = "TogglesLayout";
 
-    private static final String PREF_ENABLE_TOGGLES = "enable_toggles";
+    private static final String PREF_ENABLE_TOGGLES = "enabled_toggles";
     private static final String PREF_BRIGHTNESS_LOC = "brightness_location";
     private static final String PREF_TOGGLES_STYLE = "toggle_style";
     private static final String PREF_ALT_BUTTON_LAYOUT = "toggles_layout_preference";
     private static final String PREF_TOGGLE_BTN_ENABLED_COLOR = "toggle_btn_enabled_color";
     private static final String PREF_TOGGLE_BTN_DISABLED_COLOR = "toggle_btn_disabled_color";
     private static final String PREF_TOGGLE_BTN_ALPHA = "toggle_btn_alpha";
+	private static final String PREF_HAPTIC_FEEDBACK_TOGGLES_ENABLED = "toggles_haptic_feedback";
 
     Preference mEnabledToggles;
     Preference mLayout;
@@ -55,6 +56,7 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements OnPrefer
     SeekBarPreference mToggleBtnAlpha;
     ColorPickerPreference mBtnEnabledColor;
     ColorPickerPreference mBtnDisabledColor;
+	CheckBoxPreference mHapticFeedback;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,10 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements OnPrefer
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.prefs_statusbar_toggles);
+
+		mHapticFeedback = (CheckBoxPreference) findPreference(PREF_HAPTIC_FEEDBACK_TOGGLES_ENABLED);
+        mHapticFeedback.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(),
+                Settings.System.HAPTIC_FEEDBACK_TOGGLES_ENABLED, false));
 
         mEnabledToggles = findPreference(PREF_ENABLE_TOGGLES);
 
@@ -152,6 +158,11 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements OnPrefer
 
             d.show();
 
+            return true;
+		} else if (preference == mHapticFeedback) {
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.HAPTIC_FEEDBACK_TOGGLES_ENABLED,
+                    ((CheckBoxPreference) preference).isChecked());
             return true;
         } else if (preference == mLayout) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
