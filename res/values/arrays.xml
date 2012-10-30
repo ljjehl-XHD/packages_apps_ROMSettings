@@ -535,7 +535,7 @@
         <item>@string/today</item>
         <item>@string/event</item>
         <item>@string/voiceassist</item>
-        <item>@string/custom_app</item>
+        <item>Select Application</item>
     </string-array>
     <string-array name="notification_action_values" translatable="false">
         <item>**nothing**</item>
