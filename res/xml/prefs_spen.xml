@@ -13,31 +13,42 @@
         <ListPreference
             android:key="spen_left"
             android:dependency="enable_spen"
-            android:title="@string/spen_left_title" />
+            android:title="@string/spen_left_title"
+            android:entries="@array/navbar_button_entries"
+            android:entryValues="@array/navbar_button_values" />
 
         <ListPreference
             android:key="spen_right"
             android:dependency="enable_spen"
-            android:title="@string/spen_right_title" />
+            android:title="@string/spen_right_title"
+            android:entries="@array/navbar_button_entries"
+            android:entryValues="@array/navbar_button_values" />
 
         <ListPreference
             android:key="spen_up"
             android:dependency="enable_spen"
-            android:title="@string/spen_up_title" />
+            android:title="@string/spen_up_title"
+            android:entries="@array/navbar_button_entries"
+            android:entryValues="@array/navbar_button_values" />
 
         <ListPreference
             android:key="spen_down"
             android:dependency="enable_spen"
-            android:title="@string/spen_down_title" />
+            android:title="@string/spen_down_title"
+            android:entries="@array/navbar_button_entries"
+            android:entryValues="@array/navbar_button_values" />
 
         <ListPreference
             android:key="spen_double"
             android:dependency="enable_spen"
-            android:title="@string/spen_double_title" />
+            android:title="@string/spen_double_title"
+            android:entries="@array/navbar_button_entries"
+            android:entryValues="@array/navbar_button_values" />
 
         <ListPreference
             android:key="spen_long"
             android:dependency="enable_spen"
+<<<<<<< HEAD
             android:title="@string/spen_long_title" />
     </PreferenceCategory>
 
@@ -53,3 +64,10 @@
     </PreferenceCategory>
 </PreferenceScreen>
 
+=======
+            android:title="@string/spen_long_title"
+            android:entries="@array/navbar_button_entries"
+            android:entryValues="@array/navbar_button_values" />
+
+</PreferenceScreen>
+>>>>>>> c055600... Spen Options 2/2: Enable Spen options
