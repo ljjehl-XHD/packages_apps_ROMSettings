@@ -68,6 +68,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
 
     private static final String PREF_QUICK_UNLOCK = "lockscreen_quick_unlock_control";
     private static final String PREF_LOCKSCREEN_AUTO_ROTATE = "lockscreen_auto_rotate";
+    private static final String PREF_LOCKSCREEN_ALL_WIDGETS = "lockscreen_all_widgets";
     private static final String PREF_LOCKSCREEN_BATTERY = "lockscreen_battery";
     private static final String PREF_LOCKSCREEN_TEXT_COLOR = "lockscreen_text_color";
 
@@ -83,6 +84,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
 
     CheckBoxPreference mQuickUnlock;
     CheckBoxPreference mLockscreenBattery;
+    CheckBoxPreference mLockscreenAllWidgets;
     ColorPickerPreference mLockscreenTextColor;
     CheckBoxPreference mLockscreenAutoRotate;
 
@@ -105,6 +107,10 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
         mLockscreenBattery.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(),
                 Settings.System.LOCKSCREEN_BATTERY, false));
 
+        mLockscreenAllWidgets = (CheckBoxPreference)findPreference(PREF_LOCKSCREEN_ALL_WIDGETS);
+        mLockscreenAllWidgets.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(),
+                Settings.System.LOCKSCREEN_ALL_WIDGETS, false));
+
         mLockscreenTextColor = (ColorPickerPreference) findPreference(PREF_LOCKSCREEN_TEXT_COLOR);
         mLockscreenTextColor.setOnPreferenceChangeListener(this);
 
@@ -124,6 +130,11 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
        if (preference == mQuickUnlock) {
             Settings.System.putBoolean(mContext.getContentResolver(),
                     Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL,
+                    ((CheckBoxPreference) preference).isChecked());
+            return true;
+        } else if (preference == mLockscreenAllWidgets) {
+            Settings.System.putBoolean(mContext.getContentResolver(),
+                    Settings.System.LOCKSCREEN_ALL_WIDGETS,
                     ((CheckBoxPreference) preference).isChecked());
             return true;
         } else if (preference == mLockscreenWallpaper) {
