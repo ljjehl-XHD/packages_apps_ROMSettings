@@ -206,6 +206,7 @@
         <item>@string/kill_app</item>
         <item>@string/power</item>
         <item>@string/notifications</item>
+		<item>@string/toggle_widgets</item>
         <item>@string/custom_app</item>
         <item>@string/blank</item>
     </string-array>
@@ -220,6 +221,7 @@
         <item>**kill**</item>
         <item>**power**</item>
         <item>**notifications**</item>
+		<item>**widgets**</item>
         <item>**app**</item>
         <item>**null**</item>
     </string-array>
