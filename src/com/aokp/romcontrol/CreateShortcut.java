@@ -79,7 +79,7 @@ public class CreateShortcut extends LauncherActivity {
         else if (c.equals("Weather"))
             return R.drawable.ic_rom_control_weather;
         else
-            return R.mipmap.ic_launcher;
+            return R.mipmap.ic_launcher2;
     }
 
     @Override

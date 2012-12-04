@@ -236,7 +236,7 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
                 final int place = currentSelectedApp;
                 AlertDialog.Builder ad = new AlertDialog.Builder(mActivity);
                 ad.setTitle(R.string.led_test_notification);
-                ad.setIcon(R.mipmap.ic_launcher);
+                ad.setIcon(R.mipmap.ic_launcher2);
                 String appName = unicornApps.get(place);
                 ad.setMessage(getResources().getString(R.string.led_test_notification_message_now) + appName
                         + getResources().getString(R.string.led_test_notification_message_note));
@@ -525,7 +525,7 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             String selectedApp = unicornApps.get(place);
             AlertDialog.Builder ad = new AlertDialog.Builder(mActivity);
             ad.setTitle(R.string.led_custom_title);
-            ad.setIcon(R.mipmap.ic_launcher);
+            ad.setIcon(R.mipmap.ic_launcher2);
             ad.setMessage(getResources().getString(R.string.led_custom_message) + selectedApp + "?");
             ad.setPositiveButton(R.string.led_change_app,
                     new DialogInterface.OnClickListener() {
