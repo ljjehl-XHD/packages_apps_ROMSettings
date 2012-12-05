@@ -14,6 +14,7 @@ import java.util.Random;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -34,10 +35,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Spannable;
@@ -87,6 +90,7 @@ public class UserInterface extends AOKPPreferenceFragment {
     private static final String PREF_RAM_USAGE_BAR = "ram_usage_bar";
 	private static final String PREF_IME_SWITCHER = "ime_switcher";
 	private static final String PREF_STATUSBAR_BRIGHTNESS = "statusbar_brightness_slider";
+	private static final String PREF_USER_MODE_UI = "user_mode_ui";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -109,6 +113,7 @@ public class UserInterface extends AOKPPreferenceFragment {
     CheckBoxPreference mRamBar;
 	CheckBoxPreference mShowImeSwitcher;
 	CheckBoxPreference mStatusbarSliderPreference;
+	ListPreference mUserModeUI;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -136,6 +141,7 @@ public class UserInterface extends AOKPPreferenceFragment {
         addPreferencesFromResource(R.xml.prefs_ui);
 
         PreferenceScreen prefs = getPreferenceScreen();
+		ContentResolver cr = mContext.getContentResolver();
         mInsults = mContext.getResources().getStringArray(
                 R.array.disable_bootanimation_insults);
 
@@ -186,6 +192,13 @@ public class UserInterface extends AOKPPreferenceFragment {
 		mStatusbarSliderPreference = (CheckBoxPreference) findPreference(PREF_STATUSBAR_BRIGHTNESS);
         mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.STATUSBAR_BRIGHTNESS_SLIDER, true));
+
+		mUserModeUI = (ListPreference) findPreference(PREF_USER_MODE_UI);
+        int uiMode = Settings.System.getInt(cr,
+                Settings.System.CURRENT_UI_MODE, 0);
+        mUserModeUI.setValue(Integer.toString(Settings.System.getInt(cr,
+                Settings.System.USER_UI_MODE, uiMode)));
+        mUserModeUI.setOnPreferenceChangeListener(this);
 
         setHasOptionsMenu(true);
     }
@@ -330,6 +343,16 @@ public class UserInterface extends AOKPPreferenceFragment {
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+	@Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mUserModeUI) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.USER_UI_MODE, Integer.parseInt((String) newValue));
+            return true;
+        }
+        return false;
     }
 
     @Override
