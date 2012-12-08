@@ -85,6 +85,7 @@ public class UserInterface extends AOKPPreferenceFragment {
     private static final String PREF_VIBRATE_NOTIF_EXPAND = "vibrate_notif_expand";
     private static final String PREF_RECENT_KILL_ALL = "recent_kill_all";
     private static final String PREF_RAM_USAGE_BAR = "ram_usage_bar";
+	private static final String PREF_IME_SWITCHER = "ime_switcher";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -105,6 +106,7 @@ public class UserInterface extends AOKPPreferenceFragment {
     CheckBoxPreference mVibrateOnExpand;
     CheckBoxPreference mRecentKillAll;
     CheckBoxPreference mRamBar;
+	CheckBoxPreference mShowImeSwitcher;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -173,6 +175,10 @@ public class UserInterface extends AOKPPreferenceFragment {
         mRamBar = (CheckBoxPreference) findPreference(PREF_RAM_USAGE_BAR);
         mRamBar.setChecked(Settings.System.getBoolean(getActivity  ().getContentResolver(),
                 Settings.System.RAM_USAGE_BAR, false));
+
+		mShowImeSwitcher = (CheckBoxPreference) findPreference(PREF_IME_SWITCHER);
+        mShowImeSwitcher.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.SHOW_STATUSBAR_IME_SWITCHER, true));
 
         setHasOptionsMenu(true);
     }
@@ -290,6 +296,11 @@ public class UserInterface extends AOKPPreferenceFragment {
             boolean checked = ((CheckBoxPreference)preference).isChecked();
             Settings.System.putBoolean(getActivity().getContentResolver(),
                     Settings.System.RECENT_KILL_ALL_BUTTON, checked ? true : false);
+            return true;
+		} else if (preference == mShowImeSwitcher) {
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.SHOW_STATUSBAR_IME_SWITCHER,
+                    isCheckBoxPrefernceChecked(preference));
             return true;
         } else if (preference == mRamBar) {
             boolean checked = ((CheckBoxPreference)preference).isChecked();

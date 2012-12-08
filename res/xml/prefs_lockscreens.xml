@@ -27,11 +27,7 @@
             android:summary="@string/lockscreen_battery_summary" />
 
     </PreferenceCategory>
-    <PreferenceCategory
-        android:key="music"
-        android:title="@string/lockscreen_music_cat">
-   
-    </PreferenceCategory>
+
     <PreferenceCategory
             android:key="misc"
             android:title="@string/misc_short">
