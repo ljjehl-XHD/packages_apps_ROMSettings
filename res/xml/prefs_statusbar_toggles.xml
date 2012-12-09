@@ -19,4 +19,21 @@
         android:title="@string/toggles_per_row_title"
         android:summary="@string/toggles_per_row_summary" />
 
+	<ListPreference
+            android:key="navbar_bg_style"
+            android:layout="?android:attr/preferenceLayoutChild"
+            android:persistent="true"
+            android:entries="@array/navbar_background_entries"
+            android:entryValues="@array/navbar_background_values"
+            android:title="@string/navbar_background_style" />
+
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="navigation_bar_background_color"
+            android:shouldDisableView="true"
+            android:layout="?android:attr/preferenceLayoutChild"
+            android:persistent="true"
+            android:title="@string/navbar_bg_color"
+            android:defaultValue="#000000"
+            alphaSlider="true" />
+
 </PreferenceScreen>
