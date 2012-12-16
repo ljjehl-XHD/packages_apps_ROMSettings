@@ -81,6 +81,7 @@ public class Navbar extends AOKPPreferenceFragment implements
     private static final String PREF_NAVBAR_BG_STYLE = "navbar_bg_style";
     private static final String ENABLE_NAVRING_LONG = "enable_navring_long";
     private static final String NAVIGATION_BAR_WIDGETS = "navigation_bar_widgets";
+    private static final String PREF_MENU_ARROWS = "navigation_bar_menu_arrow_keys";
 
     public static final int REQUEST_PICK_CUSTOM_ICON = 200;
     public static final int REQUEST_PICK_LANDSCAPE_ICON = 201;
@@ -107,6 +108,7 @@ public class Navbar extends AOKPPreferenceFragment implements
     ListPreference mNavigationBarWidth;
     SeekBarPreference mButtonAlpha;
     CheckBoxPreference mEnableNavringLong;
+    CheckBoxPreference mMenuArrowKeysCheckBox;
     Preference mConfigureWidgets;
 
     private int mPendingIconIndex = -1;
@@ -208,6 +210,10 @@ public class Navbar extends AOKPPreferenceFragment implements
         mNavigationBarWidth.setOnPreferenceChangeListener(this);
         mConfigureWidgets = findPreference(NAVIGATION_BAR_WIDGETS);
 
+        mMenuArrowKeysCheckBox = (CheckBoxPreference) findPreference(PREF_MENU_ARROWS);
+        mMenuArrowKeysCheckBox.setChecked(Settings.System.getBoolean(getContentResolver(),
+                Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS, true));
+
         refreshSettings();
         setHasOptionsMenu(true);
         updateGlowTimesSummary();
@@ -291,6 +297,11 @@ public class Navbar extends AOKPPreferenceFragment implements
             ft.addToBackStack("config_widgets");
             ft.replace(this.getId(), fragment);
             ft.commit();
+            return true;
+        } else if (preference == mMenuArrowKeysCheckBox) {
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS,
+                    ((CheckBoxPreference) preference).isChecked() ? true : false);
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
