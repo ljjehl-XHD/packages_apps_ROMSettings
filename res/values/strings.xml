@@ -12,7 +12,7 @@
     <string name="header_navbar">Navigation Bar</string>
     <string name="toggles_layout">Toggles</string>
     <string name="general_ui">General UI</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Statusbar and Clock</string>
     <string name="battery">Battery</string>
     <string name="signal">Signal</string>
     <string name="nav_bar">Navigation Bar</string>
