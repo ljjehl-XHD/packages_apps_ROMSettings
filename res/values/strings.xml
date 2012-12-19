@@ -235,7 +235,7 @@
 	<!-- holo theme style for Quick Setting tiles -->
     <string name="holo_dark">Dark</string>
     <string name="holo_light">Light</string>
-    <string name="quicksettings_theme_style">Holo</string>
+    <string name="quicksettings_theme_style">Theme</string>
     <string name="quicksettings_theme_style_summary">Choose between light or dark</string>
 
     <!-- Statusbar | Clock -->
