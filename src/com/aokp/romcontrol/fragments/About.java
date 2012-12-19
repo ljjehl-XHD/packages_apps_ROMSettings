@@ -21,8 +21,6 @@ public class About extends AOKPPreferenceFragment {
 
     Preference mSiteUrl;
     Preference mSourceUrl;
-    Preference mReviewUrl;
-    Preference mIrcUrl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,8 +29,6 @@ public class About extends AOKPPreferenceFragment {
         addPreferencesFromResource(R.xml.prefs_about);
         mSiteUrl = findPreference("aokp_website");
         mSourceUrl = findPreference("aokp_source");
-        mReviewUrl = findPreference("aokp_review");
-        mIrcUrl = findPreference("aokp_irc");
 
         PreferenceGroup devsGroup = (PreferenceGroup) findPreference("devs");
         ArrayList<Preference> devs = new ArrayList<Preference>();
@@ -53,13 +49,9 @@ public class About extends AOKPPreferenceFragment {
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mSiteUrl) {
-            launchUrl("http://aokp.co/");
+            launchUrl("http://iceandfire.co/");
         } else if (preference == mSourceUrl) {
-            launchUrl("http://github.com/aokp");
-        } else if (preference == mReviewUrl) {
-            launchUrl("http://gerrit.aokp.co");
-        } else if (preference == mIrcUrl) {
-            launchUrl("http://webchat.freenode.net/?channels=teamkang");
+            launchUrl("http://github.com/teamhorizon");
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }

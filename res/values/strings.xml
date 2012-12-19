@@ -94,7 +94,7 @@
     <string name="devs">Team</string>
     <string name="aokp">Team Horizon</string>
     <string name="aokp_website_title">Website</string>
-    <string name="aokp_website_summary">None</string>
+    <string name="aokp_website_summary">@null</string>
     <string name="aokp_source_title">Source</string>
     <string name="aokp_source_summary">You can always check out the latest source at github.com/teamhorizon</string>
     <string name="about_aokp">About XenonHD</string>
