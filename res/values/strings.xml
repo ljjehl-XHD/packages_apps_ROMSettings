@@ -374,6 +374,7 @@
     <string name="navbar_defaultbg">Default Bg only</string>
     <string name="statusbar_bg">Statusbar background</string>
     <string name="statusbar_background_style">Statusbar background style</string>
+	<string name="statusbar_background_color">Statusbar background color</string>
     <string name="navbar_bg_color">Navigation bar background</string>
 
     <!-- Nav Ring Targets -->
