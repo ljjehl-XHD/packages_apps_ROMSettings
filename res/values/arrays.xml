@@ -85,6 +85,7 @@
         <item>USBTETHER</item>
         <item>TORCH</item>
         <item>2G</item>
+		<item>SCREEN</item>
         <item>LTE</item>
     </string-array>
     <string-array name="available_toggles_values" translatable="false">
@@ -111,6 +112,7 @@
         <item>@string/toggle_usb_tether</item>
         <item>@string/toggle_torch</item>
         <item>@string/toggle_2g</item>
+		<item>@string/toggle_screen</item>
         <item>@string/toggle_lte</item>
     </string-array>
 
@@ -808,6 +810,15 @@
         <item>**nothing**</item>
         <item>**update**</item>
         <item>**app**</item>
+    </string-array>
+	<!-- Holo style options for Quick Setting tiles -->
+    <string-array translatable="false" name="quicksettings_theme_style_entries">
+        <item>@string/holo_light</item>
+        <item>@string/holo_dark</item>
+    </string-array>
+    <string-array translatable="false" name="quicksettings_theme_style_values">
+        <item>0</item>
+        <item>1</item>
     </string-array>
 
 </resources>

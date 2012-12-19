@@ -204,7 +204,7 @@
     <string name="custom_density_dialog_button_reboot">Reboot now</string>
 
     <!-- Statusbar | Toggles -->
-    <string name="toggle_default_entries">USER|BRIGHTNESS|SETTINGS|WIFI|SIGNAL|ROTATE|BATTERY|AIRPLANE_MODE|BLUETOOTH</string>
+    <string name="toggle_default_entries">USER|BRIGHTNESS|SETTINGS|WIFI|SIGNAL|ROTATE|BATTERY|AIRPLANE_MODE|BLUETOOTH|SCREEN</string>
     <string name="toggle_style_title">Toggle style</string>
     <string name="toggle_style_summary">Whether to show icons or text on your toggles.</string>
     <string name="toggles_layout_title">Toggle Layout</string>
@@ -231,6 +231,12 @@
     <string name="toggle_text_color_title">Toggle text color</string>
     <string name="toggle_favcontact_title">Favorite contact</string>
     <string name="toggle_favcontact_summary">Choose your favorite contact</string>
+
+	<!-- holo theme style for Quick Setting tiles -->
+    <string name="holo_dark">Dark</string>
+    <string name="holo_light">Light</string>
+    <string name="quicksettings_theme_style">Holo</string>
+    <string name="quicksettings_theme_style_summary">Choose between light or dark</string>
 
     <!-- Statusbar | Clock -->
     <string name="clock_title_enable">Clock style</string>
@@ -275,6 +281,7 @@
     <string name="toggle_ime">IME</string>
     <string name="toggle_battery">Battery</string>
     <string name="toggle_brightness">Brightness</string>
+	<string name="toggle_screen">Screen off</string>
 
     <!-- Statusbar | Battery -->
     <string name="battery_icon">Battery icon style</string>
