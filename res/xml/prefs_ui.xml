@@ -43,6 +43,11 @@
             android:summary="@string/ime_switcher_summary"
             android:defaultValue="true" />
 
+        <CheckBoxPreference
+            android:key="statusbar_brightness_slider"
+            android:title="@string/brightness_slider_title"
+            android:summary="@string/brightness_slider_summary" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
