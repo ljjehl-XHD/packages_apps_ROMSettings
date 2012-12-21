@@ -51,7 +51,12 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements
     private static final String PREF_ENABLE_TOGGLES = "enabled_toggles";
     private static final String PREF_TOGGLES_PER_ROW = "toggles_per_row";
     private static final String PREF_TOGGLE_FAV_CONTACT = "toggle_fav_contact";
+<<<<<<< HEAD
 	private static final String PREF_QUICK_THEME_STYLE = "quick_theme_style";
+=======
+    private static final String PREF_ENABLE_FASTTOGGLE = "enable_fast_toggle";
+    private static final String PREF_CHOOSE_FASTTOGGLE_SIDE = "choose_fast_toggle_side";
+>>>>>>> 0b01f9c... added fast toggle preference
 
     private final int PICK_CONTACT = 1;
 
@@ -60,6 +65,8 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements
     ListPreference mTogglesPerRow;
     Preference mFavContact;
 	ListPreference mThemeStyle;
+    CheckBoxPreference mFastToggle;
+    ListPreference mChooseFastToggleSide;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +89,14 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements
         mThemeStyle.setOnPreferenceChangeListener(this);
         mThemeStyle.setValue(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.QUICK_THEME_STYLE, 1) + "");
+
+        mFastToggle = (CheckBoxPreference) findPreference(PREF_ENABLE_FASTTOGGLE);
+        mFastToggle.setOnPreferenceChangeListener(this);
+        
+        mChooseFastToggleSide = (ListPreference) findPreference(PREF_CHOOSE_FASTTOGGLE_SIDE);
+        mChooseFastToggleSide.setOnPreferenceChangeListener(this);
+        mChooseFastToggleSide.setValue(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.CHOOSE_FASTTOGGLE_SIDE, 1) + "");
 
         final String[] entries = getResources().getStringArray(R.array.available_toggles_entries);
 
@@ -108,6 +123,19 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements
         int val = Integer.parseInt((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.QUICK_THEME_STYLE, val);
+        } else if (preference == mFastToggle) {
+            boolean val = (Boolean) newValue;
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.FAST_TOGGLE, val);
+            getActivity().getBaseContext().getContentResolver().notifyChange(Settings.System.getUriFor(Settings.System.FAST_TOGGLE), null);
+            return true;
+        } else if (preference == mChooseFastToggleSide) {
+            int val = Integer.parseInt((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.CHOOSE_FASTTOGGLE_SIDE, val);
+            getActivity().getBaseContext().getContentResolver().notifyChange(Settings.System.getUriFor(Settings.System.CHOOSE_FASTTOGGLE_SIDE), null);
+            mChooseFastToggleSide.setValue(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.CHOOSE_FASTTOGGLE_SIDE, 1) + "");
         }
         return false;
     }
