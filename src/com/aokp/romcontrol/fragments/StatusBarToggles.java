@@ -51,12 +51,9 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements
     private static final String PREF_ENABLE_TOGGLES = "enabled_toggles";
     private static final String PREF_TOGGLES_PER_ROW = "toggles_per_row";
     private static final String PREF_TOGGLE_FAV_CONTACT = "toggle_fav_contact";
-<<<<<<< HEAD
 	private static final String PREF_QUICK_THEME_STYLE = "quick_theme_style";
-=======
     private static final String PREF_ENABLE_FASTTOGGLE = "enable_fast_toggle";
     private static final String PREF_CHOOSE_FASTTOGGLE_SIDE = "choose_fast_toggle_side";
->>>>>>> 0b01f9c... added fast toggle preference
 
     private final int PICK_CONTACT = 1;
 
