@@ -102,6 +102,7 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements
             int val = Integer.parseInt((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.QUICK_TOGGLES_PER_ROW, val);
+            return true;
         }
 		else if (preference == mThemeStyle) {
         int val = Integer.parseInt((String) newValue);
