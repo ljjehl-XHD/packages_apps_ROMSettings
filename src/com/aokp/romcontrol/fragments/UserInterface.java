@@ -68,6 +68,7 @@ import com.aokp.romcontrol.R;
 import com.aokp.romcontrol.util.CMDProcessor;
 import com.aokp.romcontrol.util.AbstractAsyncSuCMDProcessor;
 import com.aokp.romcontrol.util.Helpers;
+import com.aokp.romcontrol.widgets.SeekBarPreference;
 
 import java.io.File;
 import java.io.IOException;
@@ -146,6 +147,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
     CheckBoxPreference mCrtOff;
     CheckBoxPreference mCrtOn;
+    SeekBarPreference mNavBarAlpha;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -232,6 +234,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 		mStatusbarSliderPreference = (CheckBoxPreference) findPreference(PREF_STATUSBAR_BRIGHTNESS);
         mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.STATUSBAR_BRIGHTNESS_SLIDER, true));
+                
+        mNavBarAlpha = (SeekBarPreference) findPreference("navigation_bar_alpha");
+        mNavBarAlpha.setOnPreferenceChangeListener(this);
 
 		mUserModeUI = (ListPreference) findPreference(PREF_USER_MODE_UI);
         int uiMode = Settings.System.getInt(cr,
@@ -354,6 +359,17 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mPieTrigger.setEnabled(pieCheck);
         mPieGap.setEnabled(pieCheck);
         mPieNotifi.setEnabled(pieCheck);
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(mNavBarAlpha != null) {
+            final float defaultNavAlpha = Settings.System.getFloat(getActivity()
+                    .getContentResolver(), Settings.System.NAVIGATION_BAR_ALPHA,
+                    0.8f);
+            mNavBarAlpha.setInitValue(Math.round(defaultNavAlpha * 100));
+        }
     }
 
     private void updateCustomLabelTextSummary() {
@@ -553,6 +569,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     Settings.System.SYSTEM_POWER_ENABLE_CRT_ON,
                     ((Boolean) newValue).booleanValue() ? 1 : 0);
             return true;
+        } else if (preference == mNavBarAlpha) {
+            float val = (float) (Integer.parseInt((String)newValue) * 0.01);
+            return Settings.System.putFloat(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_ALPHA,
+                    val);
         }
         return false;
     }
