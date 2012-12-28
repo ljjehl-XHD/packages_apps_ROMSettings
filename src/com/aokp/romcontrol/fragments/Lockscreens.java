@@ -60,6 +60,7 @@ import java.util.ArrayList;
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
 import com.aokp.romcontrol.ROMControlActivity;
+import com.aokp.romcontrol.fragments.LockscreenTargets;
 
 public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceChangeListener {
 
@@ -72,6 +73,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
     private static final String PREF_LOCKSCREEN_UNLIMITED_WIDGETS = "lockscreen_unlimited_widgets";
     private static final String PREF_LOCKSCREEN_BATTERY = "lockscreen_battery";
     private static final String PREF_LOCKSCREEN_TEXT_COLOR = "lockscreen_text_color";
+	private static final String PREF_NUMBER_OF_TARGETS = "number_of_targets";
 
     public static final int REQUEST_PICK_WALLPAPER = 199;
     public static final int REQUEST_PICK_CUSTOM_ICON = 200;
@@ -89,6 +91,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
     CheckBoxPreference mLockscreenUnlimitedWidgets;
     ColorPickerPreference mLockscreenTextColor;
     CheckBoxPreference mLockscreenAutoRotate;
+	ListPreference mTargetNumber;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -116,6 +119,14 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
         mLockscreenUnlimitedWidgets = (CheckBoxPreference)findPreference(PREF_LOCKSCREEN_UNLIMITED_WIDGETS);
         mLockscreenUnlimitedWidgets.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(),
                 Settings.System.LOCKSCREEN_UNLIMITED_WIDGETS, false));
+
+		mTargetNumber = (ListPreference) findPreference(PREF_NUMBER_OF_TARGETS);
+        mTargetNumber.setOnPreferenceChangeListener(this);
+        mTargetNumber.setValue(Integer.toString(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.LOCKSCREEN_TARGET_AMOUNT
+                ,2)));
+
+        mLockscreenTargets = findPreference("lockscreen_targets");
 
         mLockscreenTextColor = (ColorPickerPreference) findPreference(PREF_LOCKSCREEN_TEXT_COLOR);
         mLockscreenTextColor.setOnPreferenceChangeListener(this);
@@ -178,6 +189,11 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
                     Settings.System.LOCKSCREEN_BATTERY,
                     ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
             return true;
+		} else if (preference == mLockscreenTargets) {
+            Intent i = new Intent(getActivity(), ROMControlActivity.class)
+                    .setAction("com.aokp.romcontrol.START_NEW_FRAGMENT")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .putExtra("aokp_fragment_name", LockscreenTargets.class.getName());
         } else if (preference == mLockscreenAutoRotate) {
             Settings.System.putBoolean(mContext.getContentResolver(),
                     Settings.System.LOCKSCREEN_AUTO_ROTATE,
