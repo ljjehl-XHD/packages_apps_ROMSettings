@@ -107,7 +107,6 @@ public class Navbar extends AOKPPreferenceFragment implements
     ListPreference mNavigationBarHeightLandscape;
     ListPreference mNavigationBarWidth;
     SeekBarPreference mButtonAlpha;
-    SeekBarPreference mNavBarAlpha;
     CheckBoxPreference mEnableNavringLong;
     CheckBoxPreference mMenuArrowKeysCheckBox;
     Preference mConfigureWidgets;
@@ -189,15 +188,12 @@ public class Navbar extends AOKPPreferenceFragment implements
         mGlowTimes = (ListPreference) findPreference(PREF_GLOW_TIMES);
         mGlowTimes.setOnPreferenceChangeListener(this);
 
-        final float defaultButtonAlpha = Settings.System.getFloat(getActivity()
+        float defaultAlpha = Settings.System.getFloat(getActivity()
                 .getContentResolver(), Settings.System.NAVIGATION_BAR_BUTTON_ALPHA,
                 0.6f);
         mButtonAlpha = (SeekBarPreference) findPreference("button_transparency");
-        mButtonAlpha.setInitValue((int) (defaultButtonAlpha * 100));
+        mButtonAlpha.setInitValue((int) (defaultAlpha * 100));
         mButtonAlpha.setOnPreferenceChangeListener(this);
-
-        mNavBarAlpha = (SeekBarPreference) findPreference("navigation_bar_alpha");
-        mNavBarAlpha.setOnPreferenceChangeListener(this);
 
         // don't allow devices that must use a navigation bar to disable it
         if (hasNavBarByDefault) {
@@ -443,15 +439,10 @@ public class Navbar extends AOKPPreferenceFragment implements
             return true;
         } else if (preference == mButtonAlpha) {
             float val = Float.parseFloat((String) newValue);
+            Log.e("R", "value: " + val * 0.01f);
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_BUTTON_ALPHA,
                     val * 0.01f);
-            return true;
-        } else if (preference == mNavBarAlpha) {
-            float val = (float) (Integer.parseInt((String)newValue) * 0.01);
-            Settings.System.putFloat(getActivity().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_ALPHA,
-                    val);
             return true;
         }
         return false;
@@ -704,13 +695,6 @@ public class Navbar extends AOKPPreferenceFragment implements
                 // ok use default icons here
                 pAction.setIcon(resize(getNavbarIconImage(i, false)));
             }
-        }
-
-        if(mNavBarAlpha != null) {
-            final float defaultNavAlpha = Settings.System.getFloat(getActivity()
-                    .getContentResolver(), Settings.System.NAVIGATION_BAR_ALPHA,
-                    204);
-            mNavBarAlpha.setInitValue((int) (defaultNavAlpha * 100));
         }
     }
 
