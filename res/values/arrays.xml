@@ -845,6 +845,7 @@
     <string-array name="choose_toggle_side_values" translatable="false">
         <item>1</item>
 		<item>2</item>
+	</string-array>
     <string-array name="user_mode_ui_entries" translatable="false">
         <item>@string/phone_mode_ui</item>
         <item>@string/tablet_mode_ui</item>

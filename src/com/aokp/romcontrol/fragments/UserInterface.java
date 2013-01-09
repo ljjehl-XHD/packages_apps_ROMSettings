@@ -77,7 +77,7 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-public class UserInterface extends AOKPPreferenceFragment {
+public class UserInterface extends AOKPPreferenceFragment implements OnPreferenceChangeListener {
 
     public static final String TAG = "UserInterface";
 
@@ -91,6 +91,7 @@ public class UserInterface extends AOKPPreferenceFragment {
 	private static final String PREF_IME_SWITCHER = "ime_switcher";
 	private static final String PREF_STATUSBAR_BRIGHTNESS = "statusbar_brightness_slider";
 	private static final String PREF_USER_MODE_UI = "user_mode_ui";
+	private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -114,6 +115,7 @@ public class UserInterface extends AOKPPreferenceFragment {
 	CheckBoxPreference mShowImeSwitcher;
 	CheckBoxPreference mStatusbarSliderPreference;
 	ListPreference mUserModeUI;
+	CheckBoxPreference mDualpane;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -199,6 +201,11 @@ public class UserInterface extends AOKPPreferenceFragment {
         mUserModeUI.setValue(Integer.toString(Settings.System.getInt(cr,
                 Settings.System.USER_UI_MODE, uiMode)));
         mUserModeUI.setOnPreferenceChangeListener(this);
+
+		mDualpane = (CheckBoxPreference) findPreference(PREF_FORCE_DUAL_PANEL);
+        mDualpane.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                        Settings.System.FORCE_DUAL_PANEL, getResources().getBoolean(
+                        com.android.internal.R.bool.preferences_prefer_dual_pane)));
 
         setHasOptionsMenu(true);
     }
@@ -334,6 +341,11 @@ public class UserInterface extends AOKPPreferenceFragment {
             Settings.System.putBoolean(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_BRIGHTNESS_SLIDER,
                     isCheckBoxPrefernceChecked(preference));
+            return true;
+		} else if (preference == mDualpane) {
+            Settings.System.putBoolean(mContext.getContentResolver(),
+                    Settings.System.FORCE_DUAL_PANEL,
+                    ((CheckBoxPreference) preference).isChecked());
             return true;
         } else if (preference == mRamBar) {
             boolean checked = ((CheckBoxPreference)preference).isChecked();
