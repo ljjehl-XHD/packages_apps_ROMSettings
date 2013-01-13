@@ -73,6 +73,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
     private static final String PREF_LOCKSCREEN_BATTERY = "lockscreen_battery";
     private static final String PREF_LOCKSCREEN_TEXT_COLOR = "lockscreen_text_color";
     private static final String PREF_LOCKSCREEN_MINIMIZE_CHALLENGE = "lockscreen_minimize_challenge";
+    private static final String PREF_LOCKSCREEN_USE_CAROUSEL = "lockscreen_use_widget_container_carousel";
 
     public static final int REQUEST_PICK_WALLPAPER = 199;
     public static final int REQUEST_PICK_CUSTOM_ICON = 200;
@@ -91,6 +92,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
     ColorPickerPreference mLockscreenTextColor;
     CheckBoxPreference mLockscreenAutoRotate;
     CheckBoxPreference mLockscreenMinChallenge;
+    CheckBoxPreference mLockscreenUseCarousel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -127,6 +129,10 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
         mLockscreenMinChallenge = (CheckBoxPreference)findPreference(PREF_LOCKSCREEN_MINIMIZE_CHALLENGE);
         mLockscreenMinChallenge.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(),
                 Settings.System.LOCKSCREEN_MINIMIZE_LOCKSCREEN_CHALLENGE, false));
+
+        mLockscreenUseCarousel = (CheckBoxPreference)findPreference(PREF_LOCKSCREEN_USE_CAROUSEL);
+        mLockscreenUseCarousel.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(),
+                Settings.System.LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL, false));
 
         if (isTablet(mContext)) {
             ((PreferenceGroup)findPreference("layout")).removePreference((Preference)findPreference("lockscreen_minimize_challenge"));
@@ -196,6 +202,11 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
         } else if (preference == mLockscreenMinChallenge) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.LOCKSCREEN_MINIMIZE_LOCKSCREEN_CHALLENGE,
+                    ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mLockscreenUseCarousel) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL,
                     ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
             return true;
         }
