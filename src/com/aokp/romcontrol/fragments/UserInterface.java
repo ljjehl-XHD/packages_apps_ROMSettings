@@ -116,6 +116,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	CheckBoxPreference mStatusbarSliderPreference;
 	ListPreference mUserModeUI;
 	CheckBoxPreference mDualpane;
+	Preference mLcdDensity;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -131,6 +132,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     // previous random; so we don't repeat
     private static int mLastRandomInsultIndex = -1;
     private String[] mInsults;
+    
+    int newDensityValue;
+    DensityChanger densityFragment;
 
     private int seekbarProgress;
     String mCustomLabelText = null;
@@ -206,6 +210,16 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mDualpane.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                         Settings.System.FORCE_DUAL_PANEL, getResources().getBoolean(
                         com.android.internal.R.bool.preferences_prefer_dual_pane)));
+                        
+        mLcdDensity = findPreference("lcd_density_setup");
+        String currentProperty = SystemProperties.get("ro.sf.lcd_density");
+        try {
+            newDensityValue = Integer.parseInt(currentProperty);
+        } catch (Exception e) {
+            getPreferenceScreen().removePreference(mLcdDensity);
+        }
+
+        mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
 
         setHasOptionsMenu(true);
     }
@@ -317,6 +331,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putBoolean(mContext.getContentResolver(),
                     Settings.System.FORCE_DUAL_PANEL,
                     ((CheckBoxPreference) preference).isChecked());
+            return true;
+        } else if (preference == mLcdDensity) {
+            ((PreferenceActivity) getActivity())
+                    .startPreferenceFragment(new DensityChanger(), true);
             return true;
         } else if (preference == mRamBar) {
             boolean checked = ((CheckBoxPreference)preference).isChecked();
