@@ -72,6 +72,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
     private static final String PREF_LOCKSCREEN_UNLIMITED_WIDGETS = "lockscreen_unlimited_widgets";
     private static final String PREF_LOCKSCREEN_BATTERY = "lockscreen_battery";
     private static final String PREF_LOCKSCREEN_TEXT_COLOR = "lockscreen_text_color";
+    private static final String PREF_LOCKSCREEN_MINIMIZE_CHALLENGE = "lockscreen_minimize_challenge";
 
     public static final int REQUEST_PICK_WALLPAPER = 199;
     public static final int REQUEST_PICK_CUSTOM_ICON = 200;
@@ -89,6 +90,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
     CheckBoxPreference mLockscreenUnlimitedWidgets;
     ColorPickerPreference mLockscreenTextColor;
     CheckBoxPreference mLockscreenAutoRotate;
+    CheckBoxPreference mLockscreenMinChallenge;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -121,6 +123,14 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
         mLockscreenTextColor.setOnPreferenceChangeListener(this);
 
         mLockscreenWallpaper = findPreference("wallpaper");
+        
+        mLockscreenMinChallenge = (CheckBoxPreference)findPreference(PREF_LOCKSCREEN_MINIMIZE_CHALLENGE);
+        mLockscreenMinChallenge.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(),
+                Settings.System.LOCKSCREEN_MINIMIZE_LOCKSCREEN_CHALLENGE, false));
+
+        if (isTablet(mContext)) {
+            ((PreferenceGroup)findPreference("layout")).removePreference((Preference)findPreference("lockscreen_minimize_challenge"));
+        }
 
         setHasOptionsMenu(true);
     }
@@ -182,6 +192,11 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
             Settings.System.putBoolean(mContext.getContentResolver(),
                     Settings.System.LOCKSCREEN_AUTO_ROTATE,
                     ((CheckBoxPreference) preference).isChecked());
+            return true;
+        } else if (preference == mLockscreenMinChallenge) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.LOCKSCREEN_MINIMIZE_LOCKSCREEN_CHALLENGE,
+                    ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
             return true;
         }
         

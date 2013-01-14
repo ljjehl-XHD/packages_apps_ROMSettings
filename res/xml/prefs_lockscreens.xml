@@ -30,6 +30,11 @@
             android:key="lockscreen_battery"
             android:title="@string/lockscreen_battery_title"
             android:summary="@string/lockscreen_battery_summary" />
+            
+        <CheckBoxPreference
+            android:key="lockscreen_minimize_challenge"
+            android:title="@string/lockscreen_minimize_challenge_title"
+            android:summary="@string/lockscreen_minimize_challenge_summary" />
 
     </PreferenceCategory>
 
