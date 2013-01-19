@@ -29,8 +29,8 @@
 
             <intent
                 android:action="android.intent.action.MAIN"
-                android:targetPackage="com.baked.romcontrol"
-                android:targetClass="com.baked.romcontrol.util.ShowBuildProp" />
+                android:targetPackage="com.aokp.romcontrol"
+                android:targetClass="com.aokp.romcontrol.util.ShowBuildProp" />
 
         </PreferenceScreen>
 
