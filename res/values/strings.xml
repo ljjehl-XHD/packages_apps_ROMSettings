@@ -59,7 +59,7 @@
 
     <!-- Menu Strings -->
     <string name="menu_nav_bar_reset">Reset nav bar</string>
-    <string name="menu_user_interface_reset">Reset notification wallpaper</string>
+    <string name="menu_user_interface_reset">Reset SystemUI</string>
     <string name="menu_lockscreens_reset">Reset lockscreen wallpaper</string>
 
     <!-- General Strings -->
@@ -74,6 +74,8 @@
     <string name="title_show_airplane_toggle">Show airplane toggle</string>
     <string name="title_show_navbar_hide">Show navigation bar toggle</string>
     <string name="power_menu_expanded_desktop">Show expanded desktop</string>
+    <string name="power_menu_reboot_title">Reboot menu</string>
+    <string name="power_menu_silent_title">Sound panel</string>
 
     <!-- Power Saving -->
     <string name="title_pref_powersaving_pref_mode">Enable power saver</string>
