@@ -104,99 +104,6 @@
     <string name="about_aokp_summary">@null</string>
     <string name="donate">https://play.google.com/store/apps/details?id=com.th.xenonhdsupport</string>
 
-	<!-- Preference Categories -->
-	<string name="prefcat_cpu">Set CPU</string>
-	<string name="pc_tweaks">Tweaks</string>
-	<string name="pc_init_d">Enable/Disable Tweaks</string>
-	<string name="pc_init_d_tweaks">Customize Tweaks</string>
-
-	<!-- Preference Titles -->
-	<!-- Main -->
-	<string name="pt_performance">Performance</string>
-	<string name="pt_customization">Customization</string>
-	<string name="pt_tools">Tools</string>
-	<string name="pt_mod_version">Mod version</string>
-	<!-- Customization -->
-	<string name="pt_liberty_customizer">Liberty Customizer</string>
-	<string name="pt_lockscreen">Lockscreen Settings</string>
-	<string name="pt_ui_status_bar">Status Bar</string>
-	<string name="pt_pulldown_text">Pulldown Text</string>
-	<string name="pt_theme_manager">Theme Manager</string>
-	<!-- Tools -->
-	<string name="pt_spare_parts">Spare Parts</string>
-	<string name="pt_dev_tools">Dev Tools</string>
-	<string name="pt_dsp_manager">DSP Manager</string>
-	<string name="pt_testing_menu">Testing Menu</string>
-	<!-- Start up tweaks -->
-	<string name="pt_init_d">Start-up Tweaks</string>
-	<string name="pt_enable_init_d">Enable start-up tweaks</string>
-	<string name="pt_zipalign">Zipalign apks</string>
-	<string name="pt_enable_sd_boost">Enable SD boost</string>
-	<string name="pt_sd_boost">Read ahead value</string>
-	<string name="pt_fix_permissions">Fix permissions</string>
-	<string name="pt_clear_cache">Clear cache</string>
-	<string name="pt_enable_sysctl">Enable sysctl</string>
-	<string name="pt_enable_cron">Enable scheduled tasks</string>
-	<!-- Performance -->
-	<string name="pt_set_cpu_activity">Set CPU</string>
-	<!-- Cpu -->
-	<string name="pt_set_max">Max CPU</string>
-	<string name="pt_set_min">Min CPU</string>
-	<string name="pt_set_gov">Scaling governor</string>
-	<string name="pt_cpu_boot">Set at boot</string>
-	
-    <!-- Scrolling Cache -->
-    <string name="pref_scrollingcache_title">Scrolling cache</string>
-    <string name="pref_scrollingcache_summary">Scrolling cache may improve scrolling performance at the cost of memory</string>
-    <string name="pref_scrollingcache_force_enable">Force enable</string>
-    <string name="pref_scrollingcache_default_enable">Default enable</string>
-    <string name="pref_scrollingcache_default_disable">Default disable</string>
-    <string name="pref_scrollingcache_force_disable">Force disable</string>
-
-	<!-- Preference Summaries -->
-	<!-- Main -->
-	<string name="ps_performance">Set CPU, free memory &amp; customize start-up
-		settings.</string>
-	<string name="ps_customization">Customize the lockscreen &amp; status bar. Install
-		blur/aosp apps with Liberty Customizer</string>
-	<string name="ps_tools">Various system tools</string>
-	<!-- Customization -->
-	<string name="ps_liberty_customizer">Customize the ROM to your liking</string>
-	<string name="ps_lockscreen">Change lockscreen styles and manage widgets
-	</string>
-	<string name="ps_ui_status_bar">Customize the status bar</string>
-	<string name="ps_pulldown_text">Change the text in the pulldown bar.</string>
-	<string name="ps_theme_manager">Install custom themes for Liberty ROM</string>
-	<!-- Tools -->
-	<string name="ps_spare_parts">Various tweaks and customization</string>
-	<string name="ps_dev_tools">Tools for developers and advanced users</string>
-	<string name="ps_dsp_manager">Stand alone equalizer</string>
-	<string name="ps_testing_menu">Phone info, battery info, usage statistics</string>
-	<!-- Start up tweaks -->
-	<string name="ps_init_d">Configure tweaks that are run at boot
-		(init.d)
-	</string>
-	<string name="ps_enable_init_d">Enable/disabe start-up tweaks</string>
-	<string name="ps_zipalign">Zipalign any unaligned apps on each boot</string>
-	<string name="ps_enable_sd_boost">Enable/disable SD card speed boost</string>
-	<string name="ps_sd_boost">Set value of read ahead in kb</string>
-	<string name="ps_fix_permissions">Fix permissions for apps on each boot</string>
-	<string name="ps_clear_cache">Clear data cache on each boot</string>
-	<string name="ps_enable_sysctl">Enable sysctl tweaks on boot</string>
-	<string name="ps_enable_cron">Enable scheduled cron jobs</string>
-	<!-- CPU -->
-	<string name="ps_set_max">Set max CPU scaling frequency\nCurrent: %s</string>
-	<string name="ps_set_min">Set min CPU scaling frequency\nCurrent: %s</string>
-	<string name="ps_set_gov">Set current scaling governor\nCurrent: %s</string>
-	<string name="ps_cpu_boot">Apply CPU at boot</string>
-	<!-- Performance -->
-	<string name="ps_set_cpu_activity">Set min/max frequencies and scaling governor
-	</string>
-
-	<!-- Toast Messages -->
-	<string name="toast_min_max_error01">Max CPU cannot be lower than min CPU</string>
-	<string name="toast_min_max_error02">Min CPU cannot be higher than max CPU</string>
-
     <!-- General UI -->
     <string name="bootani_cat">Boot Animation</string>
     <string name="navbar_cat">NavBar</string>
@@ -1084,7 +991,7 @@
     <string name="hsupa_disabled">HSUPA Disabled (Capped)</string>
     <string name="hsupa_enabled">HSUPA Enabled</string>
     <string name="hsupa_enabled_uncapped">HSUPA Enabled (Uncapped)</string>    <!-- Start up tweaks -->
-    <string name="ps_init_d">Configure Init.D/system tweaks that are run at boot time. Careful thin ice in here.</string>
+    <string name="ps_init_d">@null</string>
     <string name="ps_enable_init_d">Enable/disabe start-up tweaks</string>
     <string name="ps_zipalign">Zipalign any unaligned apps on each boot</string>
     <string name="ps_enable_sd_boost">Enable/disable SD card speed boost</string>
@@ -1095,7 +1002,7 @@
     <string name="ps_enable_cron">Enable scheduled cron jobs</string>
 
     <!-- PropModder -->
-    <string name="propmodder_title">PropModder &amp; Init.D tweaks</string>
+    <string name="propmodder_title">PropModder</string>
     <string name="propmodder_title_summary">@null</string>
     <string name="buildprop_title">Build.prop mods</string>
     <string name="nonprop_cat_title">Mods involving init.d script</string>

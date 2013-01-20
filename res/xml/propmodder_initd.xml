@@ -165,41 +165,6 @@
             android:shouldDisableView="true"
             android:persistent="true" />
 
-        <CheckBoxPreference android:key="zipalign"
-            android:defaultValue="true"
-            android:title="@string/pt_zipalign"
-            android:summary="@string/ps_zipalign"
-            android:dependency="enable_init_d"
-            android:shouldDisableView="true" />
-
-        <CheckBoxPreference android:key="fix_permissions"
-            android:defaultValue="false"
-            android:title="@string/pt_fix_permissions"
-            android:summary="@string/ps_fix_permissions"
-            android:dependency="enable_init_d"
-            android:shouldDisableView="true" />
-
-        <CheckBoxPreference android:key="clear_cache"
-            android:defaultValue="false"
-            android:title="@string/pt_clear_cache"
-            android:summary="@string/ps_clear_cache"
-            android:dependency="enable_init_d"
-            android:shouldDisableView="true" />
-
-        <CheckBoxPreference android:key="enable_sysctl"
-            android:defaultValue="true"
-            android:title="@string/pt_enable_sysctl"
-            android:summary="@string/ps_enable_sysctl"
-            android:dependency="enable_init_d"
-            android:shouldDisableView="true" />
-
-        <CheckBoxPreference android:key="enable_cron"
-            android:defaultValue="true"
-            android:title="@string/pt_enable_cron"
-            android:summary="@string/ps_enable_cron"
-            android:dependency="enable_init_d"
-            android:shouldDisableView="true" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>

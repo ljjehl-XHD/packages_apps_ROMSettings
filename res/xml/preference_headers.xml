@@ -83,7 +83,7 @@
     <header
         android:id="@+id/propmodder_initd"
         android:title="@string/propmodder_title"
-        android:fragment="com.baked.romcontrol.fragments.PropModder"
+        android:fragment="com.aokp.romcontrol.fragments.PropModder"
         android:summary="@string/propmodder_title_summary"
         android:icon="@drawable/ic_rom_control_propmodder" />
 
