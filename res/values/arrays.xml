@@ -1586,7 +1586,7 @@
         <item>60000</item>
     </string-array>
 
-	<!-- Recents RAM bar-->
+    <!-- Recents RAM bar-->
     <string-array name="entries_ram_bar_mode">
         <item>@string/ram_bar_none</item>
         <item>@string/ram_bar_apps</item>
@@ -1600,4 +1600,5 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+
 </resources>

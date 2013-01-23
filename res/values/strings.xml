@@ -1604,4 +1604,5 @@
     <string name="ram_bar_color_disabled">Disabled</string>
     <string name="ram_bar_button_help">Help</string>
     <string name="ram_bar_button_reset">Reset colors</string>
+
 </resources>

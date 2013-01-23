@@ -155,6 +155,22 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+            android:name=".fragments.RamBar"
+            android:label="@string/ram_bar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.carbon.settings.SHORTCUT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".fragments.TransparencyDialog"
+            android:theme="@android:style/Theme.Dialog"
+            android:label="@string/transparency_dialog_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
