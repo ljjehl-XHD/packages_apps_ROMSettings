@@ -185,6 +185,14 @@
     <string name="system_power_crt_screen_off_summary">Screen will animate an Electron Beam when turned off</string>
     <string name="system_power_crt_screen_on_title">CRT Screen On</string>
     <string name="system_power_crt_screen_on_summary">Screen will animate an Electron Beam when turned on</string>
+    <string name="transparency_dialog_title">Transparency settings</string>
+    <string name="transparency_dialog_linked_transparency">Link statusbar &amp; navbar alpha</string>
+    <string name="transparency_dialog_transparency_sb_and_nv">Statusbar and navigation bar</string>
+    <string name="transparency_dialog_statusbar">Statusbar</string>
+    <string name="transparency_dialog_navbar">Navigation bar</string>
+    <string name="transparency_dialog_match_keyguard_alpha">Match lockscreen alpha</string>
+    <string name="transparency_dialog_transparency">Homescreen alpha</string>
+    <string name="transparency_dialog_transparency_keyguard">Lockscreen alpha</string>
 
     <!-- LCD Density -->
     <string name="lcd_density_title">LCD Density</string>
