@@ -103,6 +103,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PIE_TRIGGER = "pie_trigger";
     private static final String PIE_GAP = "pie_gap";
     private static final String PIE_NOTIFICATIONS = "pie_notifications";
+    private static final String PREF_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -136,6 +137,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     ListPreference mPieTrigger;
     ListPreference mPieGap;
     CheckBoxPreference mPieNotifi;
+    CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -278,6 +280,39 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             newDensityValue = Integer.parseInt(currentProperty);
         } catch (Exception e) {
             getPreferenceScreen().removePreference(mLcdDensity);
+
+        mWakeUpWhenPluggedOrUnplugged = (CheckBoxPreference) findPreference(PREF_WAKEUP_WHEN_PLUGGED_UNPLUGGED);
+        mWakeUpWhenPluggedOrUnplugged.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                        Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED, true));
+
+        // hide option if device is already set to never wake up
+        if(!mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_unplugTurnsOnScreen)) {
+            ((PreferenceGroup) findPreference("misc")).removePreference(mWakeUpWhenPluggedOrUnplugged);
+        }
+
+        setHasOptionsMenu(true);
+        resetBootAnimation();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(mNavBarAlpha != null) {
+            final float defaultNavAlpha = Settings.System.getFloat(getActivity()
+                    .getContentResolver(), Settings.System.NAVIGATION_BAR_ALPHA,
+                    0.8f);
+            mNavBarAlpha.setInitValue(Math.round(defaultNavAlpha * 100));
+        }
+        if(mDisableBootAnimation != null) {
+            if (mDisableBootAnimation.isChecked()) {
+                Resources res = mContext.getResources();
+                String[] insults = res.getStringArray(R.array.disable_bootanimation_insults);
+                int randomInt = randomGenerator.nextInt(insults.length);
+                mDisableBootAnimation.setSummary(insults[randomInt]);
+            } else {
+                mDisableBootAnimation.setSummary(null);
+            }
         }
 
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
@@ -427,6 +462,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.PIE_NOTIFICATIONS,
                     mPieNotifi.isChecked() ? 1 : 0);
+        } else if (preference == mWakeUpWhenPluggedOrUnplugged) {
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
+                    ((CheckBoxPreference) preference).isChecked());
+            return true;
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
