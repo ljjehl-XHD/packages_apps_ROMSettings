@@ -43,6 +43,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".fragments.PieColor"
+            android:label="PieColorEMERGERD" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+              </intent-filter>
+        </activity>
+        <activity
             android:name=".fragments.StatusBarClock"
             android:label="@string/title_statusbar_clock" >
             <intent-filter>
