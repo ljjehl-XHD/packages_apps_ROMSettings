@@ -16,6 +16,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -77,6 +78,8 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
+
 public class UserInterface extends AOKPPreferenceFragment implements OnPreferenceChangeListener {
 
     public static final String TAG = "UserInterface";
@@ -93,6 +96,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	private static final String PREF_USER_MODE_UI = "user_mode_ui";
 	private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
 	private static final String PREF_HIDE_EXTRAS = "hide_extras";
+	private static final String PIE_CONTROLS = "pie_controls";
+    private static final String PIE_GRAVITY = "pie_gravity";
+    private static final String PIE_MODE = "pie_mode";
+    private static final String PIE_SIZE = "pie_size";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -119,6 +126,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	CheckBoxPreference mDualpane;
 	Preference mLcdDensity;
 	CheckBoxPreference mHideExtras;
+	ListPreference mPieMode;
+    ListPreference mPieSize;
+    ListPreference mPieGravity;
+    CheckBoxPreference mPieControls;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -139,6 +150,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     DensityChanger densityFragment;
 
     private int seekbarProgress;
+    private int mAllowedLocations;
     String mCustomLabelText = null;
 
     @Override
@@ -216,6 +228,28 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                         Settings.System.FORCE_DUAL_PANEL, getResources().getBoolean(
                         com.android.internal.R.bool.preferences_prefer_dual_pane)));
                         
+        mPieControls = (CheckBoxPreference) findPreference(PIE_CONTROLS);
+        mPieControls.setChecked((Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_CONTROLS, 0) == 1));
+
+        mPieGravity = (ListPreference) findPreference(PIE_GRAVITY);
+        int pieGravity = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_GRAVITY, 3);
+        mPieGravity.setValue(String.valueOf(pieGravity));
+        mPieGravity.setOnPreferenceChangeListener(this);
+
+        mPieMode = (ListPreference) findPreference(PIE_MODE);
+        int pieMode = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_MODE, 2);
+        mPieMode.setValue(String.valueOf(pieMode));
+        mPieMode.setOnPreferenceChangeListener(this);
+
+        mPieSize = (ListPreference) findPreference(PIE_SIZE);
+        String pieSize = Settings.System.getString(mContext.getContentResolver(),
+                Settings.System.PIE_SIZE);
+        mPieSize.setValue(pieSize != null && !pieSize.isEmpty() ? pieSize : "1");
+        mPieSize.setOnPreferenceChangeListener(this);
+                        
         mLcdDensity = findPreference("lcd_density_setup");
         String currentProperty = SystemProperties.get("ro.sf.lcd_density");
         try {
@@ -227,6 +261,14 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
 
         setHasOptionsMenu(true);
+        checkControls();
+    }
+    
+    private void checkControls() {
+        boolean pieCheck = mPieControls.isChecked();
+        mPieGravity.setEnabled(pieCheck);
+        mPieMode.setEnabled(pieCheck);
+        mPieSize.setEnabled(pieCheck);
     }
 
     private void updateCustomLabelTextSummary() {
@@ -350,6 +392,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putBoolean(getActivity().getContentResolver(),
                     Settings.System.RAM_USAGE_BAR, checked ? true : false);
             return true;
+        } else if (preference == mPieControls) {
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.PIE_CONTROLS,
+                    mPieControls.isChecked() ? 1 : 0);
+            checkControls();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -360,6 +407,21 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         if (preference == mUserModeUI) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.USER_UI_MODE, Integer.parseInt((String) newValue));
+            return true;
+        } else if (preference == mPieMode) {
+            int pieMode = Integer.valueOf((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.PIE_MODE, pieMode);
+            return true;
+        } else if (preference == mPieSize) {
+            float pieSize = Float.valueOf((String) newValue);
+            Settings.System.putFloat(getActivity().getContentResolver(),
+                    Settings.System.PIE_SIZE, pieSize);
+            return true;
+        } else if (preference == mPieGravity) {
+            int pieGravity = Integer.valueOf((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.PIE_GRAVITY, pieGravity);
             return true;
         }
         return false;
