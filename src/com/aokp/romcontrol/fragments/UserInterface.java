@@ -103,6 +103,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PIE_TRIGGER = "pie_trigger";
     private static final String PIE_GAP = "pie_gap";
     private static final String PIE_NOTIFICATIONS = "pie_notifications";
+    private static final String PIE_MENU = "pie_menu";
+    private static final String PIE_SEARCH = "pie_search";
     private static final String PREF_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
@@ -137,6 +139,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     ListPreference mPieTrigger;
     ListPreference mPieGap;
     CheckBoxPreference mPieNotifi;
+    CheckBoxPreference mPieMenu;
+    CheckBoxPreference mPieSearch;
     CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
 
     private AnimationDrawable mAnimationPart1;
@@ -278,6 +282,14 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mPieNotifi = (CheckBoxPreference) findPreference(PIE_NOTIFICATIONS);
         mPieNotifi.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.PIE_NOTIFICATIONS, 0) == 1));
+                
+        mPieMenu = (CheckBoxPreference) findPreference(PIE_MENU);
+        mPieMenu.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_MENU, 0) == 1);
+
+        mPieSearch = (CheckBoxPreference) findPreference(PIE_SEARCH);
+        mPieSearch.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_SEARCH, 1) == 1);
                         
         mLcdDensity = findPreference("lcd_density_setup");
         String currentProperty = SystemProperties.get("ro.sf.lcd_density");
@@ -472,6 +484,12 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
                     ((CheckBoxPreference) preference).isChecked());
             return true;
+        } else if (preference == mPieMenu) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.PIE_MENU, mPieMenu.isChecked() ? 1 : 0);
+        } else if (preference == mPieSearch) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.PIE_SEARCH, mPieSearch.isChecked() ? 1 : 0);
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
