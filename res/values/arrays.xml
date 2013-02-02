@@ -1110,7 +1110,7 @@
 
     <string-array name="values_pie_size" translatable="false">
         <item>0.7</item>
-        <item>1</item>
+        <item>1.0</item>
         <item>1.2</item>
         <item>1.4</item>
     </string-array>
@@ -1149,9 +1149,9 @@
         <item>@string/pie_trigger_huge</item>
     </string-array>
     <string-array name="values_pie_trigger" translatable="false">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>1.0</item>
+        <item>2.0</item>
+        <item>3.0</item>
     </string-array>
     
     <string-array name="all_color_style_entries" translatable="false">
