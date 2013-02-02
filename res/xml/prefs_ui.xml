@@ -105,6 +105,14 @@
             android:title="@string/pie_controls_title"
             android:summary="@string/pie_controls_summary"
             android:defaultValue="false" />
+            
+        <ListPreference
+            android:key="pie_trigger"
+            android:dialogTitle="@string/pie_trigger_title"
+            android:title="@string/pie_trigger_title"
+            android:summary="@string/pie_trigger_summary"
+            android:entries="@array/entries_pie_trigger"
+            android:entryValues="@array/values_pie_trigger" />
 
         <ListPreference
             android:key="pie_gravity"
@@ -130,7 +138,21 @@
             android:entries="@array/entries_pie_mode"
             android:entryValues="@array/values_pie_mode" />
             
-      <PreferenceScreen
+        <ListPreference
+            android:key="pie_gap"
+            android:dialogTitle="@string/pie_gap_title"
+            android:title="@string/pie_gap_title"
+            android:summary="@string/pie_gap_summary"
+            android:entries="@array/entries_pie_gap"
+            android:entryValues="@array/values_pie_gap" />
+
+        <CheckBoxPreference
+            android:key="pie_notifications"
+            android:title="@string/pie_notifications_title"
+            android:summary="@string/pie_notifications_summary"
+            android:defaultValue="false" />
+            
+        <PreferenceScreen
             android:key="pie_color"
             android:title="@string/pie_color_title"
             android:fragment="com.aokp.romcontrol.fragments.PieColor" />
