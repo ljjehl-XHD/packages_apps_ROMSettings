@@ -290,14 +290,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mPieSearch = (CheckBoxPreference) findPreference(PIE_SEARCH);
         mPieSearch.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PIE_SEARCH, 1) == 1);
-                        
-        mLcdDensity = findPreference("lcd_density_setup");
-        String currentProperty = SystemProperties.get("ro.sf.lcd_density");
-        try {
-            newDensityValue = Integer.parseInt(currentProperty);
-        } catch (Exception e) {
-            getPreferenceScreen().removePreference(mLcdDensity);
-
+                
         mWakeUpWhenPluggedOrUnplugged = (CheckBoxPreference) findPreference(PREF_WAKEUP_WHEN_PLUGGED_UNPLUGGED);
         mWakeUpWhenPluggedOrUnplugged.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                         Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED, true));
@@ -307,29 +300,13 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 com.android.internal.R.bool.config_unplugTurnsOnScreen)) {
             ((PreferenceGroup) findPreference("misc")).removePreference(mWakeUpWhenPluggedOrUnplugged);
         }
-
-        setHasOptionsMenu(true);
-        resetBootAnimation();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(mNavBarAlpha != null) {
-            final float defaultNavAlpha = Settings.System.getFloat(getActivity()
-                    .getContentResolver(), Settings.System.NAVIGATION_BAR_ALPHA,
-                    0.8f);
-            mNavBarAlpha.setInitValue(Math.round(defaultNavAlpha * 100));
-        }
-        if(mDisableBootAnimation != null) {
-            if (mDisableBootAnimation.isChecked()) {
-                Resources res = mContext.getResources();
-                String[] insults = res.getStringArray(R.array.disable_bootanimation_insults);
-                int randomInt = randomGenerator.nextInt(insults.length);
-                mDisableBootAnimation.setSummary(insults[randomInt]);
-            } else {
-                mDisableBootAnimation.setSummary(null);
-            }
+                        
+        mLcdDensity = findPreference("lcd_density_setup");
+        String currentProperty = SystemProperties.get("ro.sf.lcd_density");
+        try {
+            newDensityValue = Integer.parseInt(currentProperty);
+        } catch (Exception e) {
+            getPreferenceScreen().removePreference(mLcdDensity);
         }
 
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
@@ -469,6 +446,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putBoolean(getActivity().getContentResolver(),
                     Settings.System.RAM_USAGE_BAR, checked ? true : false);
             return true;
+        } else if (preference == mWakeUpWhenPluggedOrUnplugged) {
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
+                    ((CheckBoxPreference) preference).isChecked());
+            return true;
         } else if (preference == mPieControls) {
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.PIE_CONTROLS,
@@ -479,11 +461,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.PIE_NOTIFICATIONS,
                     mPieNotifi.isChecked() ? 1 : 0);
-        } else if (preference == mWakeUpWhenPluggedOrUnplugged) {
-            Settings.System.putBoolean(getActivity().getContentResolver(),
-                    Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
-                    ((CheckBoxPreference) preference).isChecked());
-            return true;
         } else if (preference == mPieMenu) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.PIE_MENU, mPieMenu.isChecked() ? 1 : 0);
