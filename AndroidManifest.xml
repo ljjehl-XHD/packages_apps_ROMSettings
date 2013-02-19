@@ -17,6 +17,8 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.BIND_APPWIDGET" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
 
     <application
         android:hardwareAccelerated="true"
@@ -82,6 +84,15 @@
         <activity
             android:name=".fragments.Navbar"
             android:label="@string/title_navbar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".fragments.NavRingTargets"
+            android:label="@string/title_navring" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
