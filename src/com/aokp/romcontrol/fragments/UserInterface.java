@@ -221,9 +221,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 Settings.System.RAM_USAGE_BAR, false));
 
 		mShowActionOverflow = (CheckBoxPreference) findPreference(PREF_SHOW_OVERFLOW);
-        mShowActionOverflow.setChecked((Settings.System.getInt(getActivity().
-                        getApplicationContext().getContentResolver(),
-                        Settings.System.UI_FORCE_OVERFLOW_BUTTON, 0) == 1));
+        mShowActionOverflow.setChecked(Settings.System.getBoolean(getActivity().
+						getApplicationContext().getContentResolver(),
+						Settings.System.UI_FORCE_OVERFLOW_BUTTON, false));
 
 		mShowImeSwitcher = (CheckBoxPreference) findPreference(PREF_IME_SWITCHER);
         mShowImeSwitcher.setChecked(Settings.System.getBoolean(cr,
@@ -386,10 +386,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         	Settings.System.putBoolean(mContext.getContentResolver(),
         			Settings.System.HIDE_EXTRAS_SYSTEM_BAR,
         			((CheckBoxPreference) preference).isChecked());
-		} else if (preference == mShowActionOverflow) {	
+		} else if (preference == mShowActionOverflow) {
             boolean enabled = mShowActionOverflow.isChecked();
-            Settings.System.putInt(getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON,
-                    enabled ? 1 : 0);
+            Settings.System.putBoolean(getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON,
+                    enabled ? true : false);
             // Show toast appropriately
             if (enabled) {
                 Toast.makeText(getActivity(), R.string.show_overflow_toast_enable,
