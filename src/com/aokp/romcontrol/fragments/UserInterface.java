@@ -106,6 +106,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PIE_MENU = "pie_menu";
     private static final String PIE_SEARCH = "pie_search";
     private static final String PREF_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
+    private static final String PREF_POWER_CRT_SCREEN_ON = "system_power_crt_screen_on";
+    private static final String PREF_POWER_CRT_SCREEN_OFF = "system_power_crt_screen_off";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -142,6 +144,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     CheckBoxPreference mPieMenu;
     CheckBoxPreference mPieSearch;
     CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
+    CheckBoxPreference mCrtOff;
+    CheckBoxPreference mCrtOn;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -164,6 +168,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private int seekbarProgress;
     private int mAllowedLocations;
     String mCustomLabelText = null;
+    
+    private boolean isCrtOffChecked = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -310,6 +316,28 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         }
 
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
+        
+        // respect device default configuration
+        // true fades while false animates
+        boolean electronBeamFadesConfig = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_animateScreenLights);
+
+        // use this to enable/disable crt on feature
+        // crt only works if crt off is enabled
+        // total system failure if only crt on is enabled
+        isCrtOffChecked = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF,
+                electronBeamFadesConfig ? 0 : 1) == 1;
+
+        mCrtOff = (CheckBoxPreference) findPreference(PREF_POWER_CRT_SCREEN_OFF);
+        mCrtOff.setChecked(isCrtOffChecked);
+        mCrtOff.setOnPreferenceChangeListener(this);
+
+        mCrtOn = (CheckBoxPreference) findPreference(PREF_POWER_CRT_SCREEN_ON);
+        mCrtOn.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.SYSTEM_POWER_ENABLE_CRT_ON, 0) == 1);
+        mCrtOn.setEnabled(isCrtOffChecked);
+        mCrtOn.setOnPreferenceChangeListener(this);
 
         setHasOptionsMenu(true);
         checkControls();
@@ -477,6 +505,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         if (preference == mUserModeUI) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.USER_UI_MODE, Integer.parseInt((String) newValue));
+            Helpers.restartSystemUI();
             return true;
         } else if (preference == mPieMode) {
             int pieMode = Integer.valueOf((String) newValue);
@@ -502,6 +531,24 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             float pieTrigger = Float.valueOf((String) newValue);
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.PIE_TRIGGER, pieTrigger);
+            return true;
+        } else if (mCrtOff.equals(preference)) {
+            isCrtOffChecked = ((Boolean) newValue).booleanValue();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF,
+                    (isCrtOffChecked ? 1 : 0));
+            // if crt off gets turned off, crt on gets turned off and disabled
+            if (!isCrtOffChecked) {
+                Settings.System.putInt(getActivity().getContentResolver(),
+                        Settings.System.SYSTEM_POWER_ENABLE_CRT_ON, 0);
+                mCrtOn.setChecked(false);
+            }
+            mCrtOn.setEnabled(isCrtOffChecked);
+            return true;
+        } else if (mCrtOn.equals(preference)) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SYSTEM_POWER_ENABLE_CRT_ON,
+                    ((Boolean) newValue).booleanValue() ? 1 : 0);
             return true;
         }
         return false;

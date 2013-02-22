@@ -181,6 +181,10 @@
     <string name="phone_mode_ui">Phone - NavBar to side in landscape</string>
     <string name="tablet_mode_ui">Tablet - Combined NavBar and SystemBar</string>
     <string name="phablet_mode_ui">Phablet - NavBar stays at bottom in landscape</string>
+    <string name="system_power_crt_screen_off_title">CRT Screen Off</string>
+    <string name="system_power_crt_screen_off_summary">Screen will animate an Electron Beam when turned off</string>
+    <string name="system_power_crt_screen_on_title">CRT Screen On</string>
+    <string name="system_power_crt_screen_on_summary">Screen will animate an Electron Beam when turned on</string>
 
     <!-- LCD Density -->
     <string name="lcd_density_title">LCD Density</string>
