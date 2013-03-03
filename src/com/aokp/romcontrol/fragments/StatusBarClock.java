@@ -38,8 +38,6 @@ public class StatusBarClock extends AOKPPreferenceFragment implements
     private static final String PREF_CLOCK_SHORTCLICK = "clock_shortclick";
     private static final String PREF_CLOCK_LONGCLICK = "clock_longclick";
     private static final String PREF_CLOCK_DOUBLECLICK = "clock_doubleclick";
-	private static final String PREF_STATUSBAR_BACKGROUND_STYLE = "statusbar_background_style";
-    private static final String PREF_STATUSBAR_BACKGROUND_COLOR = "statusbar_background_color";
     
     public static final int CLOCK_DATE_STYLE_LOWERCASE = 1;
     public static final int CLOCK_DATE_STYLE_UPPERCASE = 2;
@@ -62,8 +60,6 @@ public class StatusBarClock extends AOKPPreferenceFragment implements
     ListPreference mClockShortClick;
     ListPreference mClockLongClick;
     ListPreference mClockDoubleClick;
-	ListPreference mStatusbarBgStyle;
-    ColorPickerPreference mStatusbarBgColor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,12 +118,6 @@ public class StatusBarClock extends AOKPPreferenceFragment implements
         mClockDoubleClick = (ListPreference) findPreference(PREF_CLOCK_DOUBLECLICK);
         mClockDoubleClick.setOnPreferenceChangeListener(this);
         mClockDoubleClick.setSummary(getProperSummary(mClockDoubleClick));
-
-		mStatusbarBgColor = (ColorPickerPreference) findPreference(PREF_STATUSBAR_BACKGROUND_COLOR);
-        mStatusbarBgColor.setOnPreferenceChangeListener(this);
-
-        mStatusbarBgStyle = (ListPreference) findPreference(PREF_STATUSBAR_BACKGROUND_STYLE);
-        mStatusbarBgStyle.setOnPreferenceChangeListener(this);
         
         boolean mClockDateToggle = Settings.System.getInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_CLOCK_DATE_DISPLAY, 0) != 0;
@@ -135,19 +125,7 @@ public class StatusBarClock extends AOKPPreferenceFragment implements
             mClockDateStyle.setEnabled(false);
             mClockDateFormat.setEnabled(false);
         }
-
-		updateVisibility();
 		parseClockDateFormats();
-    }
-
-	private void updateVisibility() {
-        int visible = Settings.System.getInt(getActivity().getContentResolver(),
-                    Settings.System.STATUSBAR_BACKGROUND_STYLE, 2);
-        if (visible == 2) {
-            mStatusbarBgColor.setEnabled(false);
-        } else {
-            mStatusbarBgColor.setEnabled(true);
-        }
     }
 
     @Override
@@ -177,24 +155,6 @@ public class StatusBarClock extends AOKPPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_CLOCK_COLOR, intHex);
             Log.e("ROMAN", intHex + "");
-		} else if (preference == mStatusbarBgStyle) {
-            int value = Integer.valueOf((String) newValue);
-            int index = mStatusbarBgStyle.findIndexOfValue((String) newValue);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.STATUSBAR_BACKGROUND_STYLE, value);
-            preference.setSummary(mStatusbarBgStyle.getEntries()[index]);
-            updateVisibility();
-            return true;
-
-        } else if (preference == mStatusbarBgColor) {
-            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String
-                    .valueOf(newValue)));
-            preference.setSummary(hex);
-
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.STATUSBAR_BACKGROUND_COLOR, intHex);
-            Log.e("BAKED", intHex + "");
  		} else if (preference == mClockDateDisplay) {
             int val = Integer.parseInt((String) newValue);
             int index = mClockDateDisplay.findIndexOfValue((String) newValue);
