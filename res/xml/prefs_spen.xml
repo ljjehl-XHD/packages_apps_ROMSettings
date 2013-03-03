@@ -48,8 +48,9 @@
         <ListPreference
             android:key="spen_long"
             android:dependency="enable_spen"
-<<<<<<< HEAD
-            android:title="@string/spen_long_title" />
+            android:title="@string/spen_long_title"
+            android:entries="@array/navbar_button_entries"
+            android:entryValues="@array/navbar_button_values" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -64,10 +65,3 @@
     </PreferenceCategory>
 </PreferenceScreen>
 
-=======
-            android:title="@string/spen_long_title"
-            android:entries="@array/navbar_button_entries"
-            android:entryValues="@array/navbar_button_values" />
-
-</PreferenceScreen>
->>>>>>> c055600... Spen Options 2/2: Enable Spen options
