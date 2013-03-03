@@ -78,8 +78,6 @@ public class Navbar extends AOKPPreferenceFragment implements
     private static final String NAVIGATION_BAR_HEIGHT_LANDSCAPE = "navigation_bar_height_landscape";
     private static final String NAVIGATION_BAR_WIDTH = "navigation_bar_width";
     private static final String PREF_NAVRING_AMOUNT = "pref_navring_amount";
-	private static final String NAVIGATION_BAR_BACKGROUND_COLOR = "navigation_bar_background_color";
-    private static final String PREF_NAVBAR_BG_STYLE = "navbar_bg_style";
     private static final String ENABLE_NAVRING_LONG = "enable_navring_long";
     private static final String NAVIGATION_BAR_WIDGETS = "navigation_bar_widgets";
     private static final String PREF_MENU_ARROWS = "navigation_bar_menu_arrow_keys";
@@ -94,7 +92,6 @@ public class Navbar extends AOKPPreferenceFragment implements
     Preference mNavRingTargets;
 
     // move these later
-	ColorPickerPreference mNavigationBarBgColor;
     ColorPickerPreference mNavigationBarColor;
     CheckBoxPreference mColorizeAllIcons;
     ColorPickerPreference mNavigationBarGlowColor;
@@ -103,7 +100,6 @@ public class Navbar extends AOKPPreferenceFragment implements
     ListPreference mNavBarMenuDisplay;
     ListPreference mNavBarButtonQty;
     ListPreference mNavRingButtonQty;
-	ListPreference mNavigationBarBgStyle;
     CheckBoxPreference mEnableNavigationBar;
     ListPreference mNavigationBarHeight;
     ListPreference mNavigationBarHeightLandscape;
@@ -118,7 +114,6 @@ public class Navbar extends AOKPPreferenceFragment implements
 
     private int mPendingIconIndex = -1;
     private NavBarCustomAction mPendingNavBarCustomAction = null;
-	private int defaultBgColor = 0xFF000000;
 
     private static class NavBarCustomAction {
         String activitySettingName;
@@ -177,12 +172,6 @@ public class Navbar extends AOKPPreferenceFragment implements
         mEnableNavigationBar = (CheckBoxPreference) findPreference("enable_nav_bar");
         mEnableNavigationBar.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.NAVIGATION_BAR_SHOW, hasNavBarByDefault ? 1 : 0) == 1);
-
-		mNavigationBarBgStyle = (ListPreference) findPreference(PREF_NAVBAR_BG_STYLE);
-        mNavigationBarBgStyle.setOnPreferenceChangeListener(this);
-
-		mNavigationBarBgColor = (ColorPickerPreference) findPreference(NAVIGATION_BAR_BACKGROUND_COLOR);
-        mNavigationBarBgColor.setOnPreferenceChangeListener(this);
 
         mNavigationBarColor = (ColorPickerPreference) findPreference(PREF_NAV_COLOR);
         mNavigationBarColor.setOnPreferenceChangeListener(this);
@@ -288,10 +277,6 @@ public class Navbar extends AOKPPreferenceFragment implements
                         Settings.System.NAVIGATION_CUSTOM_APP_ICONS[1], "");
                 Settings.System.putString(getActivity().getContentResolver(),
                         Settings.System.NAVIGATION_CUSTOM_APP_ICONS[2], "");
-				Settings.System.putInt(getActivity().getContentResolver(),
-                        Settings.System.NAVIGATION_BAR_BACKGROUND_STYLE, 2);
-                Settings.System.putInt(getActivity().getContentResolver(),
-                        Settings.System.NAVIGATION_BAR_BACKGROUND_COLOR, defaultBgColor);
                 refreshSettings();
                 return true;
             default:
@@ -363,6 +348,12 @@ public class Navbar extends AOKPPreferenceFragment implements
             resetNavRingLong();
             refreshSettings();
             return true;
+        } else if (preference == mNavBarButtonQty) {
+            int val = Integer.parseInt((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_BUTTONS_QTY, val);
+            refreshSettings();
+            return true;
         } else if (preference == mNavigationBarWidth) {
             String newVal = (String) newValue;
             int dp = Integer.parseInt(newVal);
@@ -419,30 +410,6 @@ public class Navbar extends AOKPPreferenceFragment implements
                             Settings.System.NAVIGATION_CUSTOM_APP_ICONS[index], "");
                 }
             }
-            refreshSettings();
-            return true;
-		} else if (preference == mNavigationBarBgStyle) {
-            int value = Integer.valueOf((String) newValue);
-            int index = mNavigationBarBgStyle.findIndexOfValue((String) newValue);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_BACKGROUND_STYLE, value);
-            preference.setSummary(mNavigationBarBgStyle.getEntries()[index]);
-            updateVisibility();
-            if (value == 2)
-                Helpers.restartSystemUI();
-            return true;
-        } else if (preference == mNavigationBarBgColor) {
-            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String
-                    .valueOf(newValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_BACKGROUND_COLOR, intHex);
-            return true;
-        } else if (preference == mNavBarButtonQty) {
-            int val = Integer.parseInt((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_BUTTONS_QTY, val);
             refreshSettings();
             return true;
         } else if (preference == mNavigationBarColor) {
@@ -564,16 +531,6 @@ public class Navbar extends AOKPPreferenceFragment implements
             mGlowTimes.setValueIndex(3);
         }
         mGlowTimes.setSummary(getResources().getString(resId));
-    }
-
-		private void updateVisibility() {
-        int visible = Settings.System.getInt(getActivity().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_BACKGROUND_STYLE, 2);
-        if (visible == 2) {
-            mNavigationBarBgColor.setEnabled(false);
-        } else {
-            mNavigationBarBgColor.setEnabled(true);
-        }
     }
 
     public int mapChosenDpToPixels(int dp) {

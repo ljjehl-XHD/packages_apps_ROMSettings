@@ -40,23 +40,6 @@
                 android:summary="@string/navigation_bar_glow_tint_summary"
                 android:defaultValue="#FFFFFF" />
 
-		<ListPreference
-            android:key="navbar_bg_style"
-            android:layout="?android:attr/preferenceLayoutChild"
-            android:persistent="true"
-            android:entries="@array/navbar_background_entries"
-            android:entryValues="@array/navbar_background_values"
-            android:title="@string/navbar_background_style" />
-
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="navigation_bar_background_color"
-            android:shouldDisableView="true"
-            android:layout="?android:attr/preferenceLayoutChild"
-            android:persistent="true"
-            android:title="@string/navbar_bg_color"
-            android:defaultValue="#000000"
-            alphaSlider="true" />
-
         <CheckBoxPreference
                 android:key="navigation_bar_menu_arrow_keys"
                 android:title="@string/navigation_bar_menu_arrow_keys_title"
@@ -140,6 +123,31 @@
             android:title="@string/button_transparency_title" />
 
         </PreferenceCategory>
+        <PreferenceCategory
+            android:key="navbar_hide_cat"
+            android:title="@string/navbar_hide">
+
+        <CheckBoxPreference
+                android:key="navbar_hide_enable"
+                android:title="@string/navbar_hide_enable_title" />
+
+        <com.aokp.romcontrol.widgets.SeekBarPreference
+            android:key="drag_handle_opacity"
+            android:title="@string/drag_handle_opacity_title"/>
+
+        <com.aokp.romcontrol.widgets.SeekBarPreference
+            android:key="drag_handle_width"
+            android:title="@string/drag_handle_width_title"/>
+
+        <ListPreference
+                android:entries="@array/hide_navbar_timeout_entries"
+                android:entryValues="@array/hide_navbar_timeout_values"
+                android:key="navbar_hide_timeout"
+                android:title="@string/title_navbar_timeout"
+                android:summary="@string/summary_navbar_timeout"/>
+
+        </PreferenceCategory>
+
         <PreferenceCategory
             android:key="navbar_widgets_cat"
             android:title="@string/navbar_widgets">
