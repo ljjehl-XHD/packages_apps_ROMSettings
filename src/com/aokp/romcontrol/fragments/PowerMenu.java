@@ -46,8 +46,8 @@ public class PowerMenu extends AOKPPreferenceFragment {
         mShowPowerSaver = (CheckBoxPreference) findPreference(PREF_POWER_SAVER);
         int powerSaverVal = 0;
         try {
-            powerSaverVal = Settings.Secure.getInt(getActivity()
-                    .getContentResolver(), Settings.Secure.POWER_SAVER_MODE);
+            powerSaverVal = Settings.Secure.getInt(mContentRes,
+                    Settings.Secure.POWER_SAVER_MODE);
         } catch (SettingNotFoundException e) {
             mShowPowerSaver.setEnabled(false);
             mShowPowerSaver
@@ -56,9 +56,8 @@ public class PowerMenu extends AOKPPreferenceFragment {
         mShowPowerSaver.setChecked(powerSaverVal != 0);
 
         mShowTorchToggle = (CheckBoxPreference) findPreference(PREF_TORCH_TOGGLE);
-        mShowTorchToggle.setChecked(Settings.System.getInt(getActivity()
-                .getContentResolver(), Settings.System.POWER_DIALOG_SHOW_TORCH_TOGGLE,
-                0) == 1);
+        mShowTorchToggle.setChecked(Settings.System.getBoolean(mContentRes,
+                Settings.System.POWER_DIALOG_SHOW_TORCH_TOGGLE, false));
 
         mShowScreenShot = (CheckBoxPreference) findPreference(PREF_SCREENSHOT);
         mShowScreenShot.setChecked(Settings.System.getInt(getActivity()
@@ -71,33 +70,32 @@ public class PowerMenu extends AOKPPreferenceFragment {
                 1) == 1);
         */
         mShowNavBarHide = (CheckBoxPreference) findPreference(PREF_NAVBAR_HIDE);
-        mShowNavBarHide.setChecked(Settings.System.getBoolean(getActivity()
-                .getContentResolver(), Settings.System.POWER_DIALOG_SHOW_NAVBAR_HIDE,
-                false));
+        mShowNavBarHide.setChecked(Settings.System.getBoolean(mContentRes,
+                Settings.System.POWER_DIALOG_SHOW_NAVBAR_HIDE, false));
                 
         mExpandedDesktopPref = (CheckBoxPreference) findPreference(PREF_EXPANDED_DESKTOP);
-        mExpandedDesktopPref.setChecked(Settings.System.getInt(getActivity()
-                .getContentResolver(), Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 
+        mExpandedDesktopPref.setChecked(Settings.System.getBoolean(mContentRes,
+                Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 
                 1) == 1);
                 
         mShowScreenShot = (CheckBoxPreference) findPreference(PREF_SCREENSHOT);
-        mShowScreenShot.setChecked(Settings.System.getInt(getActivity()
-                .getContentResolver(), Settings.System.POWER_MENU_SCREENSHOT_ENABLED,
+        mShowScreenShot.setChecked(Settings.System.getBoolean(mContentRes,
+                Settings.System.POWER_MENU_SCREENSHOT_ENABLED,
                 0) == 1);
 
         mShowAirplaneToggle = (CheckBoxPreference) findPreference(PREF_AIRPLANE_TOGGLE);
-        mShowAirplaneToggle.setChecked(Settings.System.getInt(getActivity()
-                .getContentResolver(), Settings.System.POWER_MENU_AIRPLANE_ENABLED,
+        mShowAirplaneToggle.setChecked(Settings.System.getBoolean(mContentRes,
+                Settings.System.POWER_MENU_AIRPLANE_ENABLED,
                 1) == 1);
         
         mRebootPref = (CheckBoxPreference) findPreference(KEY_REBOOT);
-        mRebootPref.setChecked(Settings.System.getInt(getActivity()
-                .getContentResolver(), Settings.System.POWER_MENU_REBOOT_ENABLED,
+        mRebootPref.setChecked(Settings.System.getBoolean(mContentRes,
+                Settings.System.POWER_MENU_REBOOT_ENABLED,
                 1) == 1);
                 
         mSilentPref = (CheckBoxPreference) findPreference(KEY_SILENT);
-        mSilentPref.setChecked(Settings.System.getInt(getActivity()
-        		.getContentResolver(), Settings.System.POWER_MENU_SILENT_ENABLED,
+        mSilentPref.setChecked(Settings.System.getBoolean(mContentRes,
+        		Settings.System.POWER_MENU_SILENT_ENABLED,
         		1) == 1);
     }
 
@@ -128,32 +126,32 @@ public class PowerMenu extends AOKPPreferenceFragment {
             return true;
         } else */
         if (preference == mShowNavBarHide) {
-            Settings.System.putBoolean(getActivity().getContentResolver(),
+            Settings.System.putBoolean(mContentRes,
                     Settings.System.POWER_DIALOG_SHOW_NAVBAR_HIDE,
                     ((CheckBoxPreference)preference).isChecked());
             return true;
         } else if (preference == mShowScreenShot) {
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(mContentRes,
                     Settings.System.POWER_MENU_SCREENSHOT_ENABLED,
                     ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
             return true;
         } else if (preference == mShowAirplaneToggle) {
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(mContentRes,
                     Settings.System.POWER_MENU_AIRPLANE_ENABLED,
                     ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
             return true;
         } else if (preference == mRebootPref) {
-        	Settings.System.putInt(getActivity().getContentResolver(),
+        	Settings.System.putInt(mContentRes,
         			Settings.System.POWER_MENU_REBOOT_ENABLED,
         			((CheckBoxPreference)preference).isChecked() ? 1 : 0);
         	return true;
         } else if (preference == mSilentPref) {
-        	Settings.System.putInt(getActivity().getContentResolver(),
+        	Settings.System.putInt(mContentRes,
         			Settings.System.POWER_MENU_SILENT_ENABLED,
         			((CheckBoxPreference)preference).isChecked() ? 1 : 0);
         	return true;
         } else if (preference == mExpandedDesktopPref) {
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(mContentRes,
                     Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED,
                     ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
             return true;
