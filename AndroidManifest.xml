@@ -55,8 +55,17 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".fragments.Pie"
+            android:label="@string/title_pie" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+              </intent-filter>
+        </activity>
+        <activity
             android:name=".fragments.PieColor"
-            android:label="PieColorEMERGERD" >
+            android:label="ColorPIE" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

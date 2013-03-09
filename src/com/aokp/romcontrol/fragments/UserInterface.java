@@ -103,15 +103,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	private static final String PREF_USER_MODE_UI = "user_mode_ui";
 	private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
 	private static final String PREF_HIDE_EXTRAS = "hide_extras";
-	private static final String PIE_CONTROLS = "pie_controls";
-    private static final String PIE_GRAVITY = "pie_gravity";
-    private static final String PIE_MODE = "pie_mode";
-    private static final String PIE_SIZE = "pie_size";
-    private static final String PIE_TRIGGER = "pie_trigger";
-    private static final String PIE_GAP = "pie_gap";
-    private static final String PIE_NOTIFICATIONS = "pie_notifications";
-    private static final String PIE_MENU = "pie_menu";
-    private static final String PIE_SEARCH = "pie_search";
     private static final String PREF_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
     private static final String PREF_POWER_CRT_SCREEN_ON = "system_power_crt_screen_on";
     private static final String PREF_POWER_CRT_SCREEN_OFF = "system_power_crt_screen_off";
@@ -141,15 +132,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	CheckBoxPreference mDualpane;
 	Preference mLcdDensity;
 	CheckBoxPreference mHideExtras;
-	ListPreference mPieMode;
-    ListPreference mPieSize;
-    ListPreference mPieGravity;
-    CheckBoxPreference mPieControls;
-    ListPreference mPieTrigger;
-    ListPreference mPieGap;
-    CheckBoxPreference mPieNotifi;
-    CheckBoxPreference mPieMenu;
-    CheckBoxPreference mPieSearch;
     CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
     CheckBoxPreference mCrtOff;
     CheckBoxPreference mCrtOn;
@@ -255,57 +237,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mDualpane.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                         Settings.System.FORCE_DUAL_PANEL, getResources().getBoolean(
                         com.android.internal.R.bool.preferences_prefer_dual_pane)));
-                        
-        mPieControls = (CheckBoxPreference) findPreference(PIE_CONTROLS);
-        mPieControls.setChecked((Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PIE_CONTROLS, 0) == 1));
-
-        mPieGravity = (ListPreference) findPreference(PIE_GRAVITY);
-        int pieGravity = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PIE_GRAVITY, 3);
-        mPieGravity.setValue(String.valueOf(pieGravity));
-        mPieGravity.setOnPreferenceChangeListener(this);
-
-        mPieMode = (ListPreference) findPreference(PIE_MODE);
-        int pieMode = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PIE_MODE, 2);
-        mPieMode.setValue(String.valueOf(pieMode));
-        mPieMode.setOnPreferenceChangeListener(this);
-
-		mPieSize = (ListPreference) findPreference(PIE_SIZE);
-        mPieTrigger = (ListPreference) findPreference(PIE_TRIGGER);
-        try {
-            float pieSize = Settings.System.getFloat(mContext.getContentResolver(),
-                    Settings.System.PIE_SIZE);
-            mPieSize.setValue(String.valueOf(pieSize));
-  
-            float pieTrigger = Settings.System.getFloat(mContext.getContentResolver(),
-                    Settings.System.PIE_TRIGGER);
-            mPieTrigger.setValue(String.valueOf(pieTrigger));
-        } catch(Settings.SettingNotFoundException ex) {
-            // So what
-        }
-
-        mPieSize.setOnPreferenceChangeListener(this);
-        mPieTrigger.setOnPreferenceChangeListener(this);
-
-        mPieGap = (ListPreference) findPreference(PIE_GAP);
-        int pieGap = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PIE_GAP, 1);
-        mPieGap.setValue(String.valueOf(pieGap));
-        mPieGap.setOnPreferenceChangeListener(this);
-
-        mPieNotifi = (CheckBoxPreference) findPreference(PIE_NOTIFICATIONS);
-        mPieNotifi.setChecked((Settings.System.getInt(getContentResolver(),
-                Settings.System.PIE_NOTIFICATIONS, 0) == 1));
-                
-        mPieMenu = (CheckBoxPreference) findPreference(PIE_MENU);
-        mPieMenu.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PIE_MENU, 0) == 1);
-
-        mPieSearch = (CheckBoxPreference) findPreference(PIE_SEARCH);
-        mPieSearch.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PIE_SEARCH, 1) == 1);
                 
         mWakeUpWhenPluggedOrUnplugged = (CheckBoxPreference) findPreference(PREF_WAKEUP_WHEN_PLUGGED_UNPLUGGED);
         mWakeUpWhenPluggedOrUnplugged.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
@@ -350,17 +281,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mCrtOn.setOnPreferenceChangeListener(this);
 
         setHasOptionsMenu(true);
-        checkControls();
-    }
-    
-    private void checkControls() {
-        boolean pieCheck = mPieControls.isChecked();
-        mPieGravity.setEnabled(pieCheck);
-        mPieMode.setEnabled(pieCheck);
-        mPieSize.setEnabled(pieCheck);
-        mPieTrigger.setEnabled(pieCheck);
-        mPieGap.setEnabled(pieCheck);
-        mPieNotifi.setEnabled(pieCheck);
     }
 
     private void updateCustomLabelTextSummary() {
@@ -499,22 +419,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             // TransparencyDialog(), null).commit();
             openTransparencyDialog();
             return true;
-        } else if (preference == mPieControls) {
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.PIE_CONTROLS,
-                    mPieControls.isChecked() ? 1 : 0);
-            checkControls();
-            Helpers.restartSystemUI();
-        } else if (preference == mPieNotifi) {
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.PIE_NOTIFICATIONS,
-                    mPieNotifi.isChecked() ? 1 : 0);
-        } else if (preference == mPieMenu) {
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.PIE_MENU, mPieMenu.isChecked() ? 1 : 0);
-        } else if (preference == mPieSearch) {
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.PIE_SEARCH, mPieSearch.isChecked() ? 1 : 0);
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -526,31 +430,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.USER_UI_MODE, Integer.parseInt((String) newValue));
             Helpers.restartSystemUI();
-            return true;
-        } else if (preference == mPieMode) {
-            int pieMode = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.PIE_MODE, pieMode);
-            return true;
-        } else if (preference == mPieSize) {
-            float pieSize = Float.valueOf((String) newValue);
-            Settings.System.putFloat(getActivity().getContentResolver(),
-                    Settings.System.PIE_SIZE, pieSize);
-            return true;
-        } else if (preference == mPieGravity) {
-            int pieGravity = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.PIE_GRAVITY, pieGravity);
-            return true;
-        } else if (preference == mPieGap) {
-            int pieGap = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.PIE_GAP, pieGap);
-            return true;
-        } else if (preference == mPieTrigger) {
-            float pieTrigger = Float.valueOf((String) newValue);
-            Settings.System.putFloat(getActivity().getContentResolver(),
-                    Settings.System.PIE_TRIGGER, pieTrigger);
             return true;
         } else if (mCrtOff.equals(preference)) {
             isCrtOffChecked = ((Boolean) newValue).booleanValue();

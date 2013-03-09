@@ -18,6 +18,7 @@
     <string name="signal">Signal</string>
     <string name="nav_bar">Navigation Bar</string>
     <string name="power_menu">Power Menu</string>
+    <string name="pie">PIE™</string>
     <string name="led_options">LED</string>
     <string name="header_system">System</string>
     <string name="sound">Sound</string>
@@ -35,6 +36,7 @@
     <string name="title_navbar">Navigation Bar</string>
     <string name="title_navring">Navigation Ring</string>
     <string name="title_power_menu">Power Menu</string>
+    <string name="title_pie">PIE™</string>
     <string name="title_led">LED Control</string>
     <string name="title_lockscreens">Lockscreen Options</string>
     <string name="title_lockscreens_targets">Lockscreen Targets</string>
@@ -51,6 +53,7 @@
     <string name="header_summary_signal">@null</string>
     <string name="header_summary_navigation_bar">@null</string>
     <string name="header_summary_power_menu">@null</string>
+    <string name="header_summary_pie">@null</string>
     <string name="header_summary_led">@null</string>
     <string name="header_summary_sound">@null</string>
     <string name="header_summary_performance">@null</string>
@@ -850,29 +853,73 @@
     <string name="on_the_bottom">On the bottom</string>
     
     <!-- Pie controls -->
-    <string name="pie_controls_title">Pie</string>
-    <string name="pie_controls_summary">Allows navigation and status report on expanded desktop mode</string>
+    <string name="pie_controls_title">Controls</string>
+    <string name="pie_controls_summary">@null</string>
+    <string name="enable_pie_title">Enable PIE</string>
+    <string name="pie_targets_title">Targets</string>
+
+    <!-- The Gravity -->
     <string name="pie_gravity_title">Pie gravity</string>
-	<string name="pie_gravity_summary">Select the location where Pie will be placed at</string>
+    <string name="pie_gravity_summary">Select the location where Pie will be placed at</string>
     <string name="pie_gravity_top">Top</string>
     <string name="pie_gravity_bottom">Bottom</string>
     <string name="pie_gravity_right">Right</string>
     <string name="pie_gravity_left">Left</string>
+
+    <!-- The Mode -->
     <string name="pie_mode_title">Pie style</string>
     <string name="pie_mode_summary">Manage how animations and status additions will be handled</string>
     <string name="pie_mode_bare">Bare</string>
     <string name="pie_mode_quick">Quick</string>
     <string name="pie_mode_default">Normal (default)</string>
     <string name="pie_mode_slow">Slow</string>
+
+    <!-- The Size -->
     <string name="pie_size_title">Pie size</string>
-    <string name="pie_size_summary">Define Pie controls size</string>
+    <string name="pie_size_summary">Define pie controls size</string>
     <string name="pie_size_small">Small</string>
     <string name="pie_size_default">@string/pie_mode_default</string>
     <string name="pie_size_large">Large</string>
     <string name="pie_size_gigantic">Gigantic</string>
-    
-    <string name="pie_color_title">Pie color settings</string>
-    <string name="pie_color_style_title">Pie color style</string>
+
+    <!-- The Gap -->
+    <string name="pie_gap_title">Item gap</string>
+    <string name="pie_gap_summary">Adjust the gap that separates pie elements</string>
+    <string name="pie_gap_none">None</string>
+    <string name="pie_gap_small">Small</string>
+    <string name="pie_gap_big">Big</string>
+    <string name="pie_gap_huge">Huge (default)</string>
+
+    <!-- The trigger -->
+    <string name="pie_trigger_title">Trigger area</string>
+    <string name="pie_trigger_summary">Determine the size of the triggering area that will start pie controls</string>
+    <string name="pie_trigger_small">Small</string>
+    <string name="pie_trigger_normal">Normal (Default)</string>
+    <string name="pie_trigger_big">@string/pie_gap_big</string>
+    <string name="pie_trigger_huge">@string/pie_gap_huge</string>
+
+    <string name="pie_restart_launcher_title">Restart Launcher</string>
+    <string name="pie_restart_launcher_summary">Changing screensize can have adverse effects. This option allows your launcher to regain sanity, the cost is a slight blackout (recommended)</string>
+
+    <!-- The Loner -->
+    <string name="pie_menu_title">Persistent menu button</string>
+    <string name="pie_menu_summary">Always show menu button even when it\'s not necessary</string>
+
+    <string name="pie_search_title">Search button</string>
+    <string name="pie_search_summary">Enable search button on pie controls</string>
+
+    <string name="pie_lastapp_title">Last App button</string>
+    <string name="pie_lastapp_summary">Enable last app button on pie controls</string>
+
+    <string name="pie_center_title">Middle alignment</string>
+    <string name="pie_center_summary">Center Pie on the trigger edge</string>
+
+    <string name="pie_stick_title">Prevent rotation</string>
+    <string name="pie_stick_summary">If checked Pie will stay in place no matter which orientation</string>
+
+    <!-- The Colors -->
+    <string name="pie_color_title">Color Settings</string>
+    <string name="pie_color_style_title">Enable custom colors</string>
     <string name="pie_background_title">Background color</string>
     <string name="pie_select_title">Selection color</string>
     <string name="pie_outlines_title">Outlines color</string>
@@ -883,28 +930,6 @@
     <string name="pie_juice_title">Battery juice color</string>
     <string name="all_color">Colors Everywhere!</string>
     <string name="stock_color">Default Colors (Stock/Theme)</string>
-    
-    <string name="pie_gap_title">Pie gap</string>
-    <string name="pie_gap_summary">Adjust the gap in between Pie elements</string>
-    <string name="pie_gap_closed">Closed</string>
-    <string name="pie_gap_small">Small (default)</string>
-    <string name="pie_gap_big">Big</string>
-    <string name="pie_gap_huge">Huge</string>
-
-    <string name="pie_trigger_title">Trigger size</string>
-    <string name="pie_trigger_summary">Determine the size of the triggering area that will start Pie controls</string>
-    <string name="pie_trigger_small">@string/pie_gap_small</string>
-    <string name="pie_trigger_big">@string/pie_gap_big</string>
-    <string name="pie_trigger_huge">@string/pie_gap_huge</string>
-    
-    <string name="pie_notifications_title">Enable Chevron Targets</string>
-    <string name="pie_notifications_summary">Enabling, will let the Notification panels and QuickSettings active when swipe.</string>
-    
-    <string name="pie_menu_title">Show menu button always</string>
-    <string name="pie_menu_summary">Whether or not the menu button will appear when unneeded</string>
-
-    <string name="pie_search_title">Show search button</string>
-    <string name="pie_search_summary">Access to Google Now via Pie</string>
 
     <!-- Battery styles -->
     <string name="icon_with_text">Icon with text</string>
