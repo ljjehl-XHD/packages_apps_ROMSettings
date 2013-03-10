@@ -446,6 +446,13 @@
     <string name="drag_handle_width_title">Drag Handle Width</string>
     <string name="title_navbar_timeout">Hidden Navbar Timeout</string>
     <string name="summary_navbar_timeout">Timeout time for Hidden Navbar Window</string>
+    <string name="navbar_color_cat">Colors and Transparency</string>
+    <string name="navbar_buttons_instructions">Press icon to select actions or custom icon</string>
+    <string name="navbar_title_menu">Button options</string>
+    <string name="navbar_actiontitle_menu">Action: %1$s</string>
+    <string name="navbar_longpress_menu">Longpress: %1$s</string>
+    <string name="navbar_icon_menu">Custom icon</string>
+    <string name="navbar_delete_menu">Delete button</string>
 
     <!-- Nav Ring Targets -->
     <string name="navbar_ring_cat">Navigation Ring Targets</string>
