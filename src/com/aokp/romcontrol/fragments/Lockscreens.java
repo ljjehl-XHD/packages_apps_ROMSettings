@@ -75,6 +75,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
     private static final String PREF_LOCKSCREEN_MINIMIZE_CHALLENGE = "lockscreen_minimize_challenge";
     private static final String PREF_LOCKSCREEN_USE_CAROUSEL = "lockscreen_use_widget_container_carousel";
     private static final String PREF_LOCKSCREEN_LONGPRESS_CHALLENGE = "lockscreen_longpress_challenge";
+    private static final String PREF_LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS = "lockscreen_hide_initial_page_hints";
 
     public static final int REQUEST_PICK_WALLPAPER = 199;
     public static final int REQUEST_PICK_CUSTOM_ICON = 200;
@@ -95,6 +96,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
     CheckBoxPreference mLockscreenMinChallenge;
     CheckBoxPreference mLockscreenUseCarousel;
     CheckBoxPreference mLockscreenLongpressChallenge;
+    CheckBoxPreference mLockscreenHideInitialPageHints;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -139,6 +141,10 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
         mLockscreenLongpressChallenge = (CheckBoxPreference)findPreference(PREF_LOCKSCREEN_LONGPRESS_CHALLENGE);
         mLockscreenLongpressChallenge.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(),
                 Settings.System.LOCKSCREEN_LONGPRESS_CHALLENGE, false));
+                
+        mLockscreenHideInitialPageHints = (CheckBoxPreference)findPreference(PREF_LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS);
+        mLockscreenHideInitialPageHints.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(),
+        		Settings.System.LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS, false));
 
         if (isSW600DPScreen(mContext)) {
             ((PreferenceGroup)findPreference("layout")).removePreference((Preference)findPreference(PREF_LOCKSCREEN_MINIMIZE_CHALLENGE));
@@ -224,6 +230,11 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
         } else if (preference == mLockscreenUseCarousel) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL,
+                    ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mLockscreenHideInitialPageHints) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS,
                     ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
             return true;
         }

@@ -565,6 +565,8 @@
     <string name="circles_lock_halo_alpha_title">Halo alpha</string>
     <string name="circles_lock_wave_color_title">Wave color</string>
     <string name="circles_lock_wave_alpha_title">Wave alpha</string>
+    <string name="lockscreen_hide_initial_page_hints_title">Hide initial page hints</string>
+    <string name="lockscreen_hide_initial_page_hints_summary">Set wether the hints for the left and right widgets are shown when the screen is turned on.</string>
 
     <!-- Lockscreen Targets-->
     <string name="custom_targets">Custom lockscreen targets</string>
