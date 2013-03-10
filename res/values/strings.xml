@@ -13,7 +13,7 @@
     <string name="header_navbar">Navigation Bar</string>
     <string name="toggles_layout">Toggles</string>
     <string name="general_ui">General UI</string>
-    <string name="clock">Statusbar and Clock</string>
+    <string name="clock">Clock</string>
     <string name="battery">Battery</string>
     <string name="signal">Signal</string>
     <string name="nav_bar">Navigation Bar</string>
@@ -323,6 +323,9 @@
     <string name="toggle_sound_state">Ring/Vib/Silent</string>
     <string name="toggle_quickrecord">Quick Record</string>
     <string name="toggle_navbar_hide">Navbar Auto Hide</string>
+    <string name="toggle_sleep">Sleep</string>
+    <string name="toggle_powermenu">Power Menu</string>
+    <string name="toggle_reboot">Reboot</string>
 
     <!-- Statusbar | Battery -->
     <string name="battery_icon">Battery icon style</string>
