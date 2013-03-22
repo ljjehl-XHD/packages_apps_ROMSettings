@@ -186,6 +186,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mStatusBarNotifCount.setChecked(Settings.System.getBoolean(cr,
                 Settings.System.STATUSBAR_NOTIF_COUNT, false));
                 
+        mStatusBarIconOpacity = (ListPreference) findPreference(KEY_STATUS_BAR_ICON_OPACITY);
         int iconOpacity = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.STATUS_BAR_NOTIF_ICON_OPACITY, 140);
         mStatusBarIconOpacity.setValue(String.valueOf(iconOpacity));

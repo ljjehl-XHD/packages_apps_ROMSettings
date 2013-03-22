@@ -16,6 +16,9 @@ import com.aokp.romcontrol.AOKPPreferenceFragment;
 
 public class StatusBarSignal extends AOKPPreferenceFragment implements
         OnPreferenceChangeListener {
+        
+    private static final String KEY_MMS_BREATH = "mms_breath";
+    private static final String KEY_MISSED_CALL_BREATH = "missed_call_breath";
 
     ListPreference mDbmStyletyle;
     ListPreference mWifiStyle;
@@ -23,6 +26,8 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
     ColorPickerPreference mWifiColorPicker;
     CheckBoxPreference mHideSignal;
     CheckBoxPreference mAltSignal;
+    CheckBoxPreference mMMSBreath;
+    CheckBoxPreference mMissedCallBreath;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,14 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         mAltSignal = (CheckBoxPreference) findPreference("alt_signal");
         mAltSignal.setChecked(Settings.System.getBoolean(getContentResolver(),
                 Settings.System.STATUSBAR_SIGNAL_CLUSTER_ALT,false));
+                
+        mMMSBreath = (CheckBoxPreference) findPreference(KEY_MMS_BREATH);
+        mMMSBreath.setChecked(Settings.System.getInt(resolver,
+                Settings.System.MMS_BREATH, 0) == 1);
+                
+        mMissedCallBreath = (CheckBoxPreference) findPreference(KEY_MISSED_CALL_BREATH);
+        mMissedCallBreath.setChecked(Settings.System.getInt(resolver,
+                Settings.System.MISSED_CALL_BREATH, 0) == 1);
 
     }
 
@@ -71,6 +84,14 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         } else if (preference == mAltSignal) {
             Settings.System.putBoolean(getContentResolver(),
                     Settings.System.STATUSBAR_SIGNAL_CLUSTER_ALT,mAltSignal.isChecked());
+            return true;
+        } else if (preference == mMMSBreath) {
+            Settings.System.putInt(mContext.getContentResolver(), Settings.System.MMS_BREATH, 
+                    mMMSBreath.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mMissedCallBreath) {
+            Settings.System.putInt(mContext.getContentResolver(), Settings.System.MISSED_CALL_BREATH, 
+                    mMissedCallBreath.isChecked() ? 1 : 0);
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);

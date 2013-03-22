@@ -15,7 +15,7 @@
     <string name="general_ui">General UI</string>
     <string name="clock">Clock</string>
     <string name="battery">Battery</string>
-    <string name="signal">Signal</string>
+    <string name="signal">Statusbar</string>
     <string name="nav_bar">Navigation Bar</string>
     <string name="power_menu">Power Menu</string>
     <string name="pie">PIE™</string>
@@ -271,6 +271,13 @@
     <string name="toggles_display_dialog">Choose which toggles to use</string>
     <string name="enabled_toggles_summary">Choose toggles to display</string>
     <string name="enabled_toggles_title">Enabled toggles</string>
+    
+    <!-- Breathing Notifications -->
+    <string name="status_bar_breathing_notifs_title">Breathing Notifications</string>
+    <string name="mms_breath">Breathing SMS</string>
+    <string name="mms_breath_summary">Will give your sms notifications a breathing effect on the statusbar</string>
+    <string name="missed_call_breath">Breathing Missed Call</string>
+    <string name="missed_call_breath_summary">Will give your missed call notifications a breathing effect on the statusbar</string>
 
 	<!-- holo theme style for Quick Setting tiles -->
     <string name="holo_dark">Dark</string>

@@ -32,5 +32,22 @@
         android:key="hide_signal"
         android:title="@string/hide_signal_title"
         android:summary="@string/hide_signal_summary" />
+        
+    <PreferenceCategory
+        android:key="status_bar_breathing_notifs"
+        android:title="@string/status_bar_breathing_notifs_title">
+
+        <CheckBoxPreference
+            android:key="mms_breath"
+            android:title="@string/mms_breath"
+            android:summary="@string/mms_breath_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="missed_call_breath"
+            android:icon="@drawable/ic_rb_breath_sms"
+            android:title="@string/missed_call_breath"
+            android:summary="@string/missed_call_breath_summary"
+            android:defaultValue="false" />
 
 </PreferenceScreen>
