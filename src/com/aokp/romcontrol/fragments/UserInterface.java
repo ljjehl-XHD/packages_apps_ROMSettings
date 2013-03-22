@@ -109,6 +109,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
     private static final String PREF_NOTIFICATION_BEHAVIOUR = "notifications_behaviour";
     private static final String KEY_STATUS_BAR_ICON_OPACITY = "status_bar_icon_opacity";
+    private static final String PREF_USE_ALT_RESOLVER = "use_alt_resolver";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -141,6 +142,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     ListPreference mLowBatteryWarning;
     ListPreference mNotificationsBehavior;
     ListPreference mStatusBarIconOpacity;
+    CheckBoxPreference mUseAltResolver;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -233,6 +235,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 		mStatusbarSliderPreference = (CheckBoxPreference) findPreference(PREF_STATUSBAR_BRIGHTNESS);
         mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.STATUSBAR_BRIGHTNESS_SLIDER, true));
+                
+        mUseAltResolver = (CheckBoxPreference) findPreference(PREF_USE_ALT_RESOLVER);
+        mUseAltResolver.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
 
 		mUserModeUI = (ListPreference) findPreference(PREF_USER_MODE_UI);
         int uiMode = Settings.System.getInt(cr,
@@ -444,6 +450,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             // getFragmentManager().beginTransaction().add(new
             // TransparencyDialog(), null).commit();
             openTransparencyDialog();
+            return true;
+        } else if (preference == mUseAltResolver) {
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.ACTIVITY_RESOLVER_USE_ALT,
+                    ((CheckBoxPreference) preference).isChecked());
             return true;
         }
 
