@@ -959,6 +959,8 @@
     <string name="circle_battery_animation_speed_fast">Fast</string>
     <string name="circle_battery_reset_title">Reset circle colors</string>
     <string name="circle_battery_reset_summary">Reset circle colors to apply installed theme engine colors</string>
+    <string name="speed_battery">SpeedoMeter</string>
+    <string name="square_battery">SquareMod</string>
 
     <!-- NavBar -->
     <string name="right">Right</string>
