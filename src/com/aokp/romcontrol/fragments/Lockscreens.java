@@ -77,7 +77,6 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
     private static final String PREF_LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS = "lockscreen_hide_initial_page_hints";
     private static final String PREF_LOCKSCREEN_MINIMIZE_CHALLENGE = "lockscreen_minimize_challenge";
     private static final String PREF_LOCKSCREEN_USE_CAROUSEL = "lockscreen_use_widget_container_carousel";
-    private static final String PREF_LOCKSCREEN_LONGPRESS_CHALLENGE = "lockscreen_longpress_challenge";
 
     public static final int REQUEST_PICK_WALLPAPER = 199;
     public static final int REQUEST_PICK_CUSTOM_ICON = 200;
@@ -100,7 +99,6 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
     CheckBoxPreference mLockscreenHideInitialPageHints;
     CheckBoxPreference mLockscreenMinChallenge;
     CheckBoxPreference mLockscreenUseCarousel;
-    CheckBoxPreference mLockscreenLongpressChallenge;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,10 +111,6 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
         mVolumeRockerWake = (CheckBoxPreference) findPreference(PREF_VOLUME_ROCKER_WAKE);
         mVolumeRockerWake.setChecked(Settings.System.getBoolean(mContentRes,
                 Settings.System.VOLUME_WAKE_SCREEN, false));
-
-        mVolumeMusic = (CheckBoxPreference) findPreference(PREF_VOLUME_MUSIC);
-        mVolumeMusic.setChecked(Settings.System.getBoolean(mContentRes,
-                Settings.System.VOLUME_MUSIC_CONTROLS, false));
 
         mQuickUnlock = (CheckBoxPreference) findPreference(PREF_QUICK_UNLOCK);
         mQuickUnlock.setChecked(Settings.System.getBoolean(mContentRes,
@@ -155,13 +149,8 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
         mLockscreenUseCarousel.setChecked(Settings.System.getBoolean(mContentRes,
                 Settings.System.LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL, false));
 
-        mLockscreenLongpressChallenge = (CheckBoxPreference)findPreference(PREF_LOCKSCREEN_LONGPRESS_CHALLENGE);
-        mLockscreenLongpressChallenge.setChecked(Settings.System.getBoolean(mContentRes,
-                Settings.System.LOCKSCREEN_LONGPRESS_CHALLENGE, false));
-
         if (isSW600DPScreen(mContext)) {
             ((PreferenceGroup)findPreference("layout")).removePreference((Preference)findPreference(PREF_LOCKSCREEN_MINIMIZE_CHALLENGE));
-            ((PreferenceGroup)findPreference("layout")).removePreference((Preference)findPreference(PREF_LOCKSCREEN_LONGPRESS_CHALLENGE));
         }
 
         setHasOptionsMenu(true);
@@ -178,11 +167,6 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
         if (preference == mVolumeRockerWake) {
             Settings.System.putBoolean(mContentRes,
                     Settings.System.VOLUME_WAKE_SCREEN,
-                    ((CheckBoxPreference) preference).isChecked());
-            return true;
-        } else if (preference == mVolumeMusic) {
-            Settings.System.putBoolean(mContentRes,
-                    Settings.System.VOLUME_MUSIC_CONTROLS,
                     ((CheckBoxPreference) preference).isChecked());
             return true;
         } else if (preference == mQuickUnlock) {
@@ -234,11 +218,6 @@ public class Lockscreens extends AOKPPreferenceFragment implements OnPreferenceC
             Settings.System.putInt(mContentRes,
                     Settings.System.LOCKSCREEN_MINIMIZE_LOCKSCREEN_CHALLENGE,
                     ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mLockscreenLongpressChallenge) {
-            Settings.System.putBoolean(mContentRes,
-                    Settings.System.LOCKSCREEN_LONGPRESS_CHALLENGE,
-                    ((CheckBoxPreference)preference).isChecked());
             return true;
         } else if (preference == mLockscreenAutoRotate) {
             Settings.System.putBoolean(mContentRes,

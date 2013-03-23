@@ -96,7 +96,7 @@ public class StatusBarClock extends AOKPPreferenceFragment implements
 
         mClockDateStyle = (ListPreference) findPreference(PREF_CLOCK_DATE_STYLE);
         mClockDateStyle.setOnPreferenceChangeListener(this);
-        mClockDateStyle..setValue(Integer.toString(Settings.System.getInt(mContentRes,
+        mClockDateStyle.setValue(Integer.toString(Settings.System.getInt(mContentRes,
 				Settings.System.STATUSBAR_CLOCK_DATE_STYLE,
                 2)));
         mClockDateStyle.setSummary(mClockDateStyle.getEntry());
