@@ -50,6 +50,13 @@
         android:title="@string/pie"
         android:icon="@drawable/ic_settings_pie"
         android:summary="@string/header_summary_pie" />
+        
+    <!-- Xposed -->
+    <header
+        android:id="@+id/xposed_settings"
+        android:title="@string/xposed_settings_title"
+        android:fragment="com.aokp.romcontrol.fragments.XposedSettings"
+        android:icon="@drawable/ic_settings_xposed" />
 
     <header
         android:id="@+id/statusbar"
