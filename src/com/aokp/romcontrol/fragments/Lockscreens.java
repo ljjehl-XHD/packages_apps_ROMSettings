@@ -79,6 +79,8 @@ public class Lockscreens extends Fragment implements
 
     private GlowPadView mGlowPadView;
     private TextView mHelperText;
+    private View mLockscreenOptions;
+    private boolean mIsLandscape;
 
     private Switch mLongPressStatus;
     private Switch mLockBatterySwitch;
@@ -184,6 +186,13 @@ public class Lockscreens extends Fragment implements
         super.onActivityCreated(savedInstanceState);
         mGlowPadView = ((GlowPadView) getActivity().findViewById(R.id.lock_target));
         mGlowPadView.setOnTriggerListener(this);
+        mLockscreenOptions = ((View) getActivity().findViewById(R.id.lockscreen_options));
+        if (mLockscreenOptions != null) {
+            mLockscreenOptions.getParent().bringChildToFront(mLockscreenOptions);
+            mIsLandscape = false;
+        } else {
+            mIsLandscape = true;
+        }
         mHelperText = ((TextView) getActivity().findViewById(R.id.helper_text));
         defaultColor = mResources
                 .getColor(com.android.internal.R.color.config_defaultNotificationColor);
@@ -721,12 +730,16 @@ public class Lockscreens extends Fragment implements
 
     @Override
     public void onGrabbed(View v, int handle) {
-        updateVisiblity(false);
+        if (!mIsLandscape) {
+            updateVisiblity(false);
+        }
     }
 
     @Override
     public void onReleased(View v, int handle) {
-        updateVisiblity(true);
+        if (!mIsLandscape) {
+            updateVisiblity(true);
+        }
     }
 
     @Override
