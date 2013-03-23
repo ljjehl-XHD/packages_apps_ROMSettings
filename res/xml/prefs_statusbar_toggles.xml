@@ -43,5 +43,12 @@
         android:key="choose_fast_toggle_side"
         android:summary="@string/toggle_choose_fasttoggle_side_summary"
         android:title="@string/toggle_choose_fasttoggle_side_title" />
+        
+    <PreferenceScreen	
+            android:id="@+id/carbon_notification_shortcuts"
+            android:fragment="com.aokp.romcontrol.fragments.NotificationShortcuts"
+            android:key="carbon_shortcuts_settings"
+            android:title="@string/notification_shortcuts_settings_title"
+            android:summary="@string/notification_shortcuts_settings_summary" />
 
 </PreferenceScreen>

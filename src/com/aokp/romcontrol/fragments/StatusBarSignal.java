@@ -2,6 +2,8 @@
 package com.aokp.romcontrol.fragments;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -63,11 +65,11 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
                 Settings.System.STATUSBAR_SIGNAL_CLUSTER_ALT,false));
                 
         mMMSBreath = (CheckBoxPreference) findPreference(KEY_MMS_BREATH);
-        mMMSBreath.setChecked(Settings.System.getInt(resolver,
+        mMMSBreath.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.MMS_BREATH, 0) == 1);
                 
         mMissedCallBreath = (CheckBoxPreference) findPreference(KEY_MISSED_CALL_BREATH);
-        mMissedCallBreath.setChecked(Settings.System.getInt(resolver,
+        mMissedCallBreath.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.MISSED_CALL_BREATH, 0) == 1);
 
     }

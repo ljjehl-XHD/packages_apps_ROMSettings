@@ -110,6 +110,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PREF_NOTIFICATION_BEHAVIOUR = "notifications_behaviour";
     private static final String KEY_STATUS_BAR_ICON_OPACITY = "status_bar_icon_opacity";
     private static final String PREF_USE_ALT_RESOLVER = "use_alt_resolver";
+    private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
+    private static final String PREF_NOTIFICATION_OPTIONS = "options";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -143,6 +145,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     ListPreference mNotificationsBehavior;
     ListPreference mStatusBarIconOpacity;
     CheckBoxPreference mUseAltResolver;
+    CheckBoxPreference mShowWifiName;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -311,6 +314,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 Settings.System.SYSTEM_POWER_ENABLE_CRT_ON, 0) == 1);
         mCrtOn.setEnabled(isCrtOffChecked);
         mCrtOn.setOnPreferenceChangeListener(this);
+        
+        mShowWifiName = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_SHOW_WIFI_SSID);
+        mShowWifiName.setChecked(Settings.System.getInt(cr,
+                Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
 
         setHasOptionsMenu(true);
     }
@@ -431,6 +438,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putBoolean(mContext.getContentResolver(),
                     Settings.System.FORCE_DUAL_PANEL,
                     ((CheckBoxPreference) preference).isChecked());
+            return true;
+        } else if (preference == mShowWifiName) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
+                    mShowWifiName.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mLcdDensity) {
             ((PreferenceActivity) getActivity())
