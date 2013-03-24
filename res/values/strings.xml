@@ -84,6 +84,11 @@
     <string name="power_menu_expanded_desktop">Show expanded desktop</string>
     <string name="power_menu_reboot_title">Reboot menu</string>
     <string name="power_menu_silent_title">Sound panel</string>
+    <string name="expanded_desktop_summary">Show or change expanded desktop mode</string>
+    <string name="expanded_desktop_disabled">Off</string>
+    <string name="expanded_desktop_only_nav_bar">Hide navigation bar</string>
+    <string name="expanded_desktop_only_status_bar">Hide status bar</string>
+    <string name="expanded_desktop_both_hidden">Hide navigation and status bar</string>
 
     <!-- Power Saving -->
     <string name="title_pref_powersaving_pref_mode">Enable power saver</string>
