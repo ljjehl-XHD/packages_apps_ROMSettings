@@ -225,7 +225,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 Settings.System.RECENT_KILL_ALL_BUTTON, false));
                 
         mStatusBarHide = (CheckBoxPreference) findPreference(STATUSBAR_HIDDEN);
-        mStatusBarHide.setChecked(Settings.System.getBoolean(mContentResolver,
+        mStatusBarHide.setChecked(Settings.System.getBoolean(cr,
                 Settings.System.STATUSBAR_HIDDEN, false));
 
         mRamBar = (CheckBoxPreference) findPreference(PREF_RAM_USAGE_BAR);
