@@ -146,6 +146,7 @@
         <item>LTE</item>
         <item>QUICKRECORD</item>
         <item>NAVBARHIDE</item>
+        <item>STATUSBAR</item>
         <item>SLEEP</item>
         <item>POWERMENU</item>
         <item>REBOOT</item>
@@ -178,6 +179,7 @@
         <item>@string/toggle_lte</item>
         <item>@string/toggle_quickrecord</item>
         <item>@string/toggle_navbar_hide</item>
+        <item>@string/toggle_statusbar</item>
         <item>@string/toggle_sleep</item>
         <item>@string/toggle_powermenu</item>
         <item>@string/toggle_reboot</item>

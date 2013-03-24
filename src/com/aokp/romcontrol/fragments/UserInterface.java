@@ -112,6 +112,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PREF_USE_ALT_RESOLVER = "use_alt_resolver";
     private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
     private static final String PREF_NOTIFICATION_OPTIONS = "options";
+    private static final String STATUSBAR_HIDDEN = "statusbar_hidden";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -146,6 +147,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     ListPreference mStatusBarIconOpacity;
     CheckBoxPreference mUseAltResolver;
     CheckBoxPreference mShowWifiName;
+    CheckBoxPreference mStatusBarHide;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -221,6 +223,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mRecentKillAll = (CheckBoxPreference) findPreference(PREF_RECENT_KILL_ALL);
         mRecentKillAll.setChecked(Settings.System.getBoolean(cr,
                 Settings.System.RECENT_KILL_ALL_BUTTON, false));
+                
+        mStatusBarHide = (CheckBoxPreference) findPreference(STATUSBAR_HIDDEN);
+        mStatusBarHide.setChecked(Settings.System.getBoolean(mContentResolver,
+                Settings.System.STATUSBAR_HIDDEN, false));
 
         mRamBar = (CheckBoxPreference) findPreference(PREF_RAM_USAGE_BAR);
         mRamBar.setChecked(Settings.System.getBoolean(cr,
@@ -457,6 +463,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putBoolean(getActivity().getContentResolver(),
                     Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
                     ((CheckBoxPreference) preference).isChecked());
+            return true;
+        } else if (preference == mStatusBarHide) {
+            boolean checked = ((CheckBoxPreference)preference).isChecked();
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_HIDDEN, checked ? true : false);
             return true;
         } else if (preference.getKey().equals("transparency_dialog")) {
             // getFragmentManager().beginTransaction().add(new
