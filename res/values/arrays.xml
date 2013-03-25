@@ -1430,7 +1430,6 @@
         <item>2</item>
         <item>3</item>
     </string-array>
-
     
     <string-array name="ribbon_dialog_entries" translatable="false">
         <item>@string/navring_short</item>
@@ -1446,6 +1445,7 @@
         <item>**insert**</item>
         <item>**remove**</item>
     </string-array>
+
 	<string-array name="ribbon_icon_size_entries" translatable="false">
         <item>@string/icon_size_normal</item>
         <item>@string/icon_size_20</item>
