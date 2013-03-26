@@ -43,6 +43,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.preference.TwoStatePreference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -92,6 +93,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     public static final String TAG = "UserInterface";
 
     private static final String PREF_180 = "rotate_180";
+    private static final CharSequence PREF_270 = "rotate_270";
     private static final String PREF_STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 	private static final String PREF_SHOW_OVERFLOW = "show_overflow";
@@ -148,6 +150,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     CheckBoxPreference mUseAltResolver;
     CheckBoxPreference mShowWifiName;
     //CheckBoxPreference mStatusBarHide;
+    CheckBoxPreference mAllow270Rotation;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -170,6 +173,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private int seekbarProgress;
     private int mAllowedLocations;
     String mCustomLabelText = null;
+    int mUserRotationAngles = -1;
+    
+    private static ContentResolver mContentResolver;
     
     private boolean isCrtOffChecked = false;
 
@@ -182,12 +188,24 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 
         PreferenceScreen prefs = getPreferenceScreen();
 		ContentResolver cr = mContext.getContentResolver();
+		mContentResolver = getContentResolver();
         mInsults = mContext.getResources().getStringArray(
                 R.array.disable_bootanimation_insults);
 
         mAllow180Rotation = (CheckBoxPreference) findPreference(PREF_180);
-        mAllow180Rotation.setChecked(Settings.System.getInt(cr,
-                Settings.System.ACCELEROMETER_ROTATION_ANGLES, (1 | 2 | 8)) == (1 | 2 | 4 | 8));
+        mAllow270Rotation = (CheckBoxPreference) findPreference(PREF_270);
+        mUserRotationAngles = Settings.System.getInt(mContentResolver,
+                Settings.System.ACCELEROMETER_ROTATION_ANGLES, -1);
+        if (mUserRotationAngles < 0) {
+            // Not set by user so use these defaults
+            boolean mAllowAllRotations = mContext.getResources().getBoolean(
+                            com.android.internal.R.bool.config_allowAllRotations) ? true : false;
+            mUserRotationAngles = mAllowAllRotations  ?
+                (1 | 2 | 4 | 8) : // All angles
+                (1 | 2); // All except 180 and 270
+        }
+        mAllow180Rotation.setChecked(mUserRotationAngles == (1 | 2 | 4 | 8) || mUserRotationAngles == (1 | 2 | 4));
+        mAllow270Rotation.setChecked(mUserRotationAngles == (1 | 2 | 4 | 8) || mUserRotationAngles == (1 | 2 | 8));
 
         mStatusBarNotifCount = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_NOTIF_COUNT);
         mStatusBarNotifCount.setChecked(Settings.System.getBoolean(cr,
@@ -346,10 +364,19 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
             final Preference preference) {
-        if (preference == mAllow180Rotation) {
-            boolean checked = ((CheckBoxPreference) preference).isChecked();
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.ACCELEROMETER_ROTATION_ANGLES, checked ? (1 | 2 | 4 | 8) : (1 | 2 | 8 ));
+        if (preference == mAllow180Rotation || preference == mAllow270Rotation) {
+            boolean checked180 = ((TwoStatePreference) mAllow180Rotation).isChecked();
+            boolean checked270 = ((TwoStatePreference) mAllow270Rotation).isChecked();
+            int result;
+            if (checked180) {
+                if (checked270) result = (1 | 2 | 4 | 8);
+                else result = (1 | 2 | 4);
+            } else {
+                if (checked270) result = (1 | 2 | 8);
+                else result = (1 | 2);
+            }
+            Settings.System.putInt(mContentResolver,
+                    Settings.System.ACCELEROMETER_ROTATION_ANGLES, result);
             return true;
         } else if (preference == mStatusBarNotifCount) {
             Settings.System.putBoolean(mContext.getContentResolver(),
