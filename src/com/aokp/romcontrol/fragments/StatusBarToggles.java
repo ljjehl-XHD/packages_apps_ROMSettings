@@ -43,6 +43,7 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements
 	private static final String PREF_QUICK_THEME_STYLE = "quick_theme_style";
     private static final String PREF_ENABLE_FASTTOGGLE = "enable_fast_toggle";
     private static final String PREF_CHOOSE_FASTTOGGLE_SIDE = "choose_fast_toggle_side";
+    private static final String PREF_SCREENSHOT_DELAY = "screenshot_delay";
 
     private final int PICK_CONTACT = 1;
 
@@ -54,6 +55,7 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements
 	ListPreference mThemeStyle;
     CheckBoxPreference mFastToggle;
     ListPreference mChooseFastToggleSide;
+    ListPreference mScreenshotDelay;
 
     BroadcastReceiver mReceiver;
     ArrayList<String> mToggles;
@@ -107,6 +109,11 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements
         mChooseFastToggleSide.setOnPreferenceChangeListener(this);
         mChooseFastToggleSide.setValue(Settings.System.getInt(mContentRes,
                 Settings.System.CHOOSE_FASTTOGGLE_SIDE, 1) + "");
+
+        mScreenshotDelay = (ListPreference) findPreference(PREF_SCREENSHOT_DELAY);
+        mScreenshotDelay.setOnPreferenceChangeListener(this);
+        mScreenshotDelay.setValue(String.valueOf(Settings.System.getInt(mContentRes,
+                Settings.System.SCREENSHOT_TOGGLE_DELAY, 5000)));
 
         if (isSW600DPScreen(mContext) || isTablet(mContext)) {
             getPreferenceScreen().removePreference(mFastToggle);
@@ -175,6 +182,11 @@ public class StatusBarToggles extends AOKPPreferenceFragment implements
                     Settings.System.TOGGLES_STYLE, val);
             mTogglesStyle.setValue((String) newValue);
             Helpers.restartSystemUI();
+        } else if (preference == mScreenshotDelay) {
+            int val = Integer.parseInt((String) newValue);
+            Settings.System.putInt(mContentRes,
+                    Settings.System.SCREENSHOT_TOGGLE_DELAY, val);
+            mScreenshotDelay.setValue((String) newValue);
         } else if (preference == mFastToggle) {
             boolean val = (Boolean) newValue;
             Settings.System.putBoolean(mContentRes,
