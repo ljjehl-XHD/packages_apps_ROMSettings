@@ -201,19 +201,7 @@
                 <category android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
-        
-        <activity android:name=".fragments.XposedSettingsActivity"
-                android:label="@string/xposed_settings_title"
-                android:taskAffinity=""
-                android:excludeFromRecents="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <meta-data android:name="com.aokp.romcontrol.FRAGMENT_CLASS"
-                android:value="com.aokp.romcontrol.fragments.XposedSettings" />
-        </activity>
-        
+ 
         <!-- Notification Shortcuts -->
         <activity android:name=".fragments.NotificationShortcutsSettingsActivity"
                 android:label="@string/notification_shortcuts_settings_title"
