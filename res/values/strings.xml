@@ -993,6 +993,9 @@
 
     <string name="pie_stick_title">Prevent rotation</string>
     <string name="pie_stick_summary">If checked Pie will stay in place no matter which orientation</string>
+    
+    <string name="pie_notifications_title">Enable Chevron Targets</string>
+    <string name="pie_notifications_summary">Enabling, will let the Notification panels and QuickSettings active when swipe.</string>
 
     <!-- The Colors -->
     <string name="pie_color_title">Color Settings</string>
