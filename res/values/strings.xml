@@ -113,8 +113,8 @@
     <string name="aokp_website_summary">@null</string>
     <string name="aokp_source_title">Source</string>
     <string name="aokp_source_summary">You can always check out the latest source at github.com/teamhorizon</string>
-    <string name="about_aokp">About XenonHD</string>
-    <string name="about_aokp_summary">@null</string>
+    <string name="about_xehd">About XenonHD</string>
+    <string name="about_xehd_summary">@null</string>
     <string name="donate">https://play.google.com/store/apps/details?id=com.th.xenonhdsupport</string>
     <string name="donate_roman">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=MZD7JLRX6P99Y</string>
     <string name="donate_whitehawk">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=8W7F2Y7S7KRM6</string>
