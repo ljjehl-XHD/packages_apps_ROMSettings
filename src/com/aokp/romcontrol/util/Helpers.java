@@ -338,7 +338,7 @@ public class Helpers {
     }
 
     public static void setSystemProp(String prop, String val) {
-        new CMDProcessor().su.run("setprop " + prop + " " + val);
+        CMDProcessor.startSuCommand("setprop " + prop + " " + val);
     }
 
     public static String getSystemProp(String prop, String def) {
