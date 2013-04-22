@@ -126,6 +126,7 @@
                 android:targetPackage="com.aokp.romcontrol" />
     </header>
     
+    <header android:title="@string/Extras" />
     <header
         android:id="@+id/about"
         android:fragment="com.aokp.romcontrol.fragments.About"

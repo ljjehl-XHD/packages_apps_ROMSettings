@@ -1,3 +1,4 @@
+
 package com.aokp.romcontrol.fragments;
 
 import java.io.File;
@@ -118,7 +119,7 @@ public class Navbar extends AOKPPreferenceFragment implements
     ListPreference mNavigationBarHeightLandscape;
     ListPreference mNavigationBarWidth;
     SeekBarPreference mButtonAlpha;
-    Preference mWidthHelp;
+	Preference mWidthHelp;
     SeekBarPreference mWidthPort;
     SeekBarPreference mWidthLand;
     CheckBoxPreference mMenuArrowKeysCheckBox;
@@ -231,7 +232,7 @@ public class Navbar extends AOKPPreferenceFragment implements
         mButtonAlpha = (SeekBarPreference) findPreference("button_transparency");
         mButtonAlpha.setInitValue((int) (defaultButtonAlpha * 100));
         mButtonAlpha.setOnPreferenceChangeListener(this);
-        
+
         mWidthHelp = (Preference) findPreference("width_help");
 
         float defaultPort = Settings.System.getFloat(mContentRes,
@@ -413,9 +414,11 @@ public class Navbar extends AOKPPreferenceFragment implements
     public boolean onPreferenceChange(Preference preference, Object newValue) {
 
         if (preference == menuDisplayLocation) {
+            int val = Integer.parseInt((String) newValue);
             Settings.System.putInt(mContentRes,
-                    Settings.System.MENU_LOCATION, Integer.parseInt((String) newValue));
+                    Settings.System.MENU_LOCATION, val);
             refreshSettings();
+            mNavBarMenuDisplay.setEnabled(val < 4 ? true : false);
             return true;
         } else if (preference == mNavBarMenuDisplay) {
             Settings.System.putInt(mContentRes,
@@ -520,6 +523,7 @@ public class Navbar extends AOKPPreferenceFragment implements
                     Settings.System.NAVIGATION_BAR_WIDTH_LAND,
                     val * 0.4f);
             return true;
+
         }
         return false;
     }
@@ -576,9 +580,11 @@ public class Navbar extends AOKPPreferenceFragment implements
 
     public void refreshSettings() {
         refreshButtons();
-        mDragHandleOpacity.setEnabled(mNavBarHideEnable.isChecked());
-        mDragHandleWidth.setEnabled(mNavBarHideEnable.isChecked());
-        mNavBarHideTimeout.setEnabled(mNavBarHideEnable.isChecked());
+        if (!isTablet(mContext)) {
+            mDragHandleOpacity.setEnabled(mNavBarHideEnable.isChecked());
+            mDragHandleWidth.setEnabled(mNavBarHideEnable.isChecked());
+            mNavBarHideTimeout.setEnabled(mNavBarHideEnable.isChecked());
+        }
     }
 
     private Uri getTempFileUri() {
