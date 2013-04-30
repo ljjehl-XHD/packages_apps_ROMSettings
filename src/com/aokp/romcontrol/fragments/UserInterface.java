@@ -120,6 +120,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PREF_USE_ALT_RESOLVER = "use_alt_resolver";
     private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
     private static final String PREF_NOTIFICATION_OPTIONS = "options";
+    //private static final String STATUSBAR_HIDDEN = "statusbar_hidden";
     private static final String PREF_SEE_TRHOUGH = "see_through";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
@@ -505,9 +506,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     ((CheckBoxPreference) preference).isChecked());
             return true;
         } else if (preference == mSeeThrough) {
-//            Settings.System.putInt(getActivity().getContentResolver(),
-//                    Settings.System.LOCKSCREEN_SEE_THROUGH,
-//                    mSeeThrough.isChecked() ? 1 : 0);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.LOCKSCREEN_SEE_THROUGH,
+                    mSeeThrough.isChecked() ? 1 : 0);
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);

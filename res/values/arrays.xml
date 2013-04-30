@@ -361,6 +361,31 @@
         <item>3</item>
     </string-array>
 
+    <string-array name="navring_dialog_entries" translatable="false">
+        <item>@string/none</item>
+        <item>@string/open_ime_switcher</item>
+        <item>@string/ring_vib</item>
+        <item>@string/ring_silent</item>
+        <item>@string/ring_vib_silent</item>
+        <item>@string/kill_app</item>
+        <item>@string/lastapp</item>
+        <item>@string/screen_off</item>
+        <item>@string/google_now</item>
+        <item>@string/select_application</item>
+    </string-array>
+    <string-array name="navring_dialog_values" translatable="false">
+        <item>**null**</item>
+        <item>**ime**</item>
+        <item>**ring_vib**</item>
+        <item>**ring_silent**</item>
+        <item>**ring_vib_silent**</item>
+        <item>**kill**</item>
+        <item>**lastapp**</item>
+        <item>**power**</item>
+        <item>**assist**</item>
+        <item>**app**</item>
+    </string-array>
+
     <string-array name="ribbon_chooser_entries" translatable="false">
         <item>@string/ribbon_lockscreen</item>
         <item>@string/ribbon_notifications</item>
@@ -1445,7 +1470,24 @@
         <item>3</item>
     </string-array>
     
+<<<<<<< HEAD
 
+=======
+    <string-array name="ribbon_dialog_entries" translatable="false">
+        <item>@string/navring_short</item>
+        <item>@string/navring_long</item>
+        <item>@string/navring_icon</item>
+        <item>@string/ribbon_insert</item>
+        <item>@string/navbar_delete_menu</item>
+    </string-array>
+    <string-array name="ribbon_dialog_values" translatable="false">
+        <item>**short**</item>
+        <item>**long**</item>
+        <item>**icon**</item>
+        <item>**insert**</item>
+        <item>**remove**</item>
+    </string-array>
+>>>>>>> 2e6356b... Add lockscreen see through
 	<string-array name="ribbon_icon_size_entries" translatable="false">
         <item>@string/icon_size_normal</item>
         <item>@string/icon_size_20</item>
