@@ -77,6 +77,11 @@
         <Preference
             android:key="transparency_dialog"
             android:title="@string/transparency_dialog_title" />
+            
+        <CheckBoxPreference
+            android:key="see_through"
+            android:title="@string/see_through_title"
+            android:summary="@string/see_through_summary" />
 
     </PreferenceCategory>
 

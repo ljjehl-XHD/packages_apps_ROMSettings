@@ -115,6 +115,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
     private static final String PREF_NOTIFICATION_OPTIONS = "options";
     //private static final String STATUSBAR_HIDDEN = "statusbar_hidden";
+    private static final String PREF_SEE_TRHOUGH = "see_through";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -151,6 +152,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     CheckBoxPreference mShowWifiName;
     //CheckBoxPreference mStatusBarHide;
     CheckBoxPreference mAllow270Rotation;
+    CheckBoxPreference mSeeThrough;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -187,6 +189,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         addPreferencesFromResource(R.xml.prefs_ui);
 
         PreferenceScreen prefs = getPreferenceScreen();
+        PreferenceScreen prefSet = getPreferenceScreen();
 		ContentResolver cr = mContext.getContentResolver();
 		mContentResolver = getContentResolver();
         mInsults = mContext.getResources().getStringArray(
@@ -342,6 +345,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mShowWifiName = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_SHOW_WIFI_SSID);
         mShowWifiName.setChecked(Settings.System.getInt(cr,
                 Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
+                
+        mSeeThrough = (CheckBoxPreference) prefSet.findPreference(PREF_SEE_TRHOUGH);
 
         setHasOptionsMenu(true);
     }
@@ -506,6 +511,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     Settings.System.ACTIVITY_RESOLVER_USE_ALT,
                     ((CheckBoxPreference) preference).isChecked());
             return true;
+        } else if (preference == mSeeThrough) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.LOCKSCREEN_SEE_THROUGH,
+                    mSeeThrough.isChecked() ? 1 : 0);
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
