@@ -1254,7 +1254,7 @@
     <string name="hsupa_enabled">HSUPA Enabled</string>
     <string name="hsupa_enabled_uncapped">HSUPA Enabled (Uncapped)</string>    <!-- Start up tweaks -->
     <string name="ps_init_d">@null</string>
-    <string name="ps_enable_init_d">Enable/disabe start-up tweaks</string>
+    <string name="ps_enable_init_d">Enable/disable start-up tweaks</string>
     <string name="ps_zipalign">Zipalign any unaligned apps on each boot</string>
     <string name="ps_enable_sd_boost">Enable/disable SD card speed boost</string>
     <string name="ps_sd_boost">Set value of read ahead in kb</string>
