@@ -49,7 +49,7 @@ public class About extends AOKPPreferenceFragment {
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mSiteUrl) {
-            launchUrl("http://iceandfire.co/");
+            launchUrl("http://xenonhd.com");
         } else if (preference == mSourceUrl) {
             launchUrl("http://github.com/teamhorizon");
         }

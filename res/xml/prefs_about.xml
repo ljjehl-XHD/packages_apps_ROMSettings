@@ -42,6 +42,16 @@
 			android:title="pr0xy man1Ac"
 			aokp:nameDev="pr0xy man1Ac"
 			aokp:twitterHandle="tr0nz420" />
+			
+		<com.aokp.romcontrol.widgets.DeveloperPreference
+			android:title="PCarenza"
+			aokp:nameDev="PCarenza"
+			aokp:twitterHandle="pcarenza" />
+			
+		<com.aokp.romcontrol.widgets.DeveloperPreference
+			android:title="T-Macgnolia"
+			aokp:nameDev="T-Macgnolia"
+			aokp:twitterHandle="tmacgnolia" />
 	</PreferenceCategory>
 
 </PreferenceScreen>
