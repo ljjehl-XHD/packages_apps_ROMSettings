@@ -1064,6 +1064,10 @@
 
     <string name="pie_lastapp_title">Last App button</string>
     <string name="pie_lastapp_summary">Enable last app button on pie controls</string>
+    <string name="pie_killtask_title">Kill task button</string>
+    <string name="pie_killtask_summary">Enable kill task button on Pie</string>
+    <string name="pie_appwindow_title">App window button</string>
+    <string name="pie_appwindow_summary">Enable app window button on Pie (configure app window in Ribbon settings)</string>
 
     <string name="pie_center_title">Middle alignment</string>
     <string name="pie_center_summary">Center Pie on the trigger edge</string>
