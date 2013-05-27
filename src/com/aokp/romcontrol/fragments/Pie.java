@@ -127,9 +127,7 @@ public class Pie extends AOKPPreferenceFragment implements OnPreferenceChangeLis
     CheckBoxPreference mPieSearch;
     CheckBoxPreference mPieStick;
     CheckBoxPreference mPieRestart;
-    CheckBoxPreference mPieKillTask;
-	CheckBoxPreference mPieAppWindow;
-
+    
     private Context mContext;
     private int mAllowedLocations;
 
