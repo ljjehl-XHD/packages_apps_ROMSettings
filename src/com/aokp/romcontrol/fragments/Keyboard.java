@@ -87,6 +87,7 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
     private static final String KEYBOARD_ROTATION_TOGGLE = "keyboard_rotation_toggle";
     private static final String KEYBOARD_ROTATION_TIMEOUT = "keyboard_rotation_timeout";
     private static final String PREF_DISABLE_FULLSCREEN_KEYBOARD = "disable_fullscreen_keyboard";
+    private static final String SHOW_ENTER_KEY = "show_enter_key";
 
     private static final int KEYBOARD_ROTATION_TIMEOUT_DEFAULT = 5000; // 5s
     
@@ -95,6 +96,7 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
     CheckBoxPreference mKeyboardRotationToggle;
     ListPreference mKeyboardRotationTimeout;
     CheckBoxPreference mDisableFullscreenKeyboard;
+    CheckBoxPreference mShowEnterKey;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,6 +122,10 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
         mDisableFullscreenKeyboard = (CheckBoxPreference) findPreference(PREF_DISABLE_FULLSCREEN_KEYBOARD);
         mDisableFullscreenKeyboard.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.DISABLE_FULLSCREEN_KEYBOARD, 0) == 1);
+                
+        mShowEnterKey = (CheckBoxPreference) findPreference(SHOW_ENTER_KEY);
+        mShowEnterKey.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.FORMAL_TEXT_INPUT, 0) == 1);
     }
     
     public void updateRotationTimeout(int timeout) {
@@ -155,6 +161,10 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
             boolean checked = ((CheckBoxPreference) preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.DISABLE_FULLSCREEN_KEYBOARD, checked ? 1 : 0);
+            return true;
+            } else if (preference == mShowEnterKey) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.FORMAL_TEXT_INPUT, mShowEnterKey.isChecked() ? 1 : 0);
             return true;
        }
       	return super.onPreferenceTreeClick(preferenceScreen, preference);
