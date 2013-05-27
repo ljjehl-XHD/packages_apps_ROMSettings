@@ -56,6 +56,12 @@
         android:fragment="com.aokp.romcontrol.fragments.HardwareKeys"
         android:icon="@drawable/ic_rom_control_hardware_keys"
         android:title="@string/hardware_keys_title" />
+        
+    <header
+        android:id="@+id/keyboard"
+        android:fragment="com.aokp.romcontrol.fragments.Keyboard"
+        android:icon="@drawable/ic_rom_control_keyboard"
+        android:title="@string/keyboard_title" />
 
     <header
         android:id="@+id/statusbar"
