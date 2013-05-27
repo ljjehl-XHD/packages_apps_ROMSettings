@@ -31,5 +31,11 @@
             android:entries="@array/keyboard_rotation_timeout_entries"
             android:entryValues="@array/keyboard_rotation_timeout_values"
             android:dependency="keyboard_rotation_toggle" />
+            
+    <CheckBoxPreference
+            android:key="disable_fullscreen_keyboard"
+            android:title="@string/disable_fullscreen_keyboard_title"
+            android:summary="@string/disable_fullscreen_keyboard_summary"
+            android:defaultValue="false" />
 
 </PreferenceScreen>

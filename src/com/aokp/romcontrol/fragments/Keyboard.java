@@ -86,6 +86,7 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
         
     private static final String KEYBOARD_ROTATION_TOGGLE = "keyboard_rotation_toggle";
     private static final String KEYBOARD_ROTATION_TIMEOUT = "keyboard_rotation_timeout";
+    private static final String PREF_DISABLE_FULLSCREEN_KEYBOARD = "disable_fullscreen_keyboard";
 
     private static final int KEYBOARD_ROTATION_TIMEOUT_DEFAULT = 5000; // 5s
     
@@ -93,6 +94,7 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
     
     CheckBoxPreference mKeyboardRotationToggle;
     ListPreference mKeyboardRotationTimeout;
+    CheckBoxPreference mDisableFullscreenKeyboard;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -114,6 +116,10 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
         mKeyboardRotationTimeout.setOnPreferenceChangeListener(this);
         updateRotationTimeout(Settings.System.getInt(getActivity()
                     .getContentResolver(), Settings.System.KEYBOARD_ROTATION_TIMEOUT, KEYBOARD_ROTATION_TIMEOUT_DEFAULT));
+                    
+        mDisableFullscreenKeyboard = (CheckBoxPreference) findPreference(PREF_DISABLE_FULLSCREEN_KEYBOARD);
+        mDisableFullscreenKeyboard.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.DISABLE_FULLSCREEN_KEYBOARD, 0) == 1);
     }
     
     public void updateRotationTimeout(int timeout) {
@@ -144,6 +150,11 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
                     Settings.System.KEYBOARD_ROTATION_TIMEOUT,
                     mKeyboardRotationToggle.isChecked() ? KEYBOARD_ROTATION_TIMEOUT_DEFAULT : 0);
             updateRotationTimeout(KEYBOARD_ROTATION_TIMEOUT_DEFAULT);
+            return true;
+            } else if (preference == mDisableFullscreenKeyboard) {
+            boolean checked = ((CheckBoxPreference) preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.DISABLE_FULLSCREEN_KEYBOARD, checked ? 1 : 0);
             return true;
        }
       	return super.onPreferenceTreeClick(preferenceScreen, preference);
