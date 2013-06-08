@@ -341,7 +341,7 @@ public class PropModder extends AOKPPreferenceFragment implements
             && doMod(CHECK_IN_PERSIST_PROP, CHECK_IN_PROP, String.valueOf(value ? 1 : DISABLE));
 	} else if (preference == mNoAutoFlashPref) {
 		value = mNoAutoFlashPref.isChecked();
-		return doMod(CHECK_IN_PERSIST_PROP, NO_AUTOFLASH_PROP, String.valueOf(value? 1: DISABLE));
+		return doMod(NO_AUTOFLASH_PERSIST_PROP, NO_AUTOFLASH_PROP, String.valueOf(value? 1: DISABLE));
         } else if (preference == m3gSpeedPref) {
             value = m3gSpeedPref.isChecked();
             return doMod(THREE_G_PERSIST_PROP, THREE_G_PROP_0, String.valueOf(value ? 1 : DISABLE))
