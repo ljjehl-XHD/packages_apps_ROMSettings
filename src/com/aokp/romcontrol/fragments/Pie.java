@@ -101,6 +101,7 @@ public class Pie extends AOKPPreferenceFragment implements OnPreferenceChangeLis
     private static final String PIE_MODE = "pie_mode";
     private static final String PIE_SIZE = "pie_size";
     private static final String PIE_TRIGGER = "pie_trigger";
+    private static final String PIE_ANGLE = "pie_angle";
     private static final String PIE_GAP = "pie_gap";
     private static final String PIE_CENTER = "pie_center";
     private static final String PIE_STICK = "pie_stick";
@@ -116,6 +117,7 @@ public class Pie extends AOKPPreferenceFragment implements OnPreferenceChangeLis
     ListPreference mPieSize;
     ListPreference mPieGravity;
     ListPreference mPieTrigger;
+    ListPreference mPieAngle;
     ListPreference mPieGap;
     CheckBoxPreference mPieCenter;
     CheckBoxPreference mPieNotifi;
@@ -162,7 +164,7 @@ public class Pie extends AOKPPreferenceFragment implements OnPreferenceChangeLis
         mPieTrigger = (ListPreference) prefSet.findPreference(PIE_TRIGGER);
         try {
             float pieSize = Settings.System.getFloat(mContext.getContentResolver(),
-                    Settings.System.PIE_SIZE, 0.9f);
+                    Settings.System.PIE_SIZE, 1.0f);
             mPieSize.setValue(String.valueOf(pieSize));
   
             float pieTrigger = Settings.System.getFloat(mContext.getContentResolver(),
@@ -189,7 +191,7 @@ public class Pie extends AOKPPreferenceFragment implements OnPreferenceChangeLis
 
         mPieGap = (ListPreference) prefSet.findPreference(PIE_GAP);
         int pieGap = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PIE_GAP, 3);
+                Settings.System.PIE_GAP, 2);
         mPieGap.setValue(String.valueOf(pieGap));
         mPieGap.setOnPreferenceChangeListener(this);
 
@@ -208,6 +210,12 @@ public class Pie extends AOKPPreferenceFragment implements OnPreferenceChangeLis
         mPieAppWindow = (CheckBoxPreference) prefSet.findPreference(PIE_APPWINDOW);
         mPieAppWindow.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PIE_APP_WINDOW, 1) == 1);
+        
+        mPieAngle = (ListPreference) prefSet.findPreference(PIE_ANGLE);
+        int pieAngle = Settings.System.getInt(mContext.getContentResolver(),
+                                              Settings.System.PIE_ANGLE, 12);
+        mPieAngle.setValue(String.valueOf(pieAngle));
+        mPieAngle.setOnPreferenceChangeListener(this);
 
         mPieMenu = (CheckBoxPreference) prefSet.findPreference(PIE_MENU);
         mPieMenu.setChecked(Settings.System.getInt(mContext.getContentResolver(),
@@ -288,6 +296,11 @@ public class Pie extends AOKPPreferenceFragment implements OnPreferenceChangeLis
             int pieGap = Integer.valueOf((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.PIE_GAP, pieGap);
+            return true;
+        } else if (preference == mPieAngle) {
+            int pieAngle = Integer.valueOf((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.PIE_ANGLE, pieAngle);
             return true;
         } else if (preference == mPieTrigger) {
             float pieTrigger = Float.valueOf((String) newValue);

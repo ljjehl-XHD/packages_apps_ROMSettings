@@ -714,7 +714,6 @@
     <!-- Lockscreen Targets-->
     <string name="lockscreen_targets_title">Lockscreen targets</string>
     <string name="lockscreen_targets_summary">Lockscreen targets summary…</string>
-    <string name="lockscreen_target_longpress_text">Longpress status</string>
     <string name="lockscreen_target_longpress_text">Longpress actions</string>
     <string name="lockscreen_glow_torch_text">GlowPad torch</string>
     <string name="lockscreen_glow_torch_summary">Longpressing the center of the lockcircle will turn torch on.  Release finger to turn torch off.</string>
@@ -1044,8 +1043,16 @@
     <string name="pie_gap_summary">Adjust the gap that separates pie elements</string>
     <string name="pie_gap_none">None</string>
     <string name="pie_gap_small">Small</string>
-    <string name="pie_gap_big">Big</string>
-    <string name="pie_gap_huge">Huge (default)</string>
+    <string name="pie_gap_big">Big (default)</string>
+    <string name="pie_gap_huge">Huge</string>
+    
+    <string name="pie_angle_title">Pie angle</string>
+    <string name="pie_angle_summary">Adjust the angle of pie\'s egdes from the attachment</string>
+    <string name="pie_angle_none">None (old)</string>
+    <string name="pie_angle_small">Small</string>
+    <string name="pie_angle_big">Normal (default)</string>
+    <string name="pie_angle_huge">Big</string>
+    <string name="pie_angle_super">Huge</string>
 
     <!-- The trigger -->
     <string name="pie_trigger_title">Trigger area</string>
