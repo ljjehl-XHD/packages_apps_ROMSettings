@@ -1378,8 +1378,6 @@
     <string name="pref_tcp_stack_summary">Modify the buffer-size for better performance</string>
     <string name="pref_check_in_title">Check in service</string>
     <string name="pref_check_in_summary">Stop sending system usage data to Google</string>
-    <string name="pref_no_autoflash_title">Disable OTA Updater AutoFlash</string>
-    <string name="pref_no_autoflash_summary">Stop the OTA Updater from automatically flashing updates</string>
     <string name="pref_sdcard_buffer_title">Sdcard speed hack</string>
     <string name="pref_sdcard_buffer_summary">Modify the sdcard buffer-size for better performance</string>
     <string name="pref_sdcard_buffer_alt_summary">Sdcard buffer size: %s</string>

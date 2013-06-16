@@ -122,11 +122,6 @@
             android:summary="@string/pref_check_in_summary"
             android:persistent="true" />
 
-	<CheckBoxPreference android:key="pref_no_autoflash"
-           android:title="@string/pref_no_autoflash_title"
-           android:summary="@string/pref_no_autoflash_summary"
-           android:persistent="true" />
-
         <CheckBoxPreference android:key="pref_g_speed"
             android:title="@string/pref_g_speed_title"
             android:summary="@string/pref_g_speed_summary"
