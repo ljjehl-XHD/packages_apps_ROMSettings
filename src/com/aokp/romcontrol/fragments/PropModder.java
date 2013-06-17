@@ -137,9 +137,6 @@ public class PropModder extends AOKPPreferenceFragment implements
     private static final String CHECK_IN_PERSIST_PROP = "persist_check_in";
     private static final String CHECK_IN_PROP = "ro.config.nocheckin";
     private static final String CHECK_IN_PROP_HTC = "ro.config.htc.nocheckin";
-    private static final String NO_AUTOFLASH_PREF = "pref_no_autoflash";
-    private static final String NO_AUTOFLASH_PERSIST_PROP = "persist_no_autoflash";
-    private static final String NO_AUTOFLASH_PROP = "otaupdater.noflash";
     private static final String SDCARD_BUFFER_PREF = "pref_sdcard_buffer";
     private static final String SDCARD_BUFFER_PRESIST_PROP = "persist_sdcard_buffer";
     private static final String SDCARD_BUFFER_DEFAULT = System.getProperty(SDCARD_BUFFER_PRESIST_PROP);
@@ -184,7 +181,6 @@ public class PropModder extends AOKPPreferenceFragment implements
     private CheckBoxPreference mTcpStackPref;
     private CheckBoxPreference mJitPref;
     private CheckBoxPreference mCheckInPref;
-    private CheckBoxPreference mNoAutoFlashPref;
     private ListPreference mSdcardBufferPref;
     private CheckBoxPreference m3gSpeedPref;
     private CheckBoxPreference mGpuPref;
@@ -258,7 +254,6 @@ public class PropModder extends AOKPPreferenceFragment implements
         mModVersionPref.setOnPreferenceChangeListener(this);
 
         mCheckInPref = (CheckBoxPreference) prefSet.findPreference(CHECK_IN_PREF);
-	mNoAutoFlashPref = (CheckBoxPreference) prefSet.findPreference(NO_AUTOFLASH_PREF);
 
         //TODO check all init.d scripts for buffer values to display in summary
         //     for now we will just let it go with a generic summary displayed
@@ -339,9 +334,6 @@ public class PropModder extends AOKPPreferenceFragment implements
             value = mCheckInPref.isChecked();
             return doMod(null, CHECK_IN_PROP_HTC, String.valueOf(value ? 1 : DISABLE))
             && doMod(CHECK_IN_PERSIST_PROP, CHECK_IN_PROP, String.valueOf(value ? 1 : DISABLE));
-	} else if (preference == mNoAutoFlashPref) {
-		value = mNoAutoFlashPref.isChecked();
-		return doMod(NO_AUTOFLASH_PERSIST_PROP, NO_AUTOFLASH_PROP, String.valueOf(value? 1: DISABLE));
         } else if (preference == m3gSpeedPref) {
             value = m3gSpeedPref.isChecked();
             return doMod(THREE_G_PERSIST_PROP, THREE_G_PROP_0, String.valueOf(value ? 1 : DISABLE))
@@ -606,12 +598,6 @@ public class PropModder extends AOKPPreferenceFragment implements
         } else {
             mCheckInPref.setChecked(false);
         }
-	String naf = Helpers.findBuildPropValueOf(NO_AUTOFLASH_PROP);
-	if (!naf.equals(DISABLE)) {
-		mNoAutoFlashPref.setChecked(true);
-	} else {
-		mNoAutoFlashPref.setChecked(false);
-	}
         String g0 = Helpers.findBuildPropValueOf(THREE_G_PROP_0);
         String g3 = Helpers.findBuildPropValueOf(THREE_G_PROP_3);
         String g6 = Helpers.findBuildPropValueOf(THREE_G_PROP_6);
