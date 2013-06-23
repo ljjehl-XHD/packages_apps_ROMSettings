@@ -103,20 +103,7 @@
        <!-- <CheckBoxPreference
             android:key="kill_app_longpress_back"
             android:title="@string/kill_app_longpress_back"
-            android:summary="@string/kill_app_longpress_back_summary" /> 
-
-        <ListPreference
-            android:key="user_mode_ui"
-            android:title="@string/user_mode_ui"
-            android:summary="@string/user_mode_ui_summary"
-            android:entries="@array/user_mode_ui_entries"
-            android:entryValues="@array/user_mode_ui_values" />
-
-		<CheckBoxPreference
-            android:key="force_dualpanel"
-            android:title="@string/multipane_ui"
-            android:summary="@string/multipane_ui_summary"
-            android:defaultValue="false" />-->
+            android:summary="@string/kill_app_longpress_back_summary" /> -->
             
         <CheckBoxPreference
             android:key="hide_extras"
@@ -124,11 +111,6 @@
             android:summary= "@string/hide_extras_summary"
             android:defaultValue="false" />
             
-        <!--<Preference
-            android:key="lcd_density_setup"
-            android:title="@string/lcd_density_title"
-            android:summary="@string/lcd_density_summary" />-->
-
      </PreferenceCategory>
 
      <PreferenceCategory

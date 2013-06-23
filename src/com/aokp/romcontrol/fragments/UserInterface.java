@@ -110,8 +110,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PREF_RAM_USAGE_BAR = "ram_usage_bar";
 	private static final String PREF_IME_SWITCHER = "ime_switcher";
 	private static final String PREF_STATUSBAR_BRIGHTNESS = "statusbar_brightness_slider";
-	private static final String PREF_USER_MODE_UI = "user_mode_ui";
-	private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
 	private static final String PREF_HIDE_EXTRAS = "hide_extras";
     private static final String PREF_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
     private static final String PREF_POWER_CRT_SCREEN_ON = "system_power_crt_screen_on";
@@ -148,9 +146,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     CheckBoxPreference mRamBar;
 	CheckBoxPreference mShowImeSwitcher;
 	CheckBoxPreference mStatusbarSliderPreference;
-	ListPreference mUserModeUI;
-	CheckBoxPreference mDualpane;
-	Preference mLcdDensity;
 	CheckBoxPreference mHideExtras;
     CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
     CheckBoxPreference mCrtOff;
@@ -179,9 +174,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     // previous random; so we don't repeat
     private static int mLastRandomInsultIndex = -1;
     private String[] mInsults;
-    
-    int newDensityValue;
-    DensityChanger densityFragment;
 
     private int seekbarProgress;
     private int mAllowedLocations;
@@ -274,21 +266,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mUseAltResolver.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
 
-		mUserModeUI = (ListPreference) findPreference(PREF_USER_MODE_UI);
-        int uiMode = Settings.System.getInt(cr,
-                Settings.System.CURRENT_UI_MODE, 0);
-        mUserModeUI.setValue(Integer.toString(Settings.System.getInt(cr,
-                Settings.System.USER_UI_MODE, uiMode)));
-        mUserModeUI.setOnPreferenceChangeListener(this);
-        
-        mHideExtras = (CheckBoxPreference) findPreference(PREF_HIDE_EXTRAS);
+		mHideExtras = (CheckBoxPreference) findPreference(PREF_HIDE_EXTRAS);
         mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
         		Settings.System.HIDE_EXTRAS_SYSTEM_BAR, false));
-
-		mDualpane = (CheckBoxPreference) findPreference(PREF_FORCE_DUAL_PANEL);
-        mDualpane.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
-                        Settings.System.FORCE_DUAL_PANEL, getResources().getBoolean(
-                        com.android.internal.R.bool.preferences_prefer_dual_pane)));
                         
         mLowBatteryWarning = (ListPreference) findPreference(KEY_LOW_BATTERY_WARNING_POLICY);
         int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
@@ -313,16 +293,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 com.android.internal.R.bool.config_unplugTurnsOnScreen)) {
             ((PreferenceGroup) findPreference("misc")).removePreference(mWakeUpWhenPluggedOrUnplugged);
         }
-                        
-        mLcdDensity = findPreference("lcd_density_setup");
-        String currentProperty = SystemProperties.get("ro.sf.lcd_density");
-        try {
-            newDensityValue = Integer.parseInt(currentProperty);
-        } catch (Exception e) {
-            getPreferenceScreen().removePreference(mLcdDensity);
-        }
-
-        mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
         
         // respect device default configuration
         // true fades while false animates
@@ -515,19 +485,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     Settings.System.STATUSBAR_BRIGHTNESS_SLIDER,
                     isCheckBoxPrefernceChecked(preference));
             return true;
-		} else if (preference == mDualpane) {
-            Settings.System.putBoolean(mContext.getContentResolver(),
-                    Settings.System.FORCE_DUAL_PANEL,
-                    ((CheckBoxPreference) preference).isChecked());
-            return true;
-        } else if (preference == mShowWifiName) {
+		} else if (preference == mShowWifiName) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
                     mShowWifiName.isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mLcdDensity) {
-            ((PreferenceActivity) getActivity())
-                    .startPreferenceFragment(new DensityChanger(), true);
             return true;
         } else if (preference == mRamBar) {
             boolean checked = ((CheckBoxPreference)preference).isChecked();
@@ -565,12 +526,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 
 	@Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mUserModeUI) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.USER_UI_MODE, Integer.parseInt((String) newValue));
-            Helpers.restartSystemUI();
-            return true;
-        } else if (mCrtOff.equals(preference)) {
+        if (mCrtOff.equals(preference)) {
             isCrtOffChecked = ((Boolean) newValue).booleanValue();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF,
