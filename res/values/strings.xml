@@ -1128,6 +1128,7 @@
     <string name="speed_battery">SpeedoMeter</string>
     <string name="square_battery">SquareMod</string>
     <string name="gear_battery">Gear</string>
+    <string name="rb_battery9">Rush</string>
 
     <!-- NavBar -->
     <string name="right">Right</string>
