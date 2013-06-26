@@ -1,7 +1,6 @@
 
 package com.aokp.romcontrol;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -11,7 +10,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
+import android.preference.PreferenceDrawerActivity;
 import android.preference.PreferenceFragment;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -35,7 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class ROMControlActivity extends PreferenceActivity implements ButtonBarHandler {
+public class ROMControlActivity extends PreferenceDrawerActivity implements ButtonBarHandler {
 
     private static final String TAG = "ROM_Control";
 
@@ -117,8 +116,6 @@ public class ROMControlActivity extends PreferenceActivity implements ButtonBarH
             } catch (ClassCastException e) {
             }
         }
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -321,7 +318,7 @@ public class ROMControlActivity extends PreferenceActivity implements ButtonBarH
             }
         }
 
-        // Ignore the adapter provided by PreferenceActivity and substitute ours
+        // Ignore the adapter provided by PreferenceDrawerActivity and substitute ours
         // instead
         super.setListAdapter(new HeaderAdapter(this, mHeaders));
     }
