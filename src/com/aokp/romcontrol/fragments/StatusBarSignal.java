@@ -22,6 +22,7 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         
     private static final String KEY_MMS_BREATH = "mms_breath";
     private static final String KEY_MISSED_CALL_BREATH = "missed_call_breath";
+    private static final String STATUS_BAR_QUICK_PEEK = "status_bar_quick_peek";
 
     ListPreference mDbmStyletyle;
     ListPreference mWifiStyle;
@@ -31,6 +32,7 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
     CheckBoxPreference mAltSignal;
     CheckBoxPreference mMMSBreath;
     CheckBoxPreference mMissedCallBreath;
+    CheckBoxPreference mStatusBarQuickPeek;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,10 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         mMissedCallBreath = (CheckBoxPreference) findPreference(KEY_MISSED_CALL_BREATH);
         mMissedCallBreath.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.MISSED_CALL_BREATH, 0) == 1);
+                
+        mStatusBarQuickPeek = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_QUICK_PEEK);
+        mStatusBarQuickPeek.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+               Settings.System.STATUSBAR_PEEK, 0) == 1));
 
     }
 
@@ -91,6 +97,11 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         } else if (preference == mMissedCallBreath) {
             Settings.System.putInt(mContext.getContentResolver(), Settings.System.MISSED_CALL_BREATH, 
                     mMissedCallBreath.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mStatusBarQuickPeek) {
+            value = mStatusBarQuickPeek.isChecked();
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.STATUSBAR_PEEK, value ? 1 : 0);
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
