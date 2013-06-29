@@ -1537,10 +1537,6 @@
     <string name="disable_fullscreen_keyboard_summary">Landscape keyboard will never take up entire screen</string>
     <string name="show_enter_key_title">Show enter key</string>
     <string name="show_enter_key_summary">Force keyboard to show enter instead of emoticon key</string>
- 
- 	<!-- Statusbar Quick Peek -->
-    <string name="statusbar_quick_peek_title">Quick Peek</string>
-    <string name="statusbar_quick_peek_summary">Peek at statusbar by swiping from top edge of screen</string>
     
     <!-- Auto-Hide Status Bar -->
     <string name="auto_hide_statusbar">Auto Hide statusbar</string>

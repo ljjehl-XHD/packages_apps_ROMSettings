@@ -22,7 +22,6 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         
     private static final String KEY_MMS_BREATH = "mms_breath";
     private static final String KEY_MISSED_CALL_BREATH = "missed_call_breath";
-    private static final String STATUS_BAR_QUICK_PEEK = "status_bar_quick_peek";
     private static final String STATUS_BAR_AUTO_HIDE = "status_bar_auto_hide";
 
     ListPreference mDbmStyletyle;
@@ -33,7 +32,6 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
     CheckBoxPreference mAltSignal;
     CheckBoxPreference mMMSBreath;
     CheckBoxPreference mMissedCallBreath;
-    CheckBoxPreference mStatusBarQuickPeek;
     CheckBoxPreference mStatusBarAutoHide;
 
     @Override
@@ -75,10 +73,6 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         mMissedCallBreath = (CheckBoxPreference) findPreference(KEY_MISSED_CALL_BREATH);
         mMissedCallBreath.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.MISSED_CALL_BREATH, 0) == 1);
-                
-        mStatusBarQuickPeek = (CheckBoxPreference) findPreference(STATUS_BAR_QUICK_PEEK);
-        mStatusBarQuickPeek.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-               Settings.System.STATUSBAR_PEEK, 0) == 1));
                
         mStatusBarAutoHide = (CheckBoxPreference) findPreference(STATUS_BAR_AUTO_HIDE);
         mStatusBarAutoHide.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
@@ -105,10 +99,6 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         } else if (preference == mMissedCallBreath) {
             Settings.System.putInt(mContext.getContentResolver(), Settings.System.MISSED_CALL_BREATH, 
                     mMissedCallBreath.isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mStatusBarQuickPeek) {
-            Settings.System.putInt(mContext.getContentResolver(), Settings.System.STATUSBAR_PEEK,
-            		mStatusBarQuickPeek.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mStatusBarAutoHide) {
             Settings.System.putInt(mContext.getContentResolver(), Settings.System.AUTO_HIDE_STATUSBAR,
