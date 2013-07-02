@@ -23,12 +23,14 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
     private static final String KEY_MMS_BREATH = "mms_breath";
     private static final String KEY_MISSED_CALL_BREATH = "missed_call_breath";
     private static final String STATUS_BAR_AUTO_HIDE = "status_bar_auto_hide";
+    private static final String STATUS_BAR_TRAFFIC = "status_bar_traffic";
 
     ListPreference mDbmStyletyle;
     ListPreference mWifiStyle;
     ColorPickerPreference mColorPicker;
     ColorPickerPreference mWifiColorPicker;
     CheckBoxPreference mHideSignal;
+    private CheckBoxPreference mStatusBarTraffic;
     CheckBoxPreference mAltSignal;
     CheckBoxPreference mMMSBreath;
     CheckBoxPreference mMissedCallBreath;
@@ -76,13 +78,17 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
                
         mStatusBarAutoHide = (CheckBoxPreference) findPreference(STATUS_BAR_AUTO_HIDE);
         mStatusBarAutoHide.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-               Settings.System.AUTO_HIDE_STATUSBAR, 0) == 1));
+              Settings.System.AUTO_HIDE_STATUSBAR, 0) == 1));
+        mStatusBarTraffic = (CheckBoxPreference) findPreference(STATUS_BAR_TRAFFIC); 
+        mStatusBarTraffic.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.STATUS_BAR_TRAFFIC, 1) == 1));
 
     }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
             Preference preference) {
+	boolean value;
         if (preference == mHideSignal) {
             Settings.System.putBoolean(mContentRes,
                     Settings.System.STATUSBAR_HIDE_SIGNAL_BARS, mHideSignal.isChecked());
@@ -103,6 +109,11 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         } else if (preference == mStatusBarAutoHide) {
             Settings.System.putInt(mContext.getContentResolver(), Settings.System.AUTO_HIDE_STATUSBAR,
             		mStatusBarAutoHide.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mStatusBarTraffic) {
+            value = mStatusBarTraffic.isChecked();
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.STATUS_BAR_TRAFFIC, value ? 1 : 0);
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
