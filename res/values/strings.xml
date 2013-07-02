@@ -314,6 +314,11 @@
     <string name="toggle_statusbar">StatusBar</string>
     <string name="statusbar_hide_title">Hide Statusbar</string>
     <string name="statusbar_hide_summary">Allow completly hide the Statusbar</string>
+
+    <!-- Network speed -->
+    <string name="show_network_speed">Network speed indicator</string>
+    <string name="show_network_speed_summary">Show network speed in statsbar</string>
+
     <string name="screenshot_delay_title">Screenshot delay</string>
     <string name="screenshot_delay_summary">Delay to use after long pressing the screenshot toggle</string>
     
