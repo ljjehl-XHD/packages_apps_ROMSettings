@@ -81,7 +81,7 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
               Settings.System.AUTO_HIDE_STATUSBAR, 0) == 1));
         mStatusBarTraffic = (CheckBoxPreference) findPreference(STATUS_BAR_TRAFFIC); 
         mStatusBarTraffic.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                Settings.System.STATUS_BAR_TRAFFIC, 1) == 1));
+                Settings.System.STATUS_BAR_TRAFFIC, 0) == 0));
 
     }
 
