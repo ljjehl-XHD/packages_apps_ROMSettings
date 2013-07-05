@@ -385,6 +385,7 @@
     <string name="toggle_airplane_mode">Airplane Mode</string>
     <string name="toggle_auto_rotate">Auto Rotate</string>
     <string name="toggle_bluetooth">Bluetooth</string>
+    <string name="toggle_camera">Camera</string>
     <string name="toggle_fcharge">Fast Charge</string>
     <string name="toggle_gps">GPS</string>
     <string name="toggle_lte">LTE</string>
