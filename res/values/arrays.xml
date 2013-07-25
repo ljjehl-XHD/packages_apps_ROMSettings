@@ -132,7 +132,6 @@
         <item>BATTERY</item>
         <item>AIRPLANE_MODE</item>
         <item>BLUETOOTH</item>
-	<item>CAMERA</item>
         <item>VIBRATE</item>
         <item>SILENT</item>
         <item>SOUNDSTATE</item>
@@ -143,7 +142,7 @@
         <item>USBTETHER</item>
         <item>TORCH</item>
         <item>2G</item>
-	<item>SCREEN</item>
+		<item>SCREEN</item>
         <item>LTE</item>
         <item>QUICKRECORD</item>
         <item>NAVBARHIDE</item>
@@ -166,7 +165,6 @@
         <item>@string/toggle_battery</item>
         <item>@string/toggle_airplane_mode</item>
         <item>@string/toggle_bluetooth</item>
-	<item>@string/toggle_camera</item>
         <item>@string/toggle_vibrate</item>
         <item>@string/toggle_silent</item>
         <item>@string/toggle_sound_state</item>
@@ -177,7 +175,7 @@
         <item>@string/toggle_usb_tether</item>
         <item>@string/toggle_torch</item>
         <item>@string/toggle_2g</item>
-	<item>@string/toggle_screen</item>
+		<item>@string/toggle_screen</item>
         <item>@string/toggle_lte</item>
         <item>@string/toggle_quickrecord</item>
         <item>@string/toggle_navbar_hide</item>
