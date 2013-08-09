@@ -150,11 +150,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     TextView mError;
 	CheckBoxPreference mShowActionOverflow;
     CheckBoxPreference mVibrateOnExpand;
-//    CheckBoxPreference mRecentGoog;
     CheckBoxPreference mShowAssistButton;
-	CheckBoxPreference mShowImeSwitcher;
-	CheckBoxPreference mStatusbarSliderPreference;
-	CheckBoxPreference mHideExtras;
+    CheckBoxPreference mShowImeSwitcher;
+    CheckBoxPreference mStatusbarSliderPreference;
+    CheckBoxPreference mHideExtras;
     CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
     CheckBoxPreference mStatusBarTransparentOnKeyguard;
 
