@@ -218,9 +218,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 Settings.System.STATUSBAR_NOTIF_COUNT, false));
                 
         mStatusBarIconOpacity = (ListPreference) findPreference(KEY_STATUS_BAR_ICON_OPACITY);
-        int iconOpacity = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                Settings.System.STATUS_BAR_NOTIF_ICON_OPACITY, 140);
-        mStatusBarIconOpacity.setValue(String.valueOf(iconOpacity));
+//        int iconOpacity = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+//                Settings.System.STATUS_BAR_NOTIF_ICON_OPACITY, 140);
+//        mStatusBarIconOpacity.setValue(String.valueOf(iconOpacity));
         mStatusBarIconOpacity.setOnPreferenceChangeListener(this);
 
         mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
@@ -246,8 +246,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         //       Settings.System.STATUSBAR_HIDDEN, false));
 
         mRamBar = (CheckBoxPreference) findPreference(PREF_RAM_USAGE_BAR);
-        mRamBar.setChecked(Settings.System.getBoolean(cr,
-                Settings.System.RAM_USAGE_BAR, false));
+//        mRamBar.setChecked(Settings.System.getBoolean(cr,
+//                Settings.System.RAM_USAGE_BAR, false));
 
 		mShowActionOverflow = (CheckBoxPreference) findPreference(PREF_SHOW_OVERFLOW);
         mShowActionOverflow.setChecked(Settings.System.getBoolean(getActivity().
@@ -259,34 +259,34 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 Settings.System.SHOW_STATUSBAR_IME_SWITCHER, true));
 
 		mStatusbarSliderPreference = (CheckBoxPreference) findPreference(PREF_STATUSBAR_BRIGHTNESS);
-        mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
-                Settings.System.STATUSBAR_BRIGHTNESS_SLIDER, true));
+//        mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+//                Settings.System.STATUSBAR_BRIGHTNESS_SLIDER, true));
                 
         mUseAltResolver = (CheckBoxPreference) findPreference(PREF_USE_ALT_RESOLVER);
-        mUseAltResolver.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
-                Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
+//        mUseAltResolver.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+//                Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
 
 		mHideExtras = (CheckBoxPreference) findPreference(PREF_HIDE_EXTRAS);
-        mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
-        		Settings.System.HIDE_EXTRAS_SYSTEM_BAR, false));
+//        mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+//        		Settings.System.HIDE_EXTRAS_SYSTEM_BAR, false));
                         
         mLowBatteryWarning = (ListPreference) findPreference(KEY_LOW_BATTERY_WARNING_POLICY);
-        int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
-                                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, 0);
-        mLowBatteryWarning.setValue(String.valueOf(lowBatteryWarning));
+//        int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
+//                                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, 0);
+//        mLowBatteryWarning.setValue(String.valueOf(lowBatteryWarning));
         mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
         mLowBatteryWarning.setOnPreferenceChangeListener(this);
         
         mNotificationsBehavior = (ListPreference) findPreference(PREF_NOTIFICATION_BEHAVIOUR);
-        int CurrentBehavior = Settings.System.getInt(getContentResolver(),
-                Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
-        mNotificationsBehavior.setValue(String.valueOf(CurrentBehavior));
+//        int CurrentBehavior = Settings.System.getInt(getContentResolver(),
+//                Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
+//        mNotificationsBehavior.setValue(String.valueOf(CurrentBehavior));
         mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntry());
         mNotificationsBehavior.setOnPreferenceChangeListener(this);
                 
         mWakeUpWhenPluggedOrUnplugged = (CheckBoxPreference) findPreference(PREF_WAKEUP_WHEN_PLUGGED_UNPLUGGED);
-        mWakeUpWhenPluggedOrUnplugged.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
-                        Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED, true));
+//        mWakeUpWhenPluggedOrUnplugged.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+//                        Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED, true));
 
         // hide option if device is already set to never wake up
         if(!mContext.getResources().getBoolean(
@@ -302,23 +302,23 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         // use this to enable/disable crt on feature
         // crt only works if crt off is enabled
         // total system failure if only crt on is enabled
-        isCrtOffChecked = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF,
-                electronBeamFadesConfig ? 0 : 1) == 1;
+//        isCrtOffChecked = Settings.System.getInt(getActivity().getContentResolver(),
+//                Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF,
+//                electronBeamFadesConfig ? 0 : 1) == 1;
 
         mCrtOff = (CheckBoxPreference) findPreference(PREF_POWER_CRT_SCREEN_OFF);
-        mCrtOff.setChecked(isCrtOffChecked);
+//       mCrtOff.setChecked(isCrtOffChecked);
         mCrtOff.setOnPreferenceChangeListener(this);
 
         mCrtOn = (CheckBoxPreference) findPreference(PREF_POWER_CRT_SCREEN_ON);
-        mCrtOn.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.SYSTEM_POWER_ENABLE_CRT_ON, 0) == 1);
-        mCrtOn.setEnabled(isCrtOffChecked);
+//        mCrtOn.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+//                Settings.System.SYSTEM_POWER_ENABLE_CRT_ON, 0) == 1);
+//        mCrtOn.setEnabled(isCrtOffChecked);
         mCrtOn.setOnPreferenceChangeListener(this);
         
         mShowWifiName = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_SHOW_WIFI_SSID);
-        mShowWifiName.setChecked(Settings.System.getInt(cr,
-                Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
+//        mShowWifiName.setChecked(Settings.System.getInt(cr,
+//                Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
                 
         mSeeThrough = (CheckBoxPreference) prefSet.findPreference(PREF_SEE_TRHOUGH);
 
@@ -416,9 +416,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             DisableBootAnimation();
             return true;
         } else if (preference == mHideExtras) {
-        	Settings.System.putBoolean(mContext.getContentResolver(),
-        			Settings.System.HIDE_EXTRAS_SYSTEM_BAR,
-        			((CheckBoxPreference) preference).isChecked());
+//        	Settings.System.putBoolean(mContext.getContentResolver(),
+//        			Settings.System.HIDE_EXTRAS_SYSTEM_BAR,
+//        			((CheckBoxPreference) preference).isChecked());
 		} else if (preference == mShowActionOverflow) {
             boolean enabled = mShowActionOverflow.isChecked();
             Settings.System.putBoolean(getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON,
@@ -481,24 +481,24 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     isCheckBoxPrefernceChecked(preference));
             return true;
 		} else if (preference == mStatusbarSliderPreference) {
-            Settings.System.putBoolean(getActivity().getContentResolver(),
-                    Settings.System.STATUSBAR_BRIGHTNESS_SLIDER,
-                    isCheckBoxPrefernceChecked(preference));
+//            Settings.System.putBoolean(getActivity().getContentResolver(),
+//                    Settings.System.STATUSBAR_BRIGHTNESS_SLIDER,
+//                    isCheckBoxPrefernceChecked(preference));
             return true;
 		} else if (preference == mShowWifiName) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
-                    mShowWifiName.isChecked() ? 1 : 0);
+//            Settings.System.putInt(getActivity().getContentResolver(),
+//                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
+//                    mShowWifiName.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mRamBar) {
             boolean checked = ((CheckBoxPreference)preference).isChecked();
-            Settings.System.putBoolean(getActivity().getContentResolver(),
-                    Settings.System.RAM_USAGE_BAR, checked ? true : false);
+//            Settings.System.putBoolean(getActivity().getContentResolver(),
+//                    Settings.System.RAM_USAGE_BAR, checked ? true : false);
             return true;
         } else if (preference == mWakeUpWhenPluggedOrUnplugged) {
-            Settings.System.putBoolean(getActivity().getContentResolver(),
-                    Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
-                    ((CheckBoxPreference) preference).isChecked());
+//            Settings.System.putBoolean(getActivity().getContentResolver(),
+//                    Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
+//                    ((CheckBoxPreference) preference).isChecked());
             return true;
         //} else if (preference == mStatusBarHide) {
         //    boolean checked = ((CheckBoxPreference)preference).isChecked();
@@ -511,14 +511,14 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             openTransparencyDialog();
             return true;
         } else if (preference == mUseAltResolver) {
-            Settings.System.putBoolean(getActivity().getContentResolver(),
-                    Settings.System.ACTIVITY_RESOLVER_USE_ALT,
-                    ((CheckBoxPreference) preference).isChecked());
+//            Settings.System.putBoolean(getActivity().getContentResolver(),
+//                    Settings.System.ACTIVITY_RESOLVER_USE_ALT,
+//                    ((CheckBoxPreference) preference).isChecked());
             return true;
         } else if (preference == mSeeThrough) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.LOCKSCREEN_SEE_THROUGH,
-                    mSeeThrough.isChecked() ? 1 : 0);
+//            Settings.System.putInt(getActivity().getContentResolver(),
+//                    Settings.System.LOCKSCREEN_SEE_THROUGH,
+//                    mSeeThrough.isChecked() ? 1 : 0);
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -528,43 +528,43 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (mCrtOff.equals(preference)) {
             isCrtOffChecked = ((Boolean) newValue).booleanValue();
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF,
-                    (isCrtOffChecked ? 1 : 0));
+//            Settings.System.putInt(getActivity().getContentResolver(),
+//                    Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF,
+//                    (isCrtOffChecked ? 1 : 0));
             // if crt off gets turned off, crt on gets turned off and disabled
             if (!isCrtOffChecked) {
-                Settings.System.putInt(getActivity().getContentResolver(),
-                        Settings.System.SYSTEM_POWER_ENABLE_CRT_ON, 0);
+//                Settings.System.putInt(getActivity().getContentResolver(),
+//                        Settings.System.SYSTEM_POWER_ENABLE_CRT_ON, 0);
                 mCrtOn.setChecked(false);
             }
             mCrtOn.setEnabled(isCrtOffChecked);
             return true;
         } else if (mCrtOn.equals(preference)) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.SYSTEM_POWER_ENABLE_CRT_ON,
-                    ((Boolean) newValue).booleanValue() ? 1 : 0);
+//            Settings.System.putInt(getActivity().getContentResolver(),
+//                    Settings.System.SYSTEM_POWER_ENABLE_CRT_ON,
+//                    ((Boolean) newValue).booleanValue() ? 1 : 0);
             return true;
         } else if (preference == mLowBatteryWarning) {
             int lowBatteryWarning = Integer.valueOf((String) newValue);
             int index = mLowBatteryWarning.findIndexOfValue((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY,
-                    lowBatteryWarning);
+//            Settings.System.putInt(getActivity().getContentResolver(),
+//                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY,
+//                    lowBatteryWarning);
             mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntries()[index]);
             return true;
          } else if (preference == mNotificationsBehavior) {
             String val = (String) newValue;
-            Settings.System.putInt(getContentResolver(),
-                Settings.System.NOTIFICATIONS_BEHAVIOUR,
-            Integer.valueOf(val));
+//            Settings.System.putInt(getContentResolver(),
+//                Settings.System.NOTIFICATIONS_BEHAVIOUR,
+//            Integer.valueOf(val));
             int index = mNotificationsBehavior.findIndexOfValue(val);
             mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntries()[index]);
             Helpers.restartSystemUI();
             return true;
         } else if (preference == mStatusBarIconOpacity) {
             int iconOpacity = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.STATUS_BAR_NOTIF_ICON_OPACITY, iconOpacity);
+//            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+//                    Settings.System.STATUS_BAR_NOTIF_ICON_OPACITY, iconOpacity);
             return true;
         }
         return false;
@@ -1023,9 +1023,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             try {
                 // restore any saved settings
                 int alphas[] = new int[2];
-                final String sbConfig = Settings.System.getString(getActivity()
-                        .getContentResolver(),
-                        Settings.System.STATUS_BAR_ALPHA_CONFIG);
+		final String sbConfig = "";
+//                final String sbConfig = Settings.System.getString(getActivity()
+//                        .getContentResolver(),
+//                        Settings.System.STATUS_BAR_ALPHA_CONFIG);
                 if (sbConfig != null) {
                     String split[] = sbConfig.split(";");
                     alphas[0] = Integer.parseInt(split[0]);
@@ -1040,9 +1041,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                         mSeekBars[NAVBAR_ALPHA].setCurrentAlpha(alphas[0]);
                         mSeekBars[NAVBAR_KG_ALPHA].setCurrentAlpha(alphas[1]);
                     } else {
-                        final String navConfig = Settings.System.getString(getActivity()
-                                .getContentResolver(),
-                                Settings.System.NAVIGATION_BAR_ALPHA_CONFIG);
+			  final String navConfig ="";
+//                        final String navConfig = Settings.System.getString(getActivity()
+//                                .getContentResolver(),
+//                                Settings.System.NAVIGATION_BAR_ALPHA_CONFIG);
                         if (navConfig != null) {
                             split = navConfig.split(";");
                             alphas[0] = Integer.parseInt(split[0]);
@@ -1082,20 +1084,20 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     if (linkTransparencies) {
                         String config = mSeekBars[STATUSBAR_ALPHA].getCurrentAlpha() + ";" +
                                 mSeekBars[STATUSBAR_KG_ALPHA].getCurrentAlpha();
-                        Settings.System.putString(getActivity().getContentResolver(),
-                                Settings.System.STATUS_BAR_ALPHA_CONFIG, config);
-                        Settings.System.putString(getActivity().getContentResolver(),
-                                Settings.System.NAVIGATION_BAR_ALPHA_CONFIG, config);
+//                        Settings.System.putString(getActivity().getContentResolver(),
+//                                Settings.System.STATUS_BAR_ALPHA_CONFIG, config);
+//                        Settings.System.putString(getActivity().getContentResolver(),
+//                                Settings.System.NAVIGATION_BAR_ALPHA_CONFIG, config);
                     } else {
                         String sbConfig = mSeekBars[STATUSBAR_ALPHA].getCurrentAlpha() + ";" +
                                 mSeekBars[STATUSBAR_KG_ALPHA].getCurrentAlpha();
-                        Settings.System.putString(getActivity().getContentResolver(),
-                                Settings.System.STATUS_BAR_ALPHA_CONFIG, sbConfig);
+//                        Settings.System.putString(getActivity().getContentResolver(),
+//                                Settings.System.STATUS_BAR_ALPHA_CONFIG, sbConfig);
 
                         String nbConfig = mSeekBars[NAVBAR_ALPHA].getCurrentAlpha() + ";" +
                                 mSeekBars[NAVBAR_KG_ALPHA].getCurrentAlpha();
-                        Settings.System.putString(getActivity().getContentResolver(),
-                                Settings.System.NAVIGATION_BAR_ALPHA_CONFIG, nbConfig);
+//                        Settings.System.putString(getActivity().getContentResolver(),
+//                                Settings.System.NAVIGATION_BAR_ALPHA_CONFIG, nbConfig);
                     }
                 }
             });
@@ -1104,10 +1106,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         }
 
         private void resetSettings() {
-            Settings.System.putString(getActivity().getContentResolver(),
-                    Settings.System.STATUS_BAR_ALPHA_CONFIG, null);
-            Settings.System.putString(getActivity().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_ALPHA_CONFIG, null);
+//            Settings.System.putString(getActivity().getContentResolver(),
+//                    Settings.System.STATUS_BAR_ALPHA_CONFIG, null);
+//            Settings.System.putString(getActivity().getContentResolver(),
+//                    Settings.System.NAVIGATION_BAR_ALPHA_CONFIG, null);
         }
 
         private void updateToggleState() {
