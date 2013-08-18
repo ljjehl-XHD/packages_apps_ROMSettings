@@ -216,9 +216,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 Settings.System.STATUSBAR_NOTIF_COUNT, false));
                 
         mStatusBarIconOpacity = (ListPreference) findPreference(KEY_STATUS_BAR_ICON_OPACITY);
-//        int iconOpacity = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-//                Settings.System.STATUS_BAR_NOTIF_ICON_OPACITY, 140);
-//        mStatusBarIconOpacity.setValue(String.valueOf(iconOpacity));
+        int iconOpacity = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.STATUS_BAR_NOTIF_ICON_OPACITY, 140);
+        mStatusBarIconOpacity.setValue(String.valueOf(iconOpacity));
         mStatusBarIconOpacity.setOnPreferenceChangeListener(this);
 
         mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
@@ -239,10 +239,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mRecentKillAll.setChecked(Settings.System.getBoolean(cr,
                 Settings.System.RECENT_KILL_ALL_BUTTON, false));
                 
-        //mStatusBarHide = (CheckBoxPreference) findPreference(STATUSBAR_HIDDEN);
-        //mStatusBarHide.setChecked(Settings.System.getBoolean(cr,
-        //       Settings.System.STATUSBAR_HIDDEN, false));
-
         mRamBar = (CheckBoxPreference) findPreference(PREF_RAM_USAGE_BAR);
         mRamBar.setChecked(Settings.System.getBoolean(cr,
                 Settings.System.RAM_USAGE_BAR, false));
@@ -257,12 +253,12 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 Settings.System.SHOW_STATUSBAR_IME_SWITCHER, true));
 
 		mStatusbarSliderPreference = (CheckBoxPreference) findPreference(PREF_STATUSBAR_BRIGHTNESS);
-//        mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
-//                Settings.System.STATUSBAR_BRIGHTNESS_SLIDER, true));
+        mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.STATUSBAR_BRIGHTNESS_SLIDER, true));
                 
         mUseAltResolver = (CheckBoxPreference) findPreference(PREF_USE_ALT_RESOLVER);
-//        mUseAltResolver.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
-//                Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
+        mUseAltResolver.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
 
 		mHideExtras = (CheckBoxPreference) findPreference(PREF_HIDE_EXTRAS);
 //        mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
@@ -479,9 +475,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     isCheckBoxPrefernceChecked(preference));
             return true;
 		} else if (preference == mStatusbarSliderPreference) {
-//            Settings.System.putBoolean(getActivity().getContentResolver(),
-//                    Settings.System.STATUSBAR_BRIGHTNESS_SLIDER,
-//                    isCheckBoxPrefernceChecked(preference));
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_BRIGHTNESS_SLIDER,
+                    isCheckBoxPrefernceChecked(preference));
             return true;
 		} else if (preference == mShowWifiName) {
 //            Settings.System.putInt(getActivity().getContentResolver(),
@@ -498,20 +494,15 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 //                    Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
 //                    ((CheckBoxPreference) preference).isChecked());
             return true;
-        //} else if (preference == mStatusBarHide) {
-        //    boolean checked = ((CheckBoxPreference)preference).isChecked();
-        //    Settings.System.putBoolean(getActivity().getContentResolver(),
-        //            Settings.System.STATUSBAR_HIDDEN, checked ? true : false);
-        //    return true;
         } else if (preference.getKey().equals("transparency_dialog")) {
             // getFragmentManager().beginTransaction().add(new
             // TransparencyDialog(), null).commit();
             openTransparencyDialog();
             return true;
         } else if (preference == mUseAltResolver) {
-//            Settings.System.putBoolean(getActivity().getContentResolver(),
-//                    Settings.System.ACTIVITY_RESOLVER_USE_ALT,
-//                    ((CheckBoxPreference) preference).isChecked());
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.ACTIVITY_RESOLVER_USE_ALT,
+                    ((CheckBoxPreference) preference).isChecked());
             return true;
         } else if (preference == mSeeThrough) {
 //            Settings.System.putInt(getActivity().getContentResolver(),
@@ -561,8 +552,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             return true;
         } else if (preference == mStatusBarIconOpacity) {
             int iconOpacity = Integer.valueOf((String) newValue);
-//            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-//                    Settings.System.STATUS_BAR_NOTIF_ICON_OPACITY, iconOpacity);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.STATUS_BAR_NOTIF_ICON_OPACITY, iconOpacity);
             return true;
         }
         return false;
