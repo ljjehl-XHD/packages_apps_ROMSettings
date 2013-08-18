@@ -261,20 +261,20 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
 
 		mHideExtras = (CheckBoxPreference) findPreference(PREF_HIDE_EXTRAS);
-//        mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
-//        		Settings.System.HIDE_EXTRAS_SYSTEM_BAR, false));
+        mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+        		Settings.System.HIDE_EXTRAS_SYSTEM_BAR, false));
                         
         mLowBatteryWarning = (ListPreference) findPreference(KEY_LOW_BATTERY_WARNING_POLICY);
-//        int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
-//                                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, 0);
-//        mLowBatteryWarning.setValue(String.valueOf(lowBatteryWarning));
+        int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
+                                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, 0);
+        mLowBatteryWarning.setValue(String.valueOf(lowBatteryWarning));
         mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
         mLowBatteryWarning.setOnPreferenceChangeListener(this);
         
         mNotificationsBehavior = (ListPreference) findPreference(PREF_NOTIFICATION_BEHAVIOUR);
-//        int CurrentBehavior = Settings.System.getInt(getContentResolver(),
-//                Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
-//        mNotificationsBehavior.setValue(String.valueOf(CurrentBehavior));
+        int CurrentBehavior = Settings.System.getInt(getContentResolver(),
+                Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
+        mNotificationsBehavior.setValue(String.valueOf(CurrentBehavior));
         mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntry());
         mNotificationsBehavior.setOnPreferenceChangeListener(this);
                 
@@ -410,9 +410,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             DisableBootAnimation();
             return true;
         } else if (preference == mHideExtras) {
-//        	Settings.System.putBoolean(mContext.getContentResolver(),
-//        			Settings.System.HIDE_EXTRAS_SYSTEM_BAR,
-//        			((CheckBoxPreference) preference).isChecked());
+        	Settings.System.putBoolean(mContext.getContentResolver(),
+        			Settings.System.HIDE_EXTRAS_SYSTEM_BAR,
+        			((CheckBoxPreference) preference).isChecked());
 		} else if (preference == mShowActionOverflow) {
             boolean enabled = mShowActionOverflow.isChecked();
             Settings.System.putBoolean(getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON,
@@ -536,16 +536,16 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         } else if (preference == mLowBatteryWarning) {
             int lowBatteryWarning = Integer.valueOf((String) newValue);
             int index = mLowBatteryWarning.findIndexOfValue((String) newValue);
-//            Settings.System.putInt(getActivity().getContentResolver(),
-//                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY,
-//                    lowBatteryWarning);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY,
+                    lowBatteryWarning);
             mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntries()[index]);
             return true;
          } else if (preference == mNotificationsBehavior) {
             String val = (String) newValue;
-//            Settings.System.putInt(getContentResolver(),
-//                Settings.System.NOTIFICATIONS_BEHAVIOUR,
-//            Integer.valueOf(val));
+            Settings.System.putInt(getContentResolver(),
+                Settings.System.NOTIFICATIONS_BEHAVIOUR,
+            Integer.valueOf(val));
             int index = mNotificationsBehavior.findIndexOfValue(val);
             mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntries()[index]);
             Helpers.restartSystemUI();
