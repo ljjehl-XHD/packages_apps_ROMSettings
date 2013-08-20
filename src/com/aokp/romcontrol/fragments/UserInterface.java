@@ -261,8 +261,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
 
 		mHideExtras = (CheckBoxPreference) findPreference(PREF_HIDE_EXTRAS);
-        mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
-        		Settings.System.HIDE_EXTRAS_SYSTEM_BAR, false));
+//        mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+//        		Settings.System.HIDE_EXTRAS_SYSTEM_BAR, false));
                         
         mLowBatteryWarning = (ListPreference) findPreference(KEY_LOW_BATTERY_WARNING_POLICY);
         int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
@@ -410,9 +410,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             DisableBootAnimation();
             return true;
         } else if (preference == mHideExtras) {
-        	Settings.System.putBoolean(mContext.getContentResolver(),
-        			Settings.System.HIDE_EXTRAS_SYSTEM_BAR,
-        			((CheckBoxPreference) preference).isChecked());
+//        	Settings.System.putBoolean(mContext.getContentResolver(),
+//        			Settings.System.HIDE_EXTRAS_SYSTEM_BAR,
+//        			((CheckBoxPreference) preference).isChecked());
 		} else if (preference == mShowActionOverflow) {
             boolean enabled = mShowActionOverflow.isChecked();
             Settings.System.putBoolean(getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON,
