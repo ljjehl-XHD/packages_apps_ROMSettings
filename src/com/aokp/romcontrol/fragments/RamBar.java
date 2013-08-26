@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.carbon.settings.fragments;
+package com.aokp.romcontrol.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -33,14 +33,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.carbon.settings.R;
-import com.carbon.settings.SettingsPreferenceFragment;
-import com.carbon.settings.Utils;
+import com.aokp.romcontrol.R;
+import com.aokp.romcontrol.AOKPPreferenceFragment;
+import com.aokp.romcontrol.Utils;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 import java.util.Date;
 
-public class RamBar extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
+public class RamBar extends AOKPPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String TAG = "RamBar";
 
@@ -86,6 +86,7 @@ public class RamBar extends SettingsPreferenceFragment implements OnPreferenceCh
         mRamBarAppMemColor.setSummary(hexColor);
         mRamBarAppMemColor.setNewPreviewColor(intColor);
 
+
         mRamBarCacheMemColor = (ColorPickerPreference) findPreference(RAM_BAR_COLOR_CACHE_MEM);
         mRamBarCacheMemColor.setOnPreferenceChangeListener(this);
         intColor = Settings.System.getInt(getActivity().getContentResolver(),
@@ -94,6 +95,7 @@ public class RamBar extends SettingsPreferenceFragment implements OnPreferenceCh
         mRamBarCacheMemColor.setSummary(hexColor);
         mRamBarCacheMemColor.setNewPreviewColor(intColor);
 
+
         mRamBarTotalMemColor = (ColorPickerPreference) findPreference(RAM_BAR_COLOR_TOTAL_MEM);
         mRamBarTotalMemColor.setOnPreferenceChangeListener(this);
         intColor = Settings.System.getInt(getActivity().getContentResolver(),
@@ -101,6 +103,7 @@ public class RamBar extends SettingsPreferenceFragment implements OnPreferenceCh
         hexColor = String.format("#%08x", (0xffffffff & intColor));
         mRamBarTotalMemColor.setSummary(hexColor);
         mRamBarTotalMemColor.setNewPreviewColor(intColor);
+
 
         updateRamBarOptions();
         setHasOptionsMenu(true);

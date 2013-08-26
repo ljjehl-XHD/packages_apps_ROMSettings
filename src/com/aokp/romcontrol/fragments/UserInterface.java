@@ -270,9 +270,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
              Settings.System.HIDE_EXTRAS_SYSTEM_BAR, false));
 
-        mRamBar = (CheckBoxPreference) findPreference(PREF_RAM_USAGE_BAR);
-        mRamBar.setChecked(Settings.System.getBoolean(mContentResolver,
-                Settings.System.RAM_USAGE_BAR, false));
+        mRamBar = (CheckBoxPreference) findPreference(KEY_RECENTS_RAM_BAR);
+	updateRamBar();
 
         mDualpane = (CheckBoxPreference) findPreference(PREF_FORCE_DUAL_PANEL);
         mDualpane.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
@@ -377,7 +376,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     @Override
     public void onResume() {
         super.onResume();
-//        updateRamBar();
+        updateRamBar();
         if(mDisableBootAnimation != null) {
             if (mDisableBootAnimation.isChecked()) {
                 Resources res = mContext.getResources();
@@ -393,7 +392,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	@Override
      public void onPause() {
         super.onPause();
-//        updateRamBar();
+        updateRamBar();
      }
     
     /**
@@ -447,6 +446,15 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         } else {
             mCustomLabel.setSummary(mCustomLabelText);
         }
+    }
+
+    private void updateRamBar() {
+        int ramBarMode = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.RECENTS_RAM_BAR_MODE, 0);
+        if (ramBarMode != 0)
+            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_enabled));
+        else
+            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_disabled));
     }
     
     private void openTransparencyDialog() {
