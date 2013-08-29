@@ -44,13 +44,6 @@
         android:icon="@drawable/ic_settings_pie"
         android:summary="@string/header_summary_pie" />
 
-     <header
-        android:id="@+id/ribbon_targets"
-        android:fragment="com.aokp.romcontrol.fragments.RibbonTargets"
-        android:icon="@drawable/ic_rom_control_ribbon"
-        android:title="@string/ribbon_settings_title"
-        android:summary="@string/ribbon_settings_summary" />
-
     <header
         android:id="@+id/ribbon_targets"
         android:fragment="com.aokp.romcontrol.fragments.RibbonTargets"
