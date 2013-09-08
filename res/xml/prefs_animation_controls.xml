@@ -45,7 +45,7 @@
         <ListPreference
             android:key="wallpaper_intra_close"
             android:title="@string/wallpaper_intra_close_title" />
-            
+
         <com.aokp.romcontrol.widgets.AnimBarPreference
             android:key="animation_duration"
             android:title="@string/animation_duration_title" />
