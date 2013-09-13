@@ -90,6 +90,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements
     private Switch mLongPressStatus;
     private Switch mLockBatterySwitch;
     private Switch mLockRotateSwitch;
+    private Switch mLockVolControlSwitch;
     private Switch mLockVolWakeSwitch;
     private Switch mLockPageHintSwitch;
     private Switch mLockMinimizeChallangeSwitch;
@@ -103,6 +104,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements
     private TextView mLockTextColorText;
     private TextView mLockBatteryText;
     private TextView mLockRotateText;
+    private TextView mLockVolControlText; 
     private TextView mLockVolWakeText;
     private TextView mLockPageHintText;
     private TextView mLockMinimizeChallangeText;
@@ -264,6 +266,21 @@ public class Lockscreens extends AOKPPreferenceFragment implements
             }
         });
 
+        mLockVolControlText = ((TextView) getActivity().findViewById(  
+                R.id.lockscreen_vol_controls_id));  
+        mLockVolControlText.setOnClickListener(mLockVolControlTextListener);  
+        mLockVolControlSwitch = (Switch) getActivity().findViewById(  
+                R.id.lockscreen_vol_controls_switch);  
+        mLockVolControlSwitch  
+                .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {  
+                    @Override  
+                    public void onCheckedChanged(CompoundButton v, boolean checked) {  
+                        Settings.System.putBoolean(cr, Settings.System.VOLUME_MUSIC_CONTROLS,  
+                                checked);  
+                        updateSwitches();  
+                    }  
+                });  
+
         mLockVolWakeText = ((TextView) getActivity().findViewById(R.id.lockscreen_vol_wake_id));
         mLockVolWakeText.setOnClickListener(mLockVolWakeTextListener);
         mLockVolWakeSwitch = (Switch) getActivity().findViewById(R.id.lockscreen_vol_wake_switch);
@@ -424,6 +441,14 @@ public class Lockscreens extends AOKPPreferenceFragment implements
         }
     };
 
+    private TextView.OnClickListener mLockVolControlTextListener = new TextView.OnClickListener() {  
+        public void onClick(View v) {  
+            createMessage(  
+                    getResources().getString(R.string.volume_music_controls_title),  
+                    getResources().getString(R.string.volume_music_controls_summary));  
+        }  
+    };  
+
     private TextView.OnClickListener mLockVolWakeTextListener = new TextView.OnClickListener() {
         public void onClick(View v) {
             createMessage(
@@ -481,6 +506,8 @@ public class Lockscreens extends AOKPPreferenceFragment implements
                 Settings.System.LOCKSCREEN_BATTERY, false));
         mLockRotateSwitch.setChecked(Settings.System.getBoolean(cr,
                 Settings.System.LOCKSCREEN_AUTO_ROTATE, false));
+        mLockVolControlSwitch.setChecked(Settings.System.getBoolean(cr,  
+                Settings.System.VOLUME_MUSIC_CONTROLS, false));  
         mLockVolWakeSwitch.setChecked(Settings.System.getBoolean(cr,
                 Settings.System.VOLUME_WAKE_SCREEN, false));
         mLockAllWidgetsSwitch.setChecked(Settings.System.getBoolean(cr,
@@ -905,6 +932,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements
             mLongPressStatus.setVisibility(View.VISIBLE);
             mLockBatterySwitch.setVisibility(View.VISIBLE);
             mLockRotateSwitch.setVisibility(View.VISIBLE);
+            mLockVolControlSwitch.setVisibility(View.VISIBLE); 
             mLockVolWakeSwitch.setVisibility(View.VISIBLE);
             mLockPageHintSwitch.setVisibility(View.VISIBLE);
             mLockMinimizeChallangeSwitch.setVisibility(View.VISIBLE);
@@ -914,6 +942,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements
             mLongPressText.setVisibility(View.VISIBLE);
             mLockBatteryText.setVisibility(View.VISIBLE);
             mLockRotateText.setVisibility(View.VISIBLE);
+            mLockVolControlText.setVisibility(View.VISIBLE);  
             mLockVolWakeText.setVisibility(View.VISIBLE);
             mLockPageHintText.setVisibility(View.VISIBLE);
             mLockMinimizeChallangeText.setVisibility(View.VISIBLE);
@@ -929,6 +958,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements
             mLongPressStatus.setVisibility(View.GONE);
             mLockBatterySwitch.setVisibility(View.GONE);
             mLockRotateSwitch.setVisibility(View.GONE);
+            mLockVolControlSwitch.setVisibility(View.GONE);  
             mLockVolWakeSwitch.setVisibility(View.GONE);
             mLockPageHintSwitch.setVisibility(View.GONE);
             mLockMinimizeChallangeSwitch.setVisibility(View.GONE);
@@ -938,6 +968,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements
             mLongPressText.setVisibility(View.GONE);
             mLockBatteryText.setVisibility(View.GONE);
             mLockRotateText.setVisibility(View.GONE);
+            mLockVolControlText.setVisibility(View.GONE);  
             mLockVolWakeText.setVisibility(View.GONE);
             mLockPageHintText.setVisibility(View.GONE);
             mLockMinimizeChallangeText.setVisibility(View.GONE);
