@@ -107,7 +107,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	private static final String PREF_SHOW_OVERFLOW = "show_overflow";
     private static final String PREF_VIBRATE_NOTIF_EXPAND = "vibrate_notif_expand";
     private static final String PREF_RECENT_KILL_ALL = "recent_kill_all";
-    private static final String PREF_RAM_USAGE_BAR = "ram_usage_bar";
+    private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";
 	private static final String PREF_IME_SWITCHER = "ime_switcher";
 	private static final String PREF_STATUSBAR_BRIGHTNESS = "statusbar_brightness_slider";
 	private static final String PREF_HIDE_EXTRAS = "hide_extras";
@@ -143,7 +143,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	CheckBoxPreference mShowActionOverflow;
     CheckBoxPreference mVibrateOnExpand;
     CheckBoxPreference mRecentKillAll;
-    CheckBoxPreference mRamBar;
+	Preference mRamBar;
 	CheckBoxPreference mShowImeSwitcher;
 	CheckBoxPreference mStatusbarSliderPreference;
 	CheckBoxPreference mHideExtras;
@@ -239,10 +239,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mRecentKillAll = (CheckBoxPreference) findPreference(PREF_RECENT_KILL_ALL);
         mRecentKillAll.setChecked(Settings.System.getBoolean(cr,
                 Settings.System.RECENT_KILL_ALL_BUTTON, false));
-                
-        mRamBar = (CheckBoxPreference) findPreference(PREF_RAM_USAGE_BAR);
-        mRamBar.setChecked(Settings.System.getBoolean(cr,
-                Settings.System.RAM_USAGE_BAR, false));
 
 		mShowActionOverflow = (CheckBoxPreference) findPreference(PREF_SHOW_OVERFLOW);
         mShowActionOverflow.setChecked(Settings.System.getBoolean(getActivity().
@@ -260,6 +256,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mUseAltResolver = (CheckBoxPreference) findPreference(PREF_USE_ALT_RESOLVER);
         mUseAltResolver.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
+
+        mRamBar = findPreference(KEY_RECENTS_RAM_BAR);
+        updateRamBar();
 
 		mHideExtras = (CheckBoxPreference) findPreference(PREF_HIDE_EXTRAS);
 //        mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
@@ -324,6 +323,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     @Override
     public void onResume() {
         super.onResume();
+        updateRamBar();
         if(mDisableBootAnimation != null) {
             if (mDisableBootAnimation.isChecked()) {
                 Resources res = mContext.getResources();
@@ -335,6 +335,12 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             }
         }
     }
+
+	@Override
+     public void onPause() {
+        super.onPause();
+        updateRamBar();
+     }
     
     /**
      * Resets boot animation path. Essentially clears temporary-set boot animation
@@ -355,7 +361,16 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mCustomBootAnimation.setEnabled(!mDisableBootAnimation.isChecked());
         return bootAnimationExists;
     }
-    
+
+	private void updateRamBar() {
+        int ramBarMode = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.RECENTS_RAM_BAR_MODE, 0);
+        if (ramBarMode != 0)
+            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_enabled));
+        else
+            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_disabled));
+    }
+
     private void resetSwaggedOutBootAnimation() {
         if(new File("/data/local/bootanimation.user").exists()) {
             // we're using the alt boot animation

@@ -113,6 +113,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".fragments.RamBar"
+            android:label="@string/ram_bar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.carbon.settings.SHORTCUT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".fragments.NavRingTargets"
             android:label="@string/title_navring" >
             <intent-filter>

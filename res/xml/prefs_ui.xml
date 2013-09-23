@@ -95,10 +95,10 @@
             android:title="@string/recent_kill_all"
             android:summary="@string/recent_kill_all_summary" />
 
-        <CheckBoxPreference
-            android:key="ram_usage_bar"
-            android:title="@string/ram_bar"
-            android:summary="@string/ram_bar_summary" />
+        <PreferenceScreen
+            android:key="recents_ram_bar"
+            android:fragment="com.aokp.romcontrol.fragments.RamBar"
+            android:title="@string/ram_bar" />
 
        <!-- <CheckBoxPreference
             android:key="kill_app_longpress_back"
