@@ -106,7 +106,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 	private static final String PREF_SHOW_OVERFLOW = "show_overflow";
     private static final String PREF_VIBRATE_NOTIF_EXPAND = "vibrate_notif_expand";
-    private static final String PREF_RECENT_KILL_ALL = "recent_kill_all";
     private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";
 	private static final String PREF_IME_SWITCHER = "ime_switcher";
 	private static final String PREF_STATUSBAR_BRIGHTNESS = "statusbar_brightness_slider";
@@ -143,7 +142,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     TextView mError;
 	CheckBoxPreference mShowActionOverflow;
     CheckBoxPreference mVibrateOnExpand;
-    CheckBoxPreference mRecentKillAll;
 	Preference mRamBar;
     CheckBoxPreference mRecentGoog;
 	CheckBoxPreference mShowImeSwitcher;
@@ -237,10 +235,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         if (!hasVibration) {
             ((PreferenceGroup)findPreference("notification")).removePreference(mVibrateOnExpand);
         }
-
-        mRecentKillAll = (CheckBoxPreference) findPreference(PREF_RECENT_KILL_ALL);
-        mRecentKillAll.setChecked(Settings.System.getBoolean(cr,
-                Settings.System.RECENT_KILL_ALL_BUTTON, false));
 
         mRecentGoog = (CheckBoxPreference) findPreference(PREF_RECENT_GOOGLE_ASSIST);
         mRecentGoog.setChecked(Settings.System.getBoolean(mContentResolver,
@@ -485,11 +479,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     Settings.System.VIBRATE_NOTIF_EXPAND,
                     ((CheckBoxPreference) preference).isChecked());
             Helpers.restartSystemUI();
-            return true;
-        } else if (preference == mRecentKillAll) {
-            boolean checked = ((CheckBoxPreference)preference).isChecked();
-            Settings.System.putBoolean(getActivity().getContentResolver(),
-                    Settings.System.RECENT_KILL_ALL_BUTTON, checked ? true : false);
             return true;
 		} else if (preference == mShowImeSwitcher) {
             Settings.System.putBoolean(getActivity().getContentResolver(),

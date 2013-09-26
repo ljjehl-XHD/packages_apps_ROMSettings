@@ -90,10 +90,10 @@
         android:title="@string/navbar_cat">
 
 
-        <CheckBoxPreference
+      <!--  <CheckBoxPreference
             android:key="recent_kill_all"
             android:title="@string/recent_kill_all"
-            android:summary="@string/recent_kill_all_summary" />
+            android:summary="@string/recent_kill_all_summary" />-->
 
         <PreferenceScreen
             android:key="recents_ram_bar"
@@ -110,10 +110,10 @@
             android:title="@string/recent_google_assist_title"
             android:summary="@string/recent_google_assist_summary" />
             
-        <CheckBoxPreference
+       <!-- <CheckBoxPreference
             android:key="hide_extras"
             android:title= "@string/hide_extras"
-            android:summary= "@string/hide_extras_summary"
+            android:summary= "@string/hide_extras_summary" -->
             android:defaultValue="false" />
             
      </PreferenceCategory>
