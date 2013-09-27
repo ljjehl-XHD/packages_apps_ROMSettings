@@ -16,7 +16,7 @@ public class AnimBarPreference extends Preference
 
     public static int maximum = 100;
     public static int interval = 1;
-    
+
     private Context mContext;
 
     private TextView monitorBox;

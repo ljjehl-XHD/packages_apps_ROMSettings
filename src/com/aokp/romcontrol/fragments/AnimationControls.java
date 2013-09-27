@@ -31,8 +31,6 @@ public class AnimationControls extends AOKPPreferenceFragment implements OnPrefe
     private static final String WALLPAPER_CLOSE = "wallpaper_close";
     private static final String WALLPAPER_INTRA_OPEN = "wallpaper_intra_open";
     private static final String WALLPAPER_INTRA_CLOSE = "wallpaper_intra_close";
-    
-    
 
     ListPreference mActivityOpenPref;
     ListPreference mActivityClosePref;

@@ -121,6 +121,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PREF_NOTIFICATION_OPTIONS = "options";
     //private static final String STATUSBAR_HIDDEN = "statusbar_hidden";
     private static final String PREF_SEE_TRHOUGH = "see_through";
+    private static final CharSequence PREF_RECENT_GOOGLE_ASSIST = "recent_google_assist";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -142,6 +143,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	CheckBoxPreference mShowActionOverflow;
     CheckBoxPreference mVibrateOnExpand;
 	Preference mRamBar;
+    CheckBoxPreference mRecentGoog;
 	CheckBoxPreference mShowImeSwitcher;
 	CheckBoxPreference mStatusbarSliderPreference;
 	CheckBoxPreference mHideExtras;
@@ -233,6 +235,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         if (!hasVibration) {
             ((PreferenceGroup)findPreference("notification")).removePreference(mVibrateOnExpand);
         }
+
+        mRecentGoog = (CheckBoxPreference) findPreference(PREF_RECENT_GOOGLE_ASSIST);
+        mRecentGoog.setChecked(Settings.System.getBoolean(mContentResolver,
+                Settings.System.RECENT_GOOGLE_ASSIST, false));
 
 		mShowActionOverflow = (CheckBoxPreference) findPreference(PREF_SHOW_OVERFLOW);
         mShowActionOverflow.setChecked(Settings.System.getBoolean(getActivity().
@@ -488,6 +494,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
                     mShowWifiName.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mRecentGoog) {
+            boolean checked = ((TwoStatePreference) preference).isChecked();
+            Settings.System.putBoolean(mContentResolver,
+                    Settings.System.RECENT_GOOGLE_ASSIST, checked);
             return true;
         } else if (preference == mWakeUpWhenPluggedOrUnplugged) {
             Settings.System.putBoolean(getActivity().getContentResolver(),
