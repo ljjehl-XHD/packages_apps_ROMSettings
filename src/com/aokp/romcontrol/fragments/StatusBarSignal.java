@@ -87,12 +87,13 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         mMissedCallBreath.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.MISSED_CALL_BREATH, 0) == 1);
                
-        /*mStatusBarAutoHide = (CheckBoxPreference) findPreference(STATUS_BAR_AUTO_HIDE);
+        mStatusBarAutoHide = (CheckBoxPreference) findPreference(STATUS_BAR_AUTO_HIDE);
         mStatusBarAutoHide.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
               Settings.System.AUTO_HIDE_STATUSBAR, 0) == 1));
+
         mStatusBarTraffic = (CheckBoxPreference) findPreference(STATUS_BAR_TRAFFIC); 
         mStatusBarTraffic.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                Settings.System.STATUS_BAR_TRAFFIC, 0) == 0)); */
+                Settings.System.STATUS_BAR_TRAFFIC, 0) == 0));
 
 
     }
@@ -124,11 +125,11 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
             Settings.System.putInt(mContext.getContentResolver(), Settings.System.AUTO_HIDE_STATUSBAR,
             		mStatusBarAutoHide.isChecked() ? 1 : 0);
             return true;
-        /*} else if (preference == mStatusBarTraffic) {
+        } else if (preference == mStatusBarTraffic) {
             value = mStatusBarTraffic.isChecked();
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_TRAFFIC, value ? 1 : 0);
-            return true;*/
+            return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
