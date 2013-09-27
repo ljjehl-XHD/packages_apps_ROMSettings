@@ -37,12 +37,12 @@
         android:icon="@drawable/ic_rom_control_power_menu"
         android:summary="@string/header_summary_power_menu" />
 
-    <header
+  <!--  <header
         android:id="@+id/pie"
         android:fragment="com.aokp.romcontrol.fragments.Pie"
         android:title="@string/pie"
         android:icon="@drawable/ic_settings_pie"
-        android:summary="@string/header_summary_pie" />
+        android:summary="@string/header_summary_pie" /> -->
 
     <header
         android:id="@+id/ribbon_targets"
@@ -51,11 +51,11 @@
         android:title="@string/ribbon_settings_title"
         android:summary="@string/ribbon_settings_summary" />
         
-    <header
+  <!--  <header
         android:id="@+id/hardware_keys"
         android:fragment="com.aokp.romcontrol.fragments.HardwareKeys"
         android:icon="@drawable/ic_rom_control_hardware_keys"
-        android:title="@string/hardware_keys_title" />
+        android:title="@string/hardware_keys_title" /> -->
         
     <header
         android:id="@+id/keyboard"
