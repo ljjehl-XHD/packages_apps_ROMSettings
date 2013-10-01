@@ -9,10 +9,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
+import android.os.Vibrator;
+import android.os.UserHandle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
@@ -22,6 +25,7 @@ import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
 import com.aokp.romcontrol.service.FlipService;
 import com.aokp.romcontrol.service.HeadphoneService;
+import com.aokp.romcontrol.widgets.VibDurationPreference;
 
 
 public class Sound extends AOKPPreferenceFragment
@@ -36,7 +40,8 @@ public class Sound extends AOKPPreferenceFragment
     private static final String PREF_USER_DOWN_MS = "user_down_ms";
     private static final String PREF_PHONE_RING_SILENCE = "phone_ring_silence";
     private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
-
+    private static final String GENERIC_VIBRATE_INTENSITY = "generic_vibrate_intensity";
+    private static final String VIBRATE_CATEGORY = "vibrate_category";
 
     SharedPreferences prefs;
     CheckBoxPreference mEnableVolumeOptions;
@@ -47,7 +52,12 @@ public class Sound extends AOKPPreferenceFragment
     ListPreference mFlipScreenOff;
     ListPreference mPhoneSilent;
     ListPreference mAnnoyingNotifications;
+    VibDurationPreference mVibtationIntensity;
 
+    Vibrator vib;
+
+
+    private boolean mTactileFeedbackEnabled;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +66,7 @@ public class Sound extends AOKPPreferenceFragment
         addPreferencesFromResource(R.xml.prefs_sound);
         PreferenceManager.setDefaultValues(mContext, R.xml.prefs_sound, true);
         prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        vib = (Vibrator) mContext.getSystemService(mContext.VIBRATOR_SERVICE);
 
 
         mEnableVolumeOptions = (CheckBoxPreference) findPreference(PREF_ENABLE_VOLUME_OPTIONS);
@@ -85,6 +96,11 @@ public class Sound extends AOKPPreferenceFragment
         mPhoneSilent = (ListPreference) findPreference(PREF_PHONE_RING_SILENCE);
         mPhoneSilent.setValue((prefs.getString(PREF_PHONE_RING_SILENCE, "0")));
         mPhoneSilent.setOnPreferenceChangeListener(this);
+        final int vibIntensity = Settings.System.getInt(mContentRes,
+                Settings.System.GENERIC_VIBRATE_INTENSITY, 0);
+        mVibtationIntensity = (VibDurationPreference) findPreference(GENERIC_VIBRATE_INTENSITY);
+        mVibtationIntensity.setInitValue((int) (vibIntensity));
+        mVibtationIntensity.setOnPreferenceChangeListener(this);
 
 
         if (!hasPhoneAbility(mContext)) {
@@ -98,6 +114,10 @@ public class Sound extends AOKPPreferenceFragment
 
         if (FlipService.DEBUG)
             mContext.startService(new Intent(mContext, FlipService.class));
+
+        if (!hasVibration) {
+            getPreferenceScreen().removePreference(((PreferenceGroup) findPreference(VIBRATE_CATEGORY)));
+        }
     }
 
 
@@ -164,6 +184,15 @@ public class Sound extends AOKPPreferenceFragment
             int val = Integer.parseInt((String) newValue);
             if (val != 0) {
                 toggleFlipService();
+            }
+            return true;
+        } else if (preference == mVibtationIntensity) {
+            String newVal = (String) newValue;
+            int val = Integer.parseInt(newVal);
+            Settings.System.putInt(mContentRes,
+                    Settings.System.GENERIC_VIBRATE_INTENSITY, val);
+            if ((val % 5 == 0) && mTactileFeedbackEnabled && vib != null) {
+                vib.vibrate(10);
             }
             return true;
         }

@@ -691,6 +691,9 @@
         screen timeout time has been reached.**</string>
     <string name="summary_phone_flip_mode">Flip your phone to silent when receiving a call</string>
     <string name="title_phone_flip_mode">Phone Call Silence</string>
+    <string name="vibrations_category">Vibrations</string>
+    <string name="vibrate_intensity_title">Minimum vibration duration</string>
+    <string name="vibrate_intensity_def">Default</string>
 
     <!-- Lockscreen -->
     <string name="lock_widgets_short">Lockscreen Widgets</string>
