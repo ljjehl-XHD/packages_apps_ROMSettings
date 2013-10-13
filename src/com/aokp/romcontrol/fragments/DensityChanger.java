@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2013 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.aokp.romcontrol.fragments;
 
@@ -23,13 +38,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
+import com.aokp.romcontrol.SettingsPreferenceFragment;
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
 import com.aokp.romcontrol.util.CMDProcessor;
 import com.aokp.romcontrol.util.CMDProcessor.CommandResult;
-import com.aokp.romcontrol.util.Helpers;
 
-public class DensityChanger extends AOKPPreferenceFragment implements
+public class DensityChanger extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
     private static final String TAG = "DensityChanger";
@@ -45,8 +60,6 @@ public class DensityChanger extends AOKPPreferenceFragment implements
 
     private static final int DIALOG_DENSITY = 101;
     private static final int DIALOG_WARN_DENSITY = 102;
-
-    protected Context mContext;
 
     int newDensityValue;
 
@@ -65,8 +78,6 @@ public class DensityChanger extends AOKPPreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.lcd_density_setup);
-
-        mContext = getActivity().getApplicationContext();
 
         String currentDensity = SystemProperties.get("ro.sf.lcd_density");
         PreferenceScreen prefs = getPreferenceScreen();
@@ -227,13 +238,13 @@ public class DensityChanger extends AOKPPreferenceFragment implements
     }
 
     private boolean setLcdDensity(int newDensity) {
-        Helpers.getMount("rw");
+        CMDProcessor.getMount("rw");
         if (!(new CMDProcessor().su.runWaitFor("busybox sed -i 's|ro.sf.lcd_density=.*|"
                 + "ro.sf.lcd_density" + "=" + newDensity + "|' " + "/system/build.prop").success())) {
             showRootDeniedInfoDialog();
             return false;
         }
-        Helpers.getMount("ro");
+        CMDProcessor.getMount("ro");
         return true;
     }
 

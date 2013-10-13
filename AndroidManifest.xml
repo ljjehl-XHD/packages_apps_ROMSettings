@@ -53,6 +53,17 @@
                 <category android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".fragments.DensityChanger"
+            android:label="@string/lcd_density_wizard" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".fragments.TransparencyDialog"
             android:theme="@android:style/Theme.Dialog">
