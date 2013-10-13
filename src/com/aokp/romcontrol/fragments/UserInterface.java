@@ -257,8 +257,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mUseAltResolver.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
 
-        mRamBar = findPreference(KEY_RECENTS_RAM_BAR);
-        updateRamBar();
+//        mRamBar = findPreference(KEY_RECENTS_RAM_BAR);
+//        updateRamBar();
 
 		mHideExtras = (CheckBoxPreference) findPreference(PREF_HIDE_EXTRAS);
 //        mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
@@ -323,7 +323,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     @Override
     public void onResume() {
         super.onResume();
-        updateRamBar();
+//        updateRamBar();
         if(mDisableBootAnimation != null) {
             if (mDisableBootAnimation.isChecked()) {
                 Resources res = mContext.getResources();
@@ -339,7 +339,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	@Override
      public void onPause() {
         super.onPause();
-        updateRamBar();
+//        updateRamBar();
      }
     
     /**
@@ -362,14 +362,14 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         return bootAnimationExists;
     }
 
-	private void updateRamBar() {
-        int ramBarMode = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                Settings.System.RECENTS_RAM_BAR_MODE, 0);
-        if (ramBarMode != 0)
-            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_enabled));
-        else
-            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_disabled));
-    }
+//	private void updateRamBar() {
+//        int ramBarMode = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+//                Settings.System.RECENTS_RAM_BAR_MODE, 0);
+//        if (ramBarMode != 0)
+//            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_enabled));
+//        else
+//            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_disabled));
+//    }
 
     private void resetSwaggedOutBootAnimation() {
         if(new File("/data/local/bootanimation.user").exists()) {
