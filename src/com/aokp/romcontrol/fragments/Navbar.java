@@ -217,9 +217,9 @@ public class Navbar extends AOKPPreferenceFragment implements
         mNavigationBarColor = (ColorPickerPreference) findPreference(PREF_NAV_COLOR);
         mNavigationBarColor.setOnPreferenceChangeListener(this);
 
-        mColorizeAllIcons = (CheckBoxPreference) findPreference("navigation_bar_allcolor");
-        mColorizeAllIcons.setChecked(Settings.System.getBoolean(mContentRes,
-                Settings.System.NAVIGATION_BAR_ALLCOLOR, false));
+//        mColorizeAllIcons = (CheckBoxPreference) findPreference("navigation_bar_allcolor");
+//        mColorizeAllIcons.setChecked(Settings.System.getBoolean(mContentRes,
+//                Settings.System.NAVIGATION_BAR_ALLCOLOR, false));
 
         mNavigationBarGlowColor = (ColorPickerPreference) findPreference(PREF_NAV_GLOW_COLOR);
         mNavigationBarGlowColor.setOnPreferenceChangeListener(this);
@@ -378,10 +378,10 @@ public class Navbar extends AOKPPreferenceFragment implements
                     ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
             Helpers.restartSystemUI();
             return true;
-        } else if (preference == mColorizeAllIcons) {
-            Settings.System.putBoolean(mContentRes,
-                    Settings.System.NAVIGATION_BAR_ALLCOLOR,
-                    ((CheckBoxPreference) preference).isChecked() ? true : false);
+//        } else if (preference == mColorizeAllIcons) {
+//            Settings.System.putBoolean(mContentRes,
+//                    Settings.System.NAVIGATION_BAR_ALLCOLOR,
+//                    ((CheckBoxPreference) preference).isChecked() ? true : false);
         } else if (preference == mNavBarHideEnable) {
             Settings.System.putBoolean(mContentRes,
                     Settings.System.NAV_HIDE_ENABLE,
