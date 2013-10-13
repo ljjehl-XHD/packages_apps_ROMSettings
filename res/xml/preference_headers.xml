@@ -37,12 +37,12 @@
         android:icon="@drawable/ic_rom_control_power_menu"
         android:summary="@string/header_summary_power_menu" />
 
-  <!--  <header
-        android:id="@+id/pie"
-        android:fragment="com.aokp.romcontrol.fragments.Pie"
-        android:title="@string/pie"
-        android:icon="@drawable/ic_settings_pie"
-        android:summary="@string/header_summary_pie" /> -->
+    <!-- Pie controls -->
+    <header
+        android:id="@+id/pie_controls"
+        android:fragment="com.aokp.romcontrol.fragments.pie.PieTab"
+        android:title="@string/pie_controls_title"
+        android:icon="@drawable/ic_settings_pie" />
 
     <header
         android:id="@+id/ribbon_targets"

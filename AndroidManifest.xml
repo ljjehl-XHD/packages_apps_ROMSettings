@@ -46,6 +46,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".fragments.pie.PieTab"
+            android:label="@string/pie_controls_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".fragments.TransparencyDialog"
             android:theme="@android:style/Theme.Dialog">
         </activity>
@@ -258,6 +267,14 @@
             </intent-filter>
             <meta-data android:name="com.aokp.romcontrol.FRAGMENT_CLASS"
                 android:value="com.aokp.romcontrol.fragments.NotificationShortcuts" />
+        </activity>
+
+        <activity
+            android:name=".fragments.DensityChanger"
+            android:label="@string/lcd_density_wizard" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
         </activity>
 
         <!-- vibration manager -->

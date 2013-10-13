@@ -37,4 +37,10 @@
         <item name="android:background">@drawable/vib_button</item>
     </style>
 
+    <style name="TextAppearance.PagerTabs" parent="@android:style/TextAppearance.DeviceDefault.Small">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
