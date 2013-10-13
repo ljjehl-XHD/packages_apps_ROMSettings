@@ -269,6 +269,14 @@
                 android:value="com.aokp.romcontrol.fragments.NotificationShortcuts" />
         </activity>
 
+        <activity
+            android:name=".fragments.DensityChanger"
+            android:label="@string/lcd_density_wizard" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
         <!-- vibration manager -->
         <activity
             android:name=".fragments.Vibrations"
