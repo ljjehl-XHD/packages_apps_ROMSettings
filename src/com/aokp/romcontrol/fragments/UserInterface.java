@@ -281,9 +281,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mUseAltResolver.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.ACTIVITY_RESOLVER_USE_ALT, false));
 
-//        mRamBar = findPreference(KEY_RECENTS_RAM_BAR);
-//        updateRamBar();
-                        
         mLowBatteryWarning = (ListPreference) findPreference(KEY_LOW_BATTERY_WARNING_POLICY);
         int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
                                     Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, 0);

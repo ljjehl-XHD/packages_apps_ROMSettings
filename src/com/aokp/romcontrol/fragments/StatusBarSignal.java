@@ -38,7 +38,7 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
     CheckBoxPreference mMMSBreath;
     CheckBoxPreference mMissedCallBreath;
     CheckBoxPreference mStatusBarAutoHide;
-
+    CheckBoxPreference mShow4gForLte;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,6 +95,13 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         mStatusBarTraffic.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.STATUS_BAR_TRAFFIC, 0) == 0));
 
+        boolean check4gByDefault = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_show4GForLTE);
+        mShow4gForLte = (CheckBoxPreference)findPreference("show_4g_for_lte");
+        mShow4gForLte.setChecked(Settings.System.getBoolean(mContentRes,
+                Settings.System.STATUSBAR_SIGNAL_SHOW_4G_FOR_LTE, check4gByDefault));
+
+        
 
     }
 
@@ -129,6 +136,10 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
             value = mStatusBarTraffic.isChecked();
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_TRAFFIC, value ? 1 : 0);
+            return true;
+        } else if (preference == mShow4gForLte) {
+            Settings.System.putBoolean(mContentRes,
+                    Settings.System.STATUSBAR_SIGNAL_SHOW_4G_FOR_LTE, mShow4gForLte.isChecked());
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
