@@ -238,9 +238,14 @@
     <string name="notification_behaviour_title">Notification behavior</string>
     <string name="status_bar_icon_opacity">Notification icon opacity</string>
     <string name="status_bar_icon_opacity_summary">Sets opacity of status bar notification icons</string>
+    <string name="longpress_to_kill">Hardware Back-to-kill</string>
+    <string name="longpress_to_kill_summary">Holding the hardware Back button will kill the activity in the foreground
+    </string>
 
     <!-- LCD Density -->
     <string name="lcd_density_title">LCD Density</string>
+    <string name="su_dialog_error_title">Warning</string>
+    <string name="su_dialog_error_message">An error occurred.\n\nPlease check for root access. To activate go into superuser settings and enable root access.</string>
     <string name="lcd_density_summary">unknown</string>
     <string name="current_lcd_density">"Current LCD Density: "</string>
     <string name="lcd_density_wizard">LCD Density Wizard</string>

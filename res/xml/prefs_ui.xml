@@ -100,11 +100,6 @@
             android:fragment="com.aokp.romcontrol.fragments.RamBar"
             android:title="@string/ram_bar" />
 
-       <!-- <CheckBoxPreference
-            android:key="kill_app_longpress_back"
-            android:title="@string/kill_app_longpress_back"
-            android:summary="@string/kill_app_longpress_back_summary" /> -->
-
         <ListPreference
             android:key="user_mode_ui"
             android:title="@string/user_mode_ui"
@@ -139,8 +134,13 @@
      <PreferenceCategory
             android:key="misc"
             android:title="@string/misc_short">
-            
-     <CheckBoxPreference
+
+        <CheckBoxPreference
+            android:key="longpress_to_kill"
+            android:title="@string/longpress_to_kill"
+            android:summary="@string/longpress_to_kill_summary" />
+
+        <CheckBoxPreference
             android:key="system_power_crt_screen_off"
             android:summary="@string/system_power_crt_screen_off_summary"
             android:title="@string/system_power_crt_screen_off_title" />
