@@ -165,6 +165,7 @@
     <string name="navbar_cat">NavBar</string>
     <string name="notification_cat">Notification</string>
     <string name="tabletUI_cat">Tablet UI</string>
+    <string name="recents_cat">Recents</string>
     <string name="enable_volume_options">Enable Volume Panel</string>
     <string name="status_bar_notif_count_title">Show notification count</string>
     <string name="status_bar_notif_count_summary">Display number of pending notifications on the status bar</string>
@@ -192,7 +193,7 @@
     <string name="rotate_270_title">Allow 270 degree rotation</string>
     <string name="rotate_270_summary">Allow your device to rotate to right side!</string>
     <string name="recent_kill_all">Enable kill-all-button</string>
-    <string name="recent_kill_all_summary">Displays a button to kill all apps on recents window</string>
+    <string name="recent_kill_all_summary">Displays a button to kill all apps on recents window (Long press to clear cache)</string>
     <string name="kill_app_longpress_back">Hold back to kill</string>
     <string name="kill_app_longpress_back_summary">Holding back will kill the current activity</string>
     <string name="recent_google_assist_title">Enable Google Now button</string>
@@ -1582,6 +1583,7 @@
 
     <!-- Recents Ram Bar -->
     <string name="ram_bar">Recents RAM bar</string>
+    <string name="ram_bar_summary">Shows RAM usage in the Recent Apps window</string>
     <string name="ram_bar_note_title">Note</string>
     <string name="ram_bar_note_summary">This rambar shows how android is really using your available ram. Please note that having apps open in the background and cached helps for your device to open your apps faster. For further explanations on how android memory (RAM) managment works, please follow the help button in the menu.</string>
     <string name="ram_bar_mode_title">Recents RAM bar mode</string>

@@ -87,18 +87,29 @@
 
     <PreferenceCategory
         android:key="navbar"
-        android:title="@string/navbar_cat">
+        android:title="@string/recents_cat">
 
 
-      <!--  <CheckBoxPreference
+        <CheckBoxPreference
             android:key="recent_kill_all"
             android:title="@string/recent_kill_all"
-            android:summary="@string/recent_kill_all_summary" />-->
+            android:summary="@string/recent_kill_all_summary" />
 
-        <PreferenceScreen
-            android:key="recents_ram_bar"
-            android:fragment="com.aokp.romcontrol.fragments.RamBar"
-            android:title="@string/ram_bar" />
+        <CheckBoxPreference
+            android:key="ram_usage_bar"
+            android:title="@string/ram_bar"
+            android:summary="@string/ram_bar_summary" />
+
+        <CheckBoxPreference
+            android:key="recent_google_assist"
+            android:title="@string/recent_google_assist_title"
+            android:summary="@string/recent_google_assist_summary" />
+
+     </PreferenceCategory>
+
+     <PreferenceCategory
+            android:key="tabletUI"
+            android:title="@string/tabletUI_cat">
 
         <ListPreference
             android:key="user_mode_ui"
@@ -107,29 +118,25 @@
             android:entries="@array/user_mode_ui_entries"
             android:entryValues="@array/user_mode_ui_values" />
 
-        <CheckBoxPreference
-            android:key="force_dualpanel"
-            android:title="@string/multipane_ui"
-            android:summary="@string/multipane_ui_summary"
-            android:defaultValue="false" />
-
         <Preference
             android:key="lcd_density_setup"
             android:title="@string/lcd_density_title"
             android:summary="@string/lcd_density_summary" />
 
         <CheckBoxPreference
-            android:key="recent_google_assist"
-            android:title="@string/recent_google_assist_title"
-            android:summary="@string/recent_google_assist_summary" />
-            
-        <CheckBoxPreference
             android:key="hide_extras"
             android:title= "@string/hide_extras"
             android:summary= "@string/hide_extras_summary"
             android:defaultValue="false" />
-            
-     </PreferenceCategory>
+
+
+        <CheckBoxPreference
+            android:key="force_dualpanel"
+            android:title="@string/multipane_ui"
+            android:summary="@string/multipane_ui_summary"
+            android:defaultValue="false" />
+
+        </PreferenceCategory>
 
      <PreferenceCategory
             android:key="misc"
