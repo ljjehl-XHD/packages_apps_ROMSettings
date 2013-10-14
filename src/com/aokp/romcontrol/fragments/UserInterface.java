@@ -124,6 +124,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final CharSequence PREF_RECENT_GOOGLE_ASSIST = "recent_google_assist";
     private static final String PREF_USER_MODE_UI = "user_mode_ui";
     private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
+    private static final CharSequence PREF_LONGPRESS_TO_KILL = "longpress_to_kill";
+    private static final CharSequence PREF_MISC = "misc";
+    private static final CharSequence PREF_RECENT_KILL_ALL = "recent_kill_all";
+    private static final CharSequence PREF_RAM_USAGE_BAR = "ram_usage_bar";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
@@ -144,7 +148,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     TextView mError;
 	CheckBoxPreference mShowActionOverflow;
     CheckBoxPreference mVibrateOnExpand;
-	Preference mRamBar;
     CheckBoxPreference mRecentGoog;
 	CheckBoxPreference mShowImeSwitcher;
 	CheckBoxPreference mStatusbarSliderPreference;
@@ -163,6 +166,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     ListPreference mUserModeUI;
     CheckBoxPreference mDualpane;
     Preference mLcdDensity;
+    CheckBoxPreference mLongPressToKill;
+    CheckBoxPreference mRecentKillAll;
+    CheckBoxPreference mRamBar;
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -255,6 +261,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
              Settings.System.HIDE_EXTRAS_SYSTEM_BAR, false));
 
+        mRamBar = (CheckBoxPreference) findPreference(PREF_RAM_USAGE_BAR);
+        mRamBar.setChecked(Settings.System.getBoolean(mContentResolver,
+                Settings.System.RAM_USAGE_BAR, false));
+
         mDualpane = (CheckBoxPreference) findPreference(PREF_FORCE_DUAL_PANEL);
         mDualpane.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                         Settings.System.FORCE_DUAL_PANEL, getResources().getBoolean(
@@ -263,6 +273,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mRecentGoog = (CheckBoxPreference) findPreference(PREF_RECENT_GOOGLE_ASSIST);
         mRecentGoog.setChecked(Settings.System.getBoolean(mContentResolver,
                 Settings.System.RECENT_GOOGLE_ASSIST, false));
+
+        mRecentKillAll = (CheckBoxPreference) findPreference(PREF_RECENT_KILL_ALL);
+        mRecentKillAll.setChecked(Settings.System.getBoolean(mContentResolver,
+                Settings.System.RECENT_KILL_ALL_BUTTON, false));
 
 		mShowActionOverflow = (CheckBoxPreference) findPreference(PREF_SHOW_OVERFLOW);
         mShowActionOverflow.setChecked(Settings.System.getBoolean(getActivity().
@@ -305,14 +319,18 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             ((PreferenceGroup) findPreference("misc")).removePreference(mWakeUpWhenPluggedOrUnplugged);
         }
 
+        mLongPressToKill = (CheckBoxPreference) findPreference(PREF_LONGPRESS_TO_KILL);
+        mLongPressToKill.setChecked(Settings.System.getInt(mContentResolver,
+                Settings.System.KILL_APP_LONGPRESS_BACK, 0) == 1);
+
         mLcdDensity = findPreference("lcd_density_setup");
+        mLcdDensity.setOnPreferenceChangeListener(this);
         String currentProperty = SystemProperties.get("ro.sf.lcd_density");
         try {
             newDensityValue = Integer.parseInt(currentProperty);
         } catch (Exception e) {
-            getPreferenceScreen().removePreference(mLcdDensity);
+            prefSet.removePreference(mLcdDensity);
         }
-
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
 
         // respect device default configuration
@@ -328,7 +346,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 electronBeamFadesConfig ? 0 : 1) == 1;
 
         mCrtOff = (CheckBoxPreference) findPreference(PREF_POWER_CRT_SCREEN_OFF);
-       mCrtOff.setChecked(isCrtOffChecked);
+        mCrtOff.setChecked(isCrtOffChecked);
         mCrtOff.setOnPreferenceChangeListener(this);
 
         mCrtOn = (CheckBoxPreference) findPreference(PREF_POWER_CRT_SCREEN_ON);
@@ -507,6 +525,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     ((CheckBoxPreference) preference).isChecked());
             Helpers.restartSystemUI();
             return true;
+        } else if (preference == mLongPressToKill) {
+            boolean checked = ((TwoStatePreference) preference).isChecked();
+            Settings.System.putBoolean(mContentResolver,
+                    Settings.System.KILL_APP_LONGPRESS_BACK, checked);
+            return true;
 		} else if (preference == mShowImeSwitcher) {
             Settings.System.putBoolean(getActivity().getContentResolver(),
                     Settings.System.SHOW_STATUSBAR_IME_SWITCHER,
@@ -535,6 +558,16 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             boolean checked = ((TwoStatePreference) preference).isChecked();
             Settings.System.putBoolean(mContentResolver,
                     Settings.System.RECENT_GOOGLE_ASSIST, checked);
+            return true;
+        } else if (preference == mRecentKillAll) {
+            boolean checked = ((TwoStatePreference) preference).isChecked();
+            Settings.System.putBoolean(mContentResolver,
+                    Settings.System.RECENT_KILL_ALL_BUTTON, checked);
+            return true;
+        } else if (preference == mRamBar) {
+            boolean checked = ((TwoStatePreference) preference).isChecked();
+            Settings.System.putBoolean(mContentResolver,
+                    Settings.System.RAM_USAGE_BAR, checked);
             return true;
         } else if (preference == mWakeUpWhenPluggedOrUnplugged) {
             Settings.System.putBoolean(getActivity().getContentResolver(),
