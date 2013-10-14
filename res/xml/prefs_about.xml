@@ -37,11 +37,6 @@
 			android:title="TheBr0ken"
 			aokp:nameDev="TheBr0ken"
 			aokp:twitterHandle="TheBr0ken" />
-
-		<com.aokp.romcontrol.widgets.DeveloperPreference
-			android:title="pr0xy man1Ac"
-			aokp:nameDev="pr0xy man1Ac"
-			aokp:twitterHandle="tr0nz420" />
 			
 		<com.aokp.romcontrol.widgets.DeveloperPreference
 			android:title="PCarenza"
