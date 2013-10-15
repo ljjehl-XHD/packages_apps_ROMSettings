@@ -167,6 +167,8 @@
     <string name="tabletUI_cat">Tablet UI</string>
     <string name="recents_cat">Recents</string>
     <string name="enable_volume_options">Enable Volume Panel</string>
+    <string name="status_bar_transparent_on_keyguard_title">Translucent lockscreen status bar</string>
+    <string name="status_bar_transparent_on_keyguard_summary">Makes the status bar translucent on the lockscreen</string>
     <string name="status_bar_notif_count_title">Show notification count</string>
     <string name="status_bar_notif_count_summary">Display number of pending notifications on the status bar</string>
     <string name="vibrate_notif_expand_title">Vibrate on expand</string>

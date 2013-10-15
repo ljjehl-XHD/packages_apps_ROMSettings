@@ -104,6 +104,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final CharSequence PREF_270 = "rotate_270";
     private static final String PREF_STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+    private static final String STATUS_BAR_TRANSPARENT_ON_KEYGUARD = "status_bar_transparent_on_keyguard";
 	private static final String PREF_SHOW_OVERFLOW = "show_overflow";
     private static final String PREF_VIBRATE_NOTIF_EXPAND = "vibrate_notif_expand";
     private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";
@@ -153,6 +154,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	CheckBoxPreference mStatusbarSliderPreference;
 	CheckBoxPreference mHideExtras;
     CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
+    CheckBoxPreference mStatusBarTransparentOnKeyguard;
+
     CheckBoxPreference mCrtOff;
     CheckBoxPreference mCrtOn;
     ListPreference mLowBatteryWarning;
@@ -235,6 +238,12 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 Settings.System.STATUS_BAR_NOTIF_ICON_OPACITY, 140);
         mStatusBarIconOpacity.setValue(String.valueOf(iconOpacity));
         mStatusBarIconOpacity.setOnPreferenceChangeListener(this);
+
+        mStatusBarTransparentOnKeyguard = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_TRANSPARENT_ON_KEYGUARD);
+        mStatusBarTransparentOnKeyguard.setChecked(Settings.System.getInt(mContentResolver,
+                Settings.System.STATUS_BAR_TRANSPARENT_ON_KEYGUARD, 0) == 1);
+        mStatusBarTransparentOnKeyguard.setOnPreferenceChangeListener(this);
+
 
         mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
 
@@ -618,6 +627,9 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     Settings.System.SYSTEM_POWER_ENABLE_CRT_ON,
                     ((Boolean) newValue).booleanValue() ? 1 : 0);
             return true;
+        } else if (preference == mStatusBarTransparentOnKeyguard) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(mContext.getContentResolver(), Settings.System.STATUS_BAR_TRANSPARENT_ON_KEYGUARD, value ? 1 : 0);
         } else if (preference == mLowBatteryWarning) {
             int lowBatteryWarning = Integer.valueOf((String) newValue);
             int index = mLowBatteryWarning.findIndexOfValue((String) newValue);
