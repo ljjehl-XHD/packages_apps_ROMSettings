@@ -108,6 +108,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	private static final String PREF_SHOW_OVERFLOW = "show_overflow";
     private static final String PREF_VIBRATE_NOTIF_EXPAND = "vibrate_notif_expand";
     private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";
+    private static final String KEY_CLEAR_RECENTS_POSITION = "clear_recents_position";
 	private static final String PREF_IME_SWITCHER = "ime_switcher";
 	private static final String PREF_STATUSBAR_BRIGHTNESS = "statusbar_brightness_slider";
 	private static final String PREF_HIDE_EXTRAS = "hide_extras";
@@ -122,7 +123,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PREF_NOTIFICATION_OPTIONS = "options";
     //private static final String STATUSBAR_HIDDEN = "statusbar_hidden";
     private static final String PREF_SEE_TRHOUGH = "see_through";
-    private static final CharSequence PREF_RECENT_GOOGLE_ASSIST = "recent_google_assist";
+    private static final String KEY_RECENTS_ASSIST = "recents_target_assist";
     private static final String PREF_USER_MODE_UI = "user_mode_ui";
     private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
     private static final CharSequence PREF_LONGPRESS_TO_KILL = "longpress_to_kill";
@@ -149,7 +150,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     TextView mError;
 	CheckBoxPreference mShowActionOverflow;
     CheckBoxPreference mVibrateOnExpand;
-    CheckBoxPreference mRecentGoog;
+//    CheckBoxPreference mRecentGoog;
+    CheckBoxPreference mShowAssistButton;
 	CheckBoxPreference mShowImeSwitcher;
 	CheckBoxPreference mStatusbarSliderPreference;
 	CheckBoxPreference mHideExtras;
@@ -171,7 +173,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     Preference mLcdDensity;
     CheckBoxPreference mLongPressToKill;
     CheckBoxPreference mRecentKillAll;
-    CheckBoxPreference mRamBar;
+    ListPreference mClearPosition;
+
 
     private AnimationDrawable mAnimationPart1;
     private AnimationDrawable mAnimationPart2;
@@ -270,21 +273,21 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mHideExtras.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
              Settings.System.HIDE_EXTRAS_SYSTEM_BAR, false));
 
-        mRamBar = (CheckBoxPreference) findPreference(KEY_RECENTS_RAM_BAR);
-	updateRamBar();
+        mClearPosition = (ListPreference) findPreference(KEY_CLEAR_RECENTS_POSITION);
+        int ClearSide = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.CLEAR_RECENTS_POSITION, 1);
+        mClearPosition.setValue(String.valueOf(ClearSide));
+        mClearPosition.setSummary(mClearPosition.getEntry());
+        mClearPosition.setOnPreferenceChangeListener(this);
 
         mDualpane = (CheckBoxPreference) findPreference(PREF_FORCE_DUAL_PANEL);
         mDualpane.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                         Settings.System.FORCE_DUAL_PANEL, getResources().getBoolean(
                         com.android.internal.R.bool.preferences_prefer_dual_pane)));
 
-        mRecentGoog = (CheckBoxPreference) findPreference(PREF_RECENT_GOOGLE_ASSIST);
-        mRecentGoog.setChecked(Settings.System.getBoolean(mContentResolver,
-                Settings.System.RECENT_GOOGLE_ASSIST, false));
-
-        mRecentKillAll = (CheckBoxPreference) findPreference(PREF_RECENT_KILL_ALL);
-        mRecentKillAll.setChecked(Settings.System.getBoolean(mContentResolver,
-                Settings.System.RECENT_KILL_ALL_BUTTON, false));
+        mShowAssistButton = (CheckBoxPreference) findPreference(KEY_RECENTS_ASSIST);
+        mShowAssistButton.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.RECENTS_TARGET_ASSIST, 0)==1);
 
 		mShowActionOverflow = (CheckBoxPreference) findPreference(PREF_SHOW_OVERFLOW);
         mShowActionOverflow.setChecked(Settings.System.getBoolean(getActivity().
@@ -376,7 +379,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     @Override
     public void onResume() {
         super.onResume();
-        updateRamBar();
+//        updateRamBar();
         if(mDisableBootAnimation != null) {
             if (mDisableBootAnimation.isChecked()) {
                 Resources res = mContext.getResources();
@@ -392,7 +395,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	@Override
      public void onPause() {
         super.onPause();
-        updateRamBar();
+//        updateRamBar();
      }
     
     /**
@@ -414,15 +417,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mCustomBootAnimation.setEnabled(!mDisableBootAnimation.isChecked());
         return bootAnimationExists;
     }
-
-//	private void updateRamBar() {
-//        int ramBarMode = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-//                Settings.System.RECENTS_RAM_BAR_MODE, 0);
-//        if (ramBarMode != 0)
-//            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_enabled));
-//        else
-//            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_disabled));
-//    }
 
     private void resetSwaggedOutBootAnimation() {
         if(new File("/data/local/bootanimation.user").exists()) {
@@ -448,15 +442,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         }
     }
 
-    private void updateRamBar() {
-        int ramBarMode = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                Settings.System.RECENTS_RAM_BAR_MODE, 0);
-        if (ramBarMode != 0)
-            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_enabled));
-        else
-            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_disabled));
-    }
-    
     private void openTransparencyDialog() {
         getFragmentManager().beginTransaction().add(new AdvancedTransparencyDialog(), null)
                 .commit();
@@ -571,20 +556,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
                     mShowWifiName.isChecked() ? 1 : 0);
             return true;
-        } else if (preference == mRecentGoog) {
-            boolean checked = ((TwoStatePreference) preference).isChecked();
-            Settings.System.putBoolean(mContentResolver,
-                    Settings.System.RECENT_GOOGLE_ASSIST, checked);
-            return true;
-        } else if (preference == mRecentKillAll) {
-            boolean checked = ((TwoStatePreference) preference).isChecked();
-            Settings.System.putBoolean(mContentResolver,
-                    Settings.System.RECENT_KILL_ALL_BUTTON, checked);
-            return true;
-        } else if (preference == mRamBar) {
-            boolean checked = ((TwoStatePreference) preference).isChecked();
-            Settings.System.putBoolean(mContentResolver,
-                    Settings.System.RAM_USAGE_BAR, checked);
+        } else if (preference == mShowAssistButton) {
+            Settings.System.putInt(mContentResolver,
+                    Settings.System.RECENTS_TARGET_ASSIST, 
+		mShowAssistButton.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mWakeUpWhenPluggedOrUnplugged) {
             Settings.System.putBoolean(getActivity().getContentResolver(),
@@ -654,6 +629,13 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             int index = mNotificationsBehavior.findIndexOfValue(val);
             mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntries()[index]);
             Helpers.restartSystemUI();
+            return true;
+        } else if (preference == mClearPosition) {
+            int position = Integer.valueOf((String) newValue);
+            int index = mClearPosition.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.CLEAR_RECENTS_POSITION, position);
+            mClearPosition.setSummary(mClearPosition.getEntries()[index]);
             return true;
         } else if (preference == mStatusBarIconOpacity) {
             int iconOpacity = Integer.valueOf((String) newValue);

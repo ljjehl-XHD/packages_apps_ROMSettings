@@ -2,7 +2,6 @@
     package="com.aokp.romcontrol" >
 
     <original-package android:name="com.aokp.romcontrol" />
-
     <uses-permission android:name="android.permission.REBOOT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -122,16 +121,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragments.RamBar"
-            android:label="@string/ram_bar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.carbon.settings.SHORTCUT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".fragments.NavRingTargets"
             android:label="@string/title_navring" >
             <intent-filter>
@@ -154,14 +143,16 @@
             android:label="@string/title_led" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+            </intent-filter>
+        </activity>
+	<activity
             android:name=".fragments.RamBar"
-            android:label="@string/ram_bar">
+            android:label="@string/ram_bar_header">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.carbon.settings.SHORTCUT" />
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
         <activity

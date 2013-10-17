@@ -96,18 +96,20 @@
         android:title="@string/recents_cat">
 
 
-        <CheckBoxPreference
-            android:key="recent_kill_all"
-            android:title="@string/recent_kill_all"
-            android:summary="@string/recent_kill_all_summary" />
+        <ListPreference
+            android:key="clear_recents_position"
+        android:title="@string/clear_recents_position_title"
+        android:entries="@array/clear_recents_position_entries"
+        android:entryValues="@array/clear_recents_position_values"
+        android:defaultValue="1" />
+
+        <PreferenceScreen
+            android:key="recents_ram_bar"
+            android:fragment="com.aokp.romcontrol.fragments.RamBar"
+            android:title="@string/ram_bar_title" />
 
         <CheckBoxPreference
-            android:key="ram_usage_bar"
-            android:title="@string/ram_bar"
-            android:summary="@string/ram_bar_summary" />
-
-        <CheckBoxPreference
-            android:key="recent_google_assist"
+            android:key="recents_target_assist"
             android:title="@string/recent_google_assist_title"
             android:summary="@string/recent_google_assist_summary" />
 
