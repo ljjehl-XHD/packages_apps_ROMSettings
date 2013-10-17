@@ -113,6 +113,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements
     private Switch mLockUnlimitedWidgetsSwitch;
     private Button mLockTextColorButton;
     private Switch mCameraWidgetSwitch;
+    private Switch mLockRingBatterySwitch;
 
     private TextView mWallpaperText;
     private TextView mGlowTorchText;
@@ -128,6 +129,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements
     private TextView mLockAllWidgetsText;
     private TextView mLockUnlimitedWidgetsText;
     private TextView mCameraWidgetText;
+    private TextView mLockRingBatteryText;
 
     private ShortcutPickerHelper mPicker;
     private String[] targetActivities = new String[8];
@@ -416,6 +418,21 @@ public class Lockscreens extends AOKPPreferenceFragment implements
                     }
                 });
 
+        mLockRingBatteryText = ((TextView) getActivity().findViewById(R.id.lock_ring_battery_id));
+        mLockRingBatteryText.setOnClickListener(mLockRingBatteryTextListener);
+        mLockRingBatterySwitch = (Switch) getActivity().findViewById(R.id.lock_ring_battery_switch);
+        mLockRingBatterySwitch
+                .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton v, boolean checked) {
+                        Settings.System.putBoolean(cr,
+                                Settings.System.BATTERY_AROUND_LOCKSCREEN_RING, checked);
+                        updateSwitches();
+                    }
+                });
+
+	
+
         if (isSW600DPScreen(mContext)) {
             // Lockscreen Camera Widget doesn't appear at SW600DP
             Settings.System.putBoolean(cr,
@@ -575,6 +592,17 @@ public class Lockscreens extends AOKPPreferenceFragment implements
         }
     };
 
+    private TextView.OnClickListener mLockRingBatteryTextListener = new TextView.OnClickListener() {
+        public void onClick(View v) {
+            createMessage(
+                    getResources().getString(
+                            R.string.lock_ring_battery_title),
+                    getResources().getString(
+                            R.string.lock_ring_battery_summary));
+        }
+    };
+
+
     private void updateSwitches() {
         if (wallpaperExists()) {
             mWallpaperButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_wallpaper_exists));
@@ -603,6 +631,8 @@ public class Lockscreens extends AOKPPreferenceFragment implements
                 Settings.System.LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL, false));
         mCameraWidgetSwitch.setChecked(Settings.System.getBoolean(cr,
                 Settings.System.LOCKSCREEN_CAMERA_WIDGET_SHOW, true));
+	mLockRingBatterySwitch.setChecked(Settings.System.getBoolean(cr,
+		Settings.System.BATTERY_AROUND_LOCKSCREEN_RING, true));
     }
 
 
