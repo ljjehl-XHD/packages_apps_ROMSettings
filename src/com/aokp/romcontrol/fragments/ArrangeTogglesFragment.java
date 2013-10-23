@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -24,9 +23,7 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
-import com.google.android.apps.dashclock.ui.SwipeDismissListViewTouchListener;
 import com.mobeta.android.dslv.DragSortController;
 import com.mobeta.android.dslv.DragSortListView;
 
@@ -101,24 +98,6 @@ public class ArrangeTogglesFragment extends DialogFragment implements OnItemClic
                 mAdapter.notifyDataSetChanged();
             }
         });
-        // final SwipeDismissListViewTouchListener swipeDismissTouchListener =
-        // new SwipeDismissListViewTouchListener(
-        // mListView,
-        // new SwipeDismissListViewTouchListener.DismissCallbacks() {
-        // public boolean canDismiss(int position) {
-        // return position < mAdapter.getCount();
-        // }
-        //
-        // public void onDismiss(ListView listView, int[]
-        // reverseSortedPositions) {
-        // for (int index : reverseSortedPositions) {
-        // StatusBarToggles.removeToggle(getActivity(),
-        // mAdapter.getItem(index));
-        // }
-        // updateToggleList();
-        // mAdapter.notifyDataSetChanged();
-        // }
-        // });
         mListView.setOnItemClickListener(this);
         mListView.setOnTouchListener(new View.OnTouchListener() {
             @Override

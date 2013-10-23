@@ -19,31 +19,20 @@ package com.aokp.romcontrol.fragments.pie;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
-import android.provider.Settings.SettingNotFoundException;
-import android.util.Log;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
-import com.aokp.romcontrol.service.CodeReceiver;
-import com.aokp.romcontrol.util.CMDProcessor;
-import com.aokp.romcontrol.util.AbstractAsyncSuCMDProcessor;
-import com.aokp.romcontrol.util.Helpers;
-import com.aokp.romcontrol.Utils;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class PieAdvanced extends AOKPPreferenceFragment
-        implements Preference.OnPreferenceChangeListener {
+        implements OnPreferenceChangeListener {
 
     private static final String PIE_ENABLE_COLOR = "pie_enable_color";
     private static final String PIE_JUICE = "pie_juice";

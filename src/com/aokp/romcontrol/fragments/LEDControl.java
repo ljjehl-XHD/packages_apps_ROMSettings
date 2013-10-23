@@ -17,22 +17,18 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
-import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.os.SystemProperties;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -42,7 +38,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
-import android.widget.NumberPicker.OnValueChangeListener;
 import android.widget.Spinner;
 import android.widget.Switch;
 
@@ -60,7 +55,6 @@ import com.aokp.romcontrol.util.ShortcutPickerHelper;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -173,7 +167,7 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
 
         mOnTime.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                AlertDialog.Builder b = new AlertDialog.Builder(mActivity);
+                Builder b = new Builder(mActivity);
                 b.setTitle(R.string.led_time_on);
                 b.setItems(timeArray, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
@@ -190,7 +184,7 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
 
         mOffTime.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                AlertDialog.Builder b = new AlertDialog.Builder(mActivity);
+                Builder b = new Builder(mActivity);
                 b.setTitle(R.string.led_time_off);
                 b.setItems(timeArray, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
@@ -272,7 +266,7 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
 
 
                 final int place = currentSelectedApp;
-                AlertDialog.Builder ad = new AlertDialog.Builder(mActivity);
+                Builder ad = new Builder(mActivity);
                 ad.setTitle(R.string.led_test_notification);
                 ad.setIcon(R.mipmap.ic_launcher2);
                 String appName = unicornApps.get(place);

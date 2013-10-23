@@ -1,24 +1,18 @@
 
 package com.aokp.romcontrol.fragments;
 
-import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.ContentResolver;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
-import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -29,16 +23,11 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.android.internal.util.aokp.NavBarHelpers;
-import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
-import com.aokp.romcontrol.ROMControlActivity;
-import com.google.android.apps.dashclock.ui.SwipeDismissListViewTouchListener;
 import com.mobeta.android.dslv.DragSortController;
 import com.mobeta.android.dslv.DragSortListView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ArrangeRibbonFragment extends DialogFragment implements OnItemClickListener,
         OnCheckedChangeListener {

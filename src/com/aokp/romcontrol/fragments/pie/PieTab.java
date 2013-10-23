@@ -16,15 +16,10 @@
 
 package com.aokp.romcontrol.fragments.pie;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.res.Resources;
-import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceDrawerActivityAlt;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
@@ -35,10 +30,6 @@ import android.view.ViewGroup;
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
 import com.aokp.romcontrol.Utils;
-
-import com.aokp.romcontrol.fragments.pie.*;
-
-import java.util.ArrayList;
 
 public class PieTab extends AOKPPreferenceFragment {
 

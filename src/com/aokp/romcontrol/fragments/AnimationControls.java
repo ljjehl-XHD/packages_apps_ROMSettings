@@ -1,7 +1,6 @@
 package com.aokp.romcontrol.fragments;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -14,8 +13,6 @@ import com.aokp.romcontrol.widgets.AnimBarPreference;
 import com.aokp.romcontrol.R;
 
 import com.android.internal.util.aokp.AwesomeAnimationHelper;
-
-import java.util.Arrays;
 
 public class AnimationControls extends AOKPPreferenceFragment implements OnPreferenceChangeListener {
 

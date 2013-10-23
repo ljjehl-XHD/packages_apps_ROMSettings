@@ -26,7 +26,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.ContentResolver;
-import android.content.res.Resources;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,7 +33,6 @@ import android.content.Intent.ShortcutIconResource;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.database.ContentObserver;
@@ -43,7 +41,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.UserHandle;
@@ -53,12 +50,10 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.PreferenceFragment;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -68,10 +63,6 @@ import android.widget.Toast;
 
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
-import com.aokp.romcontrol.fragments.IconPicker;
-import com.aokp.romcontrol.fragments.ShortcutPickHelper;
-
-import net.margaritov.preference.colorpicker.ColorPickerDialog;
 
 public class NotificationShortcuts extends AOKPPreferenceFragment implements ShortcutPickHelper.OnPickListener,
     IconPicker.OnIconPickListener {
@@ -205,7 +196,7 @@ public class NotificationShortcuts extends AOKPPreferenceFragment implements Sho
                 NOTIFICATION_SHORTCUTS_TOGGLE);
         mNotificationShortcutsToggle.setChecked(Settings.System.getInt(mCr,
                 NOTIFICATION_SHORTCUTS_TOGGLE, 0) == 1);
-        mNotificationShortcutsToggle.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+        mNotificationShortcutsToggle.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference,
                         Object newValue) {
@@ -220,7 +211,7 @@ public class NotificationShortcuts extends AOKPPreferenceFragment implements Sho
 
         mNotificationShortcutsQuantity = (ListPreference) mPrefSet.findPreference(
                 NOTIFICATION_SHORTCUTS_QUANTITY);
-        mNotificationShortcutsQuantity.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+        mNotificationShortcutsQuantity.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference,
                         Object newValue) {
@@ -233,7 +224,7 @@ public class NotificationShortcuts extends AOKPPreferenceFragment implements Sho
 
         mNotificationShortcutsColor = (Preference) mPrefSet.findPreference(
                 NOTIFICATION_SHORTCUTS_COLOR);
-        mNotificationShortcutsColor.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+        mNotificationShortcutsColor.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference,
                         Object newValue) {
@@ -257,7 +248,7 @@ public class NotificationShortcuts extends AOKPPreferenceFragment implements Sho
                 NOTIFICATION_SHORTCUTS_COLORIZE_TOGGLE);
         mNotificationShortcutsColorizeToggle.setChecked(Settings.System.getIntForUser(getContentResolver(),
                 Settings.System.NOTIFICATION_SHORTCUTS_COLORIZE_TOGGLE, 1, UserHandle.USER_CURRENT_OR_SELF) == 1);
-        mNotificationShortcutsColorizeToggle.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+        mNotificationShortcutsColorizeToggle.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference,
                         Object newValue) {
@@ -270,7 +261,7 @@ public class NotificationShortcuts extends AOKPPreferenceFragment implements Sho
                 NOTIFICATION_SHORTCUTS_HIDE_CARRIER);
         mNotificationShortcutsHideCarrier.setChecked(Settings.System.getIntForUser(getContentResolver(),
                 Settings.System.NOTIFICATION_SHORTCUTS_HIDE_CARRIER, 0, UserHandle.USER_CURRENT_OR_SELF) == 1);
-        mNotificationShortcutsHideCarrier.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+        mNotificationShortcutsHideCarrier.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference,
                         Object newValue) {

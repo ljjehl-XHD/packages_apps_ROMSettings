@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.util.Random;
 
 import android.app.Activity;
@@ -18,7 +17,6 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -29,8 +27,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -45,11 +41,9 @@ import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.preference.TwoStatePreference;
 import android.preference.Preference.OnPreferenceChangeListener;
-import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -65,7 +59,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,25 +69,12 @@ import com.aokp.romcontrol.util.CMDProcessor;
 import com.aokp.romcontrol.util.AbstractAsyncSuCMDProcessor;
 import com.aokp.romcontrol.util.Helpers;
 import com.aokp.romcontrol.widgets.AlphaSeekBar;
-import com.aokp.romcontrol.widgets.SeekBarPreference;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.channels.FileChannel;
-import java.security.SecureRandom;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.Random;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-
-import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class UserInterface extends AOKPPreferenceFragment implements OnPreferenceChangeListener {
 

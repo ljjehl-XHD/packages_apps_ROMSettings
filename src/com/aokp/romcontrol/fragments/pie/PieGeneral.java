@@ -16,34 +16,22 @@
 
 package com.aokp.romcontrol.fragments.pie;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.ContentResolver;
 import android.database.ContentObserver;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
-import com.aokp.romcontrol.service.CodeReceiver;
-import com.aokp.romcontrol.util.CMDProcessor;
-import com.aokp.romcontrol.util.AbstractAsyncSuCMDProcessor;
 import com.aokp.romcontrol.util.Helpers;
-import com.aokp.romcontrol.Utils;
-import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class PieGeneral extends AOKPPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
@@ -130,7 +118,7 @@ public class PieGeneral extends AOKPPreferenceFragment
             float pieTrigger = Settings.System.getFloat(mContext.getContentResolver(),
                     Settings.System.PIE_TRIGGER);
             mPieTrigger.setValue(String.valueOf(pieTrigger));
-        } catch(Settings.SettingNotFoundException ex) {
+        } catch(SettingNotFoundException ex) {
             // So what
         }
 

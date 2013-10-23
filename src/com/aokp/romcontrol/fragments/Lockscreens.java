@@ -19,7 +19,6 @@ package com.aokp.romcontrol.fragments;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
-import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;

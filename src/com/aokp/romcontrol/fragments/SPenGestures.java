@@ -2,12 +2,8 @@
 package com.aokp.romcontrol.fragments;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -15,11 +11,6 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
-import android.text.TextUtils;
-import android.util.Log;
-import android.util.TypedValue;
-
-import java.net.URISyntaxException;
 
 import static com.android.internal.util.aokp.AwesomeConstants.*;
 import com.android.internal.util.aokp.AwesomeConstants;
