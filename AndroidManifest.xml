@@ -54,11 +54,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragments.TransparencyDialog"
-            android:theme="@android:style/Theme.Dialog">
-        </activity>
-        <activity
-            android:name=".fragments.Pie"
+            android:name=".fragments.pie.PieGeneral"
             android:label="@string/title_pie" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,7 +63,7 @@
               </intent-filter>
         </activity>
         <activity
-            android:name=".fragments.PieColor"
+            android:name=".fragments.pie.PieAdvanced"
             android:label="ColorPIE" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -161,16 +157,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.aokp.romcontrol.SHORTCUT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".fragments.TransparencyDialog"
-            android:theme="@android:style/Theme.Dialog"
-            android:label="@string/transparency_dialog_title" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
@@ -269,22 +255,6 @@
             </intent-filter>
         </activity>
  
-        <!-- Notification Shortcuts -->
-        <activity android:name=".fragments.NotificationShortcutsSettingsActivity"
-                android:label="@string/notification_shortcuts_settings_title"
-                android:clearTaskOnLaunch="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="com.aokp.romcontrol.fragments.NOTIFICATION_SHORTCUTS" />
-                <action android:name="aokp.romcontrol.fragments.NOTIFICATION_SHORTCUTS" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.VOICE_LAUNCH" />
-                <category android:name="com.aokp.romcontrol.SHORTCUT" />
-            </intent-filter>
-            <meta-data android:name="com.aokp.romcontrol.FRAGMENT_CLASS"
-                android:value="com.aokp.romcontrol.fragments.NotificationShortcuts" />
-        </activity>
-
         <!-- vibration manager -->
         <activity
             android:name=".fragments.Vibrations"
@@ -331,12 +301,6 @@
             android:name=".service.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name=".service.ChangeFastChargeStateReceiver" >
-            <intent-filter>
-                <action android:name="com.aokp.romcontrol.ACTION_CHANGE_FCHARGE_STATE" />
             </intent-filter>
         </receiver>
         <receiver android:name=".service.CodeReceiver">
