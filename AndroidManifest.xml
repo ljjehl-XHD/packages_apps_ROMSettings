@@ -45,6 +45,17 @@
                 <category android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
+
+	<activity
+		android:name=".fragments.chameleonos.labs.LabSettings">
+	</activity>
+	<activity
+		android:name=".fragments.chameleonos.labs.gestureanywhere.GestureAnywhereBuilderActivity"> 
+	</activity>
+	<activity
+		android:name=".fragments.chameleonos.labs.gestureanywhere.GestureAnywhereCreateGestureActivity" >
+	</activity>
+
         <activity
             android:name=".fragments.TransparencyDialog"
             android:theme="@android:style/Theme.Dialog">
