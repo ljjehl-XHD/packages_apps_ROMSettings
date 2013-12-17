@@ -75,16 +75,6 @@ public class AOKPPreferenceFragment extends PreferenceFragment implements Dialog
             hasVibration = true;
         }
     }
-    
-    public static boolean isTablet(Context context) {
-        return Settings.System.getInt(context.getContentResolver(),
-                Settings.System.CURRENT_UI_MODE,0) == 1;
-    }
-
-    public static boolean isPhablet(Context context) {
-        return Settings.System.getInt(context.getContentResolver(),
-                Settings.System.CURRENT_UI_MODE,0) == 2;
-    }
 
     public static boolean hasPhoneAbility(Context context)
     {

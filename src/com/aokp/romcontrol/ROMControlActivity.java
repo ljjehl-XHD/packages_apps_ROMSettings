@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.preference.Preference;
 import android.preference.PreferenceDrawerActivity;
 import android.preference.PreferenceFragment;
@@ -53,14 +52,12 @@ public class ROMControlActivity extends PreferenceDrawerActivity implements Butt
 
     Locale defaultLocale;
 
-    Vibrator mVibrator;
     protected boolean isShortcut;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         hasNotificationLed = getResources().getBoolean(R.bool.has_notification_led);
         hasSPen = getResources().getBoolean(R.bool.config_stylusGestures);
-        mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         defaultLocale = Locale.getDefault();
         Log.i(TAG, "defualt locale: " + defaultLocale.getDisplayName());
         setLocale();
@@ -197,10 +194,6 @@ public class ROMControlActivity extends PreferenceDrawerActivity implements Butt
             Header header = target.get(i);
             if (header.id == R.id.led) {
                 if (!hasNotificationLed) {
-                    target.remove(i);
-                }
-            } else if (header.id == R.id.vibrations) {
-                if (mVibrator == null || !mVibrator.hasVibrator()) {
                     target.remove(i);
                 }
             } else if (header.id == R.id.spen) {
