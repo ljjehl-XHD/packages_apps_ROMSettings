@@ -1,6 +1,5 @@
 package com.aokp.romcontrol.fragments;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -58,18 +57,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
 public class LEDControl extends Fragment implements ColorPickerDialog.OnColorChangedListener,
         ShortcutPickerHelper.OnPickListener {
-
 
     private static final String TAG = "LEDControl";
     private static final boolean DEBUG = false;
 
-
     private static final String PROP_CHARGING_LED = "persist.sys.enable-charging-led";
     private static final String PROP_LED_BRIGHTNESS = "persist.sys.led-brightness";
-
 
     private Button mOnTime;
     private Button mOffTime;
@@ -83,12 +78,10 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
     private NumberPicker mBrightnessNumberpicker;
     private ArrayAdapter<CharSequence> listAdapter;
 
-
     private ViewGroup mContainer;
     private Activity mActivity;
     private Resources mResources;
     private ShortcutPickerHelper mPicker;
-
 
     private int defaultColor;
     private int userColor;
@@ -105,11 +98,9 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
     private boolean hasBrightnessFeature;
     private boolean hasChargingFeature;
 
-
     private HashMap<String, CustomApps> customAppList;
     private ArrayList<String> unicornApps;
     private ArrayList<String> appList;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -118,7 +109,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         mResources = getResources();
         return inflater.inflate(R.layout.led_control, container, false);
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -143,15 +133,12 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         userColor = Settings.System.getInt(mActivity.getContentResolver(),
                 Settings.System.NOTIFICATION_LIGHT_COLOR, defaultColor);
 
-
         mPicker = new ShortcutPickerHelper(this, this);
-
 
         customAppList = new HashMap<String, CustomApps>();
         unicornApps = new ArrayList<String>();
         appList = new ArrayList<String>();
         currentSelectedApp = 0;
-
 
         mLEDButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -161,9 +148,7 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             }
         });
 
-
         mLEDButton.setImageResource(R.drawable.led_circle_button);
-
 
         mOnTime.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -181,7 +166,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             }
         });
 
-
         mOffTime.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Builder b = new Builder(mActivity);
@@ -198,7 +182,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             }
         });
 
-
         mLedScreenOn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton v, boolean checked) {
                 Settings.Secure.putInt(mActivity.getContentResolver(),
@@ -208,9 +191,7 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             }
         });
 
-
         hasChargingFeature = getResources().getBoolean(R.bool.has_led_charging_feature);
-
 
         if (hasChargingFeature) {
             mChargingLedOn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -225,9 +206,7 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             mChargingLedOn.setVisibility(View.GONE);
         }
 
-
         parseExistingAppList();
-
 
         listAdapter = new ArrayAdapter<CharSequence>(mActivity,
                 android.R.layout.simple_spinner_item);
@@ -235,15 +214,12 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         adapterRefreshSetting();
         mListApps.setAdapter(listAdapter);
 
-
         mListApps.setSelection(0);
         mListApps.setLongClickable(false);
         mListApps.setOnItemSelectedListener(new customAppSpinnerSelected());
 
-
         mEditApp.setOnClickListener(new buttonEditApp());
         editButtonVisibility();
-
 
         mLedTest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,17 +229,14 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
                     mRegister = false;
                 }
 
-
                 if (!mRegister) {
                     IntentFilter filter = new IntentFilter();
                     filter.addAction(Intent.ACTION_SCREEN_OFF);
                     filter.addAction(Intent.ACTION_SCREEN_ON);
 
-
                     mActivity.registerReceiver(testLedReceiver, filter);
                     mRegister = true;
                 }
-
 
                 final int place = currentSelectedApp;
                 Builder ad = new Builder(mActivity);
@@ -296,9 +269,7 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             }
         });
 
-
         hasBrightnessFeature = getResources().getBoolean(R.bool.has_led_brightness_feature);
-
 
         if (hasBrightnessFeature) {
             mLedBrightness.setOnClickListener(new View.OnClickListener() {
@@ -321,7 +292,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
                         }
                     });
 
-
                     AlertDialog alert = b.create();
                     alert.show();
                 }
@@ -331,11 +301,9 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             mLedBrightness.setVisibility(View.GONE);
         }
 
-
         refreshSettings();
         startLed();
     }
-
 
     private void adapterRefreshSetting() {
         if (listAdapter != null) {
@@ -345,7 +313,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             listAdapter.addAll(unicornApps);
         }
     }
-
 
     private Handler mHandler = new Handler() {
         @Override
@@ -361,7 +328,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             }
         }
     };
-
 
     public void startLed() {
         new Thread() {
@@ -385,12 +351,10 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         }.start();
     }
 
-
     public void onDestroy() {
         super.onDestroy();
         stopLed = true;
     }
-
 
     @Override
     public void onColorChanged(int color) {
@@ -418,16 +382,13 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         refreshSettings();
     }
 
-
     private String getTimeString(int milliSeconds) {
         float seconds = (float) milliSeconds / 1000;
         DecimalFormat df = new DecimalFormat("0.#");
         String time = df.format(seconds) + getResources().getString(R.string.led_time_seconds);
 
-
         return time;
     }
-
 
     private void refreshSettings() {
         int on = mResources
@@ -439,13 +400,11 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         offBlink = Settings.System.getInt(mActivity.getContentResolver(),
                 Settings.System.NOTIFICATION_LIGHT_OFF, off);
 
-
         mOnTime.setText(getTimeString(onBlink));
         mOffTime.setText(getTimeString(offBlink));
         mLEDButton.setColorFilter(userColor, PorterDuff.Mode.MULTIPLY);
         mLedScreenOn.setChecked(Settings.Secure.getInt(mActivity.getContentResolver(),
                 Settings.Secure.LED_SCREEN_ON, 0) == 1);
-
 
         String charging_led_enabled = Helpers.getSystemProp(PROP_CHARGING_LED, "0");
         if (charging_led_enabled.length() == 0) {
@@ -453,7 +412,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         }
         mChargingLedOn.setChecked(Integer.parseInt(charging_led_enabled) == 1);
     }
-
 
     private void saveCustomApps() {
         List<String> moveToSettings = new ArrayList<String>();
@@ -469,7 +427,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         }
     }
 
-
     private void addCustomApp(String app) {
         CustomApps custom = customAppList.get(app);
         if (custom == null) {
@@ -480,7 +437,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         }
     }
 
-
     private void addCustomApp(String app, int color) {
         CustomApps custom = customAppList.get(app);
         if (custom == null) {
@@ -490,7 +446,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             putAppInUnicornList(app);
         }
     }
-
 
     private void putAppInUnicornList(String packageName) {
         final PackageManager pm = mActivity.getPackageManager();
@@ -503,24 +458,19 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         final String applicationName = (String) (ai != null ? pm.getApplicationLabel(ai)
                 : "unknown");
 
-
         unicornApps.add(unicornApps.size() - 1, applicationName);
         adapterRefreshSetting();
     }
-
 
     private void parseExistingAppList() {
         String currentApps = Settings.System.getString(mActivity.getContentResolver(),
                 Settings.System.LED_CUSTOM_VALUES);
 
-
         unicornApps.add(getResources().getString(R.string.led_custom_default));
         unicornApps.add("+App");
 
-
         if (DEBUG)
             Log.e(TAG, "currentApps parsed: " + currentApps);
-
 
         if (currentApps != null) {
             final String[] array = TextUtils.split(currentApps, "\\|");
@@ -536,7 +486,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         }
     }
 
-
     private void updateLEDforNew(int id) {
         if (id != 0 && id != unicornApps.size()) {
             int key = id - 1;
@@ -551,17 +500,13 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             if (DEBUG)
                 Log.d(TAG, "user color from Hash = " + userColor);
         }
-
-
     }
-
 
     /**
      * Let's make a spinner class for the listed apps Default should always be
      * on top +App should be at bottom
      */
     class customAppSpinnerSelected implements OnItemSelectedListener {
-
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -579,16 +524,13 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             editButtonVisibility();
         }
 
-
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
             // do nothing
         }
     }
 
-
     class buttonEditApp implements View.OnClickListener {
-
 
         @Override
         public void onClick(View v) {
@@ -636,9 +578,7 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         }
     }
 
-
     private BroadcastReceiver testLedReceiver = new BroadcastReceiver() {
-
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -659,7 +599,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         }
     };
 
-
     /**
      * Create our own class for custom apps for easier time with HashMap storage
      * also make it static so it doesnt destroy the information when the class
@@ -669,12 +608,10 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         public String appPackage;
         public int appColor;
 
-
         public CustomApps(String appPackage, int appColor) {
             this.appPackage = appPackage;
             this.appColor = appColor;
         }
-
 
         // create a string to return with a char to split from later
         public String toString() {
@@ -684,7 +621,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             sb.append(appColor);
             return sb.toString();
         }
-
 
         public static CustomApps fromString(String value) {
             if (TextUtils.isEmpty(value)) {
@@ -704,7 +640,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         }
     }
 
-
     private void editButtonVisibility() {
         if (currentSelectedApp == 0 || currentSelectedApp == unicornApps.size()) {
             mEditApp.setVisibility(View.GONE);
@@ -712,7 +647,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             mEditApp.setVisibility(View.VISIBLE);
         }
     }
-
 
     @Override
     public void shortcutPicked(String uri, String friendlyName, Bitmap icon, boolean isApplication) {
@@ -734,7 +668,6 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         }
     }
 
-
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             mPicker.onActivityResult(requestCode, resultCode, data);
@@ -744,4 +677,3 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         super.onActivityResult(requestCode, resultCode, data);
     }
 }
-
