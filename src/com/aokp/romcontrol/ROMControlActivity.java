@@ -60,7 +60,6 @@ public class ROMControlActivity extends PreferenceDrawerActivity implements Butt
     public void onCreate(Bundle savedInstanceState) {
         hasNotificationLed = getResources().getBoolean(R.bool.has_notification_led);
         hasSPen = getResources().getBoolean(R.bool.config_stylusGestures);
-        hasHardwareButtons = getResources().getBoolean(R.bool.has_hardware_buttons);
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         defaultLocale = Locale.getDefault();
         Log.i(TAG, "defualt locale: " + defaultLocale.getDisplayName());
