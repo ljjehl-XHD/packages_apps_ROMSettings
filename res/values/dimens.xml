@@ -68,4 +68,7 @@
     <dimen name="navring_radius_tablet_portrait">240dp</dimen>
     <!-- Notification Shortcuts -->
     <dimen name="notification_shortcut_picker_left_padding">36dip</dimen>
+
+    <dimen name="device_memory_usage_button_width">16dip</dimen>
+    <dimen name="device_memory_usage_button_height">32dip</dimen>
 </resources>

@@ -23,4 +23,8 @@
 
     <!-- Whether device has led charging feature -->
     <bool name="has_led_charging_feature">false</bool>
+
+    <!-- does the device have multi color led support or only
+         a fixed set of led colors -->
+    <bool name="config_has_multi_color_led" translatable="false">true</bool>
 </resources>

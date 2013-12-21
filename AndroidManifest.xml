@@ -130,7 +130,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragments.LEDControl"
+            android:name=".fragments.notificationlight.NotificationLightSettings"
+            android:label="@string/title_led" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".fragments.notificationlight.BatteryLightSettings"
             android:label="@string/title_led" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
