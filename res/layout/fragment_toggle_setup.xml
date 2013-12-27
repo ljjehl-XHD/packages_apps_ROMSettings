@@ -7,7 +7,7 @@
             style="@style/defaultSize"
             android:title="@string/category_toggles"/>
 
-    <com.aokp.romcontrol.settings.SingleChoiceSetting
+    <ListPreference
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -19,7 +19,7 @@
             android:entryValues="@array/setting_toggleStylesValues"
             />
 
-    <com.aokp.romcontrol.settings.UrlSetting
+    <ListPreference
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -28,7 +28,7 @@
             android:summary="@string/toggle_dialog_add_toggles"
             />
 
-    <com.aokp.romcontrol.settings.UrlSetting
+    <ListPreference
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -37,7 +37,7 @@
             android:summary="@string/toggles_order_summary"
             />
 
-    <com.aokp.romcontrol.settings.SingleChoiceSetting
+    <ListPreference
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
