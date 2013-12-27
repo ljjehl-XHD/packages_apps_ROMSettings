@@ -294,10 +294,10 @@
     <string name="toggle_favcontact_summary">Choose your favorite contact</string>
     <string name="toggle_collapse_generic_title">Collapse shade on toggle click</string>
     <string name="toggle_collapse_generic_summary">Close shade on all generic toggle actions</string>
-    <string name="toggle_enable_fasttoggle_title">Enable fast toggle</string>
-    <string name="toggle_enable_fasttoggle_summary">Enable fast toggle</string>
-    <string name="toggle_choose_fasttoggle_side_title">Choose fast toggle side</string>
-    <string name="toggle_choose_fasttoggle_side_summary">Choose which side the fast toggle area shall be</string>
+    <string name="toggles_enable_fasttoggle_title">Enable fast toggle</string>
+    <string name="toggles_enable_fasttoggle_summary">Overrides default behavior</string>
+    <string name="toggles_choose_fasttoggle_side_title">Choose fast toggle side</string>
+    <string name="toggles_choose_fasttoggle_side_summary">Select the side that triggers the fast toggle</string>
     <string name="toggle_dialog_arrange_title">Toggle setup</string>
     <string name="toggle_dialog_add_toggles">Add a toggle</string>
     <string name="toggle_style_tile">Tiles</string>
