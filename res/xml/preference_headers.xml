@@ -90,7 +90,7 @@
         
    	<header
         android:title="@string/toggles_layout"
-        android:fragment="com.aokp.romcontrol.fragments.ToggleSetupFragment"
+        android:fragment="com.aokp.romcontrol.fragments.ArrangeTogglesFragment"
         android:icon="@drawable/ic_rom_control_quick_settings"
         android:summary="@string/header_summary_toggles" />
      

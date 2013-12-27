@@ -233,15 +233,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragments.ToggleSetupFragment"
-            android:label="@string/title_statusbar_toggles" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="com.aokp.romcontrol.SHORTCUT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".fragments.ArrangeTogglesFragment"
             android:label="@string/title_statusbar_toggles" >
             <intent-filter>
