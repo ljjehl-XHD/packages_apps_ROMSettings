@@ -30,6 +30,7 @@
     <string name="performance">Performance</string>
     <string name="xposed_settings_title">Xposed</string>
     <string name="Extras">Extras</string>
+    <string name="category_toggles">Toggles</string>
 
     <!-- Activity titles defined in AndroidManifest.xml -->
     <string name="title_about">About XenonHD</string>
@@ -274,7 +275,6 @@
     <string name="toggles_per_row_summary">Choose how many toggles to show per row</string>
     <string name="toggles_style_title">Toggles style</string>
     <string name="toggles_style_summary">Notification (traditional) or tiles</string>
-    <string name="toggles_display_close">Close</string>
     <string name="toggles_order_title">Toggle order</string>
     <string name="toggles_order_summary">Choose the order which your toggles are displayed</string>
     <string name="title_settings_behavior">Use default settings behavior</string>
@@ -311,6 +311,15 @@
     <string name="toggle_statusbar">StatusBar</string>
     <string name="statusbar_hide_title">Hide Statusbar</string>
     <string name="statusbar_hide_summary">Allow completly hide the Statusbar</string>
+
+    <string name="title_toggles">Toggles</string>
+    <string name="toggles_style_tile">Tiles</string>
+    <string name="toggles_style_traditional">Traditional pulldown</string>
+    <string name="toggles_style_scrollable">Traditional Scrollable</string>
+    <string name="toggles_display_close">Close</string>
+    <string name="toggles_per_row_three">3</string>
+    <string name="toggles_per_row_four">4</string>
+    <string name="toggles_per_row_five">5</string>
 
     <!-- Network speed -->
     <string name="show_network_speed">Network speed indicator</string>

@@ -14,97 +14,91 @@
   limitations under the License.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/com.aokp.romcontrol"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:background="@color/configure_light_background"
-    android:minWidth="@dimen/list_toggle_width"
-    android:orientation="vertical" >
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="10dp"
+              android:background="@color/configure_light_background"
+              android:minWidth="@dimen/list_toggle_width"
+              android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/title_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/toggle_rearrange_dialog_title_height"
-            android:gravity="center_vertical"
-            android:padding="12dp"
-            android:text="@string/toggle_dialog_arrange_title"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:typeface="sans" />
-
-        <View
-            android:id="@+id/titleDividerTop"
-            android:layout_width="match_parent"
-            android:layout_height="2dip"
-            android:background="@android:color/holo_blue_light"
-            android:visibility="visible" />
-    </LinearLayout>
-
-    <com.mobeta.android.dslv.DragSortListView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        app:drag_start_mode="onDown"
-        app:remove_enabled="false" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical" >
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="@drawable/divider_horizontal_dim_dark" />
-
-        <Switch
+    <Switch
             android:id="@+id/handle_switch"
             style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:text="@string/toggle_swap_handle_side" />
+            android:text="@string/toggle_swap_handle_side"/>
 
-        <View
+    <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="@drawable/divider_horizontal_dim_dark" />
+            android:background="@drawable/divider_horizontal_dim_dark"/>
 
-        <LinearLayout
-            android:id="@+id/buttons"
-            style="?android:attr/buttonBarStyle"
+    <!--  <LinearLayout
+          android:id="@+id/title_container"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+
+          <TextView
+              android:id="@+id/title"
+              android:layout_width="wrap_content"
+              android:layout_height="@dimen/toggle_rearrange_dialog_title_height"
+              android:gravity="center_vertical"
+              android:padding="12dp"
+              android:text="@string/toggle_dialog_arrange_title"
+              android:textAppearance="?android:textAppearanceLarge"
+              android:textSize="24sp"
+              android:textStyle="bold"
+              android:typeface="sans" />
+
+          <View
+              android:id="@+id/titleDividerTop"
+              android:layout_width="match_parent"
+              android:layout_height="2dip"
+              android:background="@android:color/holo_blue_light"
+              android:visibility="visible" />
+      </LinearLayout>-->
+
+    <com.mobeta.android.dslv.DragSortListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:drag_start_mode="onDown"
+            app:remove_enabled="false"/>
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="vertical">
+
+        <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/divider_horizontal_dim_dark"/>
+
+        <LinearLayout
+                android:id="@+id/buttons"
+                style="?android:attr/buttonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
             <Button
-                android:id="@+id/close"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/toggles_display_close" />
+                    android:id="@+id/close"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/toggles_display_close"/>
 
-            <Button
-                android:id="@+id/add_toggles"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/add_toggles" />
         </LinearLayout>
     </LinearLayout>
 
