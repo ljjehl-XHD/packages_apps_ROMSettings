@@ -321,6 +321,9 @@
     <string name="toggles_per_row_four">4</string>
     <string name="toggles_per_row_five">5</string>
 
+    <string name="toggles_swipe_to_switch_title">Swipe to switch</string>
+    <string name="toggles_swipe_to_switch_summary">Swipe to switch between notifications and Quick Settings</string>
+
     <!-- Network speed -->
     <string name="show_network_speed">Network speed indicator</string>
     <string name="show_network_speed_summary">Show network speed in statsbar</string>
