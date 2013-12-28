@@ -27,6 +27,8 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
     private static final String KEYBOARD_ROTATION_TIMEOUT = "keyboard_rotation_timeout";
     private static final String PREF_DISABLE_FULLSCREEN_KEYBOARD = "disable_fullscreen_keyboard";
     private static final String SHOW_ENTER_KEY = "show_enter_key";
+    private static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
+    private static final String KEY_IME_SWITCHER = "status_bar_ime_switcher";
 
     private static final int KEYBOARD_ROTATION_TIMEOUT_DEFAULT = 5000; // 5s
     
@@ -36,6 +38,8 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
     ListPreference mKeyboardRotationTimeout;
     CheckBoxPreference mDisableFullscreenKeyboard;
     CheckBoxPreference mShowEnterKey;
+    CheckBoxPreference mStatusBarImeSwitcher;
+    ListPreference mVolumeKeyCursorControl;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,25 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
         mShowEnterKey = (CheckBoxPreference) findPreference(SHOW_ENTER_KEY);
         mShowEnterKey.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.FORMAL_TEXT_INPUT, 0) == 1);
+
+        // Enable or disable mStatusBarImeSwitcher based on boolean value: config_show_cmIMESwitcher
+        final Preference keyImeSwitcherPref = findPreference(KEY_IME_SWITCHER);
+        if (keyImeSwitcherPref != null) {
+            if (!getResources().getBoolean(com.android.internal.R.bool.config_show_IMESwitcher)) {
+                getPreferenceScreen().removePreference(keyImeSwitcherPref);
+            } else {
+                mStatusBarImeSwitcher = (CheckBoxPreference) keyImeSwitcherPref;
+                mStatusBarImeSwitcher.setOnPreferenceChangeListener(this);
+            }
+        }
+
+        mVolumeKeyCursorControl = (ListPreference) findPreference(VOLUME_KEY_CURSOR_CONTROL);
+        if(mVolumeKeyCursorControl != null) {
+            mVolumeKeyCursorControl.setValue(Integer.toString(Settings.System.getInt(
+                    getContentResolver(), Settings.System.VOLUME_KEY_CURSOR_CONTROL, 0)));
+            mVolumeKeyCursorControl.setSummary(mVolumeKeyCursorControl.getEntry());
+            mVolumeKeyCursorControl.setOnPreferenceChangeListener(this);
+        }
     }
     
     public void updateRotationTimeout(int timeout) {
@@ -117,6 +140,18 @@ public class Keyboard extends AOKPPreferenceFragment implements OnPreferenceChan
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.KEYBOARD_ROTATION_TIMEOUT, timeout);
             updateRotationTimeout(timeout);
+            return true;
+        } else if (preference == mStatusBarImeSwitcher) {
+            Settings.System.putInt(getContentResolver(),
+                Settings.System.STATUS_BAR_IME_SWITCHER, (Boolean) newValue ? 1 : 0);
+            return true;
+        } else if (preference == mVolumeKeyCursorControl) {
+            String volumeKeyCursorControl = (String) newValue;
+            int val = Integer.parseInt(volumeKeyCursorControl);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.VOLUME_KEY_CURSOR_CONTROL, val);
+            int index = mVolumeKeyCursorControl.findIndexOfValue(volumeKeyCursorControl);
+            mVolumeKeyCursorControl.setSummary(mVolumeKeyCursorControl.getEntries()[index]);
             return true;
         }
         return false;
