@@ -16,6 +16,15 @@
         <attr name="entryImages" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="UrlSetting">
+        <attr name="url" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="CheckboxSetting">
+        <attr name="descriptionOn" format="string"/>
+        <attr name="descriptionOff" format="string"/>
+    </declare-styleable>
+
     <declare-styleable name="ColorPickerSetting">
         <attr name="colorPickerDefaultValue" format="color"/>
         <attr name="colorPickerShowAlphaSlider" format="boolean"/>
