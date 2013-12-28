@@ -5,4 +5,5 @@
     <color name="drawer_bg_color">#0d0d0d</color>
     <color name="color_text_holo_light">#000000</color>
     <color name="color_text_holo_dark">#FFFFFF</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
 </resources>

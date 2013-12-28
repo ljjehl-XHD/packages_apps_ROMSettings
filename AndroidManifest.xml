@@ -2,7 +2,9 @@
     package="com.aokp.romcontrol" >
 
     <original-package android:name="com.aokp.romcontrol" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.google.android.gallery3d.permission.GALLERY_PROVIDER"/>
     <uses-permission android:name="android.permission.REBOOT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -97,6 +99,15 @@
         <activity
             android:name=".fragments.StatusBarClock"
             android:label="@string/title_statusbar_clock" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".fragments.ribbons.RibbonsFragment"
+            android:label="@string/ribbon_settings_title" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

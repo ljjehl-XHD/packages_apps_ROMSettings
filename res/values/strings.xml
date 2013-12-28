@@ -29,7 +29,6 @@
     <string name="tools">Tools</string>
     <string name="performance">Performance</string>
     <string name="xposed_settings_title">Xposed</string>
-    <string name="animation_duration_title">Animation duration</string>
     <string name="Extras">Extras</string>
     <string name="category_toggles">Toggles</string>
     <string name="category_statusbar">Statusbar</string>
@@ -41,6 +40,7 @@
     <string name="category_power_menu">Power Menu</string>
     <string name="category_misc">Miscellaneous</string>
     <string name="category_sound">Sound</string>
+    <string name="category_ribbons">Ribbons</string>
 
     <!-- Activity titles defined in AndroidManifest.xml -->
     <string name="title_about">About XenonHD</string>
@@ -268,6 +268,44 @@
     <string name="custom_density_dialog_summary">"Changing your LCD density can cause unexpected app behavior. If you encounter Play Store app incompatibility please doublecheck if u have installed a Multi-DPI Play Store."</string>
     <string name="custom_density_dialog_button_got">Got it!</string>
     <string name="custom_density_dialog_button_reboot">Reboot now</string>
+
+    <!-- Ribbons -->
+    <string name="toggles_ribbon_instructions">Rearrange by dragging by the handle on the right. Remove by swiping.</string>
+    <string name="add_ribbon">Add Item</string>
+    <string name="left_ribbon_items">Left Ribbon Items</string>
+    <string name="left_ribbon_settings">Left Ribbon Settings</string>
+    <string name="right_ribbon_items">Right Ribbon Items</string>
+    <string name="right_ribbon_settings">Right Ribbon Settings</string>
+    <string name="lockscreen_ribbon_items">Lockscreen Ribbon Items</string>
+    <string name="lockscreen_ribbon_settings">Lockscreen Ribbon Settings</string>
+    <string name="enable_ribbon_title">Enable Ribbon</string>
+    <string name="enable_ribbon_summary">Enable the swipe area for this Ribbon</string>
+    <string name="ribbon_long_swipe_title">Swipe area longswipe</string>
+    <string name="ribbon_long_press_title">Swipe area longpress</string>
+    <string name="enable_ribbon_vibrate_title">Swipe area vibrate</string>
+    <string name="enable_ribbon_vibrate_summary">Vibrate on touch of swipe area</string>
+    <string name="swipe_handle_location_title">Swipe handle location</string>
+    <string name="ribbon_auto_hide_title">Ribbon auto hide timeout</string>
+    <string name="hide_ribbon_timeout_never">Never</string>
+    <string name="hide_ribbon_timeout_1500">1.5 Sec</string>
+    <string name="hide_ribbon_timeout_3000">3 Sec</string>
+    <string name="hide_ribbon_timeout_5000">5 Sec</string>
+    <string name="hide_ribbon_timeout_10000">10 Sec</string>
+    <string name="hide_ribbon_timeout_15000">15 Sec</string>
+    <string name="hide_ribbon_timeout_30000">30 Sec</string>
+
+    <string name="ribbon_drag_handle_width_title">Swipe area width</string>
+    <string name="ribbon_drag_handle_height_title">Swipe area height</string>
+    <string name="ribbon_handle_color_title">Swipe area color</string>
+    <string name="ribbon_color_title">Ribbon color</string>
+    <string name="animation_type_title">Animation type</string>
+    <string name="animation_duration_title">Animation duration</string>
+    <string name="ribbon_space_title">Icon Space</string>
+    <string name="ribbon_size_title">Icon Size</string>
+    <string name="window_color_title">Window color</string>
+    <string name="window_space_title">Column Space</string>
+    <string name="window_size_title">Icon Size</string>
+    <string name="window_settings">Window Settings</string>
 
     <!-- Statusbar | Toggles -->
     <string name="toggle_style_title">Toggle style</string>
@@ -571,6 +609,7 @@
     <string name="summary_navring_amount">Choose number of targets in the Navigation Ring</string>
     <string name="interface_navring_settings_title">Navigation Ring</string>
     <string name="interface_navring_settings_summary">@null</string>
+    <string name="interface_ribbon_settings_summary">@null</string>
     <string name="navring_target_info">Drag your finger to targets to assign actions</string>
     <string name="navring_clear">Clear action</string>
     <string name="action_short">Short action</string>
@@ -592,16 +631,12 @@
     <string name="ribbon_instructions">Press icons to select actions or delete.\nPress menu for more options.</string>
     <string name="ribbon_targets_cat">Ribbon options</string>
     <string name="enable_ribbon_text_title">Show app name</string>
-    <string name="enable_ribbon_vibrate_title">Vibrate on touch of swipe area</string>
     <string name="enable_ribbon_text_summary">Enable the app name text below the icon</string>
     <string name="ribbon_icon_vibrate_title">Vibrate on target click</string>
     <string name="ribbon_icon_space_title">Icon ribbon spacing</string>
     <string name="app_window_space_title">Vertical icon spacing</string>
     <string name="ribbon_icon_size_title">Icon size</string>
     <string name="ribbon_dismiss_title">Ribbon dismiss action</string>
-    <string name="ribbon_animation_duration_title">Animation duration</string>
-    <string name="ribbon_long_swipe_title">Swipe area long swipe</string>
-    <string name="ribbon_long_press_title">Swipe area long press</string>
     <string name="ribbon_icon_size_summary">Set size of your icons</string>
     <string name="ribbon_lockscreen">Lockscreen ribbon</string>
     <string name="ribbon_notifications">Notifications ribbon</string>
@@ -619,17 +654,13 @@
     <string name="ribbon_bottom_enable_title">Enable swipe from bottom</string>
     <string name="ribbon_bottom_warning_title">You can not use swipe from bottom with Navbar enabled, must use Navbar AutoHide or manually hide the navbar.</string>
     <string name="ribbon_button_colorize_title">Action icons match text color</string>
-    <string name="ribbon_color_title">Color of Swipe Ribbon</string>
     <string name="text_color_title">Color of app label text</string>
     <string name="ribbon_opacity_title">Opacity of Swipe Ribbon</string>
     <string name="timeout_spinner_title">Ribbon Auto Timeout</string>
-    <string name="ribbon_drag_handle_width_title">Drag Handle Length</string>
-    <string name="ribbon_drag_handle_height_title">Drag Handle Thickness</string>
     <string name="ribbon_insert">Insert button</string>
     <string name="ribbon_handle_location_title">Ribbon Handle Location</string>
     <string name="ribbon_icon_location_title">Icon gravity</string>
     <string name="window_text_color_title">Window text color</string>
-    <string name="window_color_title">Window color</string>
     <string name="window_opacity_title">Window opacity</string>
     <string name="window_columns_title">Window columns</string>
     <string name="window_app_hide_title">Choose apps to hide</string>
