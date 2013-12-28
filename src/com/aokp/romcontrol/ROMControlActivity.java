@@ -203,10 +203,6 @@ public class ROMControlActivity extends PreferenceDrawerActivity implements Butt
                 if (mVibrator == null || !mVibrator.hasVibrator()) {
                     target.remove(i);
                 }
-            } else if (header.id == R.id.spen) {
-                if (!hasSPen) {
-                    target.remove(i);
-                }
             }
         }
         updateHeaderList(target);
