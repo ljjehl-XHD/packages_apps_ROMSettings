@@ -5,7 +5,7 @@
             style="@style/defaultSize"
             android:title="@string/category_statusbar_notification"/>
 
-    <com.aokp.romcontrol.settings.CheckboxSetting
+        <com.aokp.romcontrol.settings.CheckboxSetting
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -13,6 +13,19 @@
             android:summary="@string/vibrate_notif_expand_summary"
             android:key="vibrate_notif_expand"
             android:defaultValue="true"
+            />
+
+    <com.aokp.romcontrol.widgets.CategorySeparator
+            style="@style/defaultSize"
+            android:title="@string/category_signalbars"/>
+
+        <com.aokp.romcontrol.settings.CheckboxSetting
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:title="@string/statusbar_signal_text_title"
+            android:summary="@string/statusbar_signal_text_summary"
+            android:key="statusbar_signal_text"
             />
 
 </LinearLayout>
