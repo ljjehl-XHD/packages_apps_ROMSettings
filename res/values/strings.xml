@@ -225,6 +225,8 @@
     <string name="system_power_crt_screen_off_summary">Screen will animate an Electron Beam when turned off</string>
     <string name="system_power_crt_screen_on_title">CRT Screen On</string>
     <string name="system_power_crt_screen_on_summary">Screen will animate an Electron Beam when turned on</string>
+    <!-- Screen off animation -->
+    <string name="screen_off_animation">Screen-off animation</string>
     <string name="transparency_dialog_title">Transparency settings</string>
     <string name="transparency_dialog_linked_transparency">Link statusbar &amp; navbar alpha</string>
     <string name="transparency_dialog_transparency_sb_and_nv">Statusbar and navigation bar</string>
