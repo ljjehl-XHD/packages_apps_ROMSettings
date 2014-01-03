@@ -12,6 +12,8 @@
             android:key="statusbar_enable_brightness_slider"
             android:defaultValue="true" />
 
+    </PreferenceCategory>
+
     <PreferenceCategory
         android:key="misc"
         android:title="@string/misc_short">
