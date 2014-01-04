@@ -31,6 +31,7 @@
     <string name="xposed_settings_title">Xposed</string>
     <string name="Extras">Extras</string>
     <string name="category_toggles">Toggles</string>
+    <string name="category_statusbar">Statusbar</string>
 
     <!-- Activity titles defined in AndroidManifest.xml -->
     <string name="title_about">About XenonHD</string>
@@ -1225,6 +1226,9 @@
     <string name="square_battery">SquareMod</string>
     <string name="gear_battery">Gear</string>
     <string name="rb_battery9">Rush</string>
+
+    <string name="battery_percentage_indicator_title">Show battery percentage indicator</string>
+    <string name="battery_percentage_indicator_summary">Show battery percentage indicator front of battery icon</string>
 
     <!-- NavBar -->
     <string name="right">Right</string>
