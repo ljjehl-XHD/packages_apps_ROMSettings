@@ -17,6 +17,7 @@ import android.os.Message;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -40,9 +41,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 
 	private static final String PREF_STATUSBAR_BRIGHTNESS = "statusbar_enable_brightness_slider";
     private static final String KEY_SCREEN_OFF_ANIMATION = "screen_off_animation";
+    private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
 
 	CheckBoxPreference mStatusbarSliderPreference;
     ListPreference mScreenOffAnimationPreference;
+    ListPreference mLowBatteryWarning;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,13 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mScreenOffAnimationPreference.setOnPreferenceChangeListener(this);
         updateScreenOffAnimationPreferenceDescription(currentAnimation);
 
+        mLowBatteryWarning = (ListPreference) findPreference(KEY_LOW_BATTERY_WARNING_POLICY);
+        int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
+                                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, 0);
+        mLowBatteryWarning.setValue(String.valueOf(lowBatteryWarning));
+        mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
+        mLowBatteryWarning.setOnPreferenceChangeListener(this);
+
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -79,6 +89,14 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen-off animation setting", e);
             }
+            return true;
+        } else if (preference == mLowBatteryWarning) {
+            int lowBatteryWarning = Integer.valueOf((String) objValue);
+            int index = mLowBatteryWarning.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY,
+                    lowBatteryWarning);
+            mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntries()[index]);
             return true;
         }
 

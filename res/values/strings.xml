@@ -1589,7 +1589,9 @@
     <string name="low_battery_warning_policy_notif">Notification only</string>
     <string name="low_battery_warning_policy_sound">Sound only</string>
     <string name="low_battery_warning_policy_disabled">Disabled</string>
-    
+    <string name="battery_prefs_title">Options</string>
+    <string name="battery_stats_title">Statistics</string>
+
     <string name="wifi_security_none">None</string>
     <string name="profile_applist_title">Applications</string>
     
