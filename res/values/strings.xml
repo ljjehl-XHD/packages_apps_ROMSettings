@@ -99,7 +99,6 @@
     <string name="reset">Reset</string>
 
     <!-- Power Menu -->
-    <string name="title_show_power_saver">Show power saver</string>
     <string name="title_show_screenshot">Show screenshot</string>
     <string name="title_show_torch_toggle">Show torch toggle</string>
     <string name="title_show_airplane_toggle">Show airplane toggle</string>
@@ -329,6 +328,7 @@
 
     <string name="toggles_swipe_to_switch_title">Swipe to switch</string>
     <string name="toggles_swipe_to_switch_summary">Swipe to switch between notifications and Quick Settings</string>
+    <string name="toggles_arrange_instructions">Rearrange by dragging by the handle on the right. Remove by swiping.</string>
 
     <!-- Network speed -->
     <string name="show_network_speed">Network speed indicator</string>
@@ -564,9 +564,10 @@
     <string name="interface_navring_settings_summary">@null</string>
     <string name="navring_target_info">Drag your finger to targets to assign actions</string>
     <string name="navring_clear">Clear action</string>
-    <string name="navring_short">Short action</string>
-    <string name="navring_long">Long action</string>
-    <string name="navring_icon">Custom icon</string>
+    <string name="action_short">Short action</string>
+    <string name="action_long">Long action</string>
+    <string name="action_double">Double tap action</string>
+    <string name="action_icon">Custom icon</string>
     <string name="navring_target_amount_text">Current number of targets</string>
     <string name="navring_target_longpress_text">Longpress actions</string>
     <string name="description_target_unlock">Unlock</string>
@@ -1295,6 +1296,9 @@
     <string name="size_2_dp">2 dp</string>
     <string name="size_3_dp">3 dp</string>
     <string name="size_4_dp">4 dp</string>
+    <string name="add_button">Add button</string>
+    <string name="navbar_tab_arrange">Rearrange</string>
+    <string name="navbar_tab_settings">Settings</string>
 
     <!-- LED Values -->
     <string name="time_0_seconds_off">Off</string>

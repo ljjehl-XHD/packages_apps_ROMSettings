@@ -258,9 +258,9 @@
     </array>
 
     <string-array name="navring_long_dialog_entries" translatable="false">
-        <item>@string/navring_short</item>
-        <item>@string/navring_long</item>
-        <item>@string/navring_icon</item>
+        <item>@string/action_short</item>
+        <item>@string/action_long</item>
+        <item>@string/action_icon</item>
     </string-array>
     <string-array name="navring_long_dialog_values" translatable="false">
         <item>**short**</item>
@@ -268,8 +268,8 @@
         <item>**icon**</item>
     </string-array>
     <string-array name="navring_short_dialog_entries" translatable="false">
-        <item>@string/navring_short</item>
-        <item>@string/navring_icon</item>
+        <item>@string/action_short</item>
+        <item>@string/action_icon</item>
     </string-array>
     <string-array name="navring_short_dialog_values" translatable="false">
         <item>**short**</item>
@@ -289,6 +289,19 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+    </string-array>
+
+    <string-array name="navbar_dialog_entries" translatable="false">
+        <item>@string/action_short</item>
+        <item>@string/action_long</item>
+        <item>@string/action_double</item>
+        <item>@string/action_icon</item>
+    </string-array>
+    <string-array name="navbar_dialog_values" translatable="false">
+        <item>**short**</item>
+        <item>**long**</item>
+        <item>**double**</item>
+        <item>**icon**</item>
     </string-array>
     <string-array name="navigation_bar_width_entries" translatable="false">
         <item>@string/size_42_dp_default</item>
@@ -1307,64 +1320,6 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
-    </string-array>
-    
-    <string-array name="ribbon_dialog_entries" translatable="false">
-        <item>@string/navring_short</item>
-        <item>@string/navring_long</item>
-        <item>@string/navring_icon</item>
-        <item>@string/ribbon_insert</item>
-        <item>@string/navbar_delete_menu</item>
-    </string-array>
-    <string-array name="ribbon_dialog_values" translatable="false">
-        <item>**short**</item>
-        <item>**long**</item>
-        <item>**icon**</item>
-        <item>**insert**</item>
-        <item>**remove**</item>
-    </string-array>
-	<string-array name="ribbon_icon_size_entries" translatable="false">
-        <item>@string/icon_size_normal</item>
-        <item>@string/icon_size_20</item>
-        <item>@string/icon_size_15</item>
-    </string-array>
-    <string-array name="ribbon_icon_size_values" translatable="false">
-        <item>0</item>
-        <item>20</item>
-        <item>15</item>
-    </string-array>
-    <string-array name="ribbon_handle_location_entries" translatable="false">
-        <item>@string/center</item>
-        <item>@string/top</item>
-        <item>@string/bottom</item>
-    </string-array>
-    <string-array name="ribbon_handle_location_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-    <string-array name="ribbon_dismiss_entries" translatable="false">
-        <item>@string/never</item>
-        <item>@string/always</item>
-        <item>@string/not_bar</item>
-    </string-array>
-    <string-array name="ribbon_dismiss_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-    <!-- Window columns quantity -->
-    <string-array name="window_columns_entries" translatable="false">
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-    </string-array>
-    <string-array name="window_columns_values" translatable="false">
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
     </string-array>
     
     <string-array name="hardware_keys_action_entries" translatable="false">
