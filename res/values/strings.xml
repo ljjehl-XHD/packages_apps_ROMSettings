@@ -33,6 +33,7 @@
     <string name="category_toggles">Toggles</string>
     <string name="category_statusbar">Statusbar</string>
     <string name="category_navring">Navigation Ring</string>
+    <string name="category_lockscreen">Lockscreen</string>
 
     <!-- Activity titles defined in AndroidManifest.xml -->
     <string name="title_about">About XenonHD</string>
@@ -764,10 +765,10 @@
     <string name="lockscreen_longpress_challenge_summary">This enables your device to be unlocked with the widgets maximised by long pressing the lock icon.</string>
     <string name="lockscreen_use_widget_container_carousel_title">Use widget carousel</string>
     <string name="lockscreen_use_widget_container_carousel_summary">Use a carousel animation when switching between lockscreen widgets.</string>
-    <string name="volume_rocker_wake_title">Volume wake</string>
-    <string name="volume_rocker_wake_summary">Wake screen with volume rockers</string>
-    <string name="volume_music_controls_title">Volume music controls</string>
-    <string name="volume_music_controls_summary">Long press volume buttons to skip tracks while screen is off. Volume wake will not work when music is playing.</string>
+    <string name="volume_wake_screen">Volume Rocker Wake</string>
+    <string name="volume_wake_screen_summary">Use the volume keys wake the screen.</string>
+    <string name="volume_music_controls">Volume Music Controls</string>
+    <string name="volume_music_controls_summary">Whether volume up/down can be long pressed to skip track</string>
     <string name="lockscreen_stock_music_layout_title">Stock music layout</string>
     <string name="lockscreen_stock_music_layout_summary">Use the stock layout when playing music.</string>
     <string name="lockscreen_wallpaper_title">Choose lockscreen wallpaper</string>
