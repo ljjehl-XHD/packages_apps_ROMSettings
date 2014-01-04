@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/settingsFragmentStyle">
+
+    <com.aokp.romcontrol.widgets.CategorySeparator
+            style="@style/defaultSize"
+            android:title="@string/category_statusbar_notification"/>
+
+    <com.aokp.romcontrol.settings.CheckboxSetting
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:title="@string/vibrate_notif_expand_title"
+            android:summary="@string/vibrate_notif_expand_summary"
+            android:key="vibrate_notif_expand"
+            android:defaultValue="true"
+            />
+
+</LinearLayout>

@@ -32,6 +32,7 @@
     <string name="Extras">Extras</string>
     <string name="category_toggles">Toggles</string>
     <string name="category_statusbar">Statusbar</string>
+    <string name="category_statusbar_notification">Notifications</string>
     <string name="category_navring">Navigation Ring</string>
     <string name="category_lockscreen">Lockscreen</string>
 

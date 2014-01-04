@@ -45,7 +45,13 @@
     <header
         android:id="@+id/statusbar"
         android:title="@string/header_statusbar" />
-        
+
+    <header
+        android:fragment="com.aokp.romcontrol.fragments.StatusbarSettingsFragment"
+        android:icon="@drawable/ic_rom_control_signal"
+        android:summary="@string/header_summary_signal"
+        android:title="@string/signal" />
+
     <header
         android:id="@+id/statusbar_battery"
         android:title="@string/battery"
@@ -59,7 +65,7 @@
         android:summary="@string/header_summary_clock"
         android:icon="@drawable/ic_rom_control_clock"
         android:title="@string/clock" />
-        
+
    	<header
         android:title="@string/toggles_layout"
         android:fragment="com.aokp.romcontrol.fragments.ArrangeTogglesFragment"
