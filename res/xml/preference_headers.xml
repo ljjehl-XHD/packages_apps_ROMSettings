@@ -17,6 +17,13 @@
         android:summary="@string/header_summary_lockscreens" />
 
     <header
+        android:id="@+id/nav_ring"
+        android:fragment="com.aokp.romcontrol.fragments.NavRingTargets"
+        android:icon="@drawable/ic_rom_control_navigation_ring"
+        android:title="@string/interface_navring_settings_title"
+        android:summary="@string/interface_navring_settings_summary" />
+
+    <header
         android:id="@+id/power_menu"
         android:fragment="com.aokp.romcontrol.fragments.PowerMenu"
         android:title="@string/power_menu"

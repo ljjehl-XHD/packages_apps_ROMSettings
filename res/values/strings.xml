@@ -32,6 +32,7 @@
     <string name="Extras">Extras</string>
     <string name="category_toggles">Toggles</string>
     <string name="category_statusbar">Statusbar</string>
+    <string name="category_navring">Navigation Ring</string>
 
     <!-- Activity titles defined in AndroidManifest.xml -->
     <string name="title_about">About XenonHD</string>
@@ -547,16 +548,16 @@
     <!-- Nav Ring Targets -->
     <string name="navbar_ring_cat">Navigation Ring Targets</string>
     <string name="navbar_ring">Custom Ring Targets</string>
-    <string name="navring_enable_long">Enable Longpress for navigation ring</string>
-    <string name="navring_target_save">Navigation rings saved</string>
-    <string name="navring_target_reset_message">Do you want to reset the navigation ring?</string>
-    <string name="navring_target_reset">Navigation ring targets reset.</string>
+    <string name="navring_enable_long">Enable Longpress for Navigation Ring</string>
+    <string name="navring_target_save">Navigation Rings saved</string>
+    <string name="navring_target_reset_message">Do you want to reset the Navigation Ring?</string>
+    <string name="navring_target_reset">Navigation Ring targets reset.</string>
     <string name="choose_action_title">Choose action</string>
     <string name="choose_action_short_title">Choose short action</string>
     <string name="choose_action_long_title">Choose long action</string>
-    <string name="action_long_save"> set as long action</string>
-    <string name="title_navring_amount">Number of navigation ring targets</string>
-    <string name="summary_navring_amount">Choose number of targets in the navigation ring</string>
+    <string name="action_long_save">set as long action</string>
+    <string name="title_navring_amount">Number of Navigation Ring targets</string>
+    <string name="summary_navring_amount">Choose number of targets in the Navigation Ring</string>
     <string name="interface_navring_settings_title">Navigation Ring</string>
     <string name="interface_navring_settings_summary">@null</string>
     <string name="navring_target_info">Drag your finger to targets to assign actions</string>
@@ -565,7 +566,12 @@
     <string name="navring_long">Long action</string>
     <string name="navring_icon">Custom icon</string>
     <string name="navring_target_amount_text">Current number of targets</string>
-    <string name="navring_target_longpress_text">Longpress status</string>
+    <string name="navring_target_longpress_text">Longpress actions</string>
+    <string name="description_target_unlock">Unlock</string>
+    <string name="description_direction_up">Slide up for unlock</string>
+    <string name="description_direction_down">Slide down for unlock</string>
+    <string name="description_direction_left">"Slide left for unlock</string>
+    <string name="description_direction_right">Slide right for unlock</string>
 
    <!-- Ribbon -->
     <string name="aokp_ribbon">AOKP Ribbon</string>
