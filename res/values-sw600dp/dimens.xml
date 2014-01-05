@@ -17,10 +17,10 @@
 <resources>
    <!-- Default distance beyond which snaps to the matching target -->
     <dimen name="navbar_search_snap_margin">40dip</dimen>
-    <!-- Diameter of outer shape drawable shown in navbar search. Should be 1/2 of above value -->
-    <dimen name="navbar_search_outerring_radius">215dp</dimen>
+    <!-- Diameter of outer shape drawable shown in navbar search. -->
+    <dimen name="navbar_search_outerring_radius">200dp</dimen>
     <!-- Diameter of outer shape drawable shown in navbar search-->
-    <dimen name="navbar_search_outerring_diameter">430dp</dimen>
+    <dimen name="navbar_search_outerring_diameter">400dp</dimen>
     <!-- Height of search panel including navigation bar height -->
-    <dimen name="navbar_search_panel_height">280dip</dimen>
+    <dimen name="navbar_search_panel_height">230dip</dimen>
 </resources>
