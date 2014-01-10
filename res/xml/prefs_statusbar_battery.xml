@@ -2,27 +2,39 @@
               style="@style/settingsFragmentStyle">
 
     <com.aokp.romcontrol.widgets.CategorySeparator
-            style="@style/defaultSize"
-            android:title="@string/category_statusbar"/>
-	
-	<com.aokp.romcontrol.settings.CheckboxSetting
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                style="@style/defaultSize"
+                android:title="@string/category_statusbar_battery"/>
 
-            android:title="@string/battery_percentage_indicator_title"
-            android:summary="@string/battery_percentage_indicator_summary"
-            android:key="battery_percentage_indicator"
-            android:defaultValue="false"
-            />
+        <com.aokp.romcontrol.settings.CheckboxSetting
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-    <com.aokp.romcontrol.settings.CheckboxSetting
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                android:id="@+id/battery_percentage_indicator"
+                android:title="@string/battery_percentage_indicator_title"
+                android:summary="@string/battery_percentage_indicator_summary"
+                android:key="battery_percentage_indicator"
+                android:defaultValue="false"
+                />
 
-            android:title="@string/hide_battery_icon_title"
-            android:summary="@string/hide_battery_icon_summary"
-            android:key="hide_battery_icon"
-            android:defaultValue="false"
-            />
+        <com.aokp.romcontrol.settings.CheckboxSetting
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/battery_percentage_indicator_plugged"
+                android:title="@string/battery_percentage_indicator_plugged_title"
+                android:summary="@string/battery_percentage_indicator_plugged_summary"
+                android:key="battery_percentage_indicator_plugged"
+                android:defaultValue="false"
+                />
+
+        <com.aokp.romcontrol.settings.CheckboxSetting
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:title="@string/hide_battery_icon_title"
+                android:summary="@string/hide_battery_icon_summary"
+                android:key="hide_battery_icon"
+                android:defaultValue="false"
+                />
 
 </LinearLayout>

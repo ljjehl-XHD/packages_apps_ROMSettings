@@ -33,6 +33,7 @@
     <string name="category_toggles">Toggles</string>
     <string name="category_statusbar">Statusbar</string>
     <string name="category_statusbar_notification">Notifications</string>
+    <string name="category_statusbar_battery">Battery</string>
     <string name="category_navring">Navigation Ring</string>
     <string name="category_lockscreen">Lockscreen</string>
 
@@ -1247,6 +1248,8 @@
 
     <string name="battery_percentage_indicator_title">Show battery percentage indicator</string>
     <string name="battery_percentage_indicator_summary">Show battery percentage indicator front of battery icon</string>
+    <string name="battery_percentage_indicator_plugged_title">Indicate charging</string>
+    <string name="battery_percentage_indicator_plugged_summary">Show battery percentage indicator in different color during charging</string>
     <string name="hide_battery_icon_title">Hide battery icon</string>
     <string name="hide_battery_icon_summary">Completly hide battery icon from statusbar</string>
 
