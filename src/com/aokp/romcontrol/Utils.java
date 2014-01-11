@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package com.xylon.settings;
+package com.aokp.romcontrol;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -44,7 +44,7 @@ import android.os.ParcelFileDescriptor;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.preference.Preference;
-import android.preference.PreferenceDrawerActivity.Header;
+import android.preference.PreferenceActivity.Header;
 import android.preference.PreferenceFrameLayout;
 import android.preference.PreferenceGroup;
 import android.provider.ContactsContract.CommonDataKinds;
@@ -108,6 +108,12 @@ public class Utils {
             }
         }
         return mDeviceType;
+    }
+
+    public static boolean isWifiOnly(Context context) {
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+        return (cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE) == false);
     }
 
     public static boolean isPhone(Context con) {

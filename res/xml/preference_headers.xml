@@ -75,7 +75,7 @@
 
    	<header
         android:title="@string/toggles_layout"
-        android:fragment="com.aokp.romcontrol.fragments.ArrangeTogglesFragment"
+        android:fragment="com.aokp.romcontrol.fragments.toggles.TogglesTab"
         android:icon="@drawable/ic_rom_control_quick_settings"
         android:summary="@string/header_summary_toggles" />
      

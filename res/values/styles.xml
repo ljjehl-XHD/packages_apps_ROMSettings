@@ -73,4 +73,10 @@
 
     <color name="setting_separator">#ff484848</color>
 
+    <style name="TextAppearance.PagerTabs" parent="@android:style/TextAppearance.DeviceDefault.Small">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

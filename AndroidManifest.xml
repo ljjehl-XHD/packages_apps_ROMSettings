@@ -243,7 +243,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragments.ArrangeTogglesFragment"
+            android:name=".fragments.toggles.TogglesTab"
             android:label="@string/title_statusbar_toggles" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
