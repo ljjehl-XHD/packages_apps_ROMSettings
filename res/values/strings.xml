@@ -101,6 +101,12 @@
     <string name="default_string">Default</string>
     <string name="reset">Reset</string>
 
+    <!-- Time -->
+    <string name="time_0_5_seconds">.5 seconds</string>
+    <string name="time_1_second">1 second</string>
+    <string name="time_2_seconds">2 seconds</string>
+    <string name="time_5_seconds">5 seconds</string>
+
     <!-- Power Menu -->
     <string name="title_show_screenshot">Show screenshot</string>
     <string name="title_show_torch_toggle">Show torch toggle</string>
@@ -1720,5 +1726,14 @@
     <string name="restart_status_bar_menu_title">Restart status bar</string>
     <string name="restart_status_bar_title">Restart?</string>
     <string name="restart_status_bar_message">Restarting the System UI will significally change the values you modify.</string>
+
+    <!-- Status bar network speed stats -->
+    <string name="status_bar_network_title">Network traffic</string>
+    <string name="status_bar_show_network_stats_title">Show network speeds</string>
+    <string name="status_bar_show_network_stats_summary">Show network speeds in statusbar</string>
+    <string name="status_bar_network_stats_update_title">Update frequency</string>
+    <string name="status_bar_network_stats_update_summary">How often is indicator updated</string>
+    <string name="status_bar_network_stats_color_title">Network speeds text color</string>
+    <string name="status_bar_network_stats_color_summary">Network speeds text color in statusbar</string>
 
 </resources>
