@@ -1,18 +1,23 @@
 
 package com.aokp.romcontrol.util;
 
-import android.util.Log;
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStream;
+import java.io.IOException;
+
+import android.util.Log;
 
 import com.aokp.romcontrol.objects.EasyPair;
 
 public class CMDProcessor {
 
-    private final String TAG = getClass().getSimpleName();
-    private static final boolean DEBUG = false;
+    private static final String TAG = "CMD Processor";
     private Boolean can_su;
     public SH sh;
     public SH su;
@@ -31,7 +36,6 @@ public class CMDProcessor {
     }
 
     public class CommandResult {
-        private final String resultTag = TAG + '.' + getClass().getSimpleName();
         public final String stdout;
         public final String stderr;
         public final Integer exit_value;
@@ -45,10 +49,6 @@ public class CMDProcessor {
             exit_value = exit_value_in;
             stdout = stdout_in;
             stderr = stderr_in;
-            if (DEBUG)
-                Log.d(TAG, resultTag + "( exit_value=" + exit_value
-                    + ", stdout=" + stdout
-                    + ", stderr=" + stderr + " )");
         }
 
         public boolean success() {
@@ -71,6 +71,7 @@ public class CMDProcessor {
             String out = null;
             StringBuffer buffer = null;
             final DataInputStream dis = new DataInputStream(is);
+
             try {
                 if (dis.available() > 0) {
                     buffer = new StringBuffer(dis.readLine());
@@ -105,7 +106,6 @@ public class CMDProcessor {
         }
 
         public CommandResult runWaitFor(final String s) {
-            if (DEBUG) Log.d(TAG, "runWaitFor( " + s + " )");
             final Process process = run(s);
             Integer exit_value = null;
             String stdout = null;
@@ -113,8 +113,10 @@ public class CMDProcessor {
             if (process != null) {
                 try {
                     exit_value = process.waitFor();
+
                     stdout = getStreamLines(process.getInputStream());
                     stderr = getStreamLines(process.getErrorStream());
+
                 } catch (final InterruptedException e) {
                     Log.e(TAG, "runWaitFor " + e.toString());
                 } catch (final NullPointerException e) {
@@ -129,15 +131,55 @@ public class CMDProcessor {
         if (can_su == null || force_check) {
             final CommandResult r = su.runWaitFor("id");
             final StringBuilder out = new StringBuilder();
+
             if (r.stdout != null) {
                 out.append(r.stdout).append(" ; ");
             }
             if (r.stderr != null) {
                 out.append(r.stderr);
             }
+
             Log.d(TAG, "canSU() su[" + r.exit_value + "]: " + out);
             can_su = r.success();
         }
         return can_su;
     }
+
+    public static boolean getMount(final String mount) {
+        final CMDProcessor cmd = new CMDProcessor();
+        final String mounts[] = getMounts("/system");
+        if (mounts != null
+                && mounts.length >= 3) {
+            final String device = mounts[0];
+            final String path = mounts[1];
+            final String point = mounts[2];
+            if (cmd.su.runWaitFor("mount -o " + mount + ",remount -t "
+                + point + " " + device + " " + path).success()) {
+                return true;
+            }
+        }
+        return ( cmd.su.runWaitFor("busybox mount -o remount," + mount + " /system").success() );
+    }
+
+
+    public static String[] getMounts(final String path) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("/proc/mounts"), 256);
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                if (line.contains(path)) {
+                    return line.split(" ");
+                }
+            }
+            br.close();
+        }
+        catch (FileNotFoundException e) {
+            Log.d(TAG, "/proc/mounts does not exist");
+        }
+        catch (IOException e) {
+            Log.d(TAG, "Error reading /proc/mounts");
+        }
+        return null;
+    }
+
 }
