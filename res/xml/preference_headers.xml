@@ -76,13 +76,7 @@
     <header
         android:id="@+id/system"
         android:title="@string/header_system" />
-
-    <header
-        android:title="@string/active_display_settings"
-        android:fragment="com.aokp.romcontrol.fragments.chameleonos.ActiveDisplaySettings"
-        android:icon="@drawable/ic_rom_settings_adisplay"
-        android:summary="@string/header_summary_adsiplay" />
-
+        
     <header
         android:id="@+id/user_interface"
         android:fragment="com.aokp.romcontrol.fragments.DensityChanger"
