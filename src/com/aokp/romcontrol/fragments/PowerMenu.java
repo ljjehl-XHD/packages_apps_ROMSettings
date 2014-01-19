@@ -24,6 +24,7 @@ public class PowerMenu extends AOKPPreferenceFragment {
     private static final String PREF_AIRPLANE_TOGGLE = "show_airplane_toggle";
     private static final String KEY_REBOOT = "power_menu_reboot";
     private static final String KEY_SILENT = "power_menu_silent";
+    private static final String IMMERSIVE_MODE = "power_menu_immersive_mode";
 
     //CheckBoxPreference mShowPowerSaver;
     //CheckBoxPreference mShowScreenShot;
@@ -33,6 +34,7 @@ public class PowerMenu extends AOKPPreferenceFragment {
     CheckBoxPreference mShowAirplaneToggle;
     CheckBoxPreference mRebootPref;
     CheckBoxPreference mSilentPref;
+    CheckBoxPreference mImmersiveModePref;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class PowerMenu extends AOKPPreferenceFragment {
         mShowScreenShot = (CheckBoxPreference) findPreference(PREF_SCREENSHOT);
         mShowScreenShot.setChecked(Settings.System.getInt(getActivity()
                 .getContentResolver(), Settings.System.POWER_MENU_SCREENSHOT_ENABLED,
-                0) == 1);
+                1) == 1);
 
 
         mShowAirplaneToggle = (CheckBoxPreference) findPreference(PREF_AIRPLANE_TOGGLE);
@@ -61,6 +63,11 @@ public class PowerMenu extends AOKPPreferenceFragment {
         mSilentPref.setChecked(Settings.System.getInt(getActivity()
         		.getContentResolver(), Settings.System.POWER_MENU_SILENT_ENABLED,
         		1) == 1);
+
+        mImmersiveModePref = (CheckBoxPreference) findPreference(IMMERSIVE_MODE);
+        mImmersiveModePref.setChecked(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.POWER_MENU_IMMERSIVE_MODE_ENABLED,
+                0) == 1);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -90,6 +97,11 @@ public class PowerMenu extends AOKPPreferenceFragment {
         			Settings.System.POWER_MENU_SILENT_ENABLED,
         			((CheckBoxPreference)preference).isChecked() ? 1 : 0);
         	return true;
+        } else if (preference == mImmersiveModePref) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.POWER_MENU_IMMERSIVE_MODE_ENABLED,
+                    ((CheckBoxPreference)preference).isChecked() ? 1 : 0);
+            return true;
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
