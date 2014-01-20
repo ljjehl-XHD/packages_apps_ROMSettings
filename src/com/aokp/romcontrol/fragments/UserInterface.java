@@ -131,7 +131,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_BAR_OPAQUE_COLOR, intHex);
-            Helpers.restartSystemUI();
             return true;
         }
 
