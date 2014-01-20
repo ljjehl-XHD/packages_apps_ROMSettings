@@ -1,11 +1,14 @@
-
 package com.aokp.romcontrol.fragments;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -32,6 +35,10 @@ import java.util.List;
 
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
+import com.aokp.romcontrol.util.Helpers;
+import com.aokp.romcontrol.Utils;
+
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class UserInterface extends AOKPPreferenceFragment implements OnPreferenceChangeListener {
 
@@ -42,10 +49,14 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
 	private static final String PREF_STATUSBAR_BRIGHTNESS = "statusbar_enable_brightness_slider";
     private static final String KEY_SCREEN_OFF_ANIMATION = "screen_off_animation";
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
+    private static final String PREF_CUSTOM_STATUS_BAR_COLOR = "custom_status_bar_color";
+    private static final String PREF_STATUS_BAR_OPAQUE_COLOR = "status_bar_opaque_color";
 
 	CheckBoxPreference mStatusbarSliderPreference;
     ListPreference mScreenOffAnimationPreference;
     ListPreference mLowBatteryWarning;
+    CheckBoxPreference mCustomBarColor;
+    ColorPickerPreference mBarOpaqueColor;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +70,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         ContentResolver cr = mContext.getContentResolver();
         mContentResolver = getContentResolver();
         ContentResolver resolver = getActivity().getContentResolver();
+        ContentResolver mContentAppRes = mContext.getContentResolver();
 
     	mStatusbarSliderPreference = (CheckBoxPreference) findPreference(PREF_STATUSBAR_BRIGHTNESS);
     	mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
@@ -77,6 +89,20 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mLowBatteryWarning.setValue(String.valueOf(lowBatteryWarning));
         mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
         mLowBatteryWarning.setOnPreferenceChangeListener(this);
+
+        int intColor;
+        String hexColor;
+
+        mCustomBarColor = (CheckBoxPreference) prefSet.findPreference(PREF_CUSTOM_STATUS_BAR_COLOR);
+        mCustomBarColor.setChecked(Settings.System.getInt(mContentAppRes,
+                Settings.System.CUSTOM_STATUS_BAR_COLOR, 0) == 1);
+
+        mBarOpaqueColor = (ColorPickerPreference) findPreference(PREF_STATUS_BAR_OPAQUE_COLOR);
+        mBarOpaqueColor.setOnPreferenceChangeListener(this);
+        intColor = Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_OPAQUE_COLOR, 0xff000000);
+        mBarOpaqueColor.setSummary(getResources().getString(R.string.default_string));
+        mBarOpaqueColor.setNewPreviewColor(intColor);
 
     }
 
@@ -97,6 +123,15 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY,
                     lowBatteryWarning);
             mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntries()[index]);
+            return true;
+        } else  if (preference == mBarOpaqueColor) {
+            String hex = ColorPickerPreference.convertToARGB(Integer
+                    .valueOf(String.valueOf(objValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_OPAQUE_COLOR, intHex);
+            Helpers.restartSystemUI();
             return true;
         }
 
@@ -127,6 +162,12 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putBoolean(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_ENABLE_BRIGHTNESS_SLIDER,
                     isCheckBoxPrefernceChecked(preference));
+            return true;
+        } else if (preference == mCustomBarColor) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.CUSTOM_STATUS_BAR_COLOR,
+            mCustomBarColor.isChecked() ? 1 : 0);
+            Helpers.restartSystemUI();
             return true;
         }
 
