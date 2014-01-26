@@ -1,4 +1,3 @@
-
 package com.aokp.romcontrol;
 
 import android.app.Activity;
@@ -24,7 +23,7 @@ public class AOKPActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                super.onBackPressed();
                 return true;
             default:
                 return super.onContextItemSelected(item);
