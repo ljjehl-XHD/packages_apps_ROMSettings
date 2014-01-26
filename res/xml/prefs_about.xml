@@ -27,26 +27,27 @@
 			aokp:nameDev="iceandfire"
 			aokp:twitterHandle="arhamjamal"
 			aokp:donateLink="@string/donate" />
-
+			
 		<com.aokp.romcontrol.widgets.DeveloperPreference
 			android:title="Adam80460"
 			aokp:nameDev="Adam80460"
 			aokp:twitterHandle="adam80460" />
-		
-		<com.aokp.romcontrol.widgets.DeveloperPreference
-			android:title="TheBr0ken"
-			aokp:nameDev="TheBr0ken"
-			aokp:twitterHandle="TheBr0ken" />
 
 		<com.aokp.romcontrol.widgets.DeveloperPreference
-			android:title="pr0xy man1Ac"
-			aokp:nameDev="pr0xy man1Ac"
-			aokp:twitterHandle="tr0nz420" />
+			android:title="AndrolinRoot"
+			aokp:nameDev="AndrolinRoot"
+			aokp:twitterHandle="root_ad" 
+			aokp:donateLink="@string/donate_andy" />
 			
 		<com.aokp.romcontrol.widgets.DeveloperPreference
 			android:title="PCarenza"
 			aokp:nameDev="PCarenza"
 			aokp:twitterHandle="pcarenza" />
+		
+		<com.aokp.romcontrol.widgets.DeveloperPreference
+			android:title="TheBr0ken"
+			aokp:nameDev="TheBr0ken"
+			aokp:twitterHandle="TheBr0ken" />
 			
 		<com.aokp.romcontrol.widgets.DeveloperPreference
 			android:title="T-Macgnolia"
