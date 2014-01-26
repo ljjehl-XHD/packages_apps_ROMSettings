@@ -52,6 +52,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PREF_CUSTOM_STATUS_BAR_COLOR = "custom_status_bar_color";
     private static final String PREF_STATUS_BAR_OPAQUE_COLOR = "status_bar_opaque_color";
     private static final String STATUS_BAR_CUSTOM_HEADER = "custom_status_bar_header";
+    private static final String KEY_LISTVIEW_ANIMATION = "listview_animation";
+    private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";
 
 	CheckBoxPreference mStatusbarSliderPreference;
     ListPreference mScreenOffAnimationPreference;
@@ -59,6 +61,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     CheckBoxPreference mCustomBarColor;
     ColorPickerPreference mBarOpaqueColor;
     CheckBoxPreference mStatusBarCustomHeader;
+    ListPreference mListViewAnimation;
+    ListPreference mListViewInterpolator;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -89,6 +93,21 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mScreenOffAnimationPreference.setValue(String.valueOf(currentAnimation));
         mScreenOffAnimationPreference.setOnPreferenceChangeListener(this);
         updateScreenOffAnimationPreferenceDescription(currentAnimation);
+
+        mListViewAnimation = (ListPreference) findPreference(KEY_LISTVIEW_ANIMATION);
+        int listviewanimation = Settings.System.getInt(getContentResolver(),
+                Settings.System.LISTVIEW_ANIMATION, 0);
+        mListViewAnimation.setValue(String.valueOf(listviewanimation));
+        mListViewAnimation.setSummary(mListViewAnimation.getEntry());
+        mListViewAnimation.setOnPreferenceChangeListener(this);
+
+        mListViewInterpolator = (ListPreference) findPreference(KEY_LISTVIEW_INTERPOLATOR);
+        int listviewinterpolator = Settings.System.getInt(getContentResolver(),
+                Settings.System.LISTVIEW_INTERPOLATOR, 0);
+        mListViewInterpolator.setValue(String.valueOf(listviewinterpolator));
+        mListViewInterpolator.setSummary(mListViewInterpolator.getEntry());
+        mListViewInterpolator.setOnPreferenceChangeListener(this);
+        mListViewInterpolator.setEnabled(listviewanimation > 0);
 
         mLowBatteryWarning = (ListPreference) findPreference(KEY_LOW_BATTERY_WARNING_POLICY);
         int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
@@ -122,6 +141,21 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen-off animation setting", e);
             }
+            return true;
+        } else if (preference == mListViewAnimation) {
+            int value = Integer.parseInt((String) objValue);
+            int index = mListViewAnimation.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.LISTVIEW_ANIMATION, value);
+            mListViewAnimation.setSummary(mListViewAnimation.getEntries()[index]);
+            mListViewInterpolator.setEnabled(value > 0);
+            return true;
+        } else if (preference == mListViewInterpolator) {
+            int value = Integer.parseInt((String) objValue);
+            int index = mListViewInterpolator.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.LISTVIEW_INTERPOLATOR, value);
+            mListViewInterpolator.setSummary(mListViewInterpolator.getEntries()[index]);
             return true;
         } else if (preference == mLowBatteryWarning) {
             int lowBatteryWarning = Integer.valueOf((String) objValue);
