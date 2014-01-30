@@ -76,6 +76,7 @@
     <string name="header_summary_lockscreens">@null</string>
     <string name="header_summary_weather">@null</string>
     <string name="header_summary_vibrations">@null</string>
+    <string name="header_summary_animations">@null</string>
     <string name="xposed_settings_title_menu">@null</string>
 	<string name="ribbon_settings_summary">@null</string>
     <string name="header_summary_adsiplay">@null</string>
