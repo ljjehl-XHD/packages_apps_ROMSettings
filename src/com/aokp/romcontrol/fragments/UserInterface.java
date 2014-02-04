@@ -51,12 +51,14 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
     private static final String PREF_CUSTOM_STATUS_BAR_COLOR = "custom_status_bar_color";
     private static final String PREF_STATUS_BAR_OPAQUE_COLOR = "status_bar_opaque_color";
+    private static final String STATUS_BAR_CUSTOM_HEADER = "custom_status_bar_header";
 
 	CheckBoxPreference mStatusbarSliderPreference;
     ListPreference mScreenOffAnimationPreference;
     ListPreference mLowBatteryWarning;
     CheckBoxPreference mCustomBarColor;
     ColorPickerPreference mBarOpaqueColor;
+    CheckBoxPreference mStatusBarCustomHeader;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     	mStatusbarSliderPreference = (CheckBoxPreference) findPreference(PREF_STATUSBAR_BRIGHTNESS);
     	mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
             Settings.System.STATUSBAR_ENABLE_BRIGHTNESS_SLIDER, true));
+
+        mStatusBarCustomHeader = (CheckBoxPreference) findPreference(STATUS_BAR_CUSTOM_HEADER);
+        mStatusBarCustomHeader.setChecked(Settings.System.getInt(resolver,
+            Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
+        mStatusBarCustomHeader.setOnPreferenceChangeListener(this);
 
         mScreenOffAnimationPreference = (ListPreference) findPreference(KEY_SCREEN_OFF_ANIMATION);
         final int currentAnimation = Settings.System.getInt(resolver, SCREEN_OFF_ANIMATION,
@@ -124,6 +131,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     lowBatteryWarning);
             mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntries()[index]);
             return true;
+        } else if (preference == mStatusBarCustomHeader) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.STATUS_BAR_CUSTOM_HEADER, value ? 1 : 0);
         } else  if (preference == mBarOpaqueColor) {
             String hex = ColorPickerPreference.convertToARGB(Integer
                     .valueOf(String.valueOf(objValue)));
