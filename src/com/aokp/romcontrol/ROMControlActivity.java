@@ -1,4 +1,3 @@
-
 package com.aokp.romcontrol;
 
 import android.app.Activity;
@@ -122,7 +121,7 @@ public class ROMControlActivity extends PreferenceDrawerActivity implements Butt
     @Override
     public void onBackPressed() {
         if (isShortcut) {
-            finish();
+            super.finish();
         } else {
             super.onBackPressed();
         }
