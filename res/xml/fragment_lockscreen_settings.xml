@@ -39,6 +39,15 @@
                 android:key="volume_wake_screen"
                 />
 
+       <com.aokp.romcontrol.settings.CheckboxSetting
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:title="@string/battery_around_lockscreen_ring"
+                android:key="battery_around_lockscreen_ring"
+                table="system"
+                />
+
         <com.aokp.romcontrol.settings.CheckboxSetting
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
