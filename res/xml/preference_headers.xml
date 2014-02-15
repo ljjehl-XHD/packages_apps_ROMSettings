@@ -18,7 +18,7 @@
 
     <header
         android:id="@+id/nav_bar"
-        android:fragment="com.aokp.romcontrol.fragments.navbar.ArrangeNavbarFragment"
+        android:fragment="com.aokp.romcontrol.fragments.navbar.NavbarTab"
         android:title="@string/nav_bar"
         android:icon="@drawable/ic_rom_control_navigation_bar"
         android:summary="@string/header_summary_navigation_bar" />

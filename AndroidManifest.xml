@@ -113,7 +113,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragments.navbar.ArrangeNavbarFragment"
+            android:name=".fragments.navbar.NavbarTab"
             android:label="@string/title_navbar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

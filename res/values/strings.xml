@@ -496,25 +496,10 @@
     <string name="navbar_action_notifications">Notifications</string>
     <string name="navbar_action_none">Empty</string>
     <string name="navbar_widgets">Navigation Bar Widgets</string>
-    <string name="navbar_enable_bar">Enable bar</string>
-    <string name="navigation_bar_height_title">Navigation bar height</string>
-    <string name="navigation_bar_height_summary">Navigation Bar height while in portrait. (Requires reboot!)</string>
-    <string name="navigation_bar_height_landscape_title">Navigation bar height landscape</string>
-    <string name="navigation_bar_height_landscape_summary">Navigation Bar height while in landscape. (Requires reboot!)</string>
-    <string name="navigation_bar_width_title">Navigation bar width</string>
-    <string name="navigation_bar_width_summary">Navigation Bar height if the bar is along a side. (Requires reboot!)</string>
     <string name="system_bar_height_title">System Bar height</string>
     <string name="system_bar_height_summary">System Bar height while in portrait</string>
     <string name="system_bar_height_landscape_title">System Bar height landscape</string>
     <string name="system_bar_height_landscape_summary">System Bar height while in landscape</string>
-    <string name="navbar_enable_dialog_title">Reboot required!</string>
-    <string name="navbar_enable_dialog_msg">You <b>should</b> reboot right now to make sure everything works properly!</string>
-    <string name="navbar_enable_dialog_negative">I\'ll reboot later</string>
-    <string name="navbar_enable_dialog_Positive">Reboot now!</string>
-    <string name="navbar_height_dialog_title">Reboot required!</string>
-    <string name="navbar_height_dialog_summary">Please reboot for height change to be added properly!</string>
-    <string name="navbar_height_dialog_button_later">I\'ll reboot later</string>
-    <string name="navbar_height_dialog_button_reboot">Reboot now!</string>
     <string name="navigation_bar_color_title">Navigation bar color</string>
     <string name="navigation_bar_tint_title">Navigation bar buttons color</string>
     <string name="navigation_bar_colorall_title">Colorize all buttons</string>
@@ -549,6 +534,26 @@
     <string name="navbar_longpress_menu">Longpress: %1$s</string>
     <string name="navbar_icon_menu">Custom icon</string>
     <string name="navbar_delete_menu">Delete button</string>
+    
+    <!-- Navigation bar (KitKat) -->
+    <string name="navbar_enable_bar">Enable navigation bar/rings</string>
+    <string name="navbar_enable_bar_summary">Enable the navigation bar/rings</string>
+    <string name="navbar_style_dimen_title">Navigation Bar Dimensions</string>
+    <string name="navbar_dimensions_reset_message">Reset all dimensions entries to default?</string>
+    <string name="navigation_bar_height_title">Navigation bar height</string>
+    <string name="navigation_bar_height_summary">Navigation bar height while in portrait</string>
+    <string name="navigation_bar_width_title">Navigation bar width</string>
+    <string name="navigation_bar_width_summary">Navigation bar height if the bar is along a side</string>
+    <string name="navigation_bar_size_42_dp_default">42 dp (default)</string>
+    <string name="navigation_bar_size_36_dp">36 dp</string>
+    <string name="navigation_bar_size_30_dp">30 dp</string>
+    <string name="navigation_bar_size_24_dp">24 dp</string>
+    <string name="navigation_bar_size_48_dp_default">48 dp (default)</string>
+    <string name="navigation_bar_size_44_dp">44 dp</string>
+    <string name="navigation_bar_size_40_dp">40 dp</string>
+    <string name="navigation_bar_size_42_dp">42 dp</string>
+    <string name="navigation_bar_size_0_dp">0 dp (off)</string>
+    <string name="navigation_tab_arrange">Bar Setup</string>
 
     <!-- Nav Ring Targets -->
     <string name="navbar_ring_cat">Navigation Ring Targets</string>
