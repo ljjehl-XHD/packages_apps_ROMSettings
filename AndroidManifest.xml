@@ -158,7 +158,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragments.PowerMenu"
+            android:name=".fragments.PowerMenuSettingsFragment"
             android:label="@string/title_power_menu" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

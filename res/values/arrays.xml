@@ -1311,19 +1311,16 @@
         <item>@string/notification_shortcuts_icon_picker_unlock</item>
     </string-array>
 
-    <!-- Expanded desktop -->
-    <string-array name="expanded_desktop_entries">
-        <item>@string/expanded_desktop_disabled</item>
-        <item>@string/expanded_desktop_only_nav_bar</item>
-        <item>@string/expanded_desktop_only_status_bar</item>
-        <item>@string/expanded_desktop_both_hidden</item>
+    <!-- Power Menu -->
+    <string-array name="power_menuEntries" translatable="false">
+        <item>@string/hide_option</item>
+        <item>@string/on_always</item>
+        <item>@string/on_when_insecure</item>
     </string-array>
-
-    <string-array name="expanded_desktop_values" translatable="false">
+    <string-array name="power_menuValues" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
-        <item>3</item>
     </string-array>
     
     <string-array name="hardware_keys_action_entries" translatable="false">
