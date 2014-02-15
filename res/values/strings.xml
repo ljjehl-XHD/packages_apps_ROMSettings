@@ -336,8 +336,8 @@
     <string name="show_network_speed">Network speed indicator</string>
     <string name="show_network_speed_summary">Show network speed in statsbar</string>
 
-    <string name="screenshot_delay_title">Screenshot delay</string>
-    <string name="screenshot_delay_summary">Delay to use after long pressing the screenshot toggle</string>
+    <string name="toggle_screenshot_delay_title">Screenshot delay</string>
+    <string name="toggle_screenshot_delay_summary">Delay for screenshot toggle to send intent to capture screen</string>
     
     <!-- Breathing Notifications -->
     <string name="status_bar_breathing_notifs_title">Breathing Notifications</string>
