@@ -38,7 +38,9 @@
     <string name="category_navring">Navigation Ring</string>
     <string name="category_lockscreen">Lockscreen</string>
     <string name="category_animations">Animations</string>
-    <string name="category_power_menu">Power menu </string>
+    <string name="category_power_menu">Power Menu</string>
+    <string name="category_misc">Miscellaneous</string>
+    <string name="category_sound">Sound</string>
 
     <!-- Activity titles defined in AndroidManifest.xml -->
     <string name="title_about">About XenonHD</string>
@@ -750,6 +752,8 @@
         screen timeout time has been reached.**</string>
     <string name="summary_phone_flip_mode">Flip your phone to silent when receiving a call</string>
     <string name="title_phone_flip_mode">Phone Call Silence</string>
+    <string name="safe_headset_volume_title">Safe headset volume</string>
+    <string name="safe_headset_volume_summary">Whether safe headset volume warning is shown</string>
 
     <!-- Animation Controls -->
     <string name="title_animation_controls">Animations</string>

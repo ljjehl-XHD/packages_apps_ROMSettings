@@ -104,6 +104,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".fragments.Misc"
+            android:label="@string/category_misc" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".fragments.StatusBarBattery"
             android:label="@string/title_statusbar_battery" >
             <intent-filter>
