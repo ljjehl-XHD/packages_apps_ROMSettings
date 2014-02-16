@@ -36,6 +36,20 @@
             android:defaultValue="true"
             />
 
+        <com.aokp.romcontrol.widgets.CategorySeparator
+            style="@style/defaultSize"
+            android:title="@string/ram_bar_title"/>
+
+        <com.aokp.romcontrol.settings.CheckboxSetting
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:title="@string/ram_bar_title"
+            android:summary="@string/ram_bar_summary"
+            android:key="ram_usage_bar"
+            android:defaultValue="true"
+            />
+
     </LinearLayout>
 
 </ScrollView>
