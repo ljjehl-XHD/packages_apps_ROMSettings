@@ -53,6 +53,11 @@
 			android:title="T-Macgnolia"
 			aokp:nameDev="T-Macgnolia"
 			aokp:twitterHandle="tmacgnolia" />
+
+		<com.aokp.romcontrol.widgets.DeveloperPreference
+			android:title="ljjehl"
+			aokp:nameDev="ljjehl"
+			aokp:twitterHandle="yalehaus3" />
 	</PreferenceCategory>
 
 </PreferenceScreen>
