@@ -45,6 +45,7 @@
                 android:title="@string/battery_status_icon_title"
                 android:entries="@array/entries_battery_submenu"
                 android:entryValues="@array/values_battery_submenu" 
+                table="system"
                 android:defaultValue="1" />
 
 
