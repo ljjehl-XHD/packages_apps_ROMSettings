@@ -37,7 +37,6 @@
 			android:title="AndrolinRoot"
 			aokp:nameDev="AndrolinRoot"
 			aokp:twitterHandle="root_ad" 
-			aokp:donateLink="@string/donate_andy" />
 			
 		<com.aokp.romcontrol.widgets.DeveloperPreference
 			android:title="PCarenza"
