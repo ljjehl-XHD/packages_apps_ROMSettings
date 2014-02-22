@@ -1783,5 +1783,7 @@
      <string name="battery_circle">Battery circle</string>
      <string name="battery_circle_percent">Battery circle &amp; percent</string>
      <string name="battery_bar">Battery Bar</string>
+     <string name="battery_percent_only">Percent Only</string>
+     <string name="battery_none">None</string>
 
 </resources>
