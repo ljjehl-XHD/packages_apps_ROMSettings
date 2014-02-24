@@ -9,11 +9,13 @@ import android.view.ViewGroup;
 import com.aokp.romcontrol.R;
 import com.aokp.romcontrol.settings.BaseSetting.OnSettingChangedListener;
 import com.aokp.romcontrol.settings.CheckboxSetting;
+import com.aokp.romcontrol.settings.SingleChoiceSetting;
 
 
 public class StatusBarBattery extends Fragment implements OnSettingChangedListener {
 
 	CheckboxSetting mBatteryIndicator, mBatteryIndicatorPlugged;
+        SingleChoiceSetting mBatteryChoice;
 
     public StatusBarBattery() {
 
@@ -24,6 +26,7 @@ public class StatusBarBattery extends Fragment implements OnSettingChangedListen
 
     mBatteryIndicator = (CheckboxSetting) v.findViewById(R.id.battery_percentage_indicator);
     mBatteryIndicatorPlugged = (CheckboxSetting) v.findViewById(R.id.battery_percentage_indicator_plugged);
+    mBatteryChoice = (SingleChoiceSetting) v.findViewById(R.id.setting_status_bar_battery_style);
 
         return v;
     }
@@ -37,7 +40,8 @@ public class StatusBarBattery extends Fragment implements OnSettingChangedListen
     @Override
     public void onSettingChanged(String table, String key, String oldValue, String value) {
         if ("aokp".equals(table)) {
-            mBatteryIndicatorPlugged.setVisibility(mBatteryIndicator.isChecked() ? View.VISIBLE : View.GONE);
+            mBatteryIndicatorPlugged.setVisibility((mBatteryIndicator.isChecked() 
+            || mBatteryChoice.getCurrentValueIndex() == 4) ? View.VISIBLE : View.GONE);
         }
     }
 }

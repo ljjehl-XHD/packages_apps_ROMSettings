@@ -114,7 +114,7 @@ public class SingleChoiceSetting extends BaseSetting implements OnClickListener 
         setEntryValues(getContext().getResources().getStringArray(entryValuesResId));
     }
 
-    private int getCurrentValueIndex() {
+    public int getCurrentValueIndex() {
         // returns the index of the current value, relative to the given R.array
         String val = getValue();
         if (val != null) {
