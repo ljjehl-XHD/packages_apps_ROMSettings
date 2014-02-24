@@ -22,6 +22,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
@@ -46,6 +47,7 @@ public class ProgressBar extends AOKPPreferenceFragment implements
     private static final String PROGRESSBAR_COLOR_2 = "progressbar_color_2";
     private static final String PROGRESSBAR_COLOR_3 = "progressbar_color_3";
     private static final String PROGRESSBAR_COLOR_4 = "progressbar_color_4";
+    private static final String KEY_PROGRESSBAR_INTERPOLATOR = "progressbar_interpolators";
 
     private CheckBoxPreference mprogressbar_mirror;
     private CheckBoxPreference mprogressbar_reverse;
@@ -57,6 +59,7 @@ public class ProgressBar extends AOKPPreferenceFragment implements
     private ColorPickerPreference mprogressbar_color_2;
     private ColorPickerPreference mprogressbar_color_3;
     private ColorPickerPreference mprogressbar_color_4;
+    private ListPreference mprogressbar_interpolator;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,6 +114,13 @@ public class ProgressBar extends AOKPPreferenceFragment implements
         int intColor4 = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.PROGRESSBAR_COLOR_4, defaultColor);
         mprogressbar_color_4.setNewPreviewColor(intColor4);
         mprogressbar_color_4.setOnPreferenceChangeListener(this);
+
+        mprogressbar_interpolator = (ListPreference)findPreference(KEY_PROGRESSBAR_INTERPOLATOR);
+        mprogressbar_interpolator.setSummary(mprogressbar_interpolator.getEntry());
+        int interpolatorindex = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.PROGRESSBAR_INTERPOLATOR, 0);
+        mprogressbar_interpolator.setValueIndex(interpolatorindex);
+        mprogressbar_interpolator.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -178,6 +188,11 @@ public class ProgressBar extends AOKPPreferenceFragment implements
             int color4 = ((Integer)newValue).intValue();
             Settings.System.putInt(getContentResolver(),
                     Settings.System.PROGRESSBAR_COLOR_4, color4);
+            return true;
+        } else if ( preference == mprogressbar_interpolator) {
+            int index = mprogressbar_interpolator.findIndexOfValue((String) newValue);
+            Settings.System.putString(getContentResolver(), Settings.System.PROGRESSBAR_INTERPOLATOR, (String) newValue);
+            mprogressbar_interpolator.setSummary(mprogressbar_interpolator.getEntries()[index]);
             return true;
         }
         return false;
