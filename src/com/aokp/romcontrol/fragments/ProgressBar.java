@@ -137,7 +137,7 @@ public class ProgressBar extends AOKPPreferenceFragment implements
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.add(0, MENU_RESET, 0, R.string.ram_bar_button_reset)
+        menu.add(0, MENU_RESET, 0, R.string.progressbar_reset)
         .setIcon(R.drawable.ic_settings_backup)
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
@@ -155,7 +155,7 @@ public class ProgressBar extends AOKPPreferenceFragment implements
 
     private void resetToDefault() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-        alertDialog.setTitle(R.string.ram_bar_reset);
+        alertDialog.setTitle(R.string.progressbar_reset);
         alertDialog.setMessage(R.string.progressbar_reset_message);
         alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {

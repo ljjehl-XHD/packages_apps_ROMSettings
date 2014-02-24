@@ -1806,6 +1806,7 @@
    <string name="progressbar_acceleratedecelerate">AccelerateDecelerate</string>
     <string name="progressbar_decelerate">Decelerate</string>
     <string name="progressbar_reset_message">Reset progress bar style to default?</string>
+    <string name="progressbar_reset">Reset Progress Bar</string>
 
 
 </resources>
