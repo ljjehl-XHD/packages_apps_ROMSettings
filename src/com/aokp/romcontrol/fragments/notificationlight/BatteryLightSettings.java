@@ -39,16 +39,19 @@ public class BatteryLightSettings extends AOKPPreferenceFragment implements Pref
     private static final String LOW_COLOR_PREF = "low_color";
     private static final String MEDIUM_COLOR_PREF = "medium_color";
     private static final String FULL_COLOR_PREF = "full_color";
+    private static final String REALLY_FULL_COLOR_PREF = "really_full_color";
 
     private boolean mLightEnabled;
     private boolean mLightPulse;
     private boolean mMultiColorLed;
     private CheckBoxPreference mPulsePref;
+    private CheckBoxPreference cPref;
     private ApplicationLightPreference mLowColorPref;
     private ApplicationLightPreference mMediumColorPref;
     private ApplicationLightPreference mFullColorPref;
+    private ApplicationLightPreference mReallyFullColorPref;
+
     private static final int MENU_RESET = Menu.FIRST;
-    private Menu mOptionsMenu;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,74 +60,83 @@ public class BatteryLightSettings extends AOKPPreferenceFragment implements Pref
 
         // Retrieve general settings
         ContentResolver resolver = getContentResolver();
+        PreferenceScreen prefSet = getPreferenceScreen();
+
+        cPref = (CheckBoxPreference) prefSet.findPreference(ENABLED_PREF);
         mLightEnabled = Settings.System.getInt(resolver,
                 Settings.System.BATTERY_LIGHT_ENABLED, 1) == 1;
+        cPref.setChecked(mLightEnabled);
+        cPref.setOnPreferenceChangeListener(this);
+
+        mPulsePref = (CheckBoxPreference) prefSet.findPreference(PULSE_PREF);
         mLightPulse = Settings.System.getInt(resolver,
                 Settings.System.BATTERY_LIGHT_PULSE, 1) == 1;
+        mPulsePref.setChecked(mLightPulse);
+        mPulsePref.setEnabled(mLightEnabled);
+        mPulsePref.setOnPreferenceChangeListener(this);
+
+
+         if (getResources().getBoolean(com.android.internal.R.bool.config_multiColorBatteryLed)) {
+              setHasOptionsMenu(true);
+
+              mLowColorPref = (ApplicationLightPreference) prefSet.findPreference(LOW_COLOR_PREF);
+              mLowColorPref.setOnPreferenceChangeListener(this);
+
+              mMediumColorPref = (ApplicationLightPreference) prefSet.findPreference(MEDIUM_COLOR_PREF);
+              mMediumColorPref.setOnPreferenceChangeListener(this);
+
+              mFullColorPref = (ApplicationLightPreference) prefSet.findPreference(FULL_COLOR_PREF);
+              mFullColorPref.setOnPreferenceChangeListener(this);
+
+              mReallyFullColorPref = (ApplicationLightPreference) prefSet.findPreference(REALLY_FULL_COLOR_PREF);
+              mReallyFullColorPref.setOnPreferenceChangeListener(this);
+          } else {
+              prefSet.removePreference(prefSet.findPreference("colors_list"));
+          }
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        refreshDefault();
+//        refreshDefault();
     }
 
     private void refreshDefault() {
         ContentResolver resolver = getContentResolver();
-        int lowColor = Settings.System.getInt(resolver,
+        Resources res = getResources();
+
+        if (mLowColorPref != null) {
+            int lowColor = Settings.System.getInt(resolver,
                 Settings.System.BATTERY_LIGHT_LOW_COLOR,
-                getResources().getInteger(
+                res.getInteger(
                     com.android.internal.R.integer.config_notificationsBatteryLowARGB));
-        int mediumColor = Settings.System.getInt(resolver,
+            mLowColorPref.setAllValues(lowColor, 0, 0, false);
+        }
+        if (mMediumColorPref != null) {
+            int mediumColor = Settings.System.getInt(resolver,
                 Settings.System.BATTERY_LIGHT_MEDIUM_COLOR,
-                getResources().getInteger(
+                res.getInteger(
                     com.android.internal.R.integer.config_notificationsBatteryMediumARGB));
-        int fullColor = Settings.System.getInt(resolver,
+              mMediumColorPref.setAllValues(mediumColor, 0, 0, false);
+
+        }
+        if (mFullColorPref != null) {
+            int fullColor = Settings.System.getInt(resolver,
                 Settings.System.BATTERY_LIGHT_FULL_COLOR,
-                getResources().getInteger(
+                res.getInteger(
                     com.android.internal.R.integer.config_notificationsBatteryFullARGB));
+              mFullColorPref.setAllValues(fullColor, 0, 0, false);
 
-        PreferenceScreen prefSet = getPreferenceScreen();
-        PreferenceGroup generalPrefs = (PreferenceGroup) prefSet.findPreference("general_section");
-        if (generalPrefs != null) {
+        }
+        if (mReallyFullColorPref != null) {
+            int reallyFullColor = Settings.System.getInt(resolver, Settings.System.BATTERY_LIGHT_REALLY_FULL_COLOR,
+                res.getInteger(
+                    com.android.internal.R.integer.config_notificationsBatteryFullARGB));
+              mReallyFullColorPref.setAllValues(reallyFullColor, 0, 0, false);
 
-            // Enabled preference
-            CheckBoxPreference cPref = (CheckBoxPreference) prefSet.findPreference(ENABLED_PREF);
-            cPref.setChecked(mLightEnabled);
-            cPref.setOnPreferenceChangeListener(this);
-
-            // Custom enabled preference
-            mPulsePref = (CheckBoxPreference) prefSet.findPreference(PULSE_PREF);
-            mPulsePref.setChecked(mLightPulse);
-            mPulsePref.setEnabled(mLightEnabled);
-            mPulsePref.setOnPreferenceChangeListener(this);
         }
 
-        PreferenceGroup colorPrefs = (PreferenceGroup) prefSet.findPreference("colors_list");
-        if (colorPrefs != null) {
-            if (!mMultiColorLed) {
-                prefSet.removePreference(colorPrefs);
-            } else {
-                // Low, Medium and full color preferences
-                mLowColorPref =
-                    (ApplicationLightPreference) prefSet.findPreference(LOW_COLOR_PREF);
-                mLowColorPref.setAllValues(lowColor, 0, 0, false);
-                mLowColorPref.setEnabled(mLightEnabled);
-                mLowColorPref.setOnPreferenceChangeListener(this);
-
-                mMediumColorPref =
-                    (ApplicationLightPreference) prefSet.findPreference(MEDIUM_COLOR_PREF);
-                mMediumColorPref.setAllValues(mediumColor, 0, 0, false);
-                mMediumColorPref.setEnabled(mLightEnabled);
-                mMediumColorPref.setOnPreferenceChangeListener(this);
-
-                mFullColorPref =
-                    (ApplicationLightPreference) prefSet.findPreference(FULL_COLOR_PREF);
-                mFullColorPref.setAllValues(fullColor, 0, 0, false);
-                mFullColorPref.setEnabled(mLightEnabled);
-                mFullColorPref.setOnPreferenceChangeListener(this);
-            }
-        }
     }
 
     /**
@@ -138,24 +150,18 @@ public class BatteryLightSettings extends AOKPPreferenceFragment implements Pref
 
         if (key.equals(LOW_COLOR_PREF)) {
             Settings.System.putInt(resolver, Settings.System.BATTERY_LIGHT_LOW_COLOR, color);
-            refreshDefault();
-            return;
         } else if (key.equals(MEDIUM_COLOR_PREF)) {
             Settings.System.putInt(resolver, Settings.System.BATTERY_LIGHT_MEDIUM_COLOR, color);
-            refreshDefault();
-            return;
         } else if (key.equals(FULL_COLOR_PREF)) {
             Settings.System.putInt(resolver, Settings.System.BATTERY_LIGHT_FULL_COLOR, color);
-            refreshDefault();
-            return;
-        }
+        } else if (key.equals(REALLY_FULL_COLOR_PREF)) {
+            Settings.System.putInt(resolver, Settings.System.BATTERY_LIGHT_REALLY_FULL_COLOR, color);
+       }
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        mOptionsMenu = menu;
-
-        mOptionsMenu.add(0, MENU_RESET, 0, R.string.reset)
+        menu.add(0, MENU_RESET, 0, R.string.reset)
                 .setIcon(R.drawable.ic_settings_backup) // use the backup icon
                 .setAlphabeticShortcut('r')
                 .setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -186,15 +192,18 @@ public class BatteryLightSettings extends AOKPPreferenceFragment implements Pref
         Settings.System.putInt(resolver, Settings.System.BATTERY_LIGHT_FULL_COLOR,
                 res.getInteger(
                 com.android.internal.R.integer.config_notificationsBatteryFullARGB));
+        Settings.System.putInt(resolver, Settings.System.BATTERY_LIGHT_REALLY_FULL_COLOR,
+                res.getInteger(
+                com.android.internal.R.integer.config_notificationsBatteryFullARGB));
         refreshDefault();
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         String key = preference.getKey();
 
-        if (ENABLED_PREF.equals(key)) {
+        if (preference == cPref) {
             mLightEnabled = (Boolean) objValue;
-            Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_LIGHT_ENABLED,
+            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.BATTERY_LIGHT_ENABLED,
                     mLightEnabled ? 1 : 0);
 
             mPulsePref.setEnabled(mLightEnabled);
@@ -203,13 +212,13 @@ public class BatteryLightSettings extends AOKPPreferenceFragment implements Pref
                 mMediumColorPref.setEnabled(mLightEnabled);
                 mFullColorPref.setEnabled(mLightEnabled);
             }
-        } else if (PULSE_PREF.equals(key)) {
+        } else if (preference == mPulsePref) {
             mLightPulse = (Boolean) objValue;
             Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_LIGHT_PULSE,
                     mLightPulse ? 1 : 0);
         } else {
             ApplicationLightPreference tPref = (ApplicationLightPreference) preference;
-            updateValues(key, tPref.getColor());
+            updateValues(tPref.getKey(), tPref.getColor());
         }
         return true;
     }
