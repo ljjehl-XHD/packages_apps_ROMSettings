@@ -101,6 +101,15 @@
             android:key="wallpaper_intra_close"
             android:title="@string/wallpaper_intra_close_title" />
 
+        <com.aokp.romcontrol.settings.SingleChoiceSetting
+          android:id="@+id/toast_animation"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:key="toast_animation"
+           android:title="@string/toast_animation_title"
+           android:entries="@array/toast_animation_entries"
+           android:entryValues="@array/toast_animation_values" />
+
         <TextView
             android:id="@+id/animation_duration_id"
             android:layout_width="wrap_content"
