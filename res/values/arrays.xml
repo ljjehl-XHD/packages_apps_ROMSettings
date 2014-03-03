@@ -1545,6 +1545,18 @@
         <item>5</item>
     </string-array>
 
+    <string-array name="entries_battery_lockscreen">
+        <item>@string/battery_lockscreen_default</item>
+        <item>@string/battery_lockscreen_always</item>
+        <item>@string/battery_lockscreen_never</item>
+    </string-array>
+
+    <string-array name="values_battery_lockscreen" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
     <!-- ProgressBar -->
     <string-array name="progressbar_interpolators_entries">
         <item>@string/progressbar_none</item>

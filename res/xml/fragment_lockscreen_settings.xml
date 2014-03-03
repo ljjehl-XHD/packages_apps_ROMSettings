@@ -79,6 +79,17 @@
                 android:key="lockscreen_minimize_lockscreen_challenge"
                 />
 
+        <com.aokp.romcontrol.settings.SingleChoiceSetting
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/setting_lockscreen_always_show_battery"
+                android:key="lockscreen_always_show_battery"
+                android:title="@string/battery_visibility_title"
+                android:entries="@array/entries_battery_lockscreen"
+                android:entryValues="@array/values_battery_lockscreen" 
+                table="system"
+                android:defaultValue="0" />
+
     </LinearLayout>
 
 </ScrollView>
