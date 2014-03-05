@@ -54,6 +54,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String STATUS_BAR_CUSTOM_HEADER = "custom_status_bar_header";
     private static final String KEY_LISTVIEW_ANIMATION = "listview_animation";
     private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";
+    private static final String CUSTOM_RECENT_MODE = "custom_recent_mode";
 
 	CheckBoxPreference mStatusbarSliderPreference;
     ListPreference mScreenOffAnimationPreference;
@@ -63,6 +64,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     CheckBoxPreference mStatusBarCustomHeader;
     ListPreference mListViewAnimation;
     ListPreference mListViewInterpolator;
+    CheckBoxPreference mRecentsCustom;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,12 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mStatusBarCustomHeader.setChecked(Settings.System.getInt(resolver,
             Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
         mStatusBarCustomHeader.setOnPreferenceChangeListener(this);
+
+        boolean enableRecentsCustom = Settings.System.getBoolean(getContentResolver(),
+                                      Settings.System.CUSTOM_RECENT, false);
+        mRecentsCustom = (CheckBoxPreference) findPreference(CUSTOM_RECENT_MODE);
+        mRecentsCustom.setChecked(enableRecentsCustom);
+        mRecentsCustom.setOnPreferenceChangeListener(this);
 
         mScreenOffAnimationPreference = (ListPreference) findPreference(KEY_SCREEN_OFF_ANIMATION);
         final int currentAnimation = Settings.System.getInt(resolver, SCREEN_OFF_ANIMATION,
@@ -169,6 +177,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             boolean value = (Boolean) objValue;
             Settings.System.putInt(getActivity().getContentResolver(),
                 Settings.System.STATUS_BAR_CUSTOM_HEADER, value ? 1 : 0);
+        } else if (preference == mRecentsCustom) { // Custom Recent
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.CUSTOM_RECENT,
+                    ((Boolean) objValue) ? true : false);
+            Helpers.restartSystemUI();
         } else  if (preference == mBarOpaqueColor) {
             String hex = ColorPickerPreference.convertToARGB(Integer
                     .valueOf(String.valueOf(objValue)));

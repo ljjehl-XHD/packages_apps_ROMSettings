@@ -34,26 +34,33 @@
             android:entryValues="@array/clock_date_format_values" />
 
 	<ListPreference
-		android:entries="@array/notification_action_entries"
-		android:entryValues="@array/notification_action_values"
-		android:key="clock_shortclick"
-		android:title="@string/title_clock_shortclick" />
+            android:entries="@array/notification_action_entries"
+            android:entryValues="@array/notification_action_values"
+            android:key="clock_shortclick"
+            android:title="@string/title_clock_shortclick" />
 
 	<ListPreference
-		android:entries="@array/notification_action_entries"
-		android:entryValues="@array/notification_action_values"
-		android:key="clock_longclick"
-		android:title="@string/title_clock_longclick" />
+            android:entries="@array/notification_action_entries"
+            android:entryValues="@array/notification_action_values"
+            android:key="clock_longclick"
+            android:title="@string/title_clock_longclick" />
+
+        <ListPreference
+            android:key="font_style"
+            android:title="@string/clock_font_style_title"
+            android:entries="@array/clock_font_style_entries"
+            android:entryValues="@array/clock_font_style_values"
+            android:persistent="false"/>
 
 	<ListPreference
-		android:entries="@array/notification_action_entries"
-		android:entryValues="@array/notification_action_values"
-		android:key="clock_doubleclick"
-		android:title="@string/title_clock_doubleclick" />
+            android:entries="@array/notification_action_entries"
+            android:entryValues="@array/notification_action_values"
+            android:key="clock_doubleclick"
+            android:title="@string/title_clock_doubleclick" />
 
 	<PreferenceCategory
-		android:key="colors"
-		android:title="@string/colors">
+            android:key="colors"
+            android:title="@string/colors">
 
 		<net.margaritov.preference.colorpicker.ColorPickerPreference
 			android:key="clock_color"

@@ -35,6 +35,7 @@ public class StatusBarClock extends AOKPPreferenceFragment implements
     private static final String PREF_CLOCK_SHORTCLICK = "clock_shortclick";
     private static final String PREF_CLOCK_LONGCLICK = "clock_longclick";
     private static final String PREF_CLOCK_DOUBLECLICK = "clock_doubleclick";
+    private static final String PREF_FONT_STYLE = "font_style";
     
     public static final int CLOCK_DATE_STYLE_LOWERCASE = 1;
     public static final int CLOCK_DATE_STYLE_UPPERCASE = 2;
@@ -50,6 +51,7 @@ public class StatusBarClock extends AOKPPreferenceFragment implements
 
     ListPreference mClockStyle;
     ListPreference mClockAmPmstyle;
+    ListPreference mClockFontStyle;
     ColorPickerPreference mColorPicker;
     ListPreference mClockDateDisplay;
     ListPreference mClockDateStyle;
@@ -90,6 +92,13 @@ public class StatusBarClock extends AOKPPreferenceFragment implements
                 Settings.System.STATUSBAR_CLOCK_DATE_DISPLAY,
                 0)));
         mClockDateDisplay.setSummary(mClockDateDisplay.getEntry());
+
+        mClockFontStyle = (ListPreference) findPreference(PREF_FONT_STYLE);
+        mClockFontStyle.setOnPreferenceChangeListener(this);
+        mClockFontStyle.setValue(Integer.toString(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.STATUSBAR_CLOCK_FONT_STYLE,
+                4)));
+        mClockFontStyle.setSummary(mClockFontStyle.getEntry());
 
         mClockDateStyle = (ListPreference) findPreference(PREF_CLOCK_DATE_STYLE);
         mClockDateStyle.setOnPreferenceChangeListener(this);
@@ -142,7 +151,12 @@ public class StatusBarClock extends AOKPPreferenceFragment implements
             int val = Integer.parseInt((String) newValue);
             result = Settings.System.putInt(mContentRes,
                     Settings.System.STATUSBAR_CLOCK_STYLE, val);
-
+       } else if (preference == mClockFontStyle) {
+            int val = Integer.parseInt((String) newValue);
+            int index = mClockFontStyle.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_CLOCK_FONT_STYLE, val);
+            mClockFontStyle.setSummary(mClockFontStyle.getEntries()[index]);
         } else if (preference == mColorPicker) {
             String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String
                     .valueOf(newValue)));
