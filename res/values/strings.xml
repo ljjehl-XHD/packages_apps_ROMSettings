@@ -1888,6 +1888,8 @@
    <string name="clock_font_condensed">Condensed</string>
    <string name="clock_font_light">Light</string>
    <string name="clock_font_light_italic">Light Italic</string>
+   <string name="clock_font_dancing">Dancing Script</string>
+   <string name="clock_font_coming">Coming Soon</string>
    <string name="clock_font_normal">Normal</string>
 
     <!-- Custom Recent Settings -->

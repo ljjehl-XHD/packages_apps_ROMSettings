@@ -45,6 +45,12 @@
             android:key="clock_longclick"
             android:title="@string/title_clock_longclick" />
 
+	<ListPreference
+            android:entries="@array/notification_action_entries"
+            android:entryValues="@array/notification_action_values"
+            android:key="clock_doubleclick"
+            android:title="@string/title_clock_doubleclick" />
+
         <ListPreference
             android:key="font_style"
             android:title="@string/clock_font_style_title"
@@ -52,11 +58,6 @@
             android:entryValues="@array/clock_font_style_values"
             android:persistent="false"/>
 
-	<ListPreference
-            android:entries="@array/notification_action_entries"
-            android:entryValues="@array/notification_action_values"
-            android:key="clock_doubleclick"
-            android:title="@string/title_clock_doubleclick" />
 
 	<PreferenceCategory
             android:key="colors"
