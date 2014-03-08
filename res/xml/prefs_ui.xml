@@ -43,6 +43,11 @@
         android:key="misc"
         android:title="@string/misc_short">
 
+        <PreferenceScreen
+                android:key="screen_recorder"
+                android:title="@string/screen_recorder_title"
+                android:fragment="com.aokp.romcontrol.fragments.chameleonos.ScreenRecorderSettings" />
+
         <ListPreference
             android:key="screen_off_animation"
             android:title="@string/screen_off_animation"

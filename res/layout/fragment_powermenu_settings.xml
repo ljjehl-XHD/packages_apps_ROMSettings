@@ -68,5 +68,15 @@
                 android:entryValues="@array/power_menuValues"
                 />
 
+         <com.aokp.romcontrol.settings.CheckboxSetting
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/setting_power_menu_screenrecord"
+                android:title="@string/power_menu_screenrecord_title"
+                android:key="power_menu_screenrecord"
+                table="system"
+                />
+
+
        </LinearLayout>
 </ScrollView>
