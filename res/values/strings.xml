@@ -1174,6 +1174,7 @@
     <string name="regular_date">Regular date</string>
     <string name="lowercase">Lowercase</string>
     <string name="uppercase">Uppercase</string>
+    <string name="capitalized">Capitalized</string>
 
     <!-- toggle style -->
     <string name="icon_only">Icon only</string>
