@@ -38,6 +38,7 @@
                 <category android:name="com.aokp.romcontrol.SHORTCUT" />
             </intent-filter>
         </activity>
+        <activity android:name=".fragments.paranoid.Halo" />
         <activity
             android:name=".fragments.UserInterface"
             android:label="@string/title_ui" >
