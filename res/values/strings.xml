@@ -1992,5 +1992,7 @@
     <string name="halo_msgbox_animation_none">None</string>
     <string name="halo_msgbox_animation_flip">Flip</string>
 
+    <!-- On-The-Go -->
+    <string name="power_menu_onthego_title">On-The-Go Mode</string>
 
 </resources>
