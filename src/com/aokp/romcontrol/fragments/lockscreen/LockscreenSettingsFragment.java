@@ -1,4 +1,4 @@
-package com.aokp.romcontrol.fragments;
+package com.aokp.romcontrol.fragments.lockscreen;
 
 import android.app.Activity;
 import android.app.AlertDialog;

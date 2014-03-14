@@ -11,7 +11,7 @@
 
     <header
         android:id="@+id/lockscreen"
-        android:fragment="com.aokp.romcontrol.fragments.LockscreenSettingsFragment"
+        android:fragment="com.aokp.romcontrol.fragments.lockscreen.LockscreenTab"
         android:title="@string/lockscreen_options"
         android:icon="@drawable/ic_rom_control_lockscreens"
         android:summary="@string/header_summary_lockscreens" />

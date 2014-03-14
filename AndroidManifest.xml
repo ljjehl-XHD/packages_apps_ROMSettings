@@ -215,7 +215,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragments.LockscreenSettingsFragment"
+            android:name=".fragments.lockscreen.LockscreenTab"
             android:label="@string/title_lockscreens" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

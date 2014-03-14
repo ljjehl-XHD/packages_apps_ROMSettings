@@ -145,7 +145,6 @@
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
     <string name="use_custom_app_summary">Use custom application instead of the recent applications dialog</string>
-    <string name="select_custom_app_title">Select custom application</string>
     <string name="group_applications">Applications</string>
 
     <!-- About -->
@@ -880,54 +879,35 @@
     <string name="lockscreen_see_through">Transparent lockscreen</string>
     <string name="lockscreen_see_through_summary">Shows the content behind your lockscreen, your data may be visible to those around you</string>
     
-
-    <!-- Lockscreen Targets-->
-    <string name="lockscreen_targets_title">Lockscreen targets</string>
-    <string name="lockscreen_targets_summary">Lockscreen targets summary…</string>
-    <string name="lockscreen_target_longpress_text">Longpress actions</string>
-    <string name="lockscreen_glow_torch_text">GlowPad torch</string>
-    <string name="lockscreen_glow_torch_summary">Longpressing the center of the lock ring or navigation ring will
-        turn torch on.  Release finger to turn torch off.
-    </string>
-    <string name="lockscreen_torch_off">Off</string>
-    <string name="lockscreen_torch_lockcircle">LockRing</string>
-    <string name="lockscreen_torch_navring">NavRing</string>
-    <string name="lockscreen_camera">Camera</string>
-    <string name="lockscreen_unlock">Unlock</string>
-    <string name="save_error">Could not save targets! You must have at least one unlock target!</string>
-    <string name="icon_picker_pack_title">Icon pack</string>
-    <string name="lockscreen_target_empty">Empty</string>
-    <string name="profile_reset_title">Reset</string>
-    <string name="lockscreen_target_info">Drag the unlock icon to targets to assign targets</string>
-    <string name="lockscreen_options_info">Touch text to get summary of each option</string>
-    <string name="lockscreen_target_reset">Lockscreen shortcuts reset to default</string>
-    <string name="lockscreen_target_save">Lockscreen targets saved</string>
-    <string name="lockscreen_target_save_error_title">Error saving targets</string>
-    <string name="lockscreen_target_save_error_msg">You must have at least one target that unlocks the screen!</string>
-    <string name="lockscreen_target_reset_title">Reset</string>
-    <string name="lockscreen_target_reset_message">Delete all user created lockscreen target and restore to default?</string>
-    <string name="lockscreen_target_edit_title">Edit target and icon</string>
-    <string name="lockscreen_target_edit_msg">Select or change the desired application or activity and the associated icon</string>
-    <string name="lockscreen_target_longpress_summary">Enables long press options for lock screen targets</string>
-    
-    <!-- Lockscreen Targets-->
-    <string name="custom_targets">Custom lockscreen targets</string>
-    <string name="lockscreen_target_title">Lockscreen targets</string>
+    <!-- Lock Screen Shortcuts -->
+    <string name="lockscreen_target_info">Drag the slider to targets to assign shortcuts</string>
+    <string name="lockscreen_target_title">Slider shortcuts</string>
     <string name="lockscreen_target_summary">View or change custom lock screen shortcuts</string>
-    <string name="number_of_targets_title">Lockscreen targets amount</string>
-    <string name="number_of_targets_summary">How many targets do you want?</string>
+    <string name="lockscreen_target_reset">Lock screen shortcuts reset to default</string>
+    <string name="lockscreen_target_reset_title">Reset</string>
+    <string name="lockscreen_target_reset_message">Delete all user created lock screen shortcuts and restore to default?</string>
+    <string name="lockscreen_target_empty">Empty</string>
+    <string name="lockscreen_target_edit_title">Edit shortcut and icon</string>
+    <string name="lockscreen_target_edit_msg">Select or change the desired application or activity and the associated icon</string>
+
+    <!-- Lock screen shortcuts -->
     <string name="picker_activities">Activities</string>
+    <string name="select_custom_app_title">Select custom app</string>
     <string name="select_custom_activity_title">Select custom activity</string>
     <string name="icon_picker_choose_icon_title">Choose icon</string>
     <string name="icon_picker_alarm">Alarm</string>
     <string name="icon_picker_browser">Browser</string>
     <string name="icon_picker_calendar">Calendar</string>
     <string name="icon_picker_camera">Camera</string>
+    <string name="icon_picker_chrome">Chrome</string>
+    <string name="icon_picker_contacts">Contacts</string>
     <string name="icon_picker_email">Email</string>
+    <string name="icon_picker_email2">Email Holo</string>
     <string name="icon_picker_facebook">Facebook</string>
     <string name="icon_picker_gallery">Gallery</string>
+    <string name="icon_picker_google_small">Google (small)</string>
     <string name="icon_picker_googleplus">Google Plus</string>
-    <string name="icon_picker_googletalk">Google Talk</string>
+    <string name="icon_picker_googletalk">Hangouts</string>
     <string name="icon_picker_maps">Maps</string>
     <string name="icon_picker_movie">Movie</string>
     <string name="icon_picker_music">Music</string>
@@ -938,11 +918,12 @@
     <string name="icon_picker_search">Search</string>
     <string name="icon_picker_sms">Messaging</string>
     <string name="icon_picker_twitter">Twitter</string>
-    <string name="icon_picker_unlock">Unlock</string>
+
+    <!-- String for IconPicker -->
     <string name="icon_picker_title">Choose icon source</string>
     <string name="icon_picker_system_icons_title">System icons</string>
-    <string name="icon_picker_aokp_icons_title">AOKP icons</string>
     <string name="icon_picker_gallery_title">Gallery</string>
+    <string name="icon_picker_pack_title">Icon pack</string>
 
     <string name="aokp_icon_picker_aokp">AOKP Now</string>
     <string name="aokp_icon_picker_browser">Browser</string>
