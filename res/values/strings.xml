@@ -177,9 +177,10 @@
     <string name="notification_wallpaper_summary">You can remove the wallpaper from the menu in this window</string>
     <string name="notif_wallpaper_alpha_title">Notification background alpha</string>
     <string name="alpha_dialog_title">Set alpha value</string>
-    <string name="custom_carrier_label_title">Custom carrier label</string>
-    <string name="custom_carrier_label_explain">Please enter a new label. Enter an empty label to revert to stock label.</string>
-    <string name="custom_carrier_label_notset">Custom label currently not set</string>
+    <string name="notification_carrier_label_title">Carrier label</string>
+    <string name="notification_custom_carrier_label_title">Custom carrier label</string>
+    <string name="notification_custom_carrier_label_explain">Please enter a new label. Enter an empty label to revert to stock label.</string>
+    <string name="notification_custom_carrier_label_notset">Custom label currently not set</string>
     <string name="ime_switcher_title">Show IME Switcher</string>
     <string name="ime_switcher_summary">In statusbar while typing</string>
     <string name="wakeup_when_plugged_unplugged_title">Wake up on charger</string>
