@@ -382,11 +382,13 @@
     <string name="toggle_screenshot_delay_summary">Delay for screenshot toggle to send intent to capture screen</string>
     
     <!-- Breathing Notifications -->
-    <string name="status_bar_breathing_notifs_title">Breathing Notifications</string>
-    <string name="mms_breath">Breathing SMS</string>
-    <string name="mms_breath_summary">Will give your sms notifications a breathing effect on the statusbar</string>
-    <string name="missed_call_breath">Breathing Missed Call</string>
-    <string name="missed_call_breath_summary">Will give your missed call notifications a breathing effect on the statusbar</string>
+    <string name="breathing_notifications_title">Breathing Notifications</string>
+    <string name="sms_breath_title">Breathing SMS</string>
+    <string name="sms_breath_summary">Will give your sms notifications a breathing effect in the statusbar</string>
+    <string name="missed_call_breath_title">Breathing Missed Call</string>
+    <string name="missed_call_breath_summary">Will give your missed call notifications a breathing effect in the statusbar</string>
+    <string name="voicemail_breath_title">Breathing Voicemail</string>
+    <string name="voicemail_breath_summary">Will give your voicemail notifications a breathing effect in the statusbar</string>
 
 	<!-- holo theme style for Quick Setting tiles -->
     <string name="holo_dark">Dark</string>
