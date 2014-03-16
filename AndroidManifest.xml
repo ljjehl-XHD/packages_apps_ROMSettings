@@ -291,7 +291,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragments.toggles.TogglesTab"
+            android:name=".fragments.toggles.ToggleSettingsFragment"
             android:label="@string/title_statusbar_toggles" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
