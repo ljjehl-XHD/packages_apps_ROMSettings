@@ -323,15 +323,15 @@ public class ArrangeTogglesFragment extends Fragment {
     static ArrayList<String> getEnabledToggles(Context context) {
         try {
             ArrayList<String> userEnabledToggles = new ArrayList<String>();
-            String userToggles = Settings.AOKP.getString(context.getContentResolver(),
-                    Settings.AOKP.QUICK_TOGGLES);
+//            String userToggles = Settings.AOKP.getString(context.getContentResolver(),
+//                    Settings.AOKP.QUICK_TOGGLES);
 
-            String[] splitter = userToggles.split("\\|");
-            for (String toggle : splitter) {
-                if (!toggle.trim().isEmpty()) {
-                    userEnabledToggles.add(toggle);
-                }
-            }
+//            String[] splitter = userToggles.split("\\|");
+//            for (String toggle : splitter) {
+//                if (!toggle.trim().isEmpty()) {
+//                    userEnabledToggles.add(toggle);
+//                }
+//            }
             return userEnabledToggles;
         } catch (Exception e) {
             if (sToggles != null && sToggles.containsKey("default_toggles")) {
@@ -356,9 +356,9 @@ public class ArrangeTogglesFragment extends Fragment {
                 b.deleteCharAt(b.length() - 1);
             }
         }
-        Log.d(TAG, "saving toggles:" + b.toString());
-        Settings.AOKP.putString(c.getContentResolver(), Settings.AOKP.QUICK_TOGGLES,
-                b.toString());
+//        Log.d(TAG, "saving toggles:" + b.toString());
+//        Settings.AOKP.putString(c.getContentResolver(), Settings.AOKP.QUICK_TOGGLES,
+//                b.toString());
     }
 
     static void addToggle(Context context, String key) {

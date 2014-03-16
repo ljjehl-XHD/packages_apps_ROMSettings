@@ -114,8 +114,8 @@ public class ToggleSettingsFragment extends Fragment implements OnSettingChanged
                         if (cursor.moveToFirst()) {
                             String lookup_key = cursor.getString(cursor
                                     .getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
-                            Settings.AOKP.putString(getActivity().getContentResolver(),
-                                    Settings.AOKP.QUICK_TOGGLE_FAV_CONTACT, lookup_key);
+//                            Settings.AOKP.putString(getActivity().getContentResolver(),
+//                                    Settings.AOKP.QUICK_TOGGLE_FAV_CONTACT, lookup_key);
                         }
                     } finally {
                         cursor.close();

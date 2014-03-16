@@ -59,6 +59,7 @@ public class ActiveDisplaySettings extends AOKPPreferenceFragment implements
     private static final String KEY_TIMEOUT = "ad_timeout";
     private static final String KEY_THRESHOLD = "ad_threshold";
     private static final String KEY_TURNOFF_MODE = "ad_turnoff_mode";
+    private static final String KEY_SHAKE_THRESHOLD = "ad_shake_threshold";
 
 
     private ContentResolver mResolver;
@@ -73,6 +74,7 @@ public class ActiveDisplaySettings extends AOKPPreferenceFragment implements
     private CheckBoxPreference mTurnOffModePref;
     private SeekBarPreference mBrightnessLevel;
     private SeekBarPreference mAnnoyingNotification;
+    private SeekBarPreference mShakeThreshold;
     private ListPreference mDisplayTimeout;
     private ListPreference mPocketModePref;
     private ListPreference mProximityThreshold;
@@ -135,6 +137,11 @@ public class ActiveDisplaySettings extends AOKPPreferenceFragment implements
         mAnnoyingNotification.setValue(Settings.System.getInt(mResolver,
                 Settings.System.ACTIVE_DISPLAY_ANNOYING, 0));
         mAnnoyingNotification.setOnPreferenceChangeListener(this);
+
+        mShakeThreshold = (SeekBarPreference) prefSet.findPreference(KEY_SHAKE_THRESHOLD);
+        mShakeThreshold.setValue(Settings.System.getInt(mResolver,
+                Settings.System.ACTIVE_DISPLAY_SHAKE_THRESHOLD, 10));
+        mShakeThreshold.setOnPreferenceChangeListener(this);
 
         mExcludedAppsPref = (AppMultiSelectListPreference) findPreference(KEY_EXCLUDED_APPS);
         Set<String> excludedApps = getExcludedApps();
@@ -210,6 +217,11 @@ public class ActiveDisplaySettings extends AOKPPreferenceFragment implements
             int annoying = ((Integer)newValue).intValue();
             Settings.System.putInt(mResolver,
                     Settings.System.ACTIVE_DISPLAY_ANNOYING, annoying);
+            return true;
+       } else if (preference == mShakeThreshold) {
+            int threshold = ((Integer)newValue).intValue();
+            Settings.System.putInt(mResolver,
+                    Settings.System.ACTIVE_DISPLAY_SHAKE_THRESHOLD, threshold);
             return true;
         } else if (preference == mBrightnessLevel) {
             int brightness = ((Integer)newValue).intValue();
