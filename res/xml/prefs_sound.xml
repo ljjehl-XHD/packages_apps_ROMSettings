@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <CheckBoxPreference
-        android:key="enable_volume_options"
-        android:title="@string/enable_volume_options" />
-
+   <ListPreference
+        android:key="volume_overlay"
+        android:title="@string/volume_overlay_title"
+        android:entries="@array/volume_overlay_entries"
+        android:entryValues="@array/volume_overlay_values" />
     <ListPreference
         android:entries="@array/less_notification_sounds_entries"
         android:entryValues="@array/less_notification_sounds_values"

@@ -10,13 +10,6 @@
         android:summary="@string/header_summary_general_ui" />
 
     <header
-        android:id="@+id/lockscreen"
-        android:fragment="com.aokp.romcontrol.fragments.lockscreen.LockscreenTab"
-        android:title="@string/lockscreen_options"
-        android:icon="@drawable/ic_rom_control_lockscreens"
-        android:summary="@string/header_summary_lockscreens" />
-
-    <header
         android:id="@+id/nav_bar"
         android:fragment="com.aokp.romcontrol.fragments.navbar.NavbarTab"
         android:title="@string/nav_bar"
@@ -68,6 +61,21 @@
         android:fragment="com.aokp.romcontrol.fragments.Misc"
         android:icon="@drawable/ic_settings_xposed"
         android:summary="@string/header_summary_toggles" />
+
+    <header android:title="@string/ls_header" />
+
+    <header
+        android:id="@+id/lockscreen"
+        android:fragment="com.aokp.romcontrol.fragments.lockscreen.LockscreenTab"
+        android:title="@string/lockscreen_options"
+        android:icon="@drawable/ic_rom_control_lockscreens"
+        android:summary="@string/header_summary_lockscreens" />
+
+    <header
+        android:id="@+id/lockscreen_style"
+        android:fragment="com.aokp.romcontrol.fragments.LockscreenStyle"
+        android:title="@string/lockscreen_style_title" />
+
 
     <header
         android:id="@+id/statusbar"

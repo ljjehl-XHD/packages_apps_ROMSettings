@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -14,6 +15,7 @@ import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
+import android.view.VolumePanel;
 
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
@@ -23,7 +25,7 @@ import com.aokp.romcontrol.service.HeadphoneService;
 public class Sound extends AOKPPreferenceFragment
         implements OnPreferenceChangeListener {
 
-    private static final String PREF_ENABLE_VOLUME_OPTIONS = "enable_volume_options";
+    private static final String KEY_VOLUME_OVERLAY = "volume_overlay";
     private static final String PREF_HEADPHONES_PLUGGED_ACTION = "headphone_audio_mode";
     private static final String PREF_BT_CONNECTED_ACTION = "bt_audio_mode";
     private static final String PREF_FLIP_ACTION = "flip_mode";
@@ -33,7 +35,7 @@ public class Sound extends AOKPPreferenceFragment
     private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
 
     SharedPreferences prefs;
-    CheckBoxPreference mEnableVolumeOptions;
+    ListPreference mVolumeOverlay;
     ListPreference mHeadphonesPluggedAction;
     ListPreference mBTPluggedAction;
     ListPreference mFlipAction;
@@ -50,9 +52,13 @@ public class Sound extends AOKPPreferenceFragment
         PreferenceManager.setDefaultValues(mContext, R.xml.prefs_sound, true);
         prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 
-        mEnableVolumeOptions = (CheckBoxPreference) findPreference(PREF_ENABLE_VOLUME_OPTIONS);
-        mEnableVolumeOptions.setChecked(Settings.System.getBoolean(mContentRes,
-                Settings.System.ENABLE_VOLUME_OPTIONS, false));
+        mVolumeOverlay = (ListPreference) findPreference(KEY_VOLUME_OVERLAY);
+        mVolumeOverlay.setOnPreferenceChangeListener(this);
+        int volumeOverlay = Settings.System.getIntForUser(mContentRes,
+                Settings.System.MODE_VOLUME_OVERLAY, VolumePanel.VOLUME_OVERLAY_EXPANDABLE,
+                UserHandle.USER_CURRENT);
+        mVolumeOverlay.setValue(Integer.toString(volumeOverlay));
+        mVolumeOverlay.setSummary(mVolumeOverlay.getEntry());
 
         mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
         mAnnoyingNotifications.setOnPreferenceChangeListener(this);
@@ -87,16 +93,6 @@ public class Sound extends AOKPPreferenceFragment
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
             Preference preference) {
-        if (preference == mEnableVolumeOptions) {
-
-
-            boolean checked = ((CheckBoxPreference) preference).isChecked();
-            Settings.System.putBoolean(mContentRes,
-                    Settings.System.ENABLE_VOLUME_OPTIONS, checked);
-            return true;
-
-
-        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
@@ -145,7 +141,13 @@ public class Sound extends AOKPPreferenceFragment
                 toggleFlipService();
             }
             return true;
-            }
+        } else if (preference == mVolumeOverlay) {
+            int value = Integer.valueOf((String) newValue);
+            int index = mVolumeOverlay.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.MODE_VOLUME_OVERLAY, value);
+            mVolumeOverlay.setSummary(mVolumeOverlay.getEntries()[index]);
+        }
         return false;
     }
 }
