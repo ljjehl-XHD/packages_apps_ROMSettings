@@ -28,6 +28,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
+import android.view.Gravity;
 
 import static android.provider.Settings.System.SCREEN_OFF_ANIMATION;
 
@@ -55,8 +56,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String KEY_LISTVIEW_ANIMATION = "listview_animation";
     private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";
     private static final String CUSTOM_RECENT_MODE = "custom_recent_mode";
+    private static final String RECENT_PANEL_LEFTY_MODE = "recent_panel_lefty_mode";
+    private static final String RECENT_PANEL_SCALE = "recent_panel_scale";
 
-	CheckBoxPreference mStatusbarSliderPreference;
+    CheckBoxPreference mStatusbarSliderPreference;
     ListPreference mScreenOffAnimationPreference;
     ListPreference mLowBatteryWarning;
     CheckBoxPreference mCustomBarColor;
@@ -65,6 +68,8 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     ListPreference mListViewAnimation;
     ListPreference mListViewInterpolator;
     CheckBoxPreference mRecentsCustom;
+    private CheckBoxPreference mRecentPanelLeftyMode;
+    private ListPreference mRecentPanelScale;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,6 +99,20 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mRecentsCustom = (CheckBoxPreference) findPreference(CUSTOM_RECENT_MODE);
         mRecentsCustom.setChecked(enableRecentsCustom);
         mRecentsCustom.setOnPreferenceChangeListener(this);
+
+        final boolean recentLeftyMode = Settings.System.getInt(getContentResolver(),
+                Settings.System.RECENT_PANEL_GRAVITY, Gravity.RIGHT) == Gravity.LEFT;
+        mRecentPanelLeftyMode =
+                (CheckBoxPreference) findPreference(RECENT_PANEL_LEFTY_MODE);
+        mRecentPanelLeftyMode.setChecked(recentLeftyMode);
+        mRecentPanelLeftyMode.setOnPreferenceChangeListener(this);
+
+        final int recentScale = Settings.System.getInt(getContentResolver(),
+                Settings.System.RECENT_PANEL_SCALE_FACTOR, 100);
+        mRecentPanelScale =
+                (ListPreference) findPreference(RECENT_PANEL_SCALE);
+        mRecentPanelScale.setValue(recentScale + "");
+        mRecentPanelScale.setOnPreferenceChangeListener(this);
 
         mScreenOffAnimationPreference = (ListPreference) findPreference(KEY_SCREEN_OFF_ANIMATION);
         final int currentAnimation = Settings.System.getInt(resolver, SCREEN_OFF_ANIMATION,
@@ -182,6 +201,16 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     Settings.System.CUSTOM_RECENT,
                     ((Boolean) objValue) ? true : false);
             Helpers.restartSystemUI();
+        } else if (preference == mRecentPanelScale) {
+            int value = Integer.parseInt((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.RECENT_PANEL_SCALE_FACTOR, value);
+            return true;
+        } else if (preference == mRecentPanelLeftyMode) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.RECENT_PANEL_GRAVITY,
+                    ((Boolean) objValue) ? Gravity.LEFT : Gravity.RIGHT);
+            return true;
         } else  if (preference == mBarOpaqueColor) {
             String hex = ColorPickerPreference.convertToARGB(Integer
                     .valueOf(String.valueOf(objValue)));

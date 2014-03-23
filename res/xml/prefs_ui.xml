@@ -51,6 +51,34 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+       android:key="recent"
+       android:title="@string/recent_short">
+
+     <CheckBoxPreference
+            android:key="custom_recent_mode"
+            android:title="@string/custom_recent_title"
+            android:summary="@string/custom_recent_summary"
+            android:persistent="false" />
+
+        <CheckBoxPreference
+            android:key="recent_panel_lefty_mode"
+            android:title="@string/recent_panel_lefty_mode_title"
+            android:summary="@string/recent_panel_lefty_mode_summary"
+            android:persistent="false" 
+            android:dependency="custom_recent_mode" />
+
+        <ListPreference
+            android:key="recent_panel_scale"
+            android:entries="@array/recent_panel_scale_entries"
+            android:entryValues="@array/recent_panel_scale_values"
+            android:title="@string/recent_panel_scale_title"
+            android:summary="@string/recent_panel_scale_summary"
+            android:persistent="false" 
+            android:dependency="custom_recent_mode" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="misc"
         android:title="@string/misc_short">
 
@@ -100,13 +128,6 @@
             android:title="@string/status_bar_opaque_color"
             android:dependency="custom_status_bar_color"
             android:defaultValue="0xFF000000" />
-
-     <CheckBoxPreference
-            android:key="custom_recent_mode"
-            android:title="@string/custom_recent_title"
-            android:summary="@string/custom_recent_summary"
-            android:persistent="false" />
- 
 
     </PreferenceCategory>
 
