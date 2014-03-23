@@ -61,6 +61,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String PREF_NOTI_REMINDER_SOUND = "noti_reminder_sound";
     private static final String PREF_NOTI_REMINDER_ENABLED = "noti_reminder_enabled";
     private static final String PREF_NOTI_REMINDER_RINGTONE = "noti_reminder_ringtone";
+    private static final String PREF_NOTI_REMINDER_INTERVAL = "noti_reminder_interval";
 
 	CheckBoxPreference mStatusbarSliderPreference;
     ListPreference mScreenOffAnimationPreference;
@@ -74,6 +75,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     CheckBoxPreference mReminder;
     ListPreference mReminderMode;
     RingtonePreference mReminderRingtone;
+    ListPreference mReminderInterval;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -176,6 +178,12 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mReminderRingtone.setOnPreferenceChangeListener(this);
         mReminderRingtone.setEnabled(mode != 0);
 
+        mReminderInterval = (ListPreference) findPreference(PREF_NOTI_REMINDER_INTERVAL);
+        int interval = Settings.System.getInt(getContentResolver(),
+                Settings.System.REMINDER_ALERT_INTERVAL, 0);
+        mReminderInterval.setOnPreferenceChangeListener(this);
+        updateReminderIntervalSummary(interval);
+
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -249,6 +257,12 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                     Settings.System.REMINDER_ALERT_RINGER,
                     val.toString());
             return true;
+        } else if (preference == mReminderInterval) {
+            int interval = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.REMINDER_ALERT_INTERVAL,
+                    interval);
+            updateReminderIntervalSummary(interval);
         }
 
         return false;
@@ -304,5 +318,34 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 break;
         }
         mReminderMode.setSummary(getResources().getString(resId));
+    }
+
+    private void updateReminderIntervalSummary(int value) {
+        int resId;
+        switch (value) {
+            case 1000:
+                resId = R.string.noti_reminder_interval_1s;
+                break;
+            case 2000:
+                resId = R.string.noti_reminder_interval_2s;
+                break;
+            case 2500:
+                resId = R.string.noti_reminder_interval_2dot5s;
+                break;
+            case 3000:
+                resId = R.string.noti_reminder_interval_3s;
+                break;
+            case 3500:
+                resId = R.string.noti_reminder_interval_3dot5s;
+                break;
+            case 4000:
+                resId = R.string.noti_reminder_interval_4s;
+                break;
+            default:
+                resId = R.string.noti_reminder_interval_1dot5s;
+                break;
+        }
+        mReminderInterval.setValue(Integer.toString(value));
+        mReminderInterval.setSummary(getResources().getString(resId));
     }
 }
