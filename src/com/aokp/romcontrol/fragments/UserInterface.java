@@ -8,6 +8,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.graphics.Color;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -23,6 +25,7 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.preference.RingtonePreference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -58,6 +61,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String CUSTOM_RECENT_MODE = "custom_recent_mode";
     private static final String RECENT_PANEL_LEFTY_MODE = "recent_panel_lefty_mode";
     private static final String RECENT_PANEL_SCALE = "recent_panel_scale";
+    private static final String PREF_NOTI_REMINDER_SOUND = "noti_reminder_sound";
+    private static final String PREF_NOTI_REMINDER_ENABLED = "noti_reminder_enabled";
+    private static final String PREF_NOTI_REMINDER_RINGTONE = "noti_reminder_ringtone";
+    private static final String PREF_NOTI_REMINDER_INTERVAL = "noti_reminder_interval";
 
     CheckBoxPreference mStatusbarSliderPreference;
     ListPreference mScreenOffAnimationPreference;
@@ -70,6 +77,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     CheckBoxPreference mRecentsCustom;
     private CheckBoxPreference mRecentPanelLeftyMode;
     private ListPreference mRecentPanelScale;
+    CheckBoxPreference mReminder;
+    ListPreference mReminderMode;
+    RingtonePreference mReminderRingtone;
+    ListPreference mReminderInterval;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -157,6 +168,41 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         mBarOpaqueColor.setSummary(getResources().getString(R.string.default_string));
         mBarOpaqueColor.setNewPreviewColor(intColor);
 
+        mReminder = (CheckBoxPreference) findPreference(PREF_NOTI_REMINDER_ENABLED);
+        mReminder.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.REMINDER_ALERT_ENABLED, 0) == 1);
+        mReminder.setOnPreferenceChangeListener(this);
+
+        mReminderMode = (ListPreference) findPreference(PREF_NOTI_REMINDER_SOUND);
+        int mode = Settings.System.getInt(getContentResolver(),
+                Settings.System.REMINDER_ALERT_NOTIFY, 0);
+        mReminderMode.setValue(String.valueOf(mode));
+        mReminderMode.setOnPreferenceChangeListener(this);
+        updateReminderModeSummary(mode);
+
+        mReminderRingtone =
+                (RingtonePreference) findPreference(PREF_NOTI_REMINDER_RINGTONE);
+        Uri ringtone = null;
+        String ringtoneString = Settings.System.getString(getContentResolver(),
+                Settings.System.REMINDER_ALERT_RINGER);
+        if (ringtoneString == null) {
+            // Value not set, defaults to Default Ringtone
+            ringtone = RingtoneManager.getDefaultUri(
+                    RingtoneManager.TYPE_RINGTONE);
+        } else {
+            ringtone = Uri.parse(ringtoneString);
+        }
+        Ringtone alert = RingtoneManager.getRingtone(getActivity(), ringtone);
+        mReminderRingtone.setSummary(alert.getTitle(getActivity()));
+        mReminderRingtone.setOnPreferenceChangeListener(this);
+        mReminderRingtone.setEnabled(mode != 0);
+
+        mReminderInterval = (ListPreference) findPreference(PREF_NOTI_REMINDER_INTERVAL);
+        int interval = Settings.System.getInt(getContentResolver(),
+                Settings.System.REMINDER_ALERT_INTERVAL, 0);
+        mReminderInterval.setOnPreferenceChangeListener(this);
+        updateReminderIntervalSummary(interval);
+
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -219,6 +265,33 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_BAR_OPAQUE_COLOR, intHex);
             return true;
+        } else if (preference == mReminder) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.REMINDER_ALERT_ENABLED,
+                    (Boolean) objValue ? 1 : 0);
+            return true;
+        } else if (preference == mReminderMode) {
+            int mode = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.REMINDER_ALERT_NOTIFY,
+                    mode);
+            updateReminderModeSummary(mode);
+            mReminderRingtone.setEnabled(mode != 0);
+            return true;
+        } else if (preference == mReminderRingtone) {
+            Uri val = Uri.parse((String) objValue);
+            Ringtone ringtone = RingtoneManager.getRingtone(getActivity(), val);
+            mReminderRingtone.setSummary(ringtone.getTitle(getActivity()));
+            Settings.System.putString(getContentResolver(),
+                    Settings.System.REMINDER_ALERT_RINGER,
+                    val.toString());
+            return true;
+        } else if (preference == mReminderInterval) {
+            int interval = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.REMINDER_ALERT_INTERVAL,
+                    interval);
+            updateReminderIntervalSummary(interval);
         }
 
         return false;
@@ -258,6 +331,50 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
 
+    private void updateReminderModeSummary(int value) {
+        int resId;
+        switch (value) {
+            case 1:
+                resId = R.string.enabled;
+                break;
+            case 2:
+                resId = R.string.noti_reminder_sound_looping;
+                break;
+            default:
+                resId = R.string.disabled;
+                break;
+        }
+        mReminderMode.setSummary(getResources().getString(resId));
+    }
+
+    private void updateReminderIntervalSummary(int value) {
+        int resId;
+        switch (value) {
+            case 1000:
+                resId = R.string.noti_reminder_interval_1s;
+                break;
+            case 2000:
+                resId = R.string.noti_reminder_interval_2s;
+                break;
+            case 2500:
+                resId = R.string.noti_reminder_interval_2dot5s;
+                break;
+            case 3000:
+                resId = R.string.noti_reminder_interval_3s;
+                break;
+            case 3500:
+                resId = R.string.noti_reminder_interval_3dot5s;
+                break;
+            case 4000:
+                resId = R.string.noti_reminder_interval_4s;
+                break;
+            default:
+                resId = R.string.noti_reminder_interval_1dot5s;
+                break;
+        }
+        mReminderInterval.setValue(Integer.toString(value));
+        mReminderInterval.setSummary(getResources().getString(resId));
     }
 }
