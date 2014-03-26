@@ -70,7 +70,7 @@
             settings:min="1"
             settings:unitsLeft="Sections Count: "
             settings:unitsRight=""
-            android:defaultValue="6" />
+            android:defaultValue="3" />
 
     <net.margaritov.preference.colorpicker.ColorPickerPreference
         android:key="progressbar_color_1"
