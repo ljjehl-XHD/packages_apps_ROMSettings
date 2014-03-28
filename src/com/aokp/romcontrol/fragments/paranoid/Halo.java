@@ -43,6 +43,7 @@ public class Halo extends AOKPPreferenceFragment
     private static final String KEY_HALO_MSGBOX_ANIMATION = "halo_msgbox_animation";
     private static final String KEY_HALO_NOTIFY_COUNT = "halo_notify_count";
     private static final String KEY_HALO_UNLOCK_PING = "halo_unlock_ping";
+    private static final String KEY_HALO_ENABLED = "halo_enabled";
 
     private ListPreference mHaloState;
     private ListPreference mHaloSize;
@@ -52,6 +53,7 @@ public class Halo extends AOKPPreferenceFragment
     private ListPreference mHaloNotifyCount;
     private CheckBoxPreference mHaloMsgBox;
     private CheckBoxPreference mHaloUnlockPing;
+    private CheckBoxPreference mHaloEnabled;
 
     private Context mContext;
     private INotificationManager mNotificationManager;
@@ -102,6 +104,9 @@ public class Halo extends AOKPPreferenceFragment
         mHaloUnlockPing.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HALO_UNLOCK_PING, 0) == 1);
 
+        mHaloEnabled = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_ENABLED);
+        mHaloEnabled.setChecked(Settings.System.getInt(getActivity().getContentResolver(), Settings.System.HALO_ENABLED, 0) == 1);
+
         mHaloNotifyCount = (ListPreference) prefSet.findPreference(KEY_HALO_NOTIFY_COUNT);
         try {
             int haloCounter = Settings.System.getInt(mContext.getContentResolver(),
@@ -129,6 +134,10 @@ public class Halo extends AOKPPreferenceFragment
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.HALO_HIDE, mHaloHide.isChecked()
                     ? 1 : 0);
+        } else if (preference == mHaloEnabled) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.HALO_ENABLED, mHaloEnabled.isChecked() 
+                    ? 1:0);
         } else if (preference == mHaloReversed) {
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.HALO_REVERSED, mHaloReversed.isChecked()
