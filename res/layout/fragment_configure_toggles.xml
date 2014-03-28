@@ -104,7 +104,7 @@
             android:title="@string/toggles_swipe_to_switch_title"
             android:summary="@string/toggles_swipe_to_switch_summary"
             android:key="swipe_to_switch"
-            android:defaultValue="false"
+            android:defaultValue="true"
             />
 
     <com.aokp.romcontrol.widgets.CategorySeparator
