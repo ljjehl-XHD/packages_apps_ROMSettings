@@ -58,6 +58,17 @@
         <com.aokp.romcontrol.settings.CheckboxSetting
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
+                android:title="@string/lockscreen_auto_rotate_title"
+                android:key="lockscreen_rotation"
+                table="system"
+                android:dependency="accelerometer"
+                android:persistent="false"
+                />
+
+        <com.aokp.romcontrol.settings.CheckboxSetting
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:title="@string/volume_music_controls"
                 android:summary="@string/volume_music_controls_summary"
                 android:key="volume_music_controls"
