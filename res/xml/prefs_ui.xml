@@ -119,6 +119,12 @@
                 android:title="@string/screen_recorder_title"
                 android:fragment="com.aokp.romcontrol.fragments.chameleonos.ScreenRecorderSettings" />
 
+        <PreferenceScreen
+            android:key="interface_animation_scroll"
+            android:fragment="com.aokp.romcontrol.fragments.ScrollAnimationInterfaceSettings"
+            android:title="@string/scrolling_title"
+            android:summary="@string/scrolling_summary" />
+
         <ListPreference
             android:key="screen_off_animation"
             android:title="@string/screen_off_animation"
