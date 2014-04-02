@@ -57,6 +57,11 @@
 			android:title="ljjehl"
 			aokp:nameDev="ljjehl"
 			aokp:twitterHandle="yalehaus3" />
+
+		<com.aokp.romcontrol.widgets.DeveloperPreference
+			android:title="infernape763"
+			aokp:nameDev="infernape763"
+			aokp:twitterHandle="infernape763" />
 	</PreferenceCategory>
 
 </PreferenceScreen>
