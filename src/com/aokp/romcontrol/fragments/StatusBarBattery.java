@@ -3,6 +3,7 @@ package com.aokp.romcontrol.fragments;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +40,10 @@ public class StatusBarBattery extends Fragment implements OnSettingChangedListen
 
     @Override
     public void onSettingChanged(String table, String key, String oldValue, String value) {
+        Log.v("BatterySettings", "Current setting for battery is " + mBatteryChoice.getCurrentValueIndex());
         if ("aokp".equals(table)) {
             mBatteryIndicatorPlugged.setVisibility((mBatteryIndicator.isChecked() 
-            || mBatteryChoice.getCurrentValueIndex() == 4) ? View.VISIBLE : View.GONE);
+            || mBatteryChoice.getCurrentValueIndex() == 6) ? View.VISIBLE : View.GONE);
         }
     }
 }

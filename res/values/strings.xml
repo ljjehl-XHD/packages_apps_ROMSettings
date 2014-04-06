@@ -1866,6 +1866,8 @@
      <string name="battery_bar">Battery Bar</string>
      <string name="battery_percent_only">Percent Only</string>
      <string name="battery_none">None</string>
+     <string name="battery_pie">Battery Pie</string>
+     <string name="battery_pie_percent">Battery Pie &amp; percent</string>
 
    <!-- Smooth ProgressBar -->
     <string name="progressbar_title">Custom ProgressBar</string>
