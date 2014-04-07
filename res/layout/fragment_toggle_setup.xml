@@ -48,7 +48,7 @@
             android:entryValues="@array/choose_toggle_side_values"
             />
 
-    <com.aokp.romcontrol.settings.CheckboxSetting
+    <!--com.aokp.romcontrol.settings.CheckboxSetting
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -57,7 +57,7 @@
             android:summary="@string/toggles_swipe_to_switch_summary"
             android:key="swipe_to_switch"
             android:defaultValue="false"
-            />
+            /-->
 
     </LinearLayout>
 </ScrollView>
