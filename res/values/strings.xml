@@ -2084,4 +2084,9 @@
     <string name="noti_reminder_interval_3s">3 seconds</string>
     <string name="noti_reminder_interval_3dot5s">3.5 second</string>
     <string name="noti_reminder_interval_4s">4 seconds</string>
+
+    <string name="quicksettings_tiles_style_additional_options">QuickSettings options</string>
+    <string name="quick_tiles_per_row_title">Tiles per row</string>
+    <string name="quick_tiles_per_row_duplicate_landscape_title">Scale landscape quantity</string>
+    <string name="quick_tiles_per_row_duplicate_landscape_summary">Landscape view doubles tiles per row quantity</string>
 </resources>
