@@ -48,6 +48,28 @@
             android:entryValues="@array/choose_toggle_side_values"
             />
 
+    <com.aokp.romcontrol.settings.SingleChoiceSetting
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/quick_tiles_per_row"
+            android:key="quick_tiles_per_row"
+            android:title="@string/battery_status_icon_title"
+            android:entries="@array/tiles_per_row_entries"
+            android:entryValues="@array/tiles_per_row_values"
+            table="system"
+            android:defaultValue="5" />
+
+    <com.aokp.romcontrol.settings.CheckboxSetting
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:title="@string/quick_tiles_per_row_duplicate_landscape_title"
+            android:summary="@string/quick_tiles_per_row_duplicate_landscape_summary"
+            android:key="quick_tiles_per_row_duplicate_landscape"
+            android:defaultValue="true"
+            />
+
+
     <!--com.aokp.romcontrol.settings.CheckboxSetting
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

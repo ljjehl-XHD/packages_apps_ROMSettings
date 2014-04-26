@@ -50,31 +50,6 @@
             android:defaultValue="true"
             />
 
-        <com.aokp.romcontrol.widgets.CategorySeparator
-            style="@style/defaultSize"
-            android:title="@string/quicksettings_tiles_style_additional_options"/>
-
-        <com.aokp.romcontrol.settings.SingleChoiceSetting
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/quick_tiles_per_row"
-                android:key="quick_tiles_per_row"
-                android:title="@string/battery_status_icon_title"
-                android:entries="@array/tiles_per_row_entries"
-                android:entryValues="@array/tiles_per_row_values" 
-                table="system"
-                android:defaultValue="5" />
-
-        <com.aokp.romcontrol.settings.CheckboxSetting
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:title="@string/quick_tiles_per_row_duplicate_landscape_title"
-            android:summary="@string/quick_tiles_per_row_duplicate_landscape_summary"
-            android:key="quick_tiles_per_row_duplicate_landscape"
-            android:defaultValue="true"
-            />
-
     </LinearLayout>
 
 </ScrollView>
