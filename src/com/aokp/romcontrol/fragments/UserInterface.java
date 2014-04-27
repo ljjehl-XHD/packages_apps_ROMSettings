@@ -61,6 +61,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private static final String CUSTOM_RECENT_MODE = "custom_recent_mode";
     private static final String RECENT_PANEL_LEFTY_MODE = "recent_panel_lefty_mode";
     private static final String RECENT_PANEL_SCALE = "recent_panel_scale";
+    private static final String RECENT_PANEL_EXPANDED_MODE = "recent_panel_expanded_mode";
     private static final String PREF_NOTI_REMINDER_SOUND = "noti_reminder_sound";
     private static final String PREF_NOTI_REMINDER_ENABLED = "noti_reminder_enabled";
     private static final String PREF_NOTI_REMINDER_RINGTONE = "noti_reminder_ringtone";
@@ -77,6 +78,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     CheckBoxPreference mRecentsCustom;
     private CheckBoxPreference mRecentPanelLeftyMode;
     private ListPreference mRecentPanelScale;
+    private ListPreference mRecentPanelExpandedMode; 
     CheckBoxPreference mReminder;
     ListPreference mReminderMode;
     RingtonePreference mReminderRingtone;
@@ -124,6 +126,12 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 (ListPreference) findPreference(RECENT_PANEL_SCALE);
         mRecentPanelScale.setValue(recentScale + "");
         mRecentPanelScale.setOnPreferenceChangeListener(this);
+        mRecentPanelExpandedMode = 
+                (ListPreference) findPreference(RECENT_PANEL_EXPANDED_MODE);
+        final int recentExpandedMode = Settings.System.getInt(getContentResolver(),
+            Settings.System.RECENT_PANEL_EXPANDED_MODE, 0);
+        mRecentPanelExpandedMode.setValue(recentExpandedMode+"");
+        mRecentPanelExpandedMode.setOnPreferenceChangeListener(this); 
 
         mScreenOffAnimationPreference = (ListPreference) findPreference(KEY_SCREEN_OFF_ANIMATION);
         final int currentAnimation = Settings.System.getInt(resolver, SCREEN_OFF_ANIMATION,
@@ -251,6 +259,11 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             int value = Integer.parseInt((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.RECENT_PANEL_SCALE_FACTOR, value);
+            return true;
+        } else if (preference == mRecentPanelExpandedMode) {
+            int value = Integer.parseInt((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.RECENT_PANEL_EXPANDED_MODE, value);
             return true;
         } else if (preference == mRecentPanelLeftyMode) {
             Settings.System.putInt(getContentResolver(),
