@@ -45,6 +45,7 @@ public class Halo extends AOKPPreferenceFragment
     private static final String KEY_HALO_MSGBOX_ANIMATION = "halo_msgbox_animation";
     private static final String KEY_HALO_NOTIFY_COUNT = "halo_notify_count";
     private static final String KEY_HALO_UNLOCK_PING = "halo_unlock_ping";
+    private static final String KEY_FLOATING_MODE = "floating_mode";
     private static final String KEY_HALO_ENABLED = "halo_enabled";
 
     private ListPreference mHaloState;
@@ -57,6 +58,7 @@ public class Halo extends AOKPPreferenceFragment
     private CheckBoxPreference mHaloMsgBox;
     private CheckBoxPreference mHaloUnlockPing;
     private CheckBoxPreference mHaloEnabled;
+    private CheckBoxPreference mFloatingMode;
 
     private Context mContext;
     private INotificationManager mNotificationManager;
@@ -123,6 +125,10 @@ public class Halo extends AOKPPreferenceFragment
         }
         mHaloNotifyCount.setOnPreferenceChangeListener(this);
 
+        mFloatingMode = (CheckBoxPreference) prefSet.findPreference(KEY_FLOATING_MODE);
+        mFloatingMode.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.FLOATING_MODE, 1) == 1);
+
     }
 
     private boolean isHaloPolicyBlack() {
@@ -159,6 +165,10 @@ public class Halo extends AOKPPreferenceFragment
         } else if (preference == mHaloUnlockPing) {
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.HALO_UNLOCK_PING, mHaloUnlockPing.isChecked()
+                    ? 1 : 0);
+        } else if (preference == mFloatingMode) {
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.FLOATING_MODE, mFloatingMode.isChecked()
                     ? 1 : 0);
         } 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
