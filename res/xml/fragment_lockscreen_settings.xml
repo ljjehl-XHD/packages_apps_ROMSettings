@@ -38,16 +38,6 @@
                 />
 
         <com.aokp.romcontrol.settings.CheckboxSetting
-                android:id="@+id/lock_before_unlock"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:title="@string/lock_before_unlock_title"
-                android:summary="@string/lock_before_unlock_summary"
-                android:key="lock_before_unlock"
-                table="system"
-                />
-
-        <com.aokp.romcontrol.settings.CheckboxSetting
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
