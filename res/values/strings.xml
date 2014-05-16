@@ -2115,4 +2115,11 @@
     <string name="quick_tiles_per_row_title">Tiles per row</string>
     <string name="quick_tiles_per_row_duplicate_landscape_title">Scale landscape quantity</string>
     <string name="quick_tiles_per_row_duplicate_landscape_summary">Landscape view doubles tiles per row quantity</string>
+
+    <!-- Recents Color bg -->
+    <string name="recents_panel_color_title">Recents panel color</string>
+    <string name="recents_background_title">Classic Recents</string>
+    <string name="recents_background_brief">For AOSP-Style Only</string>
+    <string name="recents_background_summary">Prior to selecting this option, please make sure you uncheck Slim style recents because this option does not function while those are enabled.</string>
+
 </resources>

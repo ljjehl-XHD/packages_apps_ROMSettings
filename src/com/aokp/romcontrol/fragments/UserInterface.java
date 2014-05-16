@@ -79,6 +79,7 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
     private CheckBoxPreference mRecentPanelLeftyMode;
     private ListPreference mRecentPanelScale;
     private ListPreference mRecentPanelExpandedMode; 
+    private ColorPickerPreference mRecentsColor;
     CheckBoxPreference mReminder;
     ListPreference mReminderMode;
     RingtonePreference mReminderRingtone;
@@ -119,6 +120,10 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
                 (CheckBoxPreference) findPreference(RECENT_PANEL_LEFTY_MODE);
         mRecentPanelLeftyMode.setChecked(recentLeftyMode);
         mRecentPanelLeftyMode.setOnPreferenceChangeListener(this);
+
+
+        mRecentsColor = (ColorPickerPreference) findPreference("recents_panel_color");
+        mRecentsColor.setOnPreferenceChangeListener(this);
 
         final int recentScale = Settings.System.getInt(getContentResolver(),
                 Settings.System.RECENT_PANEL_SCALE_FACTOR, 100);
@@ -259,6 +264,15 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             int value = Integer.parseInt((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.RECENT_PANEL_SCALE_FACTOR, value);
+            return true;
+        } else if (preference == mRecentsColor) {
+            String hex = ColorPickerPreference.convertToARGB(Integer
+                    .valueOf(String.valueOf(objValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.RECENTS_PANEL_COLOR, intHex);
+            Helpers.restartSystemUI();
             return true;
         } else if (preference == mRecentPanelExpandedMode) {
             int value = Integer.parseInt((String) objValue);

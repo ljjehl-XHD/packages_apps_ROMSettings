@@ -115,8 +115,22 @@
                 android:title="@string/recent_panel_expanded_mode_title"
                 android:summary="@string/recent_panel_expanded_mode_summary"
                 android:persistent="false" />
-
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/recents_background_title"/>
+
+    <Preference
+        style="?android:preferenceInformationStyle"
+        android:title="@string/recents_background_brief"
+        android:summary="@string/recents_background_summary"
+        android:selectable="false" />
+
+    <net.margaritov.preference.colorpicker.ColorPickerPreference
+        android:key="recents_panel_color"
+        android:title="@string/recents_panel_color_title"
+        android:defaultValue="0xE0000000"
+        alphaSlider="true" />
 
     <PreferenceCategory
         android:key="misc"
