@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:settings="http://schemas.android.com/apk/res/com.aokp.romcontrol" >
 
    <ListPreference
         android:key="volume_overlay"
@@ -12,6 +13,18 @@
         android:key="less_notification_sounds"
         android:summary="@string/less_notification_sounds_summary"
         android:title="@string/less_notification_sounds_title" />
+    <com.aokp.romcontrol.widgets.AppSelectListPreference
+        android:key="headset_plug"
+        android:title="@string/headset_plug_enable_title"
+        android:positiveButtonText="@string/headset_plug_positive_title"
+        settings:neutralButtonText="@string/headset_plug_neutral_title"
+        settings:neutralButtonValue="SYSTEM_DEFAULT"
+        android:persistent="false" />
+    <CheckBoxPreference
+        android:key="headset_plug_music_active"
+        android:title="@string/headset_plug_music_active_title"
+        android:summary="@string/headset_plug_music_active_summary"
+        android:defaultValue="true" />
     <ListPreference
         android:defaultValue="-1"
         android:entries="@array/headphone_audio_mode_entries"

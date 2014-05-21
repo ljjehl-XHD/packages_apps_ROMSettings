@@ -2131,4 +2131,14 @@
     <string name="recent_clear_all_button_location_top_right">Top right</string>
     <string name="recent_clear_all_button_location_bottom_left">Bottom left</string>
     <string name="recent_clear_all_button_location_bottom_right">Bottom right</string>
+
+    <!-- Headset plug -->
+    <string name="headset_settings">Headset</string>
+    <string name="headset_plug_enable_title">Headset insert shortcut</string>
+    <string name="headset_plug_positive_title">None</string>
+    <string name="headset_plug_neutral_title">Default</string>
+    <string name="headset_plug_music_active_title">Disable on active audio</string>
+    <string name="headset_plug_music_active_summary">Dont run shortcut on active audio playback</string>
+    <string name="headset_plug_neutral_summary">System default music app</string>
+
 </resources>
